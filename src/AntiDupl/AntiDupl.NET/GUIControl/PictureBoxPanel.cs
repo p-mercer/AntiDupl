@@ -30,195 +30,194 @@ using System.IO;
 namespace AntiDupl.NET;
 
 public class PictureBoxPanel : Panel
-    {
-        private const int MAX_PATH = 260;
+{
+	private const int MAX_PATH = 260;
 
-        private readonly CoreLib m_core;
-        private readonly Options m_options;
-        private CoreImageInfo m_currentImageInfo;
-        private Size m_neighbourSizeMax;
+	private readonly CoreLib m_core;
+	private readonly Options m_options;
+	private CoreImageInfo m_currentImageInfo;
+	private Size m_neighbourSizeMax;
 
-        private Rectangle m_bitmapRect;
-        private MemoryStream m_memoryStream;
-        private Bitmap m_bitmap;
-        /// <summary>
-        /// Изображение загруженное из файла.
-        /// </summary>
-        public Bitmap Bitmap { get 
-        {
-            if (m_bitmap != m_originalBitmap && m_originalBitmap != null)
-            {
-                return m_originalBitmap;
-            }
-            return m_bitmap; 
-        } }
-        private bool m_animationEnable = false;
-        private bool m_currentlyAnimating = false;
+	private Rectangle m_bitmapRect;
+	private MemoryStream m_memoryStream;
+	private Bitmap m_bitmap;
+	/// <summary>
+	/// Изображение загруженное из файла.
+	/// </summary>
+	public Bitmap Bitmap
+	{
+		get
+		{
+			return m_bitmap != m_originalBitmap && m_originalBitmap != null ? m_originalBitmap : m_bitmap;
+		}
+	}
+	private bool m_animationEnable = false;
+	private bool m_currentlyAnimating = false;
 
-        private Bitmap m_originalBitmap;
-        private Rectangle[] m_rectanglesOfDifferences;
-        private Pen penForDifferences = new(new SolidBrush(Color.Red), 4);
+	private Bitmap m_originalBitmap;
+	private Rectangle[] m_rectanglesOfDifferences;
+	private Pen penForDifferences = new(new SolidBrush(Color.Red), 4);
 
-        private ImagePreviewPanel.Position m_position;
-        public ImagePreviewPanel.Position Position
-        {
-            get { return m_position; }
-            set
-            {
-                m_position = value;
-            }
-        }
-        private string m_prevFile;
-        private string m_nextFile;
-        private Bitmap m_prevBitmap;
-        private Bitmap m_nextBitmap;
-        private Rectangle m_prevBitmapRect;
-        private Rectangle m_nextBitmapRect;
-        private enum Neighbour
-        {
-            Previous,
-            Next,
-        }
+	private ImagePreviewPanel.Position m_position;
+	public ImagePreviewPanel.Position Position
+	{
+		get { return m_position; }
+		set
+		{
+			m_position = value;
+		}
+	}
+	private string m_prevFile;
+	private string m_nextFile;
+	private Bitmap m_prevBitmap;
+	private Bitmap m_nextBitmap;
+	private Rectangle m_prevBitmapRect;
+	private Rectangle m_nextBitmapRect;
+	private enum Neighbour
+	{
+		Previous,
+		Next,
+	}
 
 
-        public PictureBoxPanel(CoreLib core, Options options)
-        {
-            m_core = core;
-            m_options = options;
-            InitializeComponents();
-            m_options.resultsOptions.OnImageViewChange += new ResultsOptions.ImageViewChangeHandler(OnImageViewChange);
-        }
+	public PictureBoxPanel(CoreLib core, Options options)
+	{
+		m_core = core;
+		m_options = options;
+		InitializeComponents();
+		m_options.resultsOptions.OnImageViewChange += new ResultsOptions.ImageViewChangeHandler(OnImageViewChange);
+	}
 
-        private void InitializeComponents()
-        {
-            Location = new System.Drawing.Point(0, 0);
-            Dock = DockStyle.Fill;
-            BorderStyle = BorderStyle.Fixed3D;
-            BackColor = Color.DarkGray;
-            DoubleBuffered = true;
+	private void InitializeComponents()
+	{
+		Location = new System.Drawing.Point(0, 0);
+		Dock = DockStyle.Fill;
+		BorderStyle = BorderStyle.Fixed3D;
+		BackColor = Color.DarkGray;
+		DoubleBuffered = true;
 
-            DoubleClick += new EventHandler(OnImageDoubleClicked);
-            SizeChanged += new EventHandler(OnSizeChanged);
-        }
+		DoubleClick += new EventHandler(OnImageDoubleClicked);
+		SizeChanged += new EventHandler(OnSizeChanged);
+	}
 
-        public void UpdateImage(CoreImageInfo currentImageInfo)
-        {
-            if (m_originalBitmap != null)
-            {
-                m_originalBitmap.Dispose();
-                m_originalBitmap = null;
-            }
-            m_currentImageInfo = currentImageInfo;
-            if (currentImageInfo != null)
-            {
-                StopAnimate();
-                if (m_currentImageInfo.type != CoreDll.ImageType.None)
-                {
-                    if (m_currentImageInfo.path.Length < MAX_PATH && m_currentImageInfo.type <= CoreDll.ImageType.Icon)
-                    {
-                        try
-                        {
-                            if (LoadFileToMemoryStream(ref m_memoryStream, m_currentImageInfo.path))
-                            {
-                                m_bitmap = new Bitmap(m_memoryStream);
-                                m_animationEnable = ImageAnimator.CanAnimate(m_bitmap);
-                                if (m_animationEnable)
+	public void UpdateImage(CoreImageInfo currentImageInfo)
+	{
+		if (m_originalBitmap != null)
+		{
+			m_originalBitmap.Dispose();
+			m_originalBitmap = null;
+		}
+		m_currentImageInfo = currentImageInfo;
+		if (currentImageInfo != null)
+		{
+			StopAnimate();
+			if (m_currentImageInfo.type != CoreDll.ImageType.None)
+			{
+				if (m_currentImageInfo.path.Length < MAX_PATH && m_currentImageInfo.type <= CoreDll.ImageType.Icon)
+				{
+					try
+					{
+						if (LoadFileToMemoryStream(ref m_memoryStream, m_currentImageInfo.path))
+						{
+							m_bitmap = new Bitmap(m_memoryStream);
+							m_animationEnable = ImageAnimator.CanAnimate(m_bitmap);
+							if (m_animationEnable)
 							{
 								m_currentlyAnimating = false;
 							}
 						}
-                            else
-                            {
-                                m_bitmap = null;
-                            }
-                        }
-                        catch
-                        {
-                            m_bitmap = m_core.LoadBitmap(m_currentImageInfo);
-                        }
-                    }
-                    else
-                    {
-                        m_bitmap = m_core.LoadBitmap(m_currentImageInfo);
-                    }
-                }
-                else
-                {
-                    m_bitmap = null;
-                }
+						else
+						{
+							m_bitmap = null;
+						}
+					}
+					catch
+					{
+						m_bitmap = m_core.LoadBitmap(m_currentImageInfo);
+					}
+				}
+				else
+				{
+					m_bitmap = m_core.LoadBitmap(m_currentImageInfo);
+				}
+			}
+			else
+			{
+				m_bitmap = null;
+			}
 
-                if (m_options.resultsOptions.ShowNeighboursImages)
+			if (m_options.resultsOptions.ShowNeighboursImages)
 			{
 				ShowNeighboursImages(true);
 			}
 		}
-        }
+	}
 
-        private static bool LoadFileToMemoryStream(ref MemoryStream memoryStream, string path)
-        {
-            if (memoryStream != null)
-            {
-                memoryStream.Close();
-                memoryStream.Dispose();
-                memoryStream = null;
-            }
-            var fileInfo = new FileInfo(path);
-            if (fileInfo.Exists)
-            {
-                try
-                {
-                    var fileStream = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read);
-                    var buffer = new byte[fileStream.Length];
-                    fileStream.Read(buffer, 0, buffer.Length);
-                    fileStream.Close();
-                    memoryStream = new MemoryStream(buffer);
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-            return false;
-        }
+	private static bool LoadFileToMemoryStream(ref MemoryStream memoryStream, string path)
+	{
+		if (memoryStream != null)
+		{
+			memoryStream.Close();
+			memoryStream.Dispose();
+			memoryStream = null;
+		}
+		var fileInfo = new FileInfo(path);
+		if (fileInfo.Exists)
+		{
+			try
+			{
+				var fileStream = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read);
+				var buffer = new byte[fileStream.Length];
+				fileStream.Read(buffer, 0, buffer.Length);
+				fileStream.Close();
+				memoryStream = new MemoryStream(buffer);
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
+		return false;
+	}
 
 
-        private void AnimateImage()
-        {
-            if (!m_currentlyAnimating)
-            {
-                ImageAnimator.Animate(m_bitmap, new EventHandler(OnFrameChanged));
-                m_currentlyAnimating = true;
-            }
-        }
+	private void AnimateImage()
+	{
+		if (!m_currentlyAnimating)
+		{
+			ImageAnimator.Animate(m_bitmap, new EventHandler(OnFrameChanged));
+			m_currentlyAnimating = true;
+		}
+	}
 
-        private void StopAnimate()
-        {
-            m_animationEnable = false;
-            ImageAnimator.StopAnimate(m_bitmap, new EventHandler(OnFrameChanged));
-        }
+	private void StopAnimate()
+	{
+		m_animationEnable = false;
+		ImageAnimator.StopAnimate(m_bitmap, new EventHandler(OnFrameChanged));
+	}
 
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            if (m_animationEnable)
-            {
-                try
-                {
-                    AnimateImage();
-                    ImageAnimator.UpdateFrames();
-                }
-                catch
-                {
-                    m_animationEnable = false;
-                }
-            }
-            if (m_bitmap != null)
-            {
-                e.Graphics.DrawImage(m_bitmap, m_bitmapRect);
-            }
-            if (m_options.resultsOptions.ShowNeighboursImages)
-            {
-                if (m_prevBitmap != null)
+	protected override void OnPaint(PaintEventArgs e)
+	{
+		if (m_animationEnable)
+		{
+			try
+			{
+				AnimateImage();
+				ImageAnimator.UpdateFrames();
+			}
+			catch
+			{
+				m_animationEnable = false;
+			}
+		}
+		if (m_bitmap != null)
+		{
+			e.Graphics.DrawImage(m_bitmap, m_bitmapRect);
+		}
+		if (m_options.resultsOptions.ShowNeighboursImages)
+		{
+			if (m_prevBitmap != null)
 			{
 				e.Graphics.DrawImage(m_prevBitmap, m_prevBitmapRect);
 			}
@@ -228,147 +227,147 @@ public class PictureBoxPanel : Panel
 				e.Graphics.DrawImage(m_nextBitmap, m_nextBitmapRect);
 			}
 		}
-        }
+	}
 
-        private void OnFrameChanged(object sender, EventArgs e)
-        {
-            Invalidate();
-        }
+	private void OnFrameChanged(object sender, EventArgs e)
+	{
+		Invalidate();
+	}
 
-        private void OnImageDoubleClicked(object sender, System.EventArgs e)
-        {
-            ImageOpener.OpenFile(m_currentImageInfo.path);
-        }
+	private void OnImageDoubleClicked(object sender, System.EventArgs e)
+	{
+		ImageOpener.OpenFile(m_currentImageInfo.path);
+	}
 
-        private void OnSizeChanged(object sender, EventArgs e)
-        {
-            UpdateImagePadding(m_neighbourSizeMax);
-            if (m_options.resultsOptions.ShowNeighboursImages)
+	private void OnSizeChanged(object sender, EventArgs e)
+	{
+		UpdateImagePadding(m_neighbourSizeMax);
+		if (m_options.resultsOptions.ShowNeighboursImages)
 		{
 			ShowNeighboursImages(false);
 		}
 
 		Refresh();
-        }
+	}
 
-        private void OnImageViewChange()
-        {
-            UpdateImagePadding(m_neighbourSizeMax);
-            if (m_options.resultsOptions.ShowNeighboursImages)
+	private void OnImageViewChange()
+	{
+		UpdateImagePadding(m_neighbourSizeMax);
+		if (m_options.resultsOptions.ShowNeighboursImages)
 		{
 			ShowNeighboursImages(true);
 		}
 
 		Refresh();
-        }
+	}
 
-        public void UpdateImagePadding(Size neighbourSizeMax)
-        {
-            m_neighbourSizeMax = neighbourSizeMax;
-            if (m_currentImageInfo != null)
-            {
-                int horizontalPosition = 0, verticalPosition = 0;
-                var clientWidth = ClientSize.Width;
-                var clientHeight = ClientSize.Height;
-                var currentWidth = (int)m_currentImageInfo.width;
-                var currentHeight = (int)m_currentImageInfo.height;
-                var targetWidth = 100;
-                var targetHeight = 100;
-                if (currentWidth > 0 && currentHeight > 0)
-                {
-                    if (m_options.resultsOptions.ProportionalImageSize)
-                    {
-                        var neighbourWidth = m_neighbourSizeMax.Width;
-                        var neighbourHeight = m_neighbourSizeMax.Height;
-                        var maxWidth = Math.Max(currentWidth, neighbourWidth);
-                        var maxHeight = Math.Max(currentHeight, neighbourHeight);
-                        if (m_options.resultsOptions.StretchSmallImages || maxWidth >= clientWidth || maxHeight >= clientHeight)
-                        {
-                            if (maxWidth * clientHeight > maxHeight * clientWidth)
-                            {
-                                targetHeight = currentHeight * clientWidth / maxWidth;
-                                targetWidth = currentWidth * clientWidth / maxWidth;
+	public void UpdateImagePadding(Size neighbourSizeMax)
+	{
+		m_neighbourSizeMax = neighbourSizeMax;
+		if (m_currentImageInfo != null)
+		{
+			int horizontalPosition = 0, verticalPosition = 0;
+			var clientWidth = ClientSize.Width;
+			var clientHeight = ClientSize.Height;
+			var currentWidth = (int)m_currentImageInfo.width;
+			var currentHeight = (int)m_currentImageInfo.height;
+			var targetWidth = 100;
+			var targetHeight = 100;
+			if (currentWidth > 0 && currentHeight > 0)
+			{
+				if (m_options.resultsOptions.ProportionalImageSize)
+				{
+					var neighbourWidth = m_neighbourSizeMax.Width;
+					var neighbourHeight = m_neighbourSizeMax.Height;
+					var maxWidth = Math.Max(currentWidth, neighbourWidth);
+					var maxHeight = Math.Max(currentHeight, neighbourHeight);
+					if (m_options.resultsOptions.StretchSmallImages || maxWidth >= clientWidth || maxHeight >= clientHeight)
+					{
+						if (maxWidth * clientHeight > maxHeight * clientWidth)
+						{
+							targetHeight = currentHeight * clientWidth / maxWidth;
+							targetWidth = currentWidth * clientWidth / maxWidth;
 
-                                verticalPosition = (clientHeight - targetHeight) / 2;
-                                if (m_options.resultsOptions.ShowNeighboursImages)
-                                {
-                                    if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
-                                    {
-                                        horizontalPosition = clientWidth - targetWidth; //сдвигаем влево
-                                        verticalPosition = (clientHeight - targetHeight) / 2;
-                                    }
-                                    else
-                                    {
-                                        horizontalPosition = (clientWidth - targetWidth) / 2;
-                                        verticalPosition = 0;
-                                    }
-                                }
-                                else
-                                {
-                                    horizontalPosition = (clientWidth - targetWidth) / 2;
-                                    verticalPosition = (clientHeight - targetHeight) / 2;
-                                }
-                            }
-                            else
-                            {
-                                targetHeight = currentHeight * clientHeight / maxHeight;
-                                targetWidth = currentWidth * clientHeight / maxHeight;
+							verticalPosition = (clientHeight - targetHeight) / 2;
+							if (m_options.resultsOptions.ShowNeighboursImages)
+							{
+								if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
+								{
+									horizontalPosition = clientWidth - targetWidth; //сдвигаем влево
+									verticalPosition = (clientHeight - targetHeight) / 2;
+								}
+								else
+								{
+									horizontalPosition = (clientWidth - targetWidth) / 2;
+									verticalPosition = 0;
+								}
+							}
+							else
+							{
+								horizontalPosition = (clientWidth - targetWidth) / 2;
+								verticalPosition = (clientHeight - targetHeight) / 2;
+							}
+						}
+						else
+						{
+							targetHeight = currentHeight * clientHeight / maxHeight;
+							targetWidth = currentWidth * clientHeight / maxHeight;
 
-                                if (m_options.resultsOptions.ShowNeighboursImages)
-                                {
-                                    if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
-                                    {
-                                        horizontalPosition = clientWidth - targetWidth; //сдвигаем влево
-                                        verticalPosition = (clientHeight - targetHeight) / 2; //посеридине
-                                    }
-                                    else
-                                    {
-                                        horizontalPosition = (clientWidth - targetWidth) / 2;
-                                        verticalPosition = 0;
-                                    }
-                                }
-                                else
-                                {
-                                    verticalPosition = (clientHeight - targetHeight) / 2;
-                                    horizontalPosition = (clientWidth - targetWidth) / 2;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            targetHeight = currentHeight;
-                            targetWidth = currentWidth;
-                            if (m_options.resultsOptions.ShowNeighboursImages)
-                            {
-                                if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
-                                {
-                                    verticalPosition = (clientHeight - currentHeight) / 2;
-                                    horizontalPosition = clientWidth - currentWidth;
-                                }
-                                else
-                                {
-                                    verticalPosition = 0;
-                                    horizontalPosition = (clientWidth - currentWidth) / 2;
-                                }
-                            }
-                            else
-                            {
-                                verticalPosition = (clientHeight - currentHeight) / 2;
-                                horizontalPosition = (clientWidth - currentWidth) / 2;
-                            }
-                        }
-                    }
-                    else // если не надо пропорциональными делать
-                    {
-                        if (m_options.resultsOptions.StretchSmallImages || currentWidth >= clientWidth || currentHeight >= clientHeight)
-                        {
-                            if (currentWidth * clientHeight > currentHeight * clientWidth) //если ширина больше
-                            {
-                                targetWidth = clientWidth;
-                                targetHeight = clientWidth * currentHeight / currentWidth;
-                                if (m_options.resultsOptions.ShowNeighboursImages)
-                                {
-                                    if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
+							if (m_options.resultsOptions.ShowNeighboursImages)
+							{
+								if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
+								{
+									horizontalPosition = clientWidth - targetWidth; //сдвигаем влево
+									verticalPosition = (clientHeight - targetHeight) / 2; //посеридине
+								}
+								else
+								{
+									horizontalPosition = (clientWidth - targetWidth) / 2;
+									verticalPosition = 0;
+								}
+							}
+							else
+							{
+								verticalPosition = (clientHeight - targetHeight) / 2;
+								horizontalPosition = (clientWidth - targetWidth) / 2;
+							}
+						}
+					}
+					else
+					{
+						targetHeight = currentHeight;
+						targetWidth = currentWidth;
+						if (m_options.resultsOptions.ShowNeighboursImages)
+						{
+							if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
+							{
+								verticalPosition = (clientHeight - currentHeight) / 2;
+								horizontalPosition = clientWidth - currentWidth;
+							}
+							else
+							{
+								verticalPosition = 0;
+								horizontalPosition = (clientWidth - currentWidth) / 2;
+							}
+						}
+						else
+						{
+							verticalPosition = (clientHeight - currentHeight) / 2;
+							horizontalPosition = (clientWidth - currentWidth) / 2;
+						}
+					}
+				}
+				else // если не надо пропорциональными делать
+				{
+					if (m_options.resultsOptions.StretchSmallImages || currentWidth >= clientWidth || currentHeight >= clientHeight)
+					{
+						if (currentWidth * clientHeight > currentHeight * clientWidth) //если ширина больше
+						{
+							targetWidth = clientWidth;
+							targetHeight = clientWidth * currentHeight / currentWidth;
+							if (m_options.resultsOptions.ShowNeighboursImages)
+							{
+								if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
 								{
 									verticalPosition = (clientHeight - targetHeight) / 2;
 								}
@@ -377,33 +376,33 @@ public class PictureBoxPanel : Panel
 									verticalPosition = 0;
 								}
 							}
-                                else
+							else
 							{
 								verticalPosition = (clientHeight - targetHeight) / 2;
 							}
 						}
-                            else
-                            {
-                                targetWidth = clientHeight * currentWidth / currentHeight;
-                                targetHeight = clientHeight;
-                                if (m_options.resultsOptions.ShowNeighboursImages)
-                                {
-                                    if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
+						else
+						{
+							targetWidth = clientHeight * currentWidth / currentHeight;
+							targetHeight = clientHeight;
+							if (m_options.resultsOptions.ShowNeighboursImages)
+							{
+								if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
 								{
 									horizontalPosition = clientWidth - targetWidth;
 								}
 							}
-                                else
+							else
 							{
 								horizontalPosition = (clientWidth - targetWidth) / 2;
 							}
 						}
-                        }
-                        else
-                        {
-                            if (m_options.resultsOptions.ShowNeighboursImages)
-                            {
-                                if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
+					}
+					else
+					{
+						if (m_options.resultsOptions.ShowNeighboursImages)
+						{
+							if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
 							{
 								horizontalPosition = clientWidth - currentWidth;
 							}
@@ -412,29 +411,29 @@ public class PictureBoxPanel : Panel
 								verticalPosition = 0;
 							}
 						}
-                            else
-                            {
-                                verticalPosition = (clientHeight - currentHeight) / 2;
-                                horizontalPosition = (clientWidth - currentWidth) / 2;
-                            }
-                            targetWidth = currentWidth;
-                            targetHeight = currentHeight;
-                        }
-                    }
-                }
-                m_bitmapRect = new Rectangle(horizontalPosition, verticalPosition, targetWidth, targetHeight);
-            }
-            //Refresh();
-        }
+						else
+						{
+							verticalPosition = (clientHeight - currentHeight) / 2;
+							horizontalPosition = (clientWidth - currentWidth) / 2;
+						}
+						targetWidth = currentWidth;
+						targetHeight = currentHeight;
+					}
+				}
+			}
+			m_bitmapRect = new Rectangle(horizontalPosition, verticalPosition, targetWidth, targetHeight);
+		}
+		//Refresh();
+	}
 
-        /// <summary>
-        /// Рисует в храящемся изображение m_bitmap бордюры отличий.
-        /// </summary>
-        public bool SetDifference(List<Rectangle> rectanglesOfDifferenceIn)
-        {
-            if (!m_animationEnable)
-            {
-                if (m_originalBitmap == null)
+	/// <summary>
+	/// Рисует в храящемся изображение m_bitmap бордюры отличий.
+	/// </summary>
+	public bool SetDifference(List<Rectangle> rectanglesOfDifferenceIn)
+	{
+		if (!m_animationEnable)
+		{
+			if (m_originalBitmap == null)
 			{
 				m_originalBitmap = m_bitmap.Clone() as Bitmap;
 			}
@@ -444,65 +443,65 @@ public class PictureBoxPanel : Panel
 			}
 
 			m_rectanglesOfDifferences = new Rectangle[rectanglesOfDifferenceIn.Count];
-                rectanglesOfDifferenceIn.CopyTo(m_rectanglesOfDifferences);
+			rectanglesOfDifferenceIn.CopyTo(m_rectanglesOfDifferences);
 
-                //преобразуем в соответсвии с размером полного изображения
-                var multiplierX = m_bitmap.Width / (double)m_options.resultsOptions.NormalizedSizeOfImage;
-                var multiplierY = m_bitmap.Height / (double)m_options.resultsOptions.NormalizedSizeOfImage;
+			//преобразуем в соответсвии с размером полного изображения
+			var multiplierX = m_bitmap.Width / (double)m_options.resultsOptions.NormalizedSizeOfImage;
+			var multiplierY = m_bitmap.Height / (double)m_options.resultsOptions.NormalizedSizeOfImage;
 
-                for (var i = 0; i < m_rectanglesOfDifferences.Length; i++)
-                {
-                    m_rectanglesOfDifferences[i] = new Rectangle((int)(m_rectanglesOfDifferences[i].X * multiplierX),
-                        (int)(m_rectanglesOfDifferences[i].Y * multiplierY),
-                        (int)(m_rectanglesOfDifferences[i].Width * multiplierX),
-                        (int)(m_rectanglesOfDifferences[i].Height * multiplierY));
-                }
+			for (var i = 0; i < m_rectanglesOfDifferences.Length; i++)
+			{
+				m_rectanglesOfDifferences[i] = new Rectangle((int)(m_rectanglesOfDifferences[i].X * multiplierX),
+					(int)(m_rectanglesOfDifferences[i].Y * multiplierY),
+					(int)(m_rectanglesOfDifferences[i].Width * multiplierX),
+					(int)(m_rectanglesOfDifferences[i].Height * multiplierY));
+			}
 
-                var penThickness = Math.Min(m_bitmap.Width, m_bitmap.Height) * m_options.resultsOptions.PenThickness / m_options.resultsOptions.NormalizedSizeOfImage;
-                penForDifferences = new Pen(new SolidBrush(Color.Red), penThickness);
-                try
-                {
-                    using (var gr = Graphics.FromImage(m_bitmap))
-                    {
-                        for (var i = 0; i < m_rectanglesOfDifferences.Length; i++)
+			var penThickness = Math.Min(m_bitmap.Width, m_bitmap.Height) * m_options.resultsOptions.PenThickness / m_options.resultsOptions.NormalizedSizeOfImage;
+			penForDifferences = new Pen(new SolidBrush(Color.Red), penThickness);
+			try
+			{
+				using (var gr = Graphics.FromImage(m_bitmap))
+				{
+					for (var i = 0; i < m_rectanglesOfDifferences.Length; i++)
 					{
 						gr.DrawRectangle(penForDifferences, m_rectanglesOfDifferences[i]);
 					}
 				}
-                    Invalidate();
-                    return true;
-                }
-                catch (Exception)
-                {
-                    //на этом изображение не получается рисовать
-                    return false;
-                }
-            }
-            return false;
-        }
+				Invalidate();
+				return true;
+			}
+			catch (Exception)
+			{
+				//на этом изображение не получается рисовать
+				return false;
+			}
+		}
+		return false;
+	}
 
-        public void ClearDifference()
-        {
-            if (m_originalBitmap != null)
-            {
-                m_bitmap = m_originalBitmap.Clone() as Bitmap;
-                m_originalBitmap.Dispose();
-                m_originalBitmap = null;
-            }
-            m_rectanglesOfDifferences = null;
-            Invalidate();
-        }
+	public void ClearDifference()
+	{
+		if (m_originalBitmap != null)
+		{
+			m_bitmap = m_originalBitmap.Clone() as Bitmap;
+			m_originalBitmap.Dispose();
+			m_originalBitmap = null;
+		}
+		m_rectanglesOfDifferences = null;
+		Invalidate();
+	}
 
-        private void ShowNeighboursImages(bool forceLoad)
-        {
-            if (m_options.resultsOptions.ShowNeighboursImages && m_currentImageInfo != null)
-            {
-                if (forceLoad)
-                {
-                    CleanNeighbours();
+	private void ShowNeighboursImages(bool forceLoad)
+	{
+		if (m_options.resultsOptions.ShowNeighboursImages && m_currentImageInfo != null)
+		{
+			if (forceLoad)
+			{
+				CleanNeighbours();
 				GetNeighboursFileNames(m_currentImageInfo.path, ref m_prevFile, ref m_nextFile);
-                }
-                if (m_prevFile != null)
+			}
+			if (m_prevFile != null)
 			{
 				m_prevBitmap = GetBitmap(m_prevFile);
 			}
@@ -522,138 +521,117 @@ public class PictureBoxPanel : Panel
 				m_nextBitmapRect = GetRectangle(m_position, m_nextBitmap, Neighbour.Next);
 			}
 		}
-            else
-            {
-                CleanNeighbours();
-            }
-        }
-
-        private void CleanNeighbours()
-        {
-            if (m_prevFile != null)
+		else
 		{
-			m_prevFile = null;
-		}
-
-		if (m_nextFile != null)
-		{
-			m_nextFile = null;
-		}
-
-		if (m_prevBitmap != null)
-		{
-			m_prevBitmap = null;
-		}
-
-		if (m_nextBitmap != null)
-		{
-			m_nextBitmap = null;
+			CleanNeighbours();
 		}
 	}
 
-        private Rectangle GetRectangle(ImagePreviewPanel.Position position, Bitmap bitmap, Neighbour neighbour)
-        {
-            const float PERCENT_OF_NEIGHBOUR = 0.30F;
-            var clientWidth = ClientSize.Width;
-            var clientHeight = ClientSize.Height;
-            var neighbourMaxWidth = (int)(clientWidth * PERCENT_OF_NEIGHBOUR);
-            var neighbourMaxHeight = (int)(clientHeight * PERCENT_OF_NEIGHBOUR);
-            var currentWidth = bitmap.Width;
-            var currentHeight = bitmap.Height;
-            int horizontalPosition = 0, verticalPosition = 0;
-            int neighbourWidth, neighbourHeight;
+	private void CleanNeighbours()
+	{
+		m_prevFile = null;
+		m_nextFile = null;
+		m_prevBitmap = null;
+		m_nextBitmap = null;
+	}
 
-            if (currentWidth > currentHeight)
-            {
-                neighbourWidth = neighbourMaxWidth;
-                neighbourHeight = neighbourMaxWidth * currentHeight / currentWidth;
-            }
-            else if (currentWidth < currentHeight)
-            {
-                neighbourHeight = neighbourMaxHeight;
-                neighbourWidth = neighbourMaxHeight * currentWidth / currentHeight;
-            }
-            else
-            {
-                neighbourWidth = neighbourMaxWidth;
-                neighbourHeight = neighbourMaxHeight;
-            }
+	private Rectangle GetRectangle(ImagePreviewPanel.Position position, Bitmap bitmap, Neighbour neighbour)
+	{
+		const float PERCENT_OF_NEIGHBOUR = 0.30F;
+		var clientWidth = ClientSize.Width;
+		var clientHeight = ClientSize.Height;
+		var neighbourMaxWidth = (int)(clientWidth * PERCENT_OF_NEIGHBOUR);
+		var neighbourMaxHeight = (int)(clientHeight * PERCENT_OF_NEIGHBOUR);
+		var currentWidth = bitmap.Width;
+		var currentHeight = bitmap.Height;
+		int horizontalPosition = 0, verticalPosition = 0;
+		int neighbourWidth, neighbourHeight;
 
-            if (position == ImagePreviewPanel.Position.Top || position == ImagePreviewPanel.Position.Bottom)
-            {
-                if (neighbour == Neighbour.Next)
-                {
-                    verticalPosition = clientHeight - neighbourHeight;
-                }
-            }
-            else
-            {
-                verticalPosition = clientHeight - neighbourHeight;
-                if (neighbour == Neighbour.Next)
-                {
-                    horizontalPosition = clientWidth - neighbourWidth;
-                }
-            }
+		if (currentWidth > currentHeight)
+		{
+			neighbourWidth = neighbourMaxWidth;
+			neighbourHeight = neighbourMaxWidth * currentHeight / currentWidth;
+		}
+		else if (currentWidth < currentHeight)
+		{
+			neighbourHeight = neighbourMaxHeight;
+			neighbourWidth = neighbourMaxHeight * currentWidth / currentHeight;
+		}
+		else
+		{
+			neighbourWidth = neighbourMaxWidth;
+			neighbourHeight = neighbourMaxHeight;
+		}
 
-            return new Rectangle(horizontalPosition, verticalPosition, neighbourWidth, neighbourHeight);
-        }
+		if (position == ImagePreviewPanel.Position.Top || position == ImagePreviewPanel.Position.Bottom)
+		{
+			if (neighbour == Neighbour.Next)
+			{
+				verticalPosition = clientHeight - neighbourHeight;
+			}
+		}
+		else
+		{
+			verticalPosition = clientHeight - neighbourHeight;
+			if (neighbour == Neighbour.Next)
+			{
+				horizontalPosition = clientWidth - neighbourWidth;
+			}
+		}
 
-        private Bitmap GetBitmap(string m_fileName)
-        {
-            try
-            {
-                if (m_fileName != null)
-                {
-                    MemoryStream memoryStream = null;
-                    if (LoadFileToMemoryStream(ref memoryStream, m_fileName))
-                    {
-                        return new Bitmap(memoryStream);
-                    }
-                }
-            }
-            catch
-            {
-                return m_core.LoadBitmap(m_currentImageInfo);
-            }
+		return new Rectangle(horizontalPosition, verticalPosition, neighbourWidth, neighbourHeight);
+	}
 
-            return null;
-        }
+	private Bitmap GetBitmap(string m_fileName)
+	{
+		try
+		{
+			if (m_fileName != null)
+			{
+				MemoryStream memoryStream = null;
+				if (LoadFileToMemoryStream(ref memoryStream, m_fileName))
+				{
+					return new Bitmap(memoryStream);
+				}
+			}
+		}
+		catch
+		{
+			return m_core.LoadBitmap(m_currentImageInfo);
+		}
 
-        private static void GetNeighboursFileNames(string filePreview, ref string m_prevFile, ref string m_nextFile)
-        {
-            if (m_prevFile == null && m_nextFile == null)
-            {
-                var directoryInfo = new DirectoryInfo(Path.GetDirectoryName(filePreview));
-                if (directoryInfo.Exists)
-                {
-                    var filesInfos = directoryInfo.GetFiles();
+		return null;
+	}
 
-                    Array.Sort(filesInfos, new Comparison<FileInfo>((f, f2) => f.FullName.CompareTo(f2.FullName)));
+	private static void GetNeighboursFileNames(string filePreview, ref string m_prevFile, ref string m_nextFile)
+	{
+		if (m_prevFile == null && m_nextFile == null)
+		{
+			var directoryInfo = new DirectoryInfo(Path.GetDirectoryName(filePreview));
+			if (directoryInfo.Exists)
+			{
+				var filesInfos = directoryInfo.GetFiles();
 
-                    for (var i = 0; i < filesInfos.Length; i++)
-                    {
-                        if (filesInfos[i].FullName == filePreview)
-                        {
-                            if (i > 0)  //previos
+				Array.Sort(filesInfos, new Comparison<FileInfo>((f, f2) => f.FullName.CompareTo(f2.FullName)));
+
+				for (var i = 0; i < filesInfos.Length; i++)
+				{
+					if (filesInfos[i].FullName == filePreview)
+					{
+						if (i > 0 && File.Exists(filesInfos[i - 1].FullName))  //previos
 						{
-							if (File.Exists(filesInfos[i - 1].FullName))
-							{
-								m_prevFile = filesInfos[i - 1].FullName;
-							}
+							m_prevFile = filesInfos[i - 1].FullName;
 						}
 
-						if (i < filesInfos.Length - 1) //next
+						if (i < filesInfos.Length - 1 && File.Exists(filesInfos[i + 1].FullName)) //next
 						{
-							if (File.Exists(filesInfos[i + 1].FullName))
-							{
-								m_nextFile = filesInfos[i + 1].FullName;
-							}
+							m_nextFile = filesInfos[i + 1].FullName;
 						}
 
 						break;
-                        }
-                    }
-                }
-            }
-        }
-    }
+					}
+				}
+			}
+		}
+	}
+}
