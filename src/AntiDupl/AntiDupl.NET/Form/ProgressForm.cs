@@ -32,91 +32,91 @@ namespace AntiDupl.NET;
 /// Форма отображает прогресс длительных операций.
 /// </summary>
 public class ProgressForm : Form
-    {
-        public enum Type
-        {
-            ApplyAction,
-            RenameCurrent,
-            MoveCurrentGroup,
-            RenameCurrentGroupAs,
+{
+	public enum Type
+	{
+		ApplyAction,
+		RenameCurrent,
+		MoveCurrentGroup,
+		RenameCurrentGroupAs,
 
-            RefreshResults,
-            Undo,
-            Redo,
+		RefreshResults,
+		Undo,
+		Redo,
 
-            LoadResults,
-            SaveResults,
+		LoadResults,
+		SaveResults,
 
-            ClearResults,
-            ClearTemporary,
+		ClearResults,
+		ClearTemporary,
 
-            ClearDatabase,
-            LoadImages,
-            SaveImages,
-        }
-        private Type m_type;
-        
-        private readonly CoreDll.LocalActionType m_action;
-        private readonly CoreDll.TargetType m_target;
+		ClearDatabase,
+		LoadImages,
+		SaveImages,
+	}
+	private Type m_type;
 
-        private readonly CoreDll.RenameCurrentType m_renameCurrentType;
-        private readonly string m_newFileName;
-        private readonly string m_directoryForMove;
+	private readonly CoreDll.LocalActionType m_action;
+	private readonly CoreDll.TargetType m_target;
 
-        private enum State
-        {
-            Start,
-            Work,
-            Stopped,
-            Finish
-        }
-        private State m_state = State.Start;
+	private readonly CoreDll.RenameCurrentType m_renameCurrentType;
+	private readonly string m_newFileName;
+	private readonly string m_directoryForMove;
 
-        private CoreLib m_core;
-        private Options m_options;
-        private CoreOptions m_coreOptions;
-        private MainSplitContainer m_mainSplitContainer;
-        private System.Windows.Forms.Timer m_timer;
-        private DateTime m_startDateTime;
-        /// <summary>
-        /// Надо ли обновлять результаты.
-        /// </summary>
-        private bool m_updateResults = true;
+	private enum State
+	{
+		Start,
+		Work,
+		Stopped,
+		Finish
+	}
+	private State m_state = State.Start;
 
-        private Button m_cancelButton;
-        private ProgressPanel m_progressPanel;
+	private CoreLib m_core;
+	private Options m_options;
+	private CoreOptions m_coreOptions;
+	private MainSplitContainer m_mainSplitContainer;
+	private System.Windows.Forms.Timer m_timer;
+	private DateTime m_startDateTime;
+	/// <summary>
+	/// Надо ли обновлять результаты.
+	/// </summary>
+	private bool m_updateResults = true;
 
-        public ProgressForm(Type type, CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
-        {
-            if (type == Type.ApplyAction)
+	private Button m_cancelButton;
+	private ProgressPanel m_progressPanel;
+
+	public ProgressForm(Type type, CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
+	{
+		if (type == Type.ApplyAction)
 		{
 			throw new Exception("Wrong using of ProgressForm type!");
 		}
 
 		m_type = type;
-            Initialize(core, options, coreOptions, mainSplitContainer);
-        }
+		Initialize(core, options, coreOptions, mainSplitContainer);
+	}
 
-        public ProgressForm(CoreDll.LocalActionType action, CoreDll.TargetType target, CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
-        {
-            m_type = Type.ApplyAction;
-            m_action = action;
-            m_target = target;
-            Initialize(core, options, coreOptions, mainSplitContainer);
-        }
+	public ProgressForm(CoreDll.LocalActionType action, CoreDll.TargetType target, CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
+	{
+		m_type = Type.ApplyAction;
+		m_action = action;
+		m_target = target;
+		Initialize(core, options, coreOptions, mainSplitContainer);
+	}
 
-        public ProgressForm(CoreDll.RenameCurrentType renameCurrentType, string newFileName, CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
-        {
-            m_type = Type.RenameCurrent; 
-            m_renameCurrentType = renameCurrentType;
-            m_newFileName = newFileName;
-            Initialize(core, options, coreOptions, mainSplitContainer);
-        }
+	public ProgressForm(CoreDll.RenameCurrentType renameCurrentType, string newFileName, CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
+	{
+		m_type = Type.RenameCurrent;
+		m_renameCurrentType = renameCurrentType;
+		m_newFileName = newFileName;
+		Initialize(core, options, coreOptions, mainSplitContainer);
+	}
 
-        public ProgressForm(Type type, string path, CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
-        {
-            m_type = type;
-            if (m_type == Type.MoveCurrentGroup)
+	public ProgressForm(Type type, string path, CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
+	{
+		m_type = type;
+		if (m_type == Type.MoveCurrentGroup)
 		{
 			m_directoryForMove = path;
 		}
@@ -130,340 +130,340 @@ public class ProgressForm : Form
 		}
 
 		Initialize(core, options, coreOptions, mainSplitContainer);
-        }
+	}
 
-        /// <summary>
-        /// Инициализируем форму.
-        /// </summary>
-        /// <param name="core"></param>
-        /// <param name="options"></param>
-        /// <param name="coreOptions"></param>
-        /// <param name="mainSplitContainer"></param>
-        private void Initialize(CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
-        {
-            m_core = core;
-            m_options = options;
-            m_coreOptions = coreOptions;
-            m_mainSplitContainer = mainSplitContainer;
-            InitializeComponent();
-            UpdateStrings();
-        }
+	/// <summary>
+	/// Инициализируем форму.
+	/// </summary>
+	/// <param name="core"></param>
+	/// <param name="options"></param>
+	/// <param name="coreOptions"></param>
+	/// <param name="mainSplitContainer"></param>
+	private void Initialize(CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
+	{
+		m_core = core;
+		m_options = options;
+		m_coreOptions = coreOptions;
+		m_mainSplitContainer = mainSplitContainer;
+		InitializeComponent();
+		UpdateStrings();
+	}
 
-        private void InitializeComponent()
-        {
-            var mainTableLayoutPanel = InitFactory.Layout.Create(1, 2);
-            mainTableLayoutPanel.Padding = new Padding(1, 5, 1, 0);
-            Controls.Add(mainTableLayoutPanel);
+	private void InitializeComponent()
+	{
+		var mainTableLayoutPanel = InitFactory.Layout.Create(1, 2);
+		mainTableLayoutPanel.Padding = new Padding(1, 5, 1, 0);
+		Controls.Add(mainTableLayoutPanel);
 
-            m_progressPanel = new ProgressPanel();
-            mainTableLayoutPanel.Controls.Add(m_progressPanel, 0, 0);
+		m_progressPanel = new ProgressPanel();
+		mainTableLayoutPanel.Controls.Add(m_progressPanel, 0, 0);
 
-            var buttonsTableLayoutPanel = InitFactory.Layout.Create(3, 1);
-            buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-            buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            mainTableLayoutPanel.Controls.Add(buttonsTableLayoutPanel, 0, 1);
+		var buttonsTableLayoutPanel = InitFactory.Layout.Create(3, 1);
+		buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+		buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+		buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+		mainTableLayoutPanel.Controls.Add(buttonsTableLayoutPanel, 0, 1);
 
-            m_cancelButton = new Button();
-            m_cancelButton.Click += new EventHandler(OnCancelButtonClick);
-            m_cancelButton.AutoSize = true;
-            buttonsTableLayoutPanel.Controls.Add(m_cancelButton, 1, 0);
+		m_cancelButton = new Button();
+		m_cancelButton.Click += new EventHandler(OnCancelButtonClick);
+		m_cancelButton.AutoSize = true;
+		buttonsTableLayoutPanel.Controls.Add(m_cancelButton, 1, 0);
 
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            StartPosition = FormStartPosition.CenterScreen;
-            ShowInTaskbar = false;
-            ControlBox = false;
-            MaximizeBox = false;
-            MinimizeBox = false;
-            KeyPreview = true;
-            {
-                var width = 800;
-                var height = (m_progressPanel.Height + mainTableLayoutPanel.Margin.Vertical) +
-                  m_cancelButton.Height + m_cancelButton.Padding.Vertical + mainTableLayoutPanel.Margin.Vertical +
-                  mainTableLayoutPanel.Padding.Vertical;
-                ClientSize = new System.Drawing.Size(width, height);
-            }
+		FormBorderStyle = FormBorderStyle.FixedDialog;
+		StartPosition = FormStartPosition.CenterScreen;
+		ShowInTaskbar = false;
+		ControlBox = false;
+		MaximizeBox = false;
+		MinimizeBox = false;
+		KeyPreview = true;
+
+		var width = 800;
+		var height = (m_progressPanel.Height + mainTableLayoutPanel.Margin.Vertical) +
+		  m_cancelButton.Height + m_cancelButton.Padding.Vertical + mainTableLayoutPanel.Margin.Vertical +
+		  mainTableLayoutPanel.Padding.Vertical;
+		ClientSize = new System.Drawing.Size(width, height);
+
 
 		m_timer = new System.Windows.Forms.Timer
 		{
 			Interval = 100
 		};
 		m_timer.Tick += new EventHandler(TimerCallback);
-            m_timer.Start();
+		m_timer.Start();
 
-            FormClosed += new FormClosedEventHandler(OnFormClosed);
-            KeyDown += new KeyEventHandler(OnKeyDown);
-        }
+		FormClosed += new FormClosedEventHandler(OnFormClosed);
+		KeyDown += new KeyEventHandler(OnKeyDown);
+	}
 
-        /// <summary>
-        /// Выполняем действие.
-        /// </summary>
-        public void Execute()
-        {
-            m_state = State.Start;
-            var coreThread = new Thread(CoreThreadTask);
-            coreThread.Start();
-            if (m_type >= Type.ApplyAction && m_type <= Type.RefreshResults)
-            {
-                m_cancelButton.Enabled = true;  //можем отменить
-            }
-            else
-            {
-                m_cancelButton.Enabled = false;
-            }
+	/// <summary>
+	/// Выполняем действие.
+	/// </summary>
+	public void Execute()
+	{
+		m_state = State.Start;
+		var coreThread = new Thread(CoreThreadTask);
+		coreThread.Start();
+		if (m_type >= Type.ApplyAction && m_type <= Type.RefreshResults)
+		{
+			m_cancelButton.Enabled = true;  //можем отменить
+		}
+		else
+		{
+			m_cancelButton.Enabled = false;
+		}
 
-            Thread.Sleep(200);
+		Thread.Sleep(200);
 
-            if (m_state != State.Finish)
-            {
-                ShowDialog();
-            }
-            else
-            {
-                OnFormClosed(this, null);
-            }
-        }
+		if (m_state != State.Finish)
+		{
+			ShowDialog();
+		}
+		else
+		{
+			OnFormClosed(this, null);
+		}
+	}
 
-        /// <summary>
-        /// Функция которая будет выполнять основные действия.
-        /// </summary>
-        private void CoreThreadTask()
-        {
-            m_startDateTime = DateTime.Now;
-            m_state = State.Work;
-            m_coreOptions.Set(m_core, m_options.onePath);
-            switch (m_type)
-            {
-                case Type.ApplyAction:
-                    {
-                        m_updateResults = m_core.ApplyToResult(m_action, m_target);
-                        m_type = Type.ClearTemporary;
-                        m_core.Clear(CoreDll.FileType.Temporary);
-                        break;
-                    }
-                case Type.RenameCurrent:
-                    {
-                        m_updateResults = m_core.RenameCurrent(m_renameCurrentType, m_newFileName);
-                        m_type = Type.ClearTemporary;
-                        m_core.Clear(CoreDll.FileType.Temporary);
-                        break;
-                    }
-                case Type.MoveCurrentGroup:
-                    {
-                        m_updateResults = m_core.MoveCurrentGroup(m_directoryForMove);
-                        m_type = Type.ClearTemporary;
-                        m_core.Clear(CoreDll.FileType.Temporary);
-                        break;
-                    }
-                case Type.RenameCurrentGroupAs:
-                    {
-                        m_updateResults = m_core.RenameCurrentGroupAs(m_newFileName);
-                        m_type = Type.ClearTemporary;
-                        m_core.Clear(CoreDll.FileType.Temporary);
-                        break;
-                    }
-                case Type.RefreshResults:
-                    {
-                        m_updateResults = m_core.ApplyToResult(CoreDll.GlobalActionType.Refresh);
-                        m_type = Type.ClearTemporary;
-                        m_core.Clear(CoreDll.FileType.Temporary);
-                        break;
-                    }
-               case Type.Undo:
-                    {
-                        m_updateResults = m_core.ApplyToResult(CoreDll.GlobalActionType.Undo);
-                        break;
-                    }
-               case Type.Redo:
-                    {
-                        m_updateResults = m_core.ApplyToResult(CoreDll.GlobalActionType.Redo);
-                        break;
-                    }
-               case Type.LoadResults:
-                    {
-                        m_type = Type.ClearResults;
-                        m_core.Clear(CoreDll.FileType.Result);
-                        m_type = Type.ClearTemporary;
-                        m_core.Clear(CoreDll.FileType.Temporary);
-                        m_type = Type.LoadResults;
-                        m_core.Load(CoreDll.FileType.Result, m_options.GetResultsFileName(), m_options.checkResultsAtLoading);
-                        m_updateResults = true;
-                        break;
-                    }
-               case Type.SaveResults:
-                    {
-                        m_core.Save(CoreDll.FileType.Result, m_options.GetResultsFileName());
-                        m_updateResults = false;
-                        break;
-                    }
-               case Type.ClearDatabase:
-                    {
-                        m_type = Type.LoadImages;
-                        m_core.Load(CoreDll.FileType.ImageDataBase, m_coreOptions.GetImageDataBasePath(), true);
-                        m_updateResults = false;
-                        break;
-                    }
-               default:
-                    throw new Exception("Unknown Action!!!");
-            }
-            m_state = State.Finish;
-        }
+	/// <summary>
+	/// Функция которая будет выполнять основные действия.
+	/// </summary>
+	private void CoreThreadTask()
+	{
+		m_startDateTime = DateTime.Now;
+		m_state = State.Work;
+		m_coreOptions.Set(m_core, m_options.onePath);
+		switch (m_type)
+		{
+			case Type.ApplyAction:
+				{
+					m_updateResults = m_core.ApplyToResult(m_action, m_target);
+					m_type = Type.ClearTemporary;
+					m_core.Clear(CoreDll.FileType.Temporary);
+					break;
+				}
+			case Type.RenameCurrent:
+				{
+					m_updateResults = m_core.RenameCurrent(m_renameCurrentType, m_newFileName);
+					m_type = Type.ClearTemporary;
+					m_core.Clear(CoreDll.FileType.Temporary);
+					break;
+				}
+			case Type.MoveCurrentGroup:
+				{
+					m_updateResults = m_core.MoveCurrentGroup(m_directoryForMove);
+					m_type = Type.ClearTemporary;
+					m_core.Clear(CoreDll.FileType.Temporary);
+					break;
+				}
+			case Type.RenameCurrentGroupAs:
+				{
+					m_updateResults = m_core.RenameCurrentGroupAs(m_newFileName);
+					m_type = Type.ClearTemporary;
+					m_core.Clear(CoreDll.FileType.Temporary);
+					break;
+				}
+			case Type.RefreshResults:
+				{
+					m_updateResults = m_core.ApplyToResult(CoreDll.GlobalActionType.Refresh);
+					m_type = Type.ClearTemporary;
+					m_core.Clear(CoreDll.FileType.Temporary);
+					break;
+				}
+			case Type.Undo:
+				{
+					m_updateResults = m_core.ApplyToResult(CoreDll.GlobalActionType.Undo);
+					break;
+				}
+			case Type.Redo:
+				{
+					m_updateResults = m_core.ApplyToResult(CoreDll.GlobalActionType.Redo);
+					break;
+				}
+			case Type.LoadResults:
+				{
+					m_type = Type.ClearResults;
+					m_core.Clear(CoreDll.FileType.Result);
+					m_type = Type.ClearTemporary;
+					m_core.Clear(CoreDll.FileType.Temporary);
+					m_type = Type.LoadResults;
+					m_core.Load(CoreDll.FileType.Result, m_options.GetResultsFileName(), m_options.checkResultsAtLoading);
+					m_updateResults = true;
+					break;
+				}
+			case Type.SaveResults:
+				{
+					m_core.Save(CoreDll.FileType.Result, m_options.GetResultsFileName());
+					m_updateResults = false;
+					break;
+				}
+			case Type.ClearDatabase:
+				{
+					m_type = Type.LoadImages;
+					m_core.Load(CoreDll.FileType.ImageDataBase, m_coreOptions.GetImageDataBasePath(), true);
+					m_updateResults = false;
+					break;
+				}
+			default:
+				throw new Exception("Unknown Action!!!");
+		}
+		m_state = State.Finish;
+	}
 
-        private void OnFormClosed(object sender, FormClosedEventArgs e)
-        {
-            m_timer.Stop();
-            if (m_updateResults)
-            {
-                m_mainSplitContainer.UpdateResults();
-            }
-        }
+	private void OnFormClosed(object sender, FormClosedEventArgs e)
+	{
+		m_timer.Stop();
+		if (m_updateResults)
+		{
+			m_mainSplitContainer.UpdateResults();
+		}
+	}
 
-        private void OnCancelButtonClick(object obj, EventArgs eventArgs)
-        {
-            if (m_state == State.Work)
-            {
-                m_core.Stop();
-                m_state = State.Stopped;
-                m_cancelButton.Enabled = false;
-            }
-        }
+	private void OnCancelButtonClick(object obj, EventArgs eventArgs)
+	{
+		if (m_state == State.Work)
+		{
+			m_core.Stop();
+			m_state = State.Stopped;
+			m_cancelButton.Enabled = false;
+		}
+	}
 
-        private void UpdateStrings()
-        {
-            var s = Resources.Strings.Current;
+	private void UpdateStrings()
+	{
+		var s = Resources.Strings.Current;
 
-            m_cancelButton.Text = s.CancelButton_Text;
-        }
+		m_cancelButton.Text = s.CancelButton_Text;
+	}
 
 	private void TimerCallback(object obj, EventArgs eventArgs)
-        {
-            if (m_state == State.Finish)
-            {
-                Close();
-            }
-            else
-            {
-                var builder = new StringBuilder();
-                var s = Resources.Strings.Current;
-                switch (m_state)
-                {
-                    case State.Start:
-                    case State.Work:
-                        {
-                            switch (m_type)
-                            {
-                                case Type.ApplyAction:
-                                    switch (m_action)
-                                    {
-                                        case CoreDll.LocalActionType.DeleteDefect:
-                                            builder.Append(s.ProgressForm_DeleteDefect);
-                                            break;
-                                        case CoreDll.LocalActionType.DeleteFirst:
-                                            builder.Append(s.ProgressForm_DeleteFirst);
-                                            break;
-                                        case CoreDll.LocalActionType.DeleteSecond:
-                                            builder.Append(s.ProgressForm_DeleteSecond);
-                                            break;
-                                        case CoreDll.LocalActionType.DeleteBoth:
-                                            builder.Append(s.ProgressForm_DeleteBoth);
-                                            break;
-                                        case CoreDll.LocalActionType.PerformHint:
-                                            builder.Append(s.ProgressForm_PerformHint);
-                                            break;
-                                        case CoreDll.LocalActionType.Mistake:
-                                            builder.Append(s.ProgressForm_Mistake);
-                                            break;
-                                        case CoreDll.LocalActionType.RenameFirstToSecond:
-                                        case CoreDll.LocalActionType.RenameSecondToFirst:
-                                            builder.Append(s.ProgressForm_RenameCurrent);
-                                            break;
-                                    }
-                                    m_cancelButton.Enabled = true;
-                                    break;
-                               case Type.RenameCurrent:
-                                    builder.Append(s.ProgressForm_RenameCurrent);
-                                    m_cancelButton.Enabled = false;
-                                    break;
-                               case Type.RefreshResults:
-                                    builder.Append(s.ProgressForm_RefreshResults);
-                                    m_cancelButton.Enabled = true;
-                                    break;
-                                case Type.Undo:
-                                    builder.Append(s.ProgressForm_Undo);
-                                    m_cancelButton.Enabled = false;
-                                    break;
-                                case Type.Redo:
-                                    builder.Append(s.ProgressForm_Redo);
-                                    m_cancelButton.Enabled = false;
-                                    break;
-                                case Type.LoadResults:
-                                    builder.Append(s.StartFinishForm_LoadResults_Text);
-                                    m_cancelButton.Enabled = true;
-                                    break;
-                                case Type.SaveResults:
-                                    builder.Append(s.StartFinishForm_SaveResults_Text);
-                                    m_cancelButton.Enabled = true;
-                                    break;
-                                case Type.ClearResults:
-                                    builder.Append(s.StartFinishForm_ClearTemporary_Text);
-                                    m_cancelButton.Enabled = false;
-                                    break;
-                                case Type.ClearTemporary:
-                                    builder.Append(s.StartFinishForm_ClearTemporary_Text);
-                                    m_cancelButton.Enabled = true;
-                                    break;
-                                case Type.ClearDatabase:
-                                    builder.Append(s.StartFinishForm_LoadImages_Text);
-                                    m_cancelButton.Enabled = false;
-                                    break;
-                                case Type.LoadImages:
-                                    builder.Append(s.StartFinishForm_LoadImages_Text);
-                                    m_cancelButton.Enabled = true;
-                                    break;
-                                case Type.SaveImages:
-                                    builder.Append(s.StartFinishForm_SaveImages_Text);
-                                    m_cancelButton.Enabled = false;
-                                    break;
-                            }
+	{
+		if (m_state == State.Finish)
+		{
+			Close();
+		}
+		else
+		{
+			var builder = new StringBuilder();
+			var s = Resources.Strings.Current;
+			switch (m_state)
+			{
+				case State.Start:
+				case State.Work:
+					{
+						switch (m_type)
+						{
+							case Type.ApplyAction:
+								switch (m_action)
+								{
+									case CoreDll.LocalActionType.DeleteDefect:
+										builder.Append(s.ProgressForm_DeleteDefect);
+										break;
+									case CoreDll.LocalActionType.DeleteFirst:
+										builder.Append(s.ProgressForm_DeleteFirst);
+										break;
+									case CoreDll.LocalActionType.DeleteSecond:
+										builder.Append(s.ProgressForm_DeleteSecond);
+										break;
+									case CoreDll.LocalActionType.DeleteBoth:
+										builder.Append(s.ProgressForm_DeleteBoth);
+										break;
+									case CoreDll.LocalActionType.PerformHint:
+										builder.Append(s.ProgressForm_PerformHint);
+										break;
+									case CoreDll.LocalActionType.Mistake:
+										builder.Append(s.ProgressForm_Mistake);
+										break;
+									case CoreDll.LocalActionType.RenameFirstToSecond:
+									case CoreDll.LocalActionType.RenameSecondToFirst:
+										builder.Append(s.ProgressForm_RenameCurrent);
+										break;
+								}
+								m_cancelButton.Enabled = true;
+								break;
+							case Type.RenameCurrent:
+								builder.Append(s.ProgressForm_RenameCurrent);
+								m_cancelButton.Enabled = false;
+								break;
+							case Type.RefreshResults:
+								builder.Append(s.ProgressForm_RefreshResults);
+								m_cancelButton.Enabled = true;
+								break;
+							case Type.Undo:
+								builder.Append(s.ProgressForm_Undo);
+								m_cancelButton.Enabled = false;
+								break;
+							case Type.Redo:
+								builder.Append(s.ProgressForm_Redo);
+								m_cancelButton.Enabled = false;
+								break;
+							case Type.LoadResults:
+								builder.Append(s.StartFinishForm_LoadResults_Text);
+								m_cancelButton.Enabled = true;
+								break;
+							case Type.SaveResults:
+								builder.Append(s.StartFinishForm_SaveResults_Text);
+								m_cancelButton.Enabled = true;
+								break;
+							case Type.ClearResults:
+								builder.Append(s.StartFinishForm_ClearTemporary_Text);
+								m_cancelButton.Enabled = false;
+								break;
+							case Type.ClearTemporary:
+								builder.Append(s.StartFinishForm_ClearTemporary_Text);
+								m_cancelButton.Enabled = true;
+								break;
+							case Type.ClearDatabase:
+								builder.Append(s.StartFinishForm_LoadImages_Text);
+								m_cancelButton.Enabled = false;
+								break;
+							case Type.LoadImages:
+								builder.Append(s.StartFinishForm_LoadImages_Text);
+								m_cancelButton.Enabled = true;
+								break;
+							case Type.SaveImages:
+								builder.Append(s.StartFinishForm_SaveImages_Text);
+								m_cancelButton.Enabled = false;
+								break;
+						}
 
-                            var status = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
-                            if (status != null)
-                            {
-                                var progress = status.total > 0 ? ((double)status.current) / status.total : 0;
-                                builder.AppendFormat(" ({0})...", ProgressUtils.GetProgressString(progress, m_startDateTime));
-                                m_progressPanel.UpdateStatus(status.total, status.current, status.current, status.path);
-                            }
-                            else
-                            {
-                                m_progressPanel.UpdateStatus(0, 0, 0, "");
-                            }
-                        }
-                        break;
-                    case State.Stopped:
-                        {
-                            builder.Append(s.CancelButton_Text);
-                            builder.Append("...");
-                        }
-                        break;
-                }
-                Text = builder.ToString();
-            }
-        }
+						var status = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
+						if (status != null)
+						{
+							var progress = status.total > 0 ? ((double)status.current) / status.total : 0;
+							builder.AppendFormat(" ({0})...", ProgressUtils.GetProgressString(progress, m_startDateTime));
+							m_progressPanel.UpdateStatus(status.total, status.current, status.current, status.path);
+						}
+						else
+						{
+							m_progressPanel.UpdateStatus(0, 0, 0, "");
+						}
+					}
+					break;
+				case State.Stopped:
+					{
+						builder.Append(s.CancelButton_Text);
+						builder.Append("...");
+					}
+					break;
+			}
+			Text = builder.ToString();
+		}
+	}
 
-        private void OnKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == Keys.Escape)
-            {
-                if (m_state == State.Work)
-                {
-                    m_core.Stop();
-                    m_state = State.Stopped;
-                    m_cancelButton.Enabled = false;
-                }
-            }
-            else
-            {
-                e.Handled = true;
-            }
-        }
-    }
+	private void OnKeyDown(object sender, KeyEventArgs e)
+	{
+		if (e.KeyData == Keys.Escape)
+		{
+			if (m_state == State.Work)
+			{
+				m_core.Stop();
+				m_state = State.Stopped;
+				m_cancelButton.Enabled = false;
+			}
+		}
+		else
+		{
+			e.Handled = true;
+		}
+	}
+}

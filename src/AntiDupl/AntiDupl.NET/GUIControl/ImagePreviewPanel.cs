@@ -523,7 +523,7 @@ public class ImagePreviewPanel : TableLayoutPanel
                     exifSting = exifSting + exifList[i];
                     exifSting = exifSting + Environment.NewLine;
                 }
-                exifSting = exifSting + exifList[exifList.Count - 1];
+                exifSting = exifSting + exifList[^1];
 
                 m_toolTip.SetToolTip(m_imageExifLabel, exifSting);
             }

@@ -149,7 +149,7 @@ public class ImagePreviewContextMenu : ContextMenuStrip
             if (m_imagePreviewPanel.CurrentImageInfo != null)
             {
                 Array.Resize(ref m_coreOptions.ignorePath, m_coreOptions.ignorePath.Length + 1);
-                m_coreOptions.ignorePath[m_coreOptions.ignorePath.Length - 1] = new CorePathWithSubFolder(m_imagePreviewPanel.CurrentImageInfo.path, false);
+                m_coreOptions.ignorePath[^1] = new CorePathWithSubFolder(m_imagePreviewPanel.CurrentImageInfo.path, false);
                 m_coreOptions.Validate(m_core, m_options.onePath);
                 m_resultsListView.RefreshResults();
             }
@@ -160,7 +160,7 @@ public class ImagePreviewContextMenu : ContextMenuStrip
             if (m_imagePreviewPanel.CurrentImageInfo != null)
             {
                 Array.Resize(ref m_coreOptions.ignorePath, m_coreOptions.ignorePath.Length + 1);
-                m_coreOptions.ignorePath[m_coreOptions.ignorePath.Length - 1] = new CorePathWithSubFolder(m_imagePreviewPanel.CurrentImageInfo.GetDirectoryString(), true);
+                m_coreOptions.ignorePath[^1] = new CorePathWithSubFolder(m_imagePreviewPanel.CurrentImageInfo.GetDirectoryString(), true);
                 m_coreOptions.Validate(m_core, m_options.onePath);
                 m_resultsListView.RefreshResults();
             }

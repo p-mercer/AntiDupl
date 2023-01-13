@@ -518,17 +518,17 @@ public class CorePathsForm : Form
 		if (dialog.ShowDialog(IntPtr.Zero) == true)
             {
                 Array.Resize(ref path, path.Length + 1);
-                path[path.Length - 1] = new CorePathWithSubFolder();
-                if (dialog.ResultPath[dialog.ResultPath.Length - 1] == Path.DirectorySeparatorChar)
+                path[^1] = new CorePathWithSubFolder();
+                if (dialog.ResultPath[^1] == Path.DirectorySeparatorChar)
 			{
-				path[path.Length - 1].path = dialog.ResultPath.Remove(dialog.ResultPath.Length - 1);
+				path[^1].path = dialog.ResultPath.Remove(dialog.ResultPath.Length - 1);
 			}
 			else
 			{
-				path[path.Length - 1].path = dialog.ResultPath;
+				path[^1].path = dialog.ResultPath;
 			}
 
-			path[path.Length - 1].enableSubFolder = true;
+			path[^1].enableSubFolder = true;
                 SetCurrentPath(path);
                 m_newCoreOptions.Validate(m_core, m_options.onePath);
                 UpdatePath();
@@ -654,7 +654,7 @@ public class CorePathsForm : Form
 			};
 			if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (dialog.SelectedPath[dialog.SelectedPath.Length - 1] == Path.DirectorySeparatorChar)
+                    if (dialog.SelectedPath[^1] == Path.DirectorySeparatorChar)
 				{
 					path[listBox.SelectedIndex].path = dialog.SelectedPath.Remove(dialog.SelectedPath.Length - 1);
 				}
