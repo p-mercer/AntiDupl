@@ -28,31 +28,31 @@ using System.Windows.Forms;
 namespace AntiDupl.NET;
 
 internal class MainStatusStrip : StatusStrip
-    {
-        private readonly MainSplitContainer m_mainSplitContainer;
-        private readonly Options m_options;
+{
+	private readonly MainSplitContainer m_mainSplitContainer;
+	private readonly Options m_options;
 
-        private ToolStripStatusLabel m_totalLabel;
-        private ToolStripStatusLabel m_currentLabel;
-        private ToolStripStatusLabel m_selectedLabel;
+	private ToolStripStatusLabel m_totalLabel;
+	private ToolStripStatusLabel m_currentLabel;
+	private ToolStripStatusLabel m_selectedLabel;
 
-        private string m_totalText;
-        private string m_currentText;
-        private string m_selectedText;
+	private string m_totalText;
+	private string m_currentText;
+	private string m_selectedText;
 
-        public MainStatusStrip(MainSplitContainer mainSplitContainer, Options options)
-        {
-            m_mainSplitContainer = mainSplitContainer;
-            m_options = options;
-            InitializeComponents();
-            UpdateStrings();
-            UpdateResults();
-        }
+	public MainStatusStrip(MainSplitContainer mainSplitContainer, Options options)
+	{
+		m_mainSplitContainer = mainSplitContainer;
+		m_options = options;
+		InitializeComponents();
+		UpdateStrings();
+		UpdateResults();
+	}
 
-        private void InitializeComponents()
-        {
-            SizingGrip = false;
-            Visible = m_options.mainFormOptions.statusStripView;
+	private void InitializeComponents()
+	{
+		SizingGrip = false;
+		Visible = m_options.mainFormOptions.statusStripView;
 
 		m_totalLabel = new ToolStripStatusLabel
 		{
@@ -82,51 +82,51 @@ internal class MainStatusStrip : StatusStrip
 		};
 
 		Items.Add(m_totalLabel);
-            Items.Add(m_currentLabel);
-            Items.Add(m_selectedLabel);
+		Items.Add(m_currentLabel);
+		Items.Add(m_selectedLabel);
 
-            ResumeLayout(false);
-            PerformLayout();
+		ResumeLayout(false);
+		PerformLayout();
 
-            Resources.Strings.OnCurrentChange += new Resources.Strings.CurrentChangeHandler(UpdateStrings);
-            m_mainSplitContainer.OnUpdateResults += new MainSplitContainer.UpdateResultsHandler(UpdateResults);
-            m_mainSplitContainer.OnSelectedResultsChanged += new MainSplitContainer.SelectedResultsChangedHandler(SelectionChanged);
-            m_mainSplitContainer.OnCurrentResultChanged += new MainSplitContainer.CurrentResultChangedHandler(CurrentResultChanged);
-            Resize += new EventHandler(OnResize);
-            m_options.mainFormOptions.OnStatusStripVisibleChange += new Options.VisibleChangeHandler(OnVisibleChanged);
-        }
+		Resources.Strings.OnCurrentChange += new Resources.Strings.CurrentChangeHandler(UpdateStrings);
+		m_mainSplitContainer.OnUpdateResults += new MainSplitContainer.UpdateResultsHandler(UpdateResults);
+		m_mainSplitContainer.OnSelectedResultsChanged += new MainSplitContainer.SelectedResultsChangedHandler(SelectionChanged);
+		m_mainSplitContainer.OnCurrentResultChanged += new MainSplitContainer.CurrentResultChangedHandler(CurrentResultChanged);
+		Resize += new EventHandler(OnResize);
+		m_options.mainFormOptions.OnStatusStripVisibleChange += new Options.VisibleChangeHandler(OnVisibleChanged);
+	}
 
-        private void UpdateStrings()
-        {
-            var s = Resources.Strings.Current;
+	private void UpdateStrings()
+	{
+		var s = Resources.Strings.Current;
 
-            m_totalText = s.MainStatusStrip_TotalLabel_Text;
-            m_currentText = s.MainStatusStrip_CurrentLabel_Text;
-            m_selectedText = s.MainStatusStrip_SelectedLabel_Text;
+		m_totalText = s.MainStatusStrip_TotalLabel_Text;
+		m_currentText = s.MainStatusStrip_CurrentLabel_Text;
+		m_selectedText = s.MainStatusStrip_SelectedLabel_Text;
 
-            UpdateResults();
-        }
+		UpdateResults();
+	}
 
-        private void UpdateResults()
-        {
-            {
-                var builder = new StringBuilder();
-                builder.Append(m_totalText);
-                builder.Append(m_mainSplitContainer.resultsListView.GetTotalResultCount());
-                m_totalLabel.Text = builder.ToString();
-            }
+	private void UpdateResults()
+	{
+		{
+			var builder = new StringBuilder();
+			builder.Append(m_totalText);
+			builder.Append(m_mainSplitContainer.resultsListView.GetTotalResultCount());
+			m_totalLabel.Text = builder.ToString();
+		}
 
-            CurrentResultChanged();
+		CurrentResultChanged();
 
-            SelectionChanged();
-        }
+		SelectionChanged();
+	}
 
-        private void SelectionChanged()
-        {
-            var builder = new StringBuilder();
-            builder.Append(m_selectedText);
-            var selectedResultCount = m_mainSplitContainer.resultsListView.GetSelectedResultCount();
-            if (m_mainSplitContainer.resultsListView.GetTotalResultCount() > 0)
+	private void SelectionChanged()
+	{
+		var builder = new StringBuilder();
+		builder.Append(m_selectedText);
+		var selectedResultCount = m_mainSplitContainer.resultsListView.GetSelectedResultCount();
+		if (m_mainSplitContainer.resultsListView.GetTotalResultCount() > 0)
 		{
 			builder.Append(selectedResultCount);
 		}
@@ -136,25 +136,25 @@ internal class MainStatusStrip : StatusStrip
 		}
 
 		m_selectedLabel.Text = builder.ToString();
-        }
+	}
 
-        private void OnResize(object sender, EventArgs e)
-        {
-            m_totalLabel.Width = Width / 3;
-            m_currentLabel.Width = Width / 3;
-            m_selectedLabel.Width = Width / 3;
-        }
+	private void OnResize(object sender, EventArgs e)
+	{
+		m_totalLabel.Width = Width / 3;
+		m_currentLabel.Width = Width / 3;
+		m_selectedLabel.Width = Width / 3;
+	}
 
-        private void OnVisibleChanged(bool visible)
-        {
-            Visible = visible;
-        }
+	private void OnVisibleChanged(bool visible)
+	{
+		Visible = visible;
+	}
 
-        private void CurrentResultChanged()
-        {
-            var builder = new StringBuilder();
-            builder.Append(m_currentText);
-            builder.Append(m_mainSplitContainer.resultsListView.GetTotalResultCount() > 0 ? m_mainSplitContainer.resultsListView.GetCurrentRowIndex() + 1 : 0);
-            m_currentLabel.Text = builder.ToString();
-        }
-    }
+	private void CurrentResultChanged()
+	{
+		var builder = new StringBuilder();
+		builder.Append(m_currentText);
+		builder.Append(m_mainSplitContainer.resultsListView.GetTotalResultCount() > 0 ? m_mainSplitContainer.resultsListView.GetCurrentRowIndex() + 1 : 0);
+		m_currentLabel.Text = builder.ToString();
+	}
+}

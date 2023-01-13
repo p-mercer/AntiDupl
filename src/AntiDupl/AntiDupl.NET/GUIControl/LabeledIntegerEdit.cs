@@ -27,79 +27,79 @@ using System.Windows.Forms;
 namespace AntiDupl.NET;
 
 public class LabeledIntegerEdit : TableLayoutPanel
-    {
-        private readonly TextBox m_textBox;
-        private readonly Label m_label;
-        private int m_value = 0;
-        private int m_min = int.MinValue;
-        private int m_max = int.MaxValue;
-        private int m_default = 0;
-        private readonly EventHandler m_valueChangedHandler;
+{
+	private readonly TextBox m_textBox;
+	private readonly Label m_label;
+	private int m_value = 0;
+	private int m_min = int.MinValue;
+	private int m_max = int.MaxValue;
+	private int m_default = 0;
+	private readonly EventHandler m_valueChangedHandler;
 
-        public override string Text { get { return m_label.Text; } set { m_label.Text = value; } }
+	public override string Text { get { return m_label.Text; } set { m_label.Text = value; } }
 
-        public int Value
-        {
-            get { return m_value; }
-            set
-            {
-                if (value > m_max || value < m_min)
-                {
-                    m_value = m_default;
-                }
-                else
-                {
-                    m_value = value;
-                }
-                m_textBox.Text = m_value.ToString();
-            }
-        }
+	public int Value
+	{
+		get { return m_value; }
+		set
+		{
+			if (value > m_max || value < m_min)
+			{
+				m_value = m_default;
+			}
+			else
+			{
+				m_value = value;
+			}
+			m_textBox.Text = m_value.ToString();
+		}
+	}
 
-        public int Min
-        {
-            get { return m_min; }
-            set
-            {
-                m_min = value;
-                m_max = Math.Max(m_max, m_min);
-                m_default = Math.Max(m_default, m_min);
-                m_value = Math.Max(m_value, m_min);
-                m_textBox.Text = m_value.ToString();
-            }
-        }
+	public int Min
+	{
+		get { return m_min; }
+		set
+		{
+			m_min = value;
+			m_max = Math.Max(m_max, m_min);
+			m_default = Math.Max(m_default, m_min);
+			m_value = Math.Max(m_value, m_min);
+			m_textBox.Text = m_value.ToString();
+		}
+	}
 
-        public int Max
-        {
-            get { return m_max; }
-            set
-            {
-                m_max = value;
-                m_min = Math.Min(m_min, m_max);
-                m_default = Math.Min(m_default, m_max);
-                m_value = Math.Min(m_value, m_max);
-                m_textBox.Text = m_value.ToString();
-            }
-        }
+	public int Max
+	{
+		get { return m_max; }
+		set
+		{
+			m_max = value;
+			m_min = Math.Min(m_min, m_max);
+			m_default = Math.Min(m_default, m_max);
+			m_value = Math.Min(m_value, m_max);
+			m_textBox.Text = m_value.ToString();
+		}
+	}
 
-        public int Default
-        {
-            get { return m_default; }
-            set
-            {
-                m_default = value;
-                m_min = Math.Min(m_min, m_default);
-                m_max = Math.Max(m_default, m_max);
-            }
-        }
+	public int Default
+	{
+		get { return m_default; }
+		set
+		{
+			m_default = value;
+			m_min = Math.Min(m_min, m_default);
+			m_max = Math.Max(m_default, m_max);
+		}
+	}
 
-        public LabeledIntegerEdit(int textBoxWidth, int textBoxHeight, EventHandler valueChangedHandler)
-        {
-            m_valueChangedHandler = valueChangedHandler;
+	public LabeledIntegerEdit(int textBoxWidth, int textBoxHeight, EventHandler valueChangedHandler)
+	{
+		m_valueChangedHandler = valueChangedHandler;
 
-            Location = new System.Drawing.Point(0, 0);
-            AutoSize = true;
-            ColumnCount = 2;
-            RowCount = 1;
+		Location = new System.Drawing.Point(0, 0);
+		AutoSize = true;
+		ColumnCount = 2;
+		RowCount = 1;
 
 		m_textBox = new TextBox
 		{
@@ -109,7 +109,7 @@ public class LabeledIntegerEdit : TableLayoutPanel
 			Multiline = false
 		};
 		m_textBox.KeyUp += new KeyEventHandler(OnTextBoxKeyUp);
-            Controls.Add(m_textBox, 0, 0);
+		Controls.Add(m_textBox, 0, 0);
 
 		m_label = new System.Windows.Forms.Label
 		{
@@ -117,30 +117,30 @@ public class LabeledIntegerEdit : TableLayoutPanel
 			Padding = new Padding(0, 5, 5, 5)
 		};
 		Controls.Add(m_label, 1, 0);
-        }
+	}
 
-        private void OnTextBoxKeyUp(object sender, KeyEventArgs e)
-        {
-            var old = m_value;
+	private void OnTextBoxKeyUp(object sender, KeyEventArgs e)
+	{
+		var old = m_value;
 
-            try
-            {
-                m_value = Convert.ToInt32(m_textBox.Text);
-                if (m_value > m_max || m_value < m_min)
-                {
-                    m_value = old;
-                }
-            }
-            catch (System.Exception)
-            {
-                m_value = old;
-            }
+		try
+		{
+			m_value = Convert.ToInt32(m_textBox.Text);
+			if (m_value > m_max || m_value < m_min)
+			{
+				m_value = old;
+			}
+		}
+		catch (System.Exception)
+		{
+			m_value = old;
+		}
 
-            if (old != m_value && m_valueChangedHandler != null)
-            {
-                m_valueChangedHandler(sender, e);
-            }
+		if (old != m_value && m_valueChangedHandler != null)
+		{
+			m_valueChangedHandler(sender, e);
+		}
 
-            m_textBox.Text = m_value.ToString();
-        }
-    }
+		m_textBox.Text = m_value.ToString();
+	}
+}

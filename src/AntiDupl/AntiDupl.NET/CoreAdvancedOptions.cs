@@ -25,81 +25,81 @@
 namespace AntiDupl.NET;
 
 public class CoreAdvancedOptions
-    {
-        public bool deleteToRecycleBin;
-        public bool mistakeDataBase;
-        public int ratioResolution;
-        public int compareThreadCount;
-        public int collectThreadCount;
-        public int reducedImageSize;
-        public int undoQueueSize;
-        public int resultCountMax;
-        public int ignoreFrameWidth;
-        public bool useLibJpegTurbo;
+{
+	public bool deleteToRecycleBin;
+	public bool mistakeDataBase;
+	public int ratioResolution;
+	public int compareThreadCount;
+	public int collectThreadCount;
+	public int reducedImageSize;
+	public int undoQueueSize;
+	public int resultCountMax;
+	public int ignoreFrameWidth;
+	public bool useLibJpegTurbo;
 
-        public CoreAdvancedOptions()
-        {
-        }
+	public CoreAdvancedOptions()
+	{
+	}
 
-        public CoreAdvancedOptions(CoreAdvancedOptions advancedOptions)
-        {
-            deleteToRecycleBin = advancedOptions.deleteToRecycleBin;
-            mistakeDataBase = advancedOptions.mistakeDataBase;
-            ratioResolution = advancedOptions.ratioResolution;
-            compareThreadCount = advancedOptions.compareThreadCount;
-            collectThreadCount = advancedOptions.collectThreadCount;
-            reducedImageSize = advancedOptions.reducedImageSize;
-            undoQueueSize = advancedOptions.undoQueueSize;
-            resultCountMax = advancedOptions.resultCountMax;
-            ignoreFrameWidth = advancedOptions.ignoreFrameWidth;
-            useLibJpegTurbo = advancedOptions.useLibJpegTurbo;
-        }
+	public CoreAdvancedOptions(CoreAdvancedOptions advancedOptions)
+	{
+		deleteToRecycleBin = advancedOptions.deleteToRecycleBin;
+		mistakeDataBase = advancedOptions.mistakeDataBase;
+		ratioResolution = advancedOptions.ratioResolution;
+		compareThreadCount = advancedOptions.compareThreadCount;
+		collectThreadCount = advancedOptions.collectThreadCount;
+		reducedImageSize = advancedOptions.reducedImageSize;
+		undoQueueSize = advancedOptions.undoQueueSize;
+		resultCountMax = advancedOptions.resultCountMax;
+		ignoreFrameWidth = advancedOptions.ignoreFrameWidth;
+		useLibJpegTurbo = advancedOptions.useLibJpegTurbo;
+	}
 
-        public CoreAdvancedOptions(ref CoreDll.adAdvancedOptions advancedOptions)
-        {
-            deleteToRecycleBin = advancedOptions.deleteToRecycleBin != CoreDll.FALSE;
-            mistakeDataBase = advancedOptions.mistakeDataBase != CoreDll.FALSE;
-            ratioResolution = advancedOptions.ratioResolution;
-            compareThreadCount = advancedOptions.compareThreadCount;
-            collectThreadCount = advancedOptions.collectThreadCount;
-            reducedImageSize = advancedOptions.reducedImageSize;
-            undoQueueSize = advancedOptions.undoQueueSize;
-            resultCountMax = advancedOptions.resultCountMax;
-            ignoreFrameWidth = advancedOptions.ignoreFrameWidth;
-            useLibJpegTurbo = advancedOptions.useLibJpegTurbo != CoreDll.FALSE;
-        }
+	public CoreAdvancedOptions(ref CoreDll.adAdvancedOptions advancedOptions)
+	{
+		deleteToRecycleBin = advancedOptions.deleteToRecycleBin != CoreDll.FALSE;
+		mistakeDataBase = advancedOptions.mistakeDataBase != CoreDll.FALSE;
+		ratioResolution = advancedOptions.ratioResolution;
+		compareThreadCount = advancedOptions.compareThreadCount;
+		collectThreadCount = advancedOptions.collectThreadCount;
+		reducedImageSize = advancedOptions.reducedImageSize;
+		undoQueueSize = advancedOptions.undoQueueSize;
+		resultCountMax = advancedOptions.resultCountMax;
+		ignoreFrameWidth = advancedOptions.ignoreFrameWidth;
+		useLibJpegTurbo = advancedOptions.useLibJpegTurbo != CoreDll.FALSE;
+	}
 
-        public void ConvertTo(ref CoreDll.adAdvancedOptions advancedOptions)
-        {
-            advancedOptions.deleteToRecycleBin = deleteToRecycleBin ? CoreDll.TRUE : CoreDll.FALSE;
-            advancedOptions.mistakeDataBase = mistakeDataBase ? CoreDll.TRUE : CoreDll.FALSE;
-            advancedOptions.ratioResolution = ratioResolution;
-            advancedOptions.compareThreadCount = compareThreadCount;
-            advancedOptions.collectThreadCount = collectThreadCount;
-            advancedOptions.reducedImageSize = reducedImageSize;
-            advancedOptions.undoQueueSize = undoQueueSize;
-            advancedOptions.resultCountMax = resultCountMax;
-            advancedOptions.ignoreFrameWidth = ignoreFrameWidth;
-            advancedOptions.useLibJpegTurbo = useLibJpegTurbo ? CoreDll.TRUE : CoreDll.FALSE;
-        }
+	public void ConvertTo(ref CoreDll.adAdvancedOptions advancedOptions)
+	{
+		advancedOptions.deleteToRecycleBin = deleteToRecycleBin ? CoreDll.TRUE : CoreDll.FALSE;
+		advancedOptions.mistakeDataBase = mistakeDataBase ? CoreDll.TRUE : CoreDll.FALSE;
+		advancedOptions.ratioResolution = ratioResolution;
+		advancedOptions.compareThreadCount = compareThreadCount;
+		advancedOptions.collectThreadCount = collectThreadCount;
+		advancedOptions.reducedImageSize = reducedImageSize;
+		advancedOptions.undoQueueSize = undoQueueSize;
+		advancedOptions.resultCountMax = resultCountMax;
+		advancedOptions.ignoreFrameWidth = ignoreFrameWidth;
+		advancedOptions.useLibJpegTurbo = useLibJpegTurbo ? CoreDll.TRUE : CoreDll.FALSE;
+	}
 
-        public CoreAdvancedOptions Clone()
-        {
-            return new CoreAdvancedOptions(this);
-        }
+	public CoreAdvancedOptions Clone()
+	{
+		return new CoreAdvancedOptions(this);
+	}
 
-        public bool Equals(CoreAdvancedOptions advancedOptions)
-        {
-            return
-                deleteToRecycleBin == advancedOptions.deleteToRecycleBin &&
-                mistakeDataBase == advancedOptions.mistakeDataBase &&
-                ratioResolution == advancedOptions.ratioResolution &&
-                compareThreadCount == advancedOptions.compareThreadCount &&
-                collectThreadCount == advancedOptions.collectThreadCount &&
-                reducedImageSize == advancedOptions.reducedImageSize &&
-                undoQueueSize == advancedOptions.undoQueueSize &&
-                resultCountMax == advancedOptions.resultCountMax &&
-                ignoreFrameWidth == advancedOptions.ignoreFrameWidth &&
-                useLibJpegTurbo == advancedOptions.useLibJpegTurbo;
-        }
-    }
+	public bool Equals(CoreAdvancedOptions advancedOptions)
+	{
+		return
+			deleteToRecycleBin == advancedOptions.deleteToRecycleBin &&
+			mistakeDataBase == advancedOptions.mistakeDataBase &&
+			ratioResolution == advancedOptions.ratioResolution &&
+			compareThreadCount == advancedOptions.compareThreadCount &&
+			collectThreadCount == advancedOptions.collectThreadCount &&
+			reducedImageSize == advancedOptions.reducedImageSize &&
+			undoQueueSize == advancedOptions.undoQueueSize &&
+			resultCountMax == advancedOptions.resultCountMax &&
+			ignoreFrameWidth == advancedOptions.ignoreFrameWidth &&
+			useLibJpegTurbo == advancedOptions.useLibJpegTurbo;
+	}
+}

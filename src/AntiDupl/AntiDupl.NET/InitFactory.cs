@@ -30,11 +30,11 @@ namespace AntiDupl.NET;
 /// Фабрика создает элементы GUI
 /// </summary>
 public static class InitFactory
-    {
-        public static class Layout
-        {
-            public static TableLayoutPanel Create(int columCount, int rowCount)
-            {
+{
+	public static class Layout
+	{
+		public static TableLayoutPanel Create(int columCount, int rowCount)
+		{
 			var layout = new TableLayoutPanel
 			{
 				Location = new System.Drawing.Point(0, 0),
@@ -43,93 +43,93 @@ public static class InitFactory
 				RowCount = rowCount
 			};
 			return layout;
-            }
+		}
 
-            public static TableLayoutPanel Create(int columCount, int rowCount, int padding)
-            {
-                var layout = Create(columCount, rowCount);
-                layout.Padding = new Padding(padding);
-                return layout;
-            }
+		public static TableLayoutPanel Create(int columCount, int rowCount, int padding)
+		{
+			var layout = Create(columCount, rowCount);
+			layout.Padding = new Padding(padding);
+			return layout;
+		}
 
-            public static TableLayoutPanel Create(int columCount, int rowCount, int padding, int margin)
-            {
-                var layout = Create(columCount, rowCount, padding);
-                layout.Margin = new Padding(margin);
-                return layout;
-            }
+		public static TableLayoutPanel Create(int columCount, int rowCount, int padding, int margin)
+		{
+			var layout = Create(columCount, rowCount, padding);
+			layout.Margin = new Padding(margin);
+			return layout;
+		}
 
-            public static TableLayoutPanel CreateVerticalCenterAlign(int padding, int margin)
-            {
-                var layout = Create(1, 3, padding, margin);
-                layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-                layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-                layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-                return layout;
-            }
+		public static TableLayoutPanel CreateVerticalCenterAlign(int padding, int margin)
+		{
+			var layout = Create(1, 3, padding, margin);
+			layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+			layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+			return layout;
+		}
 
-            public static TableLayoutPanel CreateHorizontalCenterAlign(int padding, int margin)
-            {
-                var layout = Create(3, 1, padding, margin);
-                layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-                layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-                layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-                return layout;
-            }
+		public static TableLayoutPanel CreateHorizontalCenterAlign(int padding, int margin)
+		{
+			var layout = Create(3, 1, padding, margin);
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+			return layout;
+		}
 
-            public static TableLayoutPanel CreateVerticalCompensatedCenterAlign(int first, int second)
-            {
-                var layout = Create(1, 5, 0, 0);
-                layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-                layout.RowStyles.Add(new RowStyle(SizeType.Absolute, first));
-                layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-                layout.RowStyles.Add(new RowStyle(SizeType.Absolute, second));
-                layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-                return layout;
-            }
+		public static TableLayoutPanel CreateVerticalCompensatedCenterAlign(int first, int second)
+		{
+			var layout = Create(1, 5, 0, 0);
+			layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, first));
+			layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, second));
+			layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+			return layout;
+		}
 
-            public static TableLayoutPanel CreateHorizontalCompensatedCenterAlign(int first, int second)
-            {
-                var layout = Create(5, 1, 0, 0);
-                layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-                layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, first));
-                layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-                layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, second));
-                layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-                return layout;
-            }
-        };
+		public static TableLayoutPanel CreateHorizontalCompensatedCenterAlign(int first, int second)
+		{
+			var layout = Create(5, 1, 0, 0);
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, first));
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, second));
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+			return layout;
+		}
+	};
 
-        public static class Font
-        {
-            public static System.Drawing.Font Create(float size)
-            {
-                var font = new System.Drawing.Font("Microsoft Sans Serif", size,
-                  System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
-                return font;
-            }
-        };
+	public static class Font
+	{
+		public static System.Drawing.Font Create(float size)
+		{
+			var font = new System.Drawing.Font("Microsoft Sans Serif", size,
+			  System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
+			return font;
+		}
+	};
 
-        public static class Label
-        {
-            public static System.Windows.Forms.Label Create()
-            {
+	public static class Label
+	{
+		public static System.Windows.Forms.Label Create()
+		{
 			var label = new System.Windows.Forms.Label
 			{
 				AutoSize = true
 			};
 			return label;
-            }
+		}
 
-            public static System.Windows.Forms.Label Create(float fontSize)
-            {
-                var label = Create();
-                label.Font = Font.Create(fontSize);
-                return label;
-            }
+		public static System.Windows.Forms.Label Create(float fontSize)
+		{
+			var label = Create();
+			label.Font = Font.Create(fontSize);
+			return label;
+		}
 
-            public static System.Windows.Forms.Label Create(string text, System.Drawing.Font font)
-            {
+		public static System.Windows.Forms.Label Create(string text, System.Drawing.Font font)
+		{
 			var label = new System.Windows.Forms.Label
 			{
 				AutoSize = true,
@@ -137,92 +137,92 @@ public static class InitFactory
 				Text = text
 			};
 			return label;
-            }
-        };
+		}
+	};
 
-        public static class CheckBox
-        {
-            public static System.Windows.Forms.CheckBox Create(EventHandler checkedChanged)
-            {
-                var checkBox = new System.Windows.Forms.CheckBox();
-                checkBox.CheckedChanged += new EventHandler(checkedChanged);
-                checkBox.AutoSize = true;
-                return checkBox;
-            }
-        };
+	public static class CheckBox
+	{
+		public static System.Windows.Forms.CheckBox Create(EventHandler checkedChanged)
+		{
+			var checkBox = new System.Windows.Forms.CheckBox();
+			checkBox.CheckedChanged += new EventHandler(checkedChanged);
+			checkBox.AutoSize = true;
+			return checkBox;
+		}
+	};
 
-        public static class ListBox
-        {
-            public static System.Windows.Forms.ListBox Create(EventHandler selectedIndexChanged, EventHandler doubleClick)
-            {
+	public static class ListBox
+	{
+		public static System.Windows.Forms.ListBox Create(EventHandler selectedIndexChanged, EventHandler doubleClick)
+		{
 			var listBox = new System.Windows.Forms.ListBox
 			{
 				Location = new System.Drawing.Point(0, 0),
 				Dock = DockStyle.Fill
 			};
 			listBox.SelectedIndexChanged += new EventHandler(selectedIndexChanged);
-                listBox.DoubleClick += new EventHandler(doubleClick);
-                return listBox;
-            }
-        };
+			listBox.DoubleClick += new EventHandler(doubleClick);
+			return listBox;
+		}
+	};
 
-        public static class CheckedListBox
-        {
-            public static System.Windows.Forms.CheckedListBox Create(EventHandler selectedIndexChanged, EventHandler doubleClick, ItemCheckEventHandler itemCheck)
-            {
+	public static class CheckedListBox
+	{
+		public static System.Windows.Forms.CheckedListBox Create(EventHandler selectedIndexChanged, EventHandler doubleClick, ItemCheckEventHandler itemCheck)
+		{
 			var checkBox = new System.Windows.Forms.CheckedListBox
 			{
 				Location = new System.Drawing.Point(0, 0),
 				Dock = DockStyle.Fill
 			};
 			checkBox.SelectedIndexChanged += new EventHandler(selectedIndexChanged);
-                checkBox.DoubleClick += new EventHandler(doubleClick);
-                checkBox.ItemCheck += new ItemCheckEventHandler(itemCheck);
-                checkBox.CheckOnClick = false;
-                return checkBox;
-            }
-        };
+			checkBox.DoubleClick += new EventHandler(doubleClick);
+			checkBox.ItemCheck += new ItemCheckEventHandler(itemCheck);
+			checkBox.CheckOnClick = false;
+			return checkBox;
+		}
+	};
 
-        public static class MenuItem
-        {
-            public static System.Windows.Forms.ToolStripMenuItem Create(string image, object tag, EventHandler handler)
-            {
-                var menuItem = new System.Windows.Forms.ToolStripMenuItem();
-                if (image != null)
-                {
-                    menuItem.Image = Resources.Images.Get(image);
-                    menuItem.ImageScaling = ToolStripItemImageScaling.None;
-                }
-                menuItem.Tag = tag;
-                menuItem.Click += new EventHandler(handler);
-                return menuItem;
-            }
+	public static class MenuItem
+	{
+		public static System.Windows.Forms.ToolStripMenuItem Create(string image, object tag, EventHandler handler)
+		{
+			var menuItem = new System.Windows.Forms.ToolStripMenuItem();
+			if (image != null)
+			{
+				menuItem.Image = Resources.Images.Get(image);
+				menuItem.ImageScaling = ToolStripItemImageScaling.None;
+			}
+			menuItem.Tag = tag;
+			menuItem.Click += new EventHandler(handler);
+			return menuItem;
+		}
 
-            public static System.Windows.Forms.ToolStripMenuItem Create(string image, object tag, EventHandler handler, bool checkedValue)
-            {
-                var menuItem = Create(image, tag, handler);
-                menuItem.CheckOnClick = true;
-                menuItem.Checked = checkedValue;
-                return menuItem;
-            }
-        };
+		public static System.Windows.Forms.ToolStripMenuItem Create(string image, object tag, EventHandler handler, bool checkedValue)
+		{
+			var menuItem = Create(image, tag, handler);
+			menuItem.CheckOnClick = true;
+			menuItem.Checked = checkedValue;
+			return menuItem;
+		}
+	};
 
-        public static class ToolButton
-        {
-            public static System.Windows.Forms.ToolStripButton Create(string image, object tag, EventHandler handler)
-            {
-                var toolButton = new System.Windows.Forms.ToolStripButton();
-                if (image != null)
-                {
-                    toolButton.Image = Resources.Images.Get(image);
-                    toolButton.ImageScaling = ToolStripItemImageScaling.None;
-                }
-                toolButton.Overflow = ToolStripItemOverflow.Never;
-                toolButton.Margin = new Padding(1);
-                toolButton.Padding = new Padding(1);
-                toolButton.Tag = tag;
-                toolButton.Click += new EventHandler(handler);
-                return toolButton;
-            }
-        };
-    };
+	public static class ToolButton
+	{
+		public static System.Windows.Forms.ToolStripButton Create(string image, object tag, EventHandler handler)
+		{
+			var toolButton = new System.Windows.Forms.ToolStripButton();
+			if (image != null)
+			{
+				toolButton.Image = Resources.Images.Get(image);
+				toolButton.ImageScaling = ToolStripItemImageScaling.None;
+			}
+			toolButton.Overflow = ToolStripItemOverflow.Never;
+			toolButton.Margin = new Padding(1);
+			toolButton.Padding = new Padding(1);
+			toolButton.Tag = tag;
+			toolButton.Click += new EventHandler(handler);
+			return toolButton;
+		}
+	};
+};

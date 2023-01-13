@@ -27,163 +27,163 @@ using System.Text;
 namespace AntiDupl.NET;
 
 public class CoreImageInfo
-    {
-        public ulong id;
-        public string path;
-        public ulong size;
-        public ulong time;
-        public CoreDll.ImageType type;
-        public uint width;
-        public uint height;
-        public double blockiness;
-        public double blurring;
-        public CoreDll.adImageExifW exifInfo;
+{
+	public ulong id;
+	public string path;
+	public ulong size;
+	public ulong time;
+	public CoreDll.ImageType type;
+	public uint width;
+	public uint height;
+	public double blockiness;
+	public double blurring;
+	public CoreDll.adImageExifW exifInfo;
 
-        public CoreImageInfo(ref CoreDll.adImageInfoW imageInfo)
-        {
-            id = (ulong)imageInfo.id;
-            path = imageInfo.path;
-            size = imageInfo.size;
-            time = imageInfo.time;
-            type = imageInfo.type;
-            width = imageInfo.width;
-            height = imageInfo.height;
-            blockiness = imageInfo.blockiness;
-            blurring = imageInfo.blurring;
-            exifInfo = imageInfo.exifInfo;
-        }
+	public CoreImageInfo(ref CoreDll.adImageInfoW imageInfo)
+	{
+		id = (ulong)imageInfo.id;
+		path = imageInfo.path;
+		size = imageInfo.size;
+		time = imageInfo.time;
+		type = imageInfo.type;
+		width = imageInfo.width;
+		height = imageInfo.height;
+		blockiness = imageInfo.blockiness;
+		blurring = imageInfo.blurring;
+		exifInfo = imageInfo.exifInfo;
+	}
 
-        public string GetImageSizeString()
-        {
-            var builder = new StringBuilder();
-            builder.Append(width);
-            builder.Append(" x ");
-            builder.Append(height);
-            return builder.ToString();
-        }
+	public string GetImageSizeString()
+	{
+		var builder = new StringBuilder();
+		builder.Append(width);
+		builder.Append(" x ");
+		builder.Append(height);
+		return builder.ToString();
+	}
 
-        public string GetImageTypeString()
-        {
-            var builder = new StringBuilder();
-            switch (type)
-            {
-                case CoreDll.ImageType.None:
-                    builder.Append("");
-                    break;
-                case CoreDll.ImageType.Bmp:
-                    builder.Append("BMP");
-                    break;
-                case CoreDll.ImageType.Gif:
-                    builder.Append("GIF");
-                    break;
-                case CoreDll.ImageType.Jpeg:
-                    builder.Append("JPG");
-                    break;
-                case CoreDll.ImageType.Png:
-                    builder.Append("PNG");
-                    break;
-                case CoreDll.ImageType.Tiff:
-                    builder.Append("TIFF");
-                    break;
-                case CoreDll.ImageType.Emf:
-                    builder.Append("EMF");
-                    break;
-                case CoreDll.ImageType.Wmf:
-                    builder.Append("WMF");
-                    break;
-                case CoreDll.ImageType.Exif:
-                    builder.Append("EXIF");
-                    break;
-                case CoreDll.ImageType.Icon:
-                    builder.Append("ICON");
-                    break;
-                case CoreDll.ImageType.Jp2:
-                    builder.Append("JP2");
-                    break;
-                case CoreDll.ImageType.Psd:
-                    builder.Append("PSD");
-                    break;
-                case CoreDll.ImageType.Dds:
-                    builder.Append("DDS");
-                    break;
-                case CoreDll.ImageType.Heif:
-                    builder.Append("HEIF");
-                    break;
-            }
-            return builder.ToString();
-        }
+	public string GetImageTypeString()
+	{
+		var builder = new StringBuilder();
+		switch (type)
+		{
+			case CoreDll.ImageType.None:
+				builder.Append("");
+				break;
+			case CoreDll.ImageType.Bmp:
+				builder.Append("BMP");
+				break;
+			case CoreDll.ImageType.Gif:
+				builder.Append("GIF");
+				break;
+			case CoreDll.ImageType.Jpeg:
+				builder.Append("JPG");
+				break;
+			case CoreDll.ImageType.Png:
+				builder.Append("PNG");
+				break;
+			case CoreDll.ImageType.Tiff:
+				builder.Append("TIFF");
+				break;
+			case CoreDll.ImageType.Emf:
+				builder.Append("EMF");
+				break;
+			case CoreDll.ImageType.Wmf:
+				builder.Append("WMF");
+				break;
+			case CoreDll.ImageType.Exif:
+				builder.Append("EXIF");
+				break;
+			case CoreDll.ImageType.Icon:
+				builder.Append("ICON");
+				break;
+			case CoreDll.ImageType.Jp2:
+				builder.Append("JP2");
+				break;
+			case CoreDll.ImageType.Psd:
+				builder.Append("PSD");
+				break;
+			case CoreDll.ImageType.Dds:
+				builder.Append("DDS");
+				break;
+			case CoreDll.ImageType.Heif:
+				builder.Append("HEIF");
+				break;
+		}
+		return builder.ToString();
+	}
 
-        public string GetBlockinessString()
-        {
-            return blockiness.ToString("F2");
-        }
-        
-        public string GetBlurringString()
-        {
-            return blurring.ToString("F2");
-        }
+	public string GetBlockinessString()
+	{
+		return blockiness.ToString("F2");
+	}
 
-        public string GetFileTimeString()
-        {
-            return DateTime.FromFileTime((long)time).ToString();
-        }
+	public string GetBlurringString()
+	{
+		return blurring.ToString("F2");
+	}
 
-        public string GetFileSizeString()
-        {
-            var builder = new StringBuilder();
-            var str = (Math.Ceiling(size / 1024.0)).ToString();
-            var start = str.Length % 3;
-            switch (start)
-            {
-                case 0:
-                    break;
-                case 1:
-                    builder.Append(str[0]);
-                    builder.Append(' ');
-                    break;
-                case 2:
-                    builder.Append(str[0]);
-                    builder.Append(str[1]);
-                    builder.Append(' ');
-                    break;
-            }
-            for (var i = start; i < str.Length; i += 3)
-            {
-                builder.Append(str[i + 0]);
-                builder.Append(str[i + 1]);
-                builder.Append(str[i + 2]);
-                builder.Append(' ');
-            }
-            builder.Append("KB");
-            return builder.ToString();
-        }
+	public string GetFileTimeString()
+	{
+		return DateTime.FromFileTime((long)time).ToString();
+	}
 
-        public string GetTipString()
-        {
-            var s = Resources.Strings.Current;
-            var builder = new StringBuilder();
+	public string GetFileSizeString()
+	{
+		var builder = new StringBuilder();
+		var str = (Math.Ceiling(size / 1024.0)).ToString();
+		var start = str.Length % 3;
+		switch (start)
+		{
+			case 0:
+				break;
+			case 1:
+				builder.Append(str[0]);
+				builder.Append(' ');
+				break;
+			case 2:
+				builder.Append(str[0]);
+				builder.Append(str[1]);
+				builder.Append(' ');
+				break;
+		}
+		for (var i = start; i < str.Length; i += 3)
+		{
+			builder.Append(str[i + 0]);
+			builder.Append(str[i + 1]);
+			builder.Append(str[i + 2]);
+			builder.Append(' ');
+		}
+		builder.Append("KB");
+		return builder.ToString();
+	}
 
-            builder.AppendLine(path);
+	public string GetTipString()
+	{
+		var s = Resources.Strings.Current;
+		var builder = new StringBuilder();
 
-            builder.Append(s.ResultsListView_ImageSize_Column_Text);
-            builder.Append(": ");
-            builder.AppendLine(GetImageSizeString());
+		builder.AppendLine(path);
 
-            builder.Append(s.ResultsListView_ImageType_Column_Text);
-            builder.Append(": ");
-            builder.AppendLine(GetImageTypeString());
+		builder.Append(s.ResultsListView_ImageSize_Column_Text);
+		builder.Append(": ");
+		builder.AppendLine(GetImageSizeString());
 
-            builder.Append(s.ResultsListView_FileSize_Column_Text);
-            builder.Append(": ");
-            builder.Append(GetFileSizeString());
+		builder.Append(s.ResultsListView_ImageType_Column_Text);
+		builder.Append(": ");
+		builder.AppendLine(GetImageTypeString());
 
-            return builder.ToString();
-        }
+		builder.Append(s.ResultsListView_FileSize_Column_Text);
+		builder.Append(": ");
+		builder.Append(GetFileSizeString());
 
-        public string GetDirectoryString()
-        {
-            var i = path.Length - 1;
-            while (i >= 0 && path[i] != '\\')
+		return builder.ToString();
+	}
+
+	public string GetDirectoryString()
+	{
+		var i = path.Length - 1;
+		while (i >= 0 && path[i] != '\\')
 		{
 			i--;
 		}
@@ -198,8 +198,8 @@ public class CoreImageInfo
 		}
 	}
 
-        public string GetFileNameWithoutExtensionString()
-        {
-            return System.IO.Path.GetFileNameWithoutExtension(path);
-        }
-    }
+	public string GetFileNameWithoutExtensionString()
+	{
+		return System.IO.Path.GetFileNameWithoutExtension(path);
+	}
+}

@@ -23,80 +23,80 @@
 */
 using Microsoft.Win32;
 using System.Diagnostics;
-using System.Windows.Forms;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
 static public class FolderOpener
-    {
-        private static readonly bool m_canOpenFolderWithExplorer = CanOpenFolderWithExplorer();
+{
+	private static readonly bool m_canOpenFolderWithExplorer = CanOpenFolderWithExplorer();
 
-        static private bool CanOpenFolderWithExplorer()
-        {
-            var rkFolder = Registry.ClassesRoot.OpenSubKey("Folder");
-            if (rkFolder != null)
-            {
-                var rkShell = rkFolder.OpenSubKey("shell");
-                if (rkShell != null)
-                {
-                    var rkExplore = rkShell.OpenSubKey("explore");
-                    if (rkExplore != null)
-                    {
-                        var rkCommand = rkExplore.OpenSubKey("command");
-                        if (rkCommand != null)
-                        {
-                            var defaultValue = (string)rkCommand.GetValue("");
-                            if (defaultValue != null)
-                            {
-                                if (defaultValue.ToLowerInvariant().Contains("explorer.exe"))
-                                {
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                    var rkOpen = rkShell.OpenSubKey("open");
-                    if (rkOpen != null)
-                    {
-                        var rkCommand = rkOpen.OpenSubKey("command");
-                        if (rkCommand != null)
-                        {
-                            var defaultValue = (string)rkCommand.GetValue("");
-                            if (defaultValue != null)
-                            {
-                                if (defaultValue.ToLowerInvariant().Contains("explorer.exe"))
-                                {
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            return false;
-        }
+	static private bool CanOpenFolderWithExplorer()
+	{
+		var rkFolder = Registry.ClassesRoot.OpenSubKey("Folder");
+		if (rkFolder != null)
+		{
+			var rkShell = rkFolder.OpenSubKey("shell");
+			if (rkShell != null)
+			{
+				var rkExplore = rkShell.OpenSubKey("explore");
+				if (rkExplore != null)
+				{
+					var rkCommand = rkExplore.OpenSubKey("command");
+					if (rkCommand != null)
+					{
+						var defaultValue = (string)rkCommand.GetValue("");
+						if (defaultValue != null)
+						{
+							if (defaultValue.ToLowerInvariant().Contains("explorer.exe"))
+							{
+								return true;
+							}
+						}
+					}
+				}
+				var rkOpen = rkShell.OpenSubKey("open");
+				if (rkOpen != null)
+				{
+					var rkCommand = rkOpen.OpenSubKey("command");
+					if (rkCommand != null)
+					{
+						var defaultValue = (string)rkCommand.GetValue("");
+						if (defaultValue != null)
+						{
+							if (defaultValue.ToLowerInvariant().Contains("explorer.exe"))
+							{
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 
-        static public void OpenContainingFolder(CoreImageInfo imageInfo)
-        {
-            try
-            {
-                var startInfo = new ProcessStartInfo();
-                if (m_canOpenFolderWithExplorer)
-                {
-                    startInfo.FileName = "explorer.exe";
-                    startInfo.Arguments = string.Format("/e, /select, \"{0}\"", imageInfo.path);
-                }
-                else
-                {
-                    startInfo.FileName = imageInfo.GetDirectoryString();
-                }
-                var process = Process.Start(startInfo);
-                Thread.Sleep(System.TimeSpan.FromMilliseconds(100));
-            }
-            catch (System.Exception exeption)
-            {
-                MessageBox.Show(exeption.Message);
-            }
-        }
-    }
+	static public void OpenContainingFolder(CoreImageInfo imageInfo)
+	{
+		try
+		{
+			var startInfo = new ProcessStartInfo();
+			if (m_canOpenFolderWithExplorer)
+			{
+				startInfo.FileName = "explorer.exe";
+				startInfo.Arguments = string.Format("/e, /select, \"{0}\"", imageInfo.path);
+			}
+			else
+			{
+				startInfo.FileName = imageInfo.GetDirectoryString();
+			}
+			var process = Process.Start(startInfo);
+			Thread.Sleep(System.TimeSpan.FromMilliseconds(100));
+		}
+		catch (System.Exception exeption)
+		{
+			MessageBox.Show(exeption.Message);
+		}
+	}
+}

@@ -25,27 +25,27 @@
 namespace AntiDupl.NET;
 
 public class CoreResult
-    {
-        public CoreDll.ResultType type;
-        public CoreImageInfo first;
-        public CoreImageInfo second;
-        public CoreDll.DefectType defect;
-        public double difference;
-        public CoreDll.TransformType transform;
-        public int group;
-        public int groupSize;
-        public CoreDll.HintType hint;
+{
+	public CoreDll.ResultType type;
+	public CoreImageInfo first;
+	public CoreImageInfo second;
+	public CoreDll.DefectType defect;
+	public double difference;
+	public CoreDll.TransformType transform;
+	public int group;
+	public int groupSize;
+	public CoreDll.HintType hint;
 
-        public CoreResult(ref CoreDll.adResultW result)
-        {
-            type = result.type;
-            first = new CoreImageInfo(ref result.first);
-            second = new CoreImageInfo(ref result.second);
-            defect = result.defect;
-            difference = result.difference;
-            transform = result.transform;
-            group = result.group.ToInt32();
-            groupSize = result.groupSize.ToInt32();
-            hint = result.hint;
-        }
-    }
+	public CoreResult(ref CoreDll.adResultW result)
+	{
+		type = result.type;
+		first = new CoreImageInfo(ref result.first);
+		second = new CoreImageInfo(ref result.second);
+		defect = result.defect;
+		difference = result.difference;
+		transform = result.transform;
+		group = result.group.ToInt32();
+		groupSize = result.groupSize.ToInt32();
+		hint = result.hint;
+	}
+}

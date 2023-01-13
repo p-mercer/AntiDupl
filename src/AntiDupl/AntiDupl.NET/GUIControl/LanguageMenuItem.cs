@@ -22,62 +22,62 @@
 * SOFTWARE.
 */
 using System;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
 public class LanguageMenuItem : ToolStripMenuItem
-    {
-        private readonly Options m_options;
+{
+	private readonly Options m_options;
 
-        private ToolStripMenuItem[] m_items;
+	private ToolStripMenuItem[] m_items;
 
-        private Image m_trueIcon;
-        private Image m_falseIcon;
+	private Image m_trueIcon;
+	private Image m_falseIcon;
 
-        public LanguageMenuItem(Options options)
-        {
-            m_options = options;
-            InitializeComponents();
-            UpdateStrings();
-            UpdateIcons();
-            Resources.Strings.OnCurrentChange += new Resources.Strings.CurrentChangeHandler(UpdateStrings);
-            Resources.Strings.OnCurrentChange += new Resources.Strings.CurrentChangeHandler(UpdateIcons);
-        }
+	public LanguageMenuItem(Options options)
+	{
+		m_options = options;
+		InitializeComponents();
+		UpdateStrings();
+		UpdateIcons();
+		Resources.Strings.OnCurrentChange += new Resources.Strings.CurrentChangeHandler(UpdateStrings);
+		Resources.Strings.OnCurrentChange += new Resources.Strings.CurrentChangeHandler(UpdateIcons);
+	}
 
-        private void InitializeComponents()
-        {
-            m_trueIcon = Resources.Images.GetImageWithBlackCircle(16, 16, 3.5);
-            m_falseIcon = Resources.Images.GetNullImage();
+	private void InitializeComponents()
+	{
+		m_trueIcon = Resources.Images.GetImageWithBlackCircle(16, 16, 3.5);
+		m_falseIcon = Resources.Images.GetNullImage();
 
-            m_items = new ToolStripMenuItem[Resources.Strings.Count];
-            for (var i = 0; i < Resources.Strings.Count; i++)
-            {
-                m_items[i] = InitFactory.MenuItem.Create(null, i, OnClick);
-                m_items[i].Text = Resources.Strings.Get(i).OriginalLanguageName;
-                DropDownItems.Add(m_items[i]);
-            }
-        }
+		m_items = new ToolStripMenuItem[Resources.Strings.Count];
+		for (var i = 0; i < Resources.Strings.Count; i++)
+		{
+			m_items[i] = InitFactory.MenuItem.Create(null, i, OnClick);
+			m_items[i].Text = Resources.Strings.Get(i).OriginalLanguageName;
+			DropDownItems.Add(m_items[i]);
+		}
+	}
 
-        private void OnClick(object sender, EventArgs e)
-        {
-            var item = (ToolStripMenuItem)sender;
-            m_options.Language = Resources.Strings.Get((int)item.Tag).Name;
-        }
+	private void OnClick(object sender, EventArgs e)
+	{
+		var item = (ToolStripMenuItem)sender;
+		m_options.Language = Resources.Strings.Get((int)item.Tag).Name;
+	}
 
-        private void UpdateStrings()
-        {
-            var s = Resources.Strings.Current;
+	private void UpdateStrings()
+	{
+		var s = Resources.Strings.Current;
 
-            Text = s.LanguageMenuItem_Text;
-        }
+		Text = s.LanguageMenuItem_Text;
+	}
 
 	private void UpdateIcons()
-        {
-            for (var i = 0; i < m_items.Length; i++)
-            {
-                m_items[i].Image = (i == Resources.Strings.CurrentIndex ? m_trueIcon : m_falseIcon);
-            }
-        }
-    }
+	{
+		for (var i = 0; i < m_items.Length; i++)
+		{
+			m_items[i].Image = (i == Resources.Strings.CurrentIndex ? m_trueIcon : m_falseIcon);
+		}
+	}
+}

@@ -26,140 +26,140 @@ using System.Collections;
 namespace AntiDupl.NET;
 
 public class CoreSearchOptions
-    {
-        private static readonly string[] s_jpegExtensions = {"JPEG", "JFIF", "JPG", "JPE", "JIFF", "JIF", "J", "JNG", "JFF"};
-        private static readonly string[] s_tiffExtensions = {"TIF", "TIFF"};
-        private static readonly string[] s_bmpExtensions = {"BMP", "DIB", "RLE"};
-        private static readonly string[] s_gifExtensions = {"GIF"};
-        private static readonly string[] s_pngExtensions = {"PNG"};
-        private static readonly string[] s_emfExtensions = {"EMF", "EMZ"};
-        private static readonly string[] s_wmfExtensions = {"WMF"};
-        private static readonly string[] s_exifExtensions = {"EXIF"};
-        private static readonly string[] s_iconExtensions = {"ICON", "ICO", "ICN"};
-        private static readonly string[] s_jp2Extensions = {"JP2", "J2K", "J2C", "JPC", "JPF", "JPX"};
-        private static readonly string[] s_psdExtensions = {"PSD"};
-        private static readonly string[] s_ddsExtensions = {"DDS"};
-        private static readonly string[] s_tgaExtensions = {"TGA", "TPIC"};
-        private static readonly string[] s_webpExtensions = { "WEBP" };
-        private static readonly string[] s_heifExtensions = { "HEIF", "HEIC" };
+{
+	private static readonly string[] s_jpegExtensions = { "JPEG", "JFIF", "JPG", "JPE", "JIFF", "JIF", "J", "JNG", "JFF" };
+	private static readonly string[] s_tiffExtensions = { "TIF", "TIFF" };
+	private static readonly string[] s_bmpExtensions = { "BMP", "DIB", "RLE" };
+	private static readonly string[] s_gifExtensions = { "GIF" };
+	private static readonly string[] s_pngExtensions = { "PNG" };
+	private static readonly string[] s_emfExtensions = { "EMF", "EMZ" };
+	private static readonly string[] s_wmfExtensions = { "WMF" };
+	private static readonly string[] s_exifExtensions = { "EXIF" };
+	private static readonly string[] s_iconExtensions = { "ICON", "ICO", "ICN" };
+	private static readonly string[] s_jp2Extensions = { "JP2", "J2K", "J2C", "JPC", "JPF", "JPX" };
+	private static readonly string[] s_psdExtensions = { "PSD" };
+	private static readonly string[] s_ddsExtensions = { "DDS" };
+	private static readonly string[] s_tgaExtensions = { "TGA", "TPIC" };
+	private static readonly string[] s_webpExtensions = { "WEBP" };
+	private static readonly string[] s_heifExtensions = { "HEIF", "HEIC" };
 
-        public bool subFolders;
-        public bool system;
-        public bool hidden;
-        public bool JPEG;
-        public bool BMP;
-        public bool GIF;
-        public bool PNG;
-        public bool TIFF;
-        public bool EMF;
-        public bool WMF;
-        public bool EXIF;
-        public bool ICON;
-        public bool JP2;
-        public bool PSD;
-        public bool DDS;
-        public bool TGA;
-        public bool WEBP;
-        public bool HEIF;
+	public bool subFolders;
+	public bool system;
+	public bool hidden;
+	public bool JPEG;
+	public bool BMP;
+	public bool GIF;
+	public bool PNG;
+	public bool TIFF;
+	public bool EMF;
+	public bool WMF;
+	public bool EXIF;
+	public bool ICON;
+	public bool JP2;
+	public bool PSD;
+	public bool DDS;
+	public bool TGA;
+	public bool WEBP;
+	public bool HEIF;
 
-        public CoreSearchOptions()
-        {
-        }
+	public CoreSearchOptions()
+	{
+	}
 
-        public CoreSearchOptions(CoreSearchOptions searchOptions)
-        {
-            system = searchOptions.system;
-            hidden = searchOptions.hidden;
-            JPEG = searchOptions.JPEG;
-            BMP = searchOptions.BMP;
-            GIF = searchOptions.GIF;
-            PNG = searchOptions.PNG;
-            TIFF = searchOptions.TIFF;
-            EMF = searchOptions.EMF;
-            WMF = searchOptions.WMF;
-            EXIF = searchOptions.EXIF;
-            ICON = searchOptions.ICON;
-            JP2 = searchOptions.JP2;
-            PSD = searchOptions.PSD;
-            DDS = searchOptions.DDS;
-            TGA = searchOptions.TGA;
-            WEBP = searchOptions.WEBP;
-            HEIF = searchOptions.HEIF;
-        }
+	public CoreSearchOptions(CoreSearchOptions searchOptions)
+	{
+		system = searchOptions.system;
+		hidden = searchOptions.hidden;
+		JPEG = searchOptions.JPEG;
+		BMP = searchOptions.BMP;
+		GIF = searchOptions.GIF;
+		PNG = searchOptions.PNG;
+		TIFF = searchOptions.TIFF;
+		EMF = searchOptions.EMF;
+		WMF = searchOptions.WMF;
+		EXIF = searchOptions.EXIF;
+		ICON = searchOptions.ICON;
+		JP2 = searchOptions.JP2;
+		PSD = searchOptions.PSD;
+		DDS = searchOptions.DDS;
+		TGA = searchOptions.TGA;
+		WEBP = searchOptions.WEBP;
+		HEIF = searchOptions.HEIF;
+	}
 
-        public CoreSearchOptions(CoreDll.adSearchOptions searchOptions)
-        {
-            system = searchOptions.system != CoreDll.FALSE;
-            hidden = searchOptions.hidden != CoreDll.FALSE;
-            JPEG = searchOptions.JPEG != CoreDll.FALSE;
-            BMP = searchOptions.BMP != CoreDll.FALSE;
-            GIF = searchOptions.GIF != CoreDll.FALSE;
-            PNG = searchOptions.PNG != CoreDll.FALSE;
-            TIFF = searchOptions.TIFF != CoreDll.FALSE;
-            EMF = searchOptions.EMF != CoreDll.FALSE;
-            WMF = searchOptions.WMF != CoreDll.FALSE;
-            EXIF = searchOptions.EXIF != CoreDll.FALSE;
-            ICON = searchOptions.ICON != CoreDll.FALSE;
-            JP2 = searchOptions.JP2 != CoreDll.FALSE;
-            PSD = searchOptions.PSD != CoreDll.FALSE;
-            DDS = searchOptions.DDS != CoreDll.FALSE;
-            TGA = searchOptions.TGA != CoreDll.FALSE;
-            WEBP = searchOptions.WEBP != CoreDll.FALSE;
-            HEIF = searchOptions.HEIF != CoreDll.FALSE;
-        }
+	public CoreSearchOptions(CoreDll.adSearchOptions searchOptions)
+	{
+		system = searchOptions.system != CoreDll.FALSE;
+		hidden = searchOptions.hidden != CoreDll.FALSE;
+		JPEG = searchOptions.JPEG != CoreDll.FALSE;
+		BMP = searchOptions.BMP != CoreDll.FALSE;
+		GIF = searchOptions.GIF != CoreDll.FALSE;
+		PNG = searchOptions.PNG != CoreDll.FALSE;
+		TIFF = searchOptions.TIFF != CoreDll.FALSE;
+		EMF = searchOptions.EMF != CoreDll.FALSE;
+		WMF = searchOptions.WMF != CoreDll.FALSE;
+		EXIF = searchOptions.EXIF != CoreDll.FALSE;
+		ICON = searchOptions.ICON != CoreDll.FALSE;
+		JP2 = searchOptions.JP2 != CoreDll.FALSE;
+		PSD = searchOptions.PSD != CoreDll.FALSE;
+		DDS = searchOptions.DDS != CoreDll.FALSE;
+		TGA = searchOptions.TGA != CoreDll.FALSE;
+		WEBP = searchOptions.WEBP != CoreDll.FALSE;
+		HEIF = searchOptions.HEIF != CoreDll.FALSE;
+	}
 
-        public void ConvertTo(ref CoreDll.adSearchOptions searchOptions)
-        {
-            searchOptions.system = system ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.hidden = hidden ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.JPEG = JPEG ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.BMP = BMP ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.GIF = GIF ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.PNG = PNG ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.TIFF = TIFF ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.EMF = EMF ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.WMF = WMF ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.EXIF = EXIF ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.ICON = ICON ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.JP2 = JP2 ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.PSD = PSD ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.DDS = DDS ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.TGA = TGA ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.WEBP = WEBP ? CoreDll.TRUE : CoreDll.FALSE;
-            searchOptions.HEIF = HEIF ? CoreDll.TRUE : CoreDll.FALSE;
-        }
+	public void ConvertTo(ref CoreDll.adSearchOptions searchOptions)
+	{
+		searchOptions.system = system ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.hidden = hidden ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.JPEG = JPEG ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.BMP = BMP ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.GIF = GIF ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.PNG = PNG ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.TIFF = TIFF ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.EMF = EMF ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.WMF = WMF ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.EXIF = EXIF ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.ICON = ICON ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.JP2 = JP2 ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.PSD = PSD ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.DDS = DDS ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.TGA = TGA ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.WEBP = WEBP ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.HEIF = HEIF ? CoreDll.TRUE : CoreDll.FALSE;
+	}
 
-        public CoreSearchOptions Clone()
-        {
-            return new CoreSearchOptions(this);
-        }
+	public CoreSearchOptions Clone()
+	{
+		return new CoreSearchOptions(this);
+	}
 
-        public bool Equals(CoreSearchOptions searchOptions)
-        {
-            return
-                system == searchOptions.system &&
-                hidden == searchOptions.hidden &&
-                JPEG == searchOptions.JPEG &&
-                BMP == searchOptions.BMP &&
-                GIF == searchOptions.GIF &&
-                PNG == searchOptions.PNG &&
-                TIFF == searchOptions.TIFF &&
-                EMF == searchOptions.EMF &&
-                WMF == searchOptions.WMF &&
-                EXIF == searchOptions.EXIF &&
-                ICON == searchOptions.ICON &&
-                JP2 == searchOptions.JP2 &&
-                PSD == searchOptions.PSD &&
-                DDS == searchOptions.DDS &&
-                TGA == searchOptions.TGA &&
-                WEBP == searchOptions.WEBP &&
-                HEIF == searchOptions.HEIF;
-        }
+	public bool Equals(CoreSearchOptions searchOptions)
+	{
+		return
+			system == searchOptions.system &&
+			hidden == searchOptions.hidden &&
+			JPEG == searchOptions.JPEG &&
+			BMP == searchOptions.BMP &&
+			GIF == searchOptions.GIF &&
+			PNG == searchOptions.PNG &&
+			TIFF == searchOptions.TIFF &&
+			EMF == searchOptions.EMF &&
+			WMF == searchOptions.WMF &&
+			EXIF == searchOptions.EXIF &&
+			ICON == searchOptions.ICON &&
+			JP2 == searchOptions.JP2 &&
+			PSD == searchOptions.PSD &&
+			DDS == searchOptions.DDS &&
+			TGA == searchOptions.TGA &&
+			WEBP == searchOptions.WEBP &&
+			HEIF == searchOptions.HEIF;
+	}
 
-        public string[] GetActualExtensions()
-        {
-            var extensions = new ArrayList();
-            if(JPEG)
+	public string[] GetActualExtensions()
+	{
+		var extensions = new ArrayList();
+		if (JPEG)
 		{
 			extensions.AddRange(s_jpegExtensions);
 		}
@@ -230,5 +230,5 @@ public class CoreSearchOptions
 		}
 
 		return (string[])extensions.ToArray(typeof(string));
-        }
-    }
+	}
+}

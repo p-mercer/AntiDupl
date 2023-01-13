@@ -21,48 +21,48 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
 public class DataGridViewCustomRow : DataGridViewRow
-    {
-        public bool current = false;
-        public bool selected = false;
-        public bool updated = false;
+{
+	public bool current = false;
+	public bool selected = false;
+	public bool updated = false;
 
-        protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle rowBounds, int rowIndex, DataGridViewElementStates rowState, bool isFirstDisplayedRow, bool isLastVisibleRow)
-        {
-            var state =
-              (DataGridViewElementStates)((int)rowState & ~(int)DataGridViewElementStates.Selected) |
-              (selected ? DataGridViewElementStates.Selected : 0);
-            base.Paint(graphics, clipBounds, rowBounds, rowIndex, state, isFirstDisplayedRow, isLastVisibleRow);
-            if (current)
-            {
-                var cellsWidth = 0;
-                for (var i = 0; i < Cells.Count; i++)
-                {
-                    if (Cells[i].Visible)
-                    {
-                        cellsWidth += Cells[i].Size.Width;
-                    }
-                }
-                var cellsBounds = new Rectangle(rowBounds.X, rowBounds.Y, 
-                    rowBounds.X + cellsWidth - 2, rowBounds.Height - 2);
-                
-                var visibleClipBounds = new Rectangle(
-                    (int)graphics.VisibleClipBounds.X, 
-                    (int)graphics.VisibleClipBounds.Y,
-                    (int)graphics.VisibleClipBounds.Width - 1, 
-                    (int)graphics.VisibleClipBounds.Height - 1);
-                visibleClipBounds.Intersect(cellsBounds);
+	protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle rowBounds, int rowIndex, DataGridViewElementStates rowState, bool isFirstDisplayedRow, bool isLastVisibleRow)
+	{
+		var state =
+		  (DataGridViewElementStates)((int)rowState & ~(int)DataGridViewElementStates.Selected) |
+		  (selected ? DataGridViewElementStates.Selected : 0);
+		base.Paint(graphics, clipBounds, rowBounds, rowIndex, state, isFirstDisplayedRow, isLastVisibleRow);
+		if (current)
+		{
+			var cellsWidth = 0;
+			for (var i = 0; i < Cells.Count; i++)
+			{
+				if (Cells[i].Visible)
+				{
+					cellsWidth += Cells[i].Size.Width;
+				}
+			}
+			var cellsBounds = new Rectangle(rowBounds.X, rowBounds.Y,
+				rowBounds.X + cellsWidth - 2, rowBounds.Height - 2);
 
-                var pen = new Pen(Color.White);
-                graphics.DrawRectangle(pen, visibleClipBounds);
-                pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-                pen.Color = Color.Black;
-                graphics.DrawRectangle(pen, visibleClipBounds);
-            }
-        }
-    }
+			var visibleClipBounds = new Rectangle(
+				(int)graphics.VisibleClipBounds.X,
+				(int)graphics.VisibleClipBounds.Y,
+				(int)graphics.VisibleClipBounds.Width - 1,
+				(int)graphics.VisibleClipBounds.Height - 1);
+			visibleClipBounds.Intersect(cellsBounds);
+
+			var pen = new Pen(Color.White);
+			graphics.DrawRectangle(pen, visibleClipBounds);
+			pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+			pen.Color = Color.Black;
+			graphics.DrawRectangle(pen, visibleClipBounds);
+		}
+	}
+}

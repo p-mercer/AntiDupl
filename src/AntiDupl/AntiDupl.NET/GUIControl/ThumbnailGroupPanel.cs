@@ -22,8 +22,8 @@
 * SOFTWARE.
 */
 using System;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
@@ -31,45 +31,45 @@ namespace AntiDupl.NET;
 /// Панель содержит панели изображений одной группы.
 /// </summary>
 public class ThumbnailGroupPanel : RaisedPanel
-    {
-        private readonly CoreLib m_core;
-        private readonly CoreGroup m_group;
-        private readonly AntiDupl.NET.Options m_options;
+{
+	private readonly CoreLib m_core;
+	private readonly CoreGroup m_group;
+	private readonly AntiDupl.NET.Options m_options;
 
-        private ThumbnailPanel[] m_thumbnailPanels;
-        public ThumbnailPanel[] ThumbnailPanels { get { return m_thumbnailPanels; } }
+	private ThumbnailPanel[] m_thumbnailPanels;
+	public ThumbnailPanel[] ThumbnailPanels { get { return m_thumbnailPanels; } }
 
-        private readonly ThumbnailGroupTable m_thumbnailGroupTable;
-        public ThumbnailGroupTable Table { get { return m_thumbnailGroupTable; } }
+	private readonly ThumbnailGroupTable m_thumbnailGroupTable;
+	public ThumbnailGroupTable Table { get { return m_thumbnailGroupTable; } }
 
-        public ThumbnailGroupPanel(CoreLib core, AntiDupl.NET.Options options, CoreGroup group, ThumbnailGroupTable thumbnailGroupTable)
-        {
-            m_core = core;
-            m_options = options;
-            m_group = group;
-            m_thumbnailGroupTable = thumbnailGroupTable;
-            InitializeComponents();
-        }
+	public ThumbnailGroupPanel(CoreLib core, AntiDupl.NET.Options options, CoreGroup group, ThumbnailGroupTable thumbnailGroupTable)
+	{
+		m_core = core;
+		m_options = options;
+		m_group = group;
+		m_thumbnailGroupTable = thumbnailGroupTable;
+		InitializeComponents();
+	}
 
-        private void InitializeComponents()
-        {
-            DoubleBuffered = true;
-            BackColor = Color.Transparent;
+	private void InitializeComponents()
+	{
+		DoubleBuffered = true;
+		BackColor = Color.Transparent;
 
-            var width = 0;
-            var height = 0;
-            m_thumbnailPanels = new ThumbnailPanel[m_group.images.Length];
-            for (var i = 0; i < m_group.images.Length; ++i)
-            {
-                m_thumbnailPanels[i] = new ThumbnailPanel(m_core, m_options, m_group, i, this);
-                m_thumbnailPanels[i].Location = new Point(Padding.Left + m_thumbnailPanels[i].Margin.Left + (m_thumbnailPanels[i].Width + m_thumbnailPanels[i].Margin.Horizontal)*i,
-                    Padding.Top + m_thumbnailPanels[i].Margin.Top);
+		var width = 0;
+		var height = 0;
+		m_thumbnailPanels = new ThumbnailPanel[m_group.images.Length];
+		for (var i = 0; i < m_group.images.Length; ++i)
+		{
+			m_thumbnailPanels[i] = new ThumbnailPanel(m_core, m_options, m_group, i, this);
+			m_thumbnailPanels[i].Location = new Point(Padding.Left + m_thumbnailPanels[i].Margin.Left + (m_thumbnailPanels[i].Width + m_thumbnailPanels[i].Margin.Horizontal) * i,
+				Padding.Top + m_thumbnailPanels[i].Margin.Top);
 
-                width += m_thumbnailPanels[i].Width + m_thumbnailPanels[i].Padding.Horizontal + Margin.Horizontal;
-                height = Math.Max(height, m_thumbnailPanels[i].Height + m_thumbnailPanels[i].Padding.Vertical + Margin.Vertical);
-            }
-            ClientSize = new Size(width, height);
+			width += m_thumbnailPanels[i].Width + m_thumbnailPanels[i].Padding.Horizontal + Margin.Horizontal;
+			height = Math.Max(height, m_thumbnailPanels[i].Height + m_thumbnailPanels[i].Padding.Vertical + Margin.Vertical);
+		}
+		ClientSize = new Size(width, height);
 
-            Controls.AddRange(m_thumbnailPanels);
-        }
-    }
+		Controls.AddRange(m_thumbnailPanels);
+	}
+}

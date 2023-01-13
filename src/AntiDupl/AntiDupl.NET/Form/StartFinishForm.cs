@@ -22,63 +22,63 @@
 * SOFTWARE.
 */
 using System;
-using System.Text;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Text;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
 public class StartFinishForm : Form
-    {
-        private static readonly TimeSpan VIEW_START_TIME_MIN = TimeSpan.FromSeconds(3.0);
+{
+	private static readonly TimeSpan VIEW_START_TIME_MIN = TimeSpan.FromSeconds(3.0);
 
-        private enum State
-        {
-            Start,
-            LoadImages,
-            LoadMistakes,
-            LoadResults,
-            ViewStart,
-            SaveImages,
-            SaveMistakes,
-            SaveResults,
-            ClearResults,
-            ClearTemporary,
-            Finish
-        }
+	private enum State
+	{
+		Start,
+		LoadImages,
+		LoadMistakes,
+		LoadResults,
+		ViewStart,
+		SaveImages,
+		SaveMistakes,
+		SaveResults,
+		ClearResults,
+		ClearTemporary,
+		Finish
+	}
 
 	private State m_state = State.Start;
 
-        private readonly CoreLib m_core;
-        private readonly Options m_options;
-        private System.Windows.Forms.Timer m_timer;
+	private readonly CoreLib m_core;
+	private readonly Options m_options;
+	private System.Windows.Forms.Timer m_timer;
 
-        private AboutProgramPanel m_aboutProgramPanel;
-        private ProgressBar m_progressBar;
+	private AboutProgramPanel m_aboutProgramPanel;
+	private ProgressBar m_progressBar;
 
-        public StartFinishForm(CoreLib core, Options options)
-        {
-            m_core = core;
-            m_options = options;
+	public StartFinishForm(CoreLib core, Options options)
+	{
+		m_core = core;
+		m_options = options;
 
-            InitializeComponent();
-        }
+		InitializeComponent();
+	}
 
-        private void InitializeComponent()
-        {
-            ClientSize = new System.Drawing.Size(310, 310);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            StartPosition = FormStartPosition.CenterScreen;
-            ShowInTaskbar = false;
-            ControlBox = false;
-            MaximizeBox = false;
-            MinimizeBox = false;
+	private void InitializeComponent()
+	{
+		ClientSize = new System.Drawing.Size(310, 310);
+		FormBorderStyle = FormBorderStyle.FixedDialog;
+		StartPosition = FormStartPosition.CenterScreen;
+		ShowInTaskbar = false;
+		ControlBox = false;
+		MaximizeBox = false;
+		MinimizeBox = false;
 
-            var mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
-            mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
-            mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            Controls.Add(mainTableLayoutPanel);
+		var mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
+		mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
+		mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+		Controls.Add(mainTableLayoutPanel);
 
 		m_aboutProgramPanel = new AboutProgramPanel(m_core)
 		{
@@ -101,128 +101,128 @@ public class StartFinishForm : Form
 			Interval = 100
 		};
 		m_timer.Tick += new EventHandler(TimerCallback);
-            m_timer.Start();
+		m_timer.Start();
 
-            FormClosed += new FormClosedEventHandler(OnFormClosed);
-        }
+		FormClosed += new FormClosedEventHandler(OnFormClosed);
+	}
 
-        private void CoreStartThreadTask()
-        {
-            var startTime = DateTime.Now;
+	private void CoreStartThreadTask()
+	{
+		var startTime = DateTime.Now;
 
-            m_state = State.LoadMistakes;
-            m_core.Load(CoreDll.FileType.MistakeDataBase, Options.GetMistakeDataBaseFileName(), m_options.checkMistakesAtLoading);
+		m_state = State.LoadMistakes;
+		m_core.Load(CoreDll.FileType.MistakeDataBase, Options.GetMistakeDataBaseFileName(), m_options.checkMistakesAtLoading);
 
-            m_state = State.LoadResults;
-            m_core.Load(CoreDll.FileType.Result, m_options.GetResultsFileName(), m_options.checkResultsAtLoading);
+		m_state = State.LoadResults;
+		m_core.Load(CoreDll.FileType.Result, m_options.GetResultsFileName(), m_options.checkResultsAtLoading);
 
-            var viewTime = DateTime.Now - startTime;
-            if (viewTime < VIEW_START_TIME_MIN)
-            {
-                m_state = State.ViewStart;
-                Thread.Sleep(VIEW_START_TIME_MIN - viewTime);
-            }
+		var viewTime = DateTime.Now - startTime;
+		if (viewTime < VIEW_START_TIME_MIN)
+		{
+			m_state = State.ViewStart;
+			Thread.Sleep(VIEW_START_TIME_MIN - viewTime);
+		}
 
-            m_state = State.Finish;
-        }
+		m_state = State.Finish;
+	}
 
-        private void CoreFinishThreadTask()
-        {
-            m_state = State.SaveMistakes;
-            m_core.Save(CoreDll.FileType.MistakeDataBase, Options.GetMistakeDataBaseFileName());
+	private void CoreFinishThreadTask()
+	{
+		m_state = State.SaveMistakes;
+		m_core.Save(CoreDll.FileType.MistakeDataBase, Options.GetMistakeDataBaseFileName());
 
-            m_state = State.SaveResults;
-            m_core.Save(CoreDll.FileType.Result, m_options.GetResultsFileName());
+		m_state = State.SaveResults;
+		m_core.Save(CoreDll.FileType.Result, m_options.GetResultsFileName());
 
-            m_state = State.ClearResults;
-            m_core.Clear(CoreDll.FileType.Result);
+		m_state = State.ClearResults;
+		m_core.Clear(CoreDll.FileType.Result);
 
-            m_state = State.ClearTemporary;
-            m_core.Clear(CoreDll.FileType.Temporary);
+		m_state = State.ClearTemporary;
+		m_core.Clear(CoreDll.FileType.Temporary);
 
-            m_state = State.Finish;
-        }
+		m_state = State.Finish;
+	}
 
-        public void ExecuteStart()
-        {
-            ShowInTaskbar = true;
-            m_state = State.Start;
-            var searchThread = new Thread(CoreStartThreadTask);
-            searchThread.Start();
-            ShowDialog();
-        }
+	public void ExecuteStart()
+	{
+		ShowInTaskbar = true;
+		m_state = State.Start;
+		var searchThread = new Thread(CoreStartThreadTask);
+		searchThread.Start();
+		ShowDialog();
+	}
 
-        public void ExecuteFinish()
-        {
-            m_state = State.Start;
-            var searchThread = new Thread(CoreFinishThreadTask);
-            searchThread.Start();
-            ShowDialog();
-        }
+	public void ExecuteFinish()
+	{
+		m_state = State.Start;
+		var searchThread = new Thread(CoreFinishThreadTask);
+		searchThread.Start();
+		ShowDialog();
+	}
 
 	private void TimerCallback(object obj, EventArgs eventArgs)
-        {
-            if (m_state == State.Finish)
-            {
-                Close();
-            }
-            else if(m_state == State.ViewStart)
-            {
-                m_progressBar.Visible = false;
-                Text = Application.ProductName;
-            }
-            else
-            {
-                var builder = new StringBuilder();
-                builder.Append(Application.ProductName);
-                builder.Append(" - ");
+	{
+		if (m_state == State.Finish)
+		{
+			Close();
+		}
+		else if (m_state == State.ViewStart)
+		{
+			m_progressBar.Visible = false;
+			Text = Application.ProductName;
+		}
+		else
+		{
+			var builder = new StringBuilder();
+			builder.Append(Application.ProductName);
+			builder.Append(" - ");
 
-                var s = Resources.Strings.Current;
-                switch (m_state)
-                {
-                    case State.Start:
-                    case State.LoadImages:
-                        builder.Append(s.StartFinishForm_LoadImages_Text);
-                        break;
-                    case State.LoadMistakes:
-                        builder.Append(s.StartFinishForm_LoadMistakes_Text);
-                        break;
-                    case State.LoadResults:
-                        builder.Append(s.StartFinishForm_LoadResults_Text);
-                        break;
-                    case State.SaveImages:
-                        builder.Append(s.StartFinishForm_SaveImages_Text);
-                        break;
-                    case State.SaveMistakes:
-                        builder.Append(s.StartFinishForm_SaveMistakes_Text);
-                        break;
-                    case State.SaveResults:
-                        builder.Append(s.StartFinishForm_SaveResults_Text);
-                        break;
-                    case State.ClearResults:
-                    case State.ClearTemporary:
-                        builder.Append(s.StartFinishForm_ClearTemporary_Text);
-                        break;
-                }
-                Text = builder.ToString();
+			var s = Resources.Strings.Current;
+			switch (m_state)
+			{
+				case State.Start:
+				case State.LoadImages:
+					builder.Append(s.StartFinishForm_LoadImages_Text);
+					break;
+				case State.LoadMistakes:
+					builder.Append(s.StartFinishForm_LoadMistakes_Text);
+					break;
+				case State.LoadResults:
+					builder.Append(s.StartFinishForm_LoadResults_Text);
+					break;
+				case State.SaveImages:
+					builder.Append(s.StartFinishForm_SaveImages_Text);
+					break;
+				case State.SaveMistakes:
+					builder.Append(s.StartFinishForm_SaveMistakes_Text);
+					break;
+				case State.SaveResults:
+					builder.Append(s.StartFinishForm_SaveResults_Text);
+					break;
+				case State.ClearResults:
+				case State.ClearTemporary:
+					builder.Append(s.StartFinishForm_ClearTemporary_Text);
+					break;
+			}
+			Text = builder.ToString();
 
-                var status = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
-                if (status != null)
-                {
-                    if (status.total > 0)
-                    {
-                        m_progressBar.Value = status.current * m_progressBar.Maximum / status.total;
-                    }
-                    else
-                    {
-                        m_progressBar.Value = 0;
-                    }
-                }
-            }
-        }
+			var status = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
+			if (status != null)
+			{
+				if (status.total > 0)
+				{
+					m_progressBar.Value = status.current * m_progressBar.Maximum / status.total;
+				}
+				else
+				{
+					m_progressBar.Value = 0;
+				}
+			}
+		}
+	}
 
-        private void OnFormClosed(object sender, FormClosedEventArgs e)
-        {
-            m_timer.Stop();
-        }
-    }
+	private void OnFormClosed(object sender, FormClosedEventArgs e)
+	{
+		m_timer.Stop();
+	}
+}

@@ -27,31 +27,31 @@ using System.Drawing.Imaging;
 
 namespace AntiDupl.NET;
 
-    public class ComparableBitmap
-    {
-        public Rectangle Rect { get; set; }
-        private readonly byte[] _grayScaleData = null;
-        public byte[] GrayscaleData
-        {
-            get { return _grayScaleData; }
-        }
+public class ComparableBitmap
+{
+	public Rectangle Rect { get; set; }
+	private readonly byte[] _grayScaleData = null;
+	public byte[] GrayscaleData
+	{
+		get { return _grayScaleData; }
+	}
 
-        /// <summary>
-        /// A colormatric we use to convert the image to grayscale.
-        /// </summary>
-        private static readonly ColorMatrix colorMatrix = new(
-               new float[][]
-              {
-                 new float[] {.3f, .3f, .3f, 0, 0},
-                 new float[] {.59f, .59f, .59f, 0, 0},
-                 new float[] {.11f, .11f, .11f, 0, 0},
-                 new float[] {0, 0, 0, 1, 0},
-                 new float[] {0, 0, 0, 0, 1}
-              });
+	/// <summary>
+	/// A colormatric we use to convert the image to grayscale.
+	/// </summary>
+	private static readonly ColorMatrix colorMatrix = new(
+		   new float[][]
+		  {
+				 new float[] {.3f, .3f, .3f, 0, 0},
+				 new float[] {.59f, .59f, .59f, 0, 0},
+				 new float[] {.11f, .11f, .11f, 0, 0},
+				 new float[] {0, 0, 0, 1, 0},
+				 new float[] {0, 0, 0, 0, 1}
+		  });
 
-        public ComparableBitmap(Bitmap bitmapSource, Rectangle section)
-        {
-            Rect = section;
+	public ComparableBitmap(Bitmap bitmapSource, Rectangle section)
+	{
+		Rect = section;
 
 		// Create the new bitmap and associated graphics object
 		using var sectionBmp = new Bitmap(section.Width, section.Height);
@@ -71,49 +71,49 @@ namespace AntiDupl.NET;
 	/// <param name="sectionBmp"></param>
 	/// <returns></returns>
 	private byte[] GetBmpBytes(Bitmap bmp)
-        {
-            var bData = bmp.LockBits(new Rectangle(new Point(), bmp.Size), ImageLockMode.ReadOnly, bmp.PixelFormat);
-            var byteCount = (bData.Stride * bmp.Height) / 4;
-            var bytesPerPixel = (bData.Stride * bmp.Height) / (bmp.Height * bmp.Width);
-            var bmpBytes = new byte[byteCount];
+	{
+		var bData = bmp.LockBits(new Rectangle(new Point(), bmp.Size), ImageLockMode.ReadOnly, bmp.PixelFormat);
+		var byteCount = (bData.Stride * bmp.Height) / 4;
+		var bytesPerPixel = (bData.Stride * bmp.Height) / (bmp.Height * bmp.Width);
+		var bmpBytes = new byte[byteCount];
 
-            unsafe
-            {
-                var p = (byte*)(void*)bData.Scan0;
-                for (var x = 0; x < bmpBytes.Length; ++x)
-                {
-                    bmpBytes[x] = *p;
-                    p += bytesPerPixel;
-                }
-            }
+		unsafe
+		{
+			var p = (byte*)(void*)bData.Scan0;
+			for (var x = 0; x < bmpBytes.Length; ++x)
+			{
+				bmpBytes[x] = *p;
+				p += bytesPerPixel;
+			}
+		}
 
-            bmp.UnlockBits(bData);
-            return bmpBytes;
-        }
+		bmp.UnlockBits(bData);
+		return bmpBytes;
+	}
 
-        public static Bitmap ToGrayScale(System.Drawing.Bitmap b)
-        {
-            //create a blank bitmap the same size as original
-            var newBitmap = new Bitmap(b.Width, b.Height);
+	public static Bitmap ToGrayScale(System.Drawing.Bitmap b)
+	{
+		//create a blank bitmap the same size as original
+		var newBitmap = new Bitmap(b.Width, b.Height);
 
-            //get a graphics object from the new image
-            using (var g = Graphics.FromImage(newBitmap))
-            {
+		//get a graphics object from the new image
+		using (var g = Graphics.FromImage(newBitmap))
+		{
 
-                //create some image attributes
-                var attributes = new ImageAttributes();
+			//create some image attributes
+			var attributes = new ImageAttributes();
 
-                //set the color matrix attribute
-                attributes.SetColorMatrix(colorMatrix);
+			//set the color matrix attribute
+			attributes.SetColorMatrix(colorMatrix);
 
-                //draw the original image on the new image
-                //using the grayscale color matrix
-                g.DrawImage(b, new Rectangle(0, 0, b.Width, b.Height),
-                   0, 0, b.Width, b.Height, GraphicsUnit.Pixel, attributes);
+			//draw the original image on the new image
+			//using the grayscale color matrix
+			g.DrawImage(b, new Rectangle(0, 0, b.Width, b.Height),
+			   0, 0, b.Width, b.Height, GraphicsUnit.Pixel, attributes);
 
-            }
+		}
 
-            return newBitmap;
-        }
+		return newBitmap;
+	}
 
-    }
+}

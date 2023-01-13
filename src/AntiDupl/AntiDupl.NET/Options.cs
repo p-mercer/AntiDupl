@@ -21,164 +21,164 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
+using System.IO;
 using System.Text;
 using System.Xml.Serialization;
-using System.IO;
 
 namespace AntiDupl.NET;
 
 public class Options
-    {
-        public delegate void VisibleChangeHandler(bool visible);
+{
+	public delegate void VisibleChangeHandler(bool visible);
 
-        public delegate void ChangeHandler();
-        public event ChangeHandler OnChange;
-        public void Change()
-        {
+	public delegate void ChangeHandler();
+	public event ChangeHandler OnChange;
+	public void Change()
+	{
 		OnChange?.Invoke();
 	}
 
-        private string m_language = StringsDefaultEnglish.Get().Name;
-        public string Language
-        {
-            get
-            {
-                return m_language;
-            }
-            set
-            {
-                if (m_language != value)
-                {
-                    m_language = value;
-                    Resources.Strings.SetCurrent(m_language);
-                }
-            }
-        }
+	private string m_language = StringsDefaultEnglish.Get().Name;
+	public string Language
+	{
+		get
+		{
+			return m_language;
+		}
+		set
+		{
+			if (m_language != value)
+			{
+				m_language = value;
+				Resources.Strings.SetCurrent(m_language);
+			}
+		}
+	}
 
-        public bool onePath = false;
-        public bool checkingForUpdates = true;
-        public bool useImageDataBase = true;
-        public bool checkResultsAtLoading = true;
-        public bool checkMistakesAtLoading = true;
-        public bool loadProfileOnLoading = true;
-        public bool saveProfileOnClosing = true;
+	public bool onePath = false;
+	public bool checkingForUpdates = true;
+	public bool useImageDataBase = true;
+	public bool checkResultsAtLoading = true;
+	public bool checkMistakesAtLoading = true;
+	public bool loadProfileOnLoading = true;
+	public bool saveProfileOnClosing = true;
 
-        public MainFormOptions mainFormOptions = new();
-        public ResultsOptions resultsOptions = new();
-        public HotKeyOptions hotKeyOptions= new();
+	public MainFormOptions mainFormOptions = new();
+	public ResultsOptions resultsOptions = new();
+	public HotKeyOptions hotKeyOptions = new();
 
-        public string coreOptionsFileName = GetDefaultCoreOptionsFileName();
+	public string coreOptionsFileName = GetDefaultCoreOptionsFileName();
 
-        public string GetResultsFileName()
-        {
-            return Path.ChangeExtension(coreOptionsFileName, ".adr");
-        }
+	public string GetResultsFileName()
+	{
+		return Path.ChangeExtension(coreOptionsFileName, ".adr");
+	}
 
-        static public Options Load()
-        {
-            var fileInfo = new FileInfo(GetOptionsFileName());
-            if (fileInfo.Exists)
-            {
-                FileStream fileStream = null;
-                try
-                {
-                    var xmlSerializer = new XmlSerializer(typeof(Options));
-                    fileStream = new FileStream(GetOptionsFileName(), FileMode.Open, FileAccess.Read);
-                    var options = (Options)xmlSerializer.Deserialize(fileStream);
-                    options.resultsOptions.Check();
-                    fileStream.Close();
-                    return options;
-                }
-                catch
-                {
-                    fileStream?.Close();
+	static public Options Load()
+	{
+		var fileInfo = new FileInfo(GetOptionsFileName());
+		if (fileInfo.Exists)
+		{
+			FileStream fileStream = null;
+			try
+			{
+				var xmlSerializer = new XmlSerializer(typeof(Options));
+				fileStream = new FileStream(GetOptionsFileName(), FileMode.Open, FileAccess.Read);
+				var options = (Options)xmlSerializer.Deserialize(fileStream);
+				options.resultsOptions.Check();
+				fileStream.Close();
+				return options;
+			}
+			catch
+			{
+				fileStream?.Close();
 
 				return new Options();
-                }
-            }
-            else
+			}
+		}
+		else
 		{
 			return new Options();
 		}
 	}
 
-        public Options()
-        {
-        }
-
-        public Options(Options options)
-        {
-            resultsOptions = new ResultsOptions(options.resultsOptions);
-            mainFormOptions = new MainFormOptions(options.mainFormOptions);
-            hotKeyOptions = new HotKeyOptions(options.hotKeyOptions);
-            coreOptionsFileName = (string)options.coreOptionsFileName.Clone();
-            
-            Language = options.Language;
-            onePath = options.onePath;
-            checkingForUpdates = options.checkingForUpdates;
-            useImageDataBase = options.useImageDataBase;
-            checkResultsAtLoading = options.checkResultsAtLoading;
-            checkMistakesAtLoading = options.checkMistakesAtLoading;
-            loadProfileOnLoading = options.loadProfileOnLoading;
-            saveProfileOnClosing = options.saveProfileOnClosing;
-        }
-
-        public void Save()
-        {
-            TextWriter writer = null;
-            try
-            {
-                writer = new StreamWriter(GetOptionsFileName());
-                var xmlSerializer = new XmlSerializer(typeof(Options));
-                xmlSerializer.Serialize(writer, this);
-            }
-            catch
-            {
-            }
-            writer?.Close();
+	public Options()
+	{
 	}
- 
-        public Options Clone()
-        {
-            return new Options(this);
-        }
 
-        public void CopyTo(ref Options options)
-        {
-            resultsOptions.CopyTo(ref options.resultsOptions);
-            mainFormOptions.CopyTo(ref options.mainFormOptions);
-            hotKeyOptions.CopyTo(ref options.hotKeyOptions);
-            options.coreOptionsFileName = (string)coreOptionsFileName.Clone();
+	public Options(Options options)
+	{
+		resultsOptions = new ResultsOptions(options.resultsOptions);
+		mainFormOptions = new MainFormOptions(options.mainFormOptions);
+		hotKeyOptions = new HotKeyOptions(options.hotKeyOptions);
+		coreOptionsFileName = (string)options.coreOptionsFileName.Clone();
 
-            options.Language = Language;
-            options.onePath = onePath;
-            options.checkingForUpdates = checkingForUpdates;
-            options.useImageDataBase = useImageDataBase;
-            options.checkResultsAtLoading = checkResultsAtLoading;
-            options.checkMistakesAtLoading = checkMistakesAtLoading;
-            options.loadProfileOnLoading = loadProfileOnLoading;
-            options.saveProfileOnClosing = saveProfileOnClosing;
-        }
+		Language = options.Language;
+		onePath = options.onePath;
+		checkingForUpdates = options.checkingForUpdates;
+		useImageDataBase = options.useImageDataBase;
+		checkResultsAtLoading = options.checkResultsAtLoading;
+		checkMistakesAtLoading = options.checkMistakesAtLoading;
+		loadProfileOnLoading = options.loadProfileOnLoading;
+		saveProfileOnClosing = options.saveProfileOnClosing;
+	}
 
-        public static void PathCopy(string[] source, ref string[] destination)
-        {
-            destination = new string[source.GetLength(0)];
-            for (var i = 0; i < source.GetLength(0); ++i)
+	public void Save()
+	{
+		TextWriter writer = null;
+		try
+		{
+			writer = new StreamWriter(GetOptionsFileName());
+			var xmlSerializer = new XmlSerializer(typeof(Options));
+			xmlSerializer.Serialize(writer, this);
+		}
+		catch
+		{
+		}
+		writer?.Close();
+	}
+
+	public Options Clone()
+	{
+		return new Options(this);
+	}
+
+	public void CopyTo(ref Options options)
+	{
+		resultsOptions.CopyTo(ref options.resultsOptions);
+		mainFormOptions.CopyTo(ref options.mainFormOptions);
+		hotKeyOptions.CopyTo(ref options.hotKeyOptions);
+		options.coreOptionsFileName = (string)coreOptionsFileName.Clone();
+
+		options.Language = Language;
+		options.onePath = onePath;
+		options.checkingForUpdates = checkingForUpdates;
+		options.useImageDataBase = useImageDataBase;
+		options.checkResultsAtLoading = checkResultsAtLoading;
+		options.checkMistakesAtLoading = checkMistakesAtLoading;
+		options.loadProfileOnLoading = loadProfileOnLoading;
+		options.saveProfileOnClosing = saveProfileOnClosing;
+	}
+
+	public static void PathCopy(string[] source, ref string[] destination)
+	{
+		destination = new string[source.GetLength(0)];
+		for (var i = 0; i < source.GetLength(0); ++i)
 		{
 			destination[i] = (string)source[i].Clone();
 		}
 	}
 
-        public static string[] PathClone(string[] path)
-        {
-            var clone = new string[0];
-            PathCopy(path, ref clone);
-            return clone;
-        }
+	public static string[] PathClone(string[] path)
+	{
+		var clone = new string[0];
+		PathCopy(path, ref clone);
+		return clone;
+	}
 
-        public static bool Equals(string[] path1, string[] path2)
-        {
-            if (path1.Length != path2.Length)
+	public static bool Equals(string[] path1, string[] path2)
+	{
+		if (path1.Length != path2.Length)
 		{
 			return false;
 		}
@@ -192,32 +192,32 @@ public class Options
 		}
 
 		return true;
-        }
+	}
 
-        static public string GetOptionsFileName()
-        {
-            var builder = new StringBuilder();
-            builder.Append(Resources.UserPath);
-            builder.Append("\\options.xml");
-            return builder.ToString();
-        }
+	static public string GetOptionsFileName()
+	{
+		var builder = new StringBuilder();
+		builder.Append(Resources.UserPath);
+		builder.Append("\\options.xml");
+		return builder.ToString();
+	}
 
-        static public string GetMistakeDataBaseFileName()
-        {
-            var builder = new StringBuilder();
-            builder.Append(Resources.UserPath);
-            builder.Append("\\mistakes.adm");
-            return builder.ToString();
-        }
+	static public string GetMistakeDataBaseFileName()
+	{
+		var builder = new StringBuilder();
+		builder.Append(Resources.UserPath);
+		builder.Append("\\mistakes.adm");
+		return builder.ToString();
+	}
 
-        static public string GetDefaultCoreOptionsFileName()
-        {
-            return string.Format("{0}\\default.xml", Resources.ProfilesPath);
-        }
+	static public string GetDefaultCoreOptionsFileName()
+	{
+		return string.Format("{0}\\default.xml", Resources.ProfilesPath);
+	}
 
-        public bool Equals(Options options)
-        {
-            if (checkingForUpdates != options.checkingForUpdates)
+	public bool Equals(Options options)
+	{
+		if (checkingForUpdates != options.checkingForUpdates)
 		{
 			return false;
 		}
@@ -278,5 +278,5 @@ public class Options
 		}
 
 		return true;
-        }
-    }
+	}
+}

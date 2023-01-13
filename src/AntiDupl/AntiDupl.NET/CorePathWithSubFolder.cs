@@ -25,47 +25,47 @@
 namespace AntiDupl.NET;
 
 public class CorePathWithSubFolder
-    {
-        public bool enableSubFolder;
-        public string path;
-         
-        public CorePathWithSubFolder()
-        {
-        }
+{
+	public bool enableSubFolder;
+	public string path;
 
-        public CorePathWithSubFolder(string path, bool enableSubFolder)
-        {
-            this.path = path;
-            this.enableSubFolder = enableSubFolder;
-        }
+	public CorePathWithSubFolder()
+	{
+	}
 
-        public CorePathWithSubFolder(CorePathWithSubFolder pathWithSubFolder)
-        {
-            enableSubFolder = pathWithSubFolder.enableSubFolder;
-            path = pathWithSubFolder.path;
-        }
+	public CorePathWithSubFolder(string path, bool enableSubFolder)
+	{
+		this.path = path;
+		this.enableSubFolder = enableSubFolder;
+	}
 
-        public CorePathWithSubFolder(ref CoreDll.adPathWithSubFolderW pathWithSubFolder)
-        {
-            enableSubFolder = pathWithSubFolder.enableSubFolder != CoreDll.FALSE;
-            path = pathWithSubFolder.path;
-        }
+	public CorePathWithSubFolder(CorePathWithSubFolder pathWithSubFolder)
+	{
+		enableSubFolder = pathWithSubFolder.enableSubFolder;
+		path = pathWithSubFolder.path;
+	}
 
-        public void ConvertTo(ref CoreDll.adPathWithSubFolderW pathWithSubFolder)
-        {
-            pathWithSubFolder.enableSubFolder = enableSubFolder ? CoreDll.TRUE : CoreDll.FALSE;
-            pathWithSubFolder.path = path;
-        }
+	public CorePathWithSubFolder(ref CoreDll.adPathWithSubFolderW pathWithSubFolder)
+	{
+		enableSubFolder = pathWithSubFolder.enableSubFolder != CoreDll.FALSE;
+		path = pathWithSubFolder.path;
+	}
 
-        public CorePathWithSubFolder Clone()
-        {
-            return new CorePathWithSubFolder(this);
-        }
+	public void ConvertTo(ref CoreDll.adPathWithSubFolderW pathWithSubFolder)
+	{
+		pathWithSubFolder.enableSubFolder = enableSubFolder ? CoreDll.TRUE : CoreDll.FALSE;
+		pathWithSubFolder.path = path;
+	}
 
-        public bool Equals(CorePathWithSubFolder pathWithSubFolder)
-        {
-            return
-                enableSubFolder == pathWithSubFolder.enableSubFolder &&
-                path == pathWithSubFolder.path;
-        }
-    }
+	public CorePathWithSubFolder Clone()
+	{
+		return new CorePathWithSubFolder(this);
+	}
+
+	public bool Equals(CorePathWithSubFolder pathWithSubFolder)
+	{
+		return
+			enableSubFolder == pathWithSubFolder.enableSubFolder &&
+			path == pathWithSubFolder.path;
+	}
+}

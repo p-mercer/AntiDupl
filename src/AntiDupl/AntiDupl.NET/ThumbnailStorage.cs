@@ -31,79 +31,79 @@ namespace AntiDupl.NET;
 /// Хранилище эскизов изображений.
 /// </summary>
 public class ThumbnailStorage
-    {
-        private readonly CoreLib m_core;
-        private readonly Options m_options;
-        private readonly Dictionary<ulong, Bitmap> m_storage = new();
-        private readonly Mutex m_mutex = new();
-        
-        public ThumbnailStorage(CoreLib core, Options options)
-        {
-            m_core = core;
-            m_options = options;
-        }
-        
-        public void Clear()
-        {
-            m_mutex.WaitOne();
-            m_storage.Clear();
-            m_mutex.ReleaseMutex();
-        }
-        
-        /// <summary>
-        /// Существует ли в хранилише изображение по переданному изображению.
-        /// </summary>
-        /// <param name="imageInfo"></param>
-        /// <returns></returns>
-        public bool Exists(CoreImageInfo imageInfo)
-        {
-            var result = false;
-            m_mutex.WaitOne();
-            if (m_storage.ContainsKey(imageInfo.id))
-            {
-                var bitmap = m_storage[imageInfo.id];
-                if(bitmap != null)
-                {
-                    var size = GetThumbnailSize(imageInfo);
-                    result = (bitmap.Height == size.Height && bitmap.Width == size.Width);
-                }
-            }
-            m_mutex.ReleaseMutex();
-            return result;
-        }
+{
+	private readonly CoreLib m_core;
+	private readonly Options m_options;
+	private readonly Dictionary<ulong, Bitmap> m_storage = new();
+	private readonly Mutex m_mutex = new();
 
-        /// <summary>
-        /// Загружаем в хранилише уменьшенное изображение по переданному пути.
-        /// </summary>
-        /// <param name="imageInfo"></param>
-        /// <returns></returns>
-        public Bitmap Get(CoreImageInfo imageInfo)
-        {
-            Bitmap bitmap = null;
-            var size = GetThumbnailSize(imageInfo);
-            m_mutex.WaitOne();
-            m_storage.TryGetValue(imageInfo.id, out bitmap);
-            if (bitmap == null || bitmap.Height != size.Height || bitmap.Width != size.Width)
-            {
-                m_mutex.ReleaseMutex(); // поток может работать дальше
-                bitmap = m_core.LoadBitmap(size, imageInfo.path);
-                m_mutex.WaitOne();
-                m_storage[imageInfo.id] = bitmap;
-            }
-            m_mutex.ReleaseMutex();
-            return bitmap;
-        }
+	public ThumbnailStorage(CoreLib core, Options options)
+	{
+		m_core = core;
+		m_options = options;
+	}
 
-        private Size GetThumbnailSize(CoreImageInfo imageInfo)
-        {
-            var sizeMax = m_options.resultsOptions.thumbnailSizeMax;
-            if (sizeMax.Width * imageInfo.height > sizeMax.Height * imageInfo.width)
-            {
-                return new Size(sizeMax.Width, (int)(sizeMax.Height * imageInfo.height / imageInfo.width));
-            }
-            else
-            {
-                return new Size((int)(sizeMax.Width * imageInfo.width / imageInfo.height), sizeMax.Height);
-            }
-        } 
-    }
+	public void Clear()
+	{
+		m_mutex.WaitOne();
+		m_storage.Clear();
+		m_mutex.ReleaseMutex();
+	}
+
+	/// <summary>
+	/// Существует ли в хранилише изображение по переданному изображению.
+	/// </summary>
+	/// <param name="imageInfo"></param>
+	/// <returns></returns>
+	public bool Exists(CoreImageInfo imageInfo)
+	{
+		var result = false;
+		m_mutex.WaitOne();
+		if (m_storage.ContainsKey(imageInfo.id))
+		{
+			var bitmap = m_storage[imageInfo.id];
+			if (bitmap != null)
+			{
+				var size = GetThumbnailSize(imageInfo);
+				result = (bitmap.Height == size.Height && bitmap.Width == size.Width);
+			}
+		}
+		m_mutex.ReleaseMutex();
+		return result;
+	}
+
+	/// <summary>
+	/// Загружаем в хранилише уменьшенное изображение по переданному пути.
+	/// </summary>
+	/// <param name="imageInfo"></param>
+	/// <returns></returns>
+	public Bitmap Get(CoreImageInfo imageInfo)
+	{
+		Bitmap bitmap = null;
+		var size = GetThumbnailSize(imageInfo);
+		m_mutex.WaitOne();
+		m_storage.TryGetValue(imageInfo.id, out bitmap);
+		if (bitmap == null || bitmap.Height != size.Height || bitmap.Width != size.Width)
+		{
+			m_mutex.ReleaseMutex(); // поток может работать дальше
+			bitmap = m_core.LoadBitmap(size, imageInfo.path);
+			m_mutex.WaitOne();
+			m_storage[imageInfo.id] = bitmap;
+		}
+		m_mutex.ReleaseMutex();
+		return bitmap;
+	}
+
+	private Size GetThumbnailSize(CoreImageInfo imageInfo)
+	{
+		var sizeMax = m_options.resultsOptions.thumbnailSizeMax;
+		if (sizeMax.Width * imageInfo.height > sizeMax.Height * imageInfo.width)
+		{
+			return new Size(sizeMax.Width, (int)(sizeMax.Height * imageInfo.height / imageInfo.width));
+		}
+		else
+		{
+			return new Size((int)(sizeMax.Width * imageInfo.width / imageInfo.height), sizeMax.Height);
+		}
+	}
+}

@@ -22,89 +22,89 @@
 * SOFTWARE.
 */
 using System;
-using System.Text;
 using System.IO;
+using System.Text;
 using System.Xml.Serialization;
 
 namespace AntiDupl.NET;
 
 public class Version
-    {
-        public int major;
-        public int minor;
-        public int release;
+{
+	public int major;
+	public int minor;
+	public int release;
 
-        public Version()
-        {
-            var versions = External.Version.Split('.');
-            major = Convert.ToInt32(versions[0]);
-            minor = Convert.ToInt32(versions[1]);
-            release = Convert.ToInt32(versions[2]);
-        }
+	public Version()
+	{
+		var versions = External.Version.Split('.');
+		major = Convert.ToInt32(versions[0]);
+		minor = Convert.ToInt32(versions[1]);
+		release = Convert.ToInt32(versions[2]);
+	}
 
-        static public Version LoadXml(Stream stream)
-        {
-            try
-            {
-                var xmlSerializer = new XmlSerializer(typeof(Version));
-                var version = (Version)xmlSerializer.Deserialize(stream);
-                return version;
-            }
-            catch
-            {
-                return null;
-            }
-        }
+	static public Version LoadXml(Stream stream)
+	{
+		try
+		{
+			var xmlSerializer = new XmlSerializer(typeof(Version));
+			var version = (Version)xmlSerializer.Deserialize(stream);
+			return version;
+		}
+		catch
+		{
+			return null;
+		}
+	}
 
-        public void SaveXml(string fileName)
-        {
-            try
-            {
-                TextWriter writer = new StreamWriter(fileName);
-                var xmlSerializer = new XmlSerializer(typeof(Version));
-                xmlSerializer.Serialize(writer, this);
-            }
-            catch
-            {
-            }
-        }
+	public void SaveXml(string fileName)
+	{
+		try
+		{
+			TextWriter writer = new StreamWriter(fileName);
+			var xmlSerializer = new XmlSerializer(typeof(Version));
+			xmlSerializer.Serialize(writer, this);
+		}
+		catch
+		{
+		}
+	}
 
-        public override string ToString()
-        {
-            var builder = new StringBuilder();
-            builder.Append(major.ToString());
-            builder.Append('.');
-            builder.Append(minor.ToString());
-            builder.Append('.');
-            builder.Append(release.ToString());
-            return builder.ToString();
-        }
+	public override string ToString()
+	{
+		var builder = new StringBuilder();
+		builder.Append(major.ToString());
+		builder.Append('.');
+		builder.Append(minor.ToString());
+		builder.Append('.');
+		builder.Append(release.ToString());
+		return builder.ToString();
+	}
 
-        static public int Compare(Version v1, Version v2)
-        {
-            if (v1.major == v2.major)
-            {
-                if (v1.minor == v2.minor)
-                {
-                    return v1.release - v2.release;
-                }
-                else
+	static public int Compare(Version v1, Version v2)
+	{
+		if (v1.major == v2.major)
+		{
+			if (v1.minor == v2.minor)
+			{
+				return v1.release - v2.release;
+			}
+			else
 			{
 				return v1.minor - v2.minor;
 			}
 		}
-            else
+		else
 		{
 			return v1.major - v2.major;
 		}
 	}
 
-        static public bool Compatible(CoreVersion coreVersion)
-        {
-            var version = new Version();
-            return
-                version.major == coreVersion.major &&
-                version.minor == coreVersion.minor &&
-                version.release == coreVersion.release;
-        }
-    }
+	static public bool Compatible(CoreVersion coreVersion)
+	{
+		var version = new Version();
+		return
+			version.major == coreVersion.major &&
+			version.minor == coreVersion.minor &&
+			version.release == coreVersion.release;
+	}
+}

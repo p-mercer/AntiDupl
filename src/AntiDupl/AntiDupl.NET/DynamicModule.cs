@@ -22,99 +22,99 @@
 * SOFTWARE.
 */
 using System;
-using System.Runtime.InteropServices;
-using System.Reflection;
 using System.Diagnostics;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace AntiDupl.NET;
 
 public class DynamicModule : IDisposable
-    {
-        public class DynamicModuleApiAttribute : Attribute
-        {
-        }
+{
+	public class DynamicModuleApiAttribute : Attribute
+	{
+	}
 
-        public DynamicModule(string fileName)
-        {
-            m_fileName = fileName;
+	public DynamicModule(string fileName)
+	{
+		m_fileName = fileName;
 
-            if (string.IsNullOrEmpty(m_fileName))
+		if (string.IsNullOrEmpty(m_fileName))
 		{
 			throw new Exception(string.Format("Bad library file name '{0}'!", m_fileName));
 		}
 
 		try
-            {
-                m_module = LoadLibrary(m_fileName);
-                if (m_module == IntPtr.Zero)
+		{
+			m_module = LoadLibrary(m_fileName);
+			if (m_module == IntPtr.Zero)
 			{
 				throw new Exception(string.Format("Can't load {0} dynamic library!", m_fileName));
 			}
 
 			var fields = GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance);
-                for (var i = 0; i < fields.Length; ++i)
-                {
-                    var field = fields[i];
-                    try
-                    {
-                        var attributes = field.GetCustomAttributes(typeof(DynamicModuleApiAttribute), false);
-                        if (attributes.Length > 0)
-                        {
-                            var address = GetProcAddress(m_module, field.Name);
-                            var delegate_ = Marshal.GetDelegateForFunctionPointer(address, field.FieldType);
-                            field.SetValue(this, delegate_);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Trace.TraceError(ex.ToString());
-                    }
-                }
-            }
-            catch
-            {
-                throw new Exception(string.Format("Can't load {0} dynamic library!", m_fileName));
-            }
-        }
+			for (var i = 0; i < fields.Length; ++i)
+			{
+				var field = fields[i];
+				try
+				{
+					var attributes = field.GetCustomAttributes(typeof(DynamicModuleApiAttribute), false);
+					if (attributes.Length > 0)
+					{
+						var address = GetProcAddress(m_module, field.Name);
+						var delegate_ = Marshal.GetDelegateForFunctionPointer(address, field.FieldType);
+						field.SetValue(this, delegate_);
+					}
+				}
+				catch (Exception ex)
+				{
+					Trace.TraceError(ex.ToString());
+				}
+			}
+		}
+		catch
+		{
+			throw new Exception(string.Format("Can't load {0} dynamic library!", m_fileName));
+		}
+	}
 
-        ~DynamicModule()
-        {
-            Dispose();
-        }
+	~DynamicModule()
+	{
+		Dispose();
+	}
 
-        public void Dispose()
-        {
-            if (m_module != IntPtr.Zero)
-            {
-                FreeLibrary(m_module);
-                m_module = IntPtr.Zero;
-            }
-            GC.SuppressFinalize(this);
-        }
+	public void Dispose()
+	{
+		if (m_module != IntPtr.Zero)
+		{
+			FreeLibrary(m_module);
+			m_module = IntPtr.Zero;
+		}
+		GC.SuppressFinalize(this);
+	}
 
-        public string FileName { get { return m_fileName; } }
+	public string FileName { get { return m_fileName; } }
 
-        /************************************ Private Members: ************************************/
+	/************************************ Private Members: ************************************/
 
-        private IntPtr m_module = IntPtr.Zero;
-        private readonly string m_fileName;
+	private IntPtr m_module = IntPtr.Zero;
+	private readonly string m_fileName;
 
-        [DllImport("kernel32.dll",
-            CharSet = CharSet.Ansi,
-            CallingConvention = CallingConvention.Winapi,
-            EntryPoint = "LoadLibraryA")]
-        private static extern IntPtr LoadLibrary(string moduleName);
+	[DllImport("kernel32.dll",
+		CharSet = CharSet.Ansi,
+		CallingConvention = CallingConvention.Winapi,
+		EntryPoint = "LoadLibraryA")]
+	private static extern IntPtr LoadLibrary(string moduleName);
 
-        [DllImport("kernel32.dll",
-            CharSet = CharSet.Ansi,
-            CallingConvention = CallingConvention.Winapi,
-            EntryPoint = "FreeLibrary")]
-        private static extern int FreeLibrary(IntPtr module);
+	[DllImport("kernel32.dll",
+		CharSet = CharSet.Ansi,
+		CallingConvention = CallingConvention.Winapi,
+		EntryPoint = "FreeLibrary")]
+	private static extern int FreeLibrary(IntPtr module);
 
 
-        [DllImport("kernel32.dll",
-            CharSet = CharSet.Ansi,
-            CallingConvention = CallingConvention.Winapi,
-            EntryPoint = "GetProcAddress")]
-        private static extern IntPtr GetProcAddress(IntPtr module, string functionName);
-    }
+	[DllImport("kernel32.dll",
+		CharSet = CharSet.Ansi,
+		CallingConvention = CallingConvention.Winapi,
+		EntryPoint = "GetProcAddress")]
+	private static extern IntPtr GetProcAddress(IntPtr module, string functionName);
+}

@@ -21,79 +21,79 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
 public class MainFormOptions
-    {
-        public event Options.VisibleChangeHandler OnToolStripVisibleChange;
-        private bool m_toolStripView = true;
-        public bool toolStripView
-        {
-            get
-            {
-                return m_toolStripView;
-            }
-            set
-            {
-                if (m_toolStripView != value)
-                {
-                    m_toolStripView = value;
+{
+	public event Options.VisibleChangeHandler OnToolStripVisibleChange;
+	private bool m_toolStripView = true;
+	public bool toolStripView
+	{
+		get
+		{
+			return m_toolStripView;
+		}
+		set
+		{
+			if (m_toolStripView != value)
+			{
+				m_toolStripView = value;
 				OnToolStripVisibleChange?.Invoke(m_toolStripView);
 			}
-            }
-        }
-        
-        public event Options.VisibleChangeHandler OnStatusStripVisibleChange;
-        private bool m_statusStripView = true;
-        public bool statusStripView
-        {
-            get
-            {
-                return m_statusStripView;
-            }
-            set
-            {
-                if (m_statusStripView != value)
-                {
-                    m_statusStripView = value;
+		}
+	}
+
+	public event Options.VisibleChangeHandler OnStatusStripVisibleChange;
+	private bool m_statusStripView = true;
+	public bool statusStripView
+	{
+		get
+		{
+			return m_statusStripView;
+		}
+		set
+		{
+			if (m_statusStripView != value)
+			{
+				m_statusStripView = value;
 				OnStatusStripVisibleChange?.Invoke(m_statusStripView);
 			}
-            }
-        }
+		}
+	}
 
-        public Point location = DefaultLocation();
-        public Size size = new(MainForm.MIN_WIDTH, MainForm.MIN_HEIGHT);
-        public bool maximized = false;
+	public Point location = DefaultLocation();
+	public Size size = new(MainForm.MIN_WIDTH, MainForm.MIN_HEIGHT);
+	public bool maximized = false;
 
-        public MainFormOptions()
-        {
-            SetDefault();
-        }
+	public MainFormOptions()
+	{
+		SetDefault();
+	}
 
-        public MainFormOptions(MainFormOptions options)
-        {
-            location = options.location;
-            size = options.size;
-            maximized = options.maximized;
-            m_toolStripView = options.m_toolStripView;
-            m_statusStripView = options.m_statusStripView;
-        }
+	public MainFormOptions(MainFormOptions options)
+	{
+		location = options.location;
+		size = options.size;
+		maximized = options.maximized;
+		m_toolStripView = options.m_toolStripView;
+		m_statusStripView = options.m_statusStripView;
+	}
 
-        public void CopyTo(ref MainFormOptions options)
-        {
-            options.location = location;
-            options.size = size;
-            options.maximized = maximized;
-            options.m_toolStripView = m_toolStripView;
-            options.m_statusStripView = m_statusStripView;
-        }
+	public void CopyTo(ref MainFormOptions options)
+	{
+		options.location = location;
+		options.size = size;
+		options.maximized = maximized;
+		options.m_toolStripView = m_toolStripView;
+		options.m_statusStripView = m_statusStripView;
+	}
 
-        public bool Equals(MainFormOptions options)
-        {
-            if (location != options.location)
+	public bool Equals(MainFormOptions options)
+	{
+		if (location != options.location)
 		{
 			return false;
 		}
@@ -119,22 +119,22 @@ public class MainFormOptions
 		}
 
 		return true;
-        }
+	}
 
-        public void SetDefault()
-        {
-            location = DefaultLocation();
-            size = new Size(MainForm.MIN_WIDTH, MainForm.MIN_HEIGHT);
-            maximized = false;
-            m_toolStripView = true;
-            m_statusStripView = true;
-        }
+	public void SetDefault()
+	{
+		location = DefaultLocation();
+		size = new Size(MainForm.MIN_WIDTH, MainForm.MIN_HEIGHT);
+		maximized = false;
+		m_toolStripView = true;
+		m_statusStripView = true;
+	}
 
-        static private Point DefaultLocation()
-        {
-            var rect = Screen.PrimaryScreen.WorkingArea;
-            var left = (rect.Left + rect.Width - MainForm.MIN_WIDTH)/2;
-            var top = (rect.Top + rect.Height - MainForm.MIN_HEIGHT)/2;
-            return new Point(left, top);
-        }
-    }
+	static private Point DefaultLocation()
+	{
+		var rect = Screen.PrimaryScreen.WorkingArea;
+		var left = (rect.Left + rect.Width - MainForm.MIN_WIDTH) / 2;
+		var top = (rect.Top + rect.Height - MainForm.MIN_HEIGHT) / 2;
+		return new Point(left, top);
+	}
+}

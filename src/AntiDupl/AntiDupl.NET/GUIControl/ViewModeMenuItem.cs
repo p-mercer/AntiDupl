@@ -22,69 +22,69 @@
 * SOFTWARE.
 */
 using System;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
 public class ViewModeMenuItem : ToolStripMenuItem
-    {
-        private readonly Options m_options;
+{
+	private readonly Options m_options;
 
-        private ToolStripMenuItem m_verticalPairTableMenuItem;
-        private ToolStripMenuItem m_horizontalPairTableMenuItem;
-        private ToolStripMenuItem m_groupedThumbnailsMenuItem;
+	private ToolStripMenuItem m_verticalPairTableMenuItem;
+	private ToolStripMenuItem m_horizontalPairTableMenuItem;
+	private ToolStripMenuItem m_groupedThumbnailsMenuItem;
 
-        private Image m_trueIcon;
-        private Image m_falseIcon;
+	private Image m_trueIcon;
+	private Image m_falseIcon;
 
-        public ViewModeMenuItem(Options options)
-        {
-            m_options = options;
-            InitializeComponents();
-            UpdateStrings();
-            UpdateIcons(m_options.resultsOptions.viewMode);
-            Resources.Strings.OnCurrentChange += new Resources.Strings.CurrentChangeHandler(UpdateStrings);
-            m_options.resultsOptions.OnViewModeChange += new AntiDupl.NET.ResultsOptions.ViewModeChangeHandler(UpdateIcons);
-        }
+	public ViewModeMenuItem(Options options)
+	{
+		m_options = options;
+		InitializeComponents();
+		UpdateStrings();
+		UpdateIcons(m_options.resultsOptions.viewMode);
+		Resources.Strings.OnCurrentChange += new Resources.Strings.CurrentChangeHandler(UpdateStrings);
+		m_options.resultsOptions.OnViewModeChange += new AntiDupl.NET.ResultsOptions.ViewModeChangeHandler(UpdateIcons);
+	}
 
-        private void InitializeComponents()
-        {
-            m_trueIcon = Resources.Images.GetImageWithBlackCircle(16, 16, 3.5);
-            m_falseIcon = Resources.Images.GetNullImage();
+	private void InitializeComponents()
+	{
+		m_trueIcon = Resources.Images.GetImageWithBlackCircle(16, 16, 3.5);
+		m_falseIcon = Resources.Images.GetNullImage();
 
-            m_verticalPairTableMenuItem = InitFactory.MenuItem.Create(null, ResultsOptions.ViewMode.VerticalPairTable, OnClick);
-            m_horizontalPairTableMenuItem = InitFactory.MenuItem.Create(null, ResultsOptions.ViewMode.HorizontalPairTable, OnClick);
-            m_groupedThumbnailsMenuItem = InitFactory.MenuItem.Create(null, ResultsOptions.ViewMode.GroupedThumbnails, OnClick);
+		m_verticalPairTableMenuItem = InitFactory.MenuItem.Create(null, ResultsOptions.ViewMode.VerticalPairTable, OnClick);
+		m_horizontalPairTableMenuItem = InitFactory.MenuItem.Create(null, ResultsOptions.ViewMode.HorizontalPairTable, OnClick);
+		m_groupedThumbnailsMenuItem = InitFactory.MenuItem.Create(null, ResultsOptions.ViewMode.GroupedThumbnails, OnClick);
 
-            //m_groupedThumbnailsMenuItem.Enabled = false;
+		//m_groupedThumbnailsMenuItem.Enabled = false;
 
-            DropDownItems.Add(m_verticalPairTableMenuItem);
-            DropDownItems.Add(m_horizontalPairTableMenuItem);
-            //DropDownItems.Add(new ToolStripSeparator());
-            //DropDownItems.Add(m_groupedThumbnailsMenuItem);
-        }
+		DropDownItems.Add(m_verticalPairTableMenuItem);
+		DropDownItems.Add(m_horizontalPairTableMenuItem);
+		//DropDownItems.Add(new ToolStripSeparator());
+		//DropDownItems.Add(m_groupedThumbnailsMenuItem);
+	}
 
-        private void OnClick(object sender, EventArgs e)
-        {
-            var item = (ToolStripMenuItem)sender;
-            m_options.resultsOptions.viewMode = (ResultsOptions.ViewMode)item.Tag;
-        }
+	private void OnClick(object sender, EventArgs e)
+	{
+		var item = (ToolStripMenuItem)sender;
+		m_options.resultsOptions.viewMode = (ResultsOptions.ViewMode)item.Tag;
+	}
 
-        private void UpdateStrings()
-        {
-            var s = Resources.Strings.Current;
+	private void UpdateStrings()
+	{
+		var s = Resources.Strings.Current;
 
-            Text = s.ViewModeMenuItem_Text;
-            m_verticalPairTableMenuItem.Text = s.ViewModeMenuItem_VerticalPairTableMenuItem_Text;
-            m_horizontalPairTableMenuItem.Text = s.ViewModeMenuItem_HorizontalPairTableMenuItem_Text;
-            m_groupedThumbnailsMenuItem.Text = s.ViewModeMenuItem_GroupedThumbnailsMenuItem_Text;
-        }
+		Text = s.ViewModeMenuItem_Text;
+		m_verticalPairTableMenuItem.Text = s.ViewModeMenuItem_VerticalPairTableMenuItem_Text;
+		m_horizontalPairTableMenuItem.Text = s.ViewModeMenuItem_HorizontalPairTableMenuItem_Text;
+		m_groupedThumbnailsMenuItem.Text = s.ViewModeMenuItem_GroupedThumbnailsMenuItem_Text;
+	}
 
 	private void UpdateIcons(ResultsOptions.ViewMode viewMode)
-        {
-            m_verticalPairTableMenuItem.Image = (viewMode == ResultsOptions.ViewMode.VerticalPairTable ? m_trueIcon : m_falseIcon);
-            m_horizontalPairTableMenuItem.Image = (viewMode == ResultsOptions.ViewMode.HorizontalPairTable ? m_trueIcon : m_falseIcon);
-            m_groupedThumbnailsMenuItem.Image = (viewMode == ResultsOptions.ViewMode.GroupedThumbnails ? m_trueIcon : m_falseIcon);
-        }
-    }
+	{
+		m_verticalPairTableMenuItem.Image = (viewMode == ResultsOptions.ViewMode.VerticalPairTable ? m_trueIcon : m_falseIcon);
+		m_horizontalPairTableMenuItem.Image = (viewMode == ResultsOptions.ViewMode.HorizontalPairTable ? m_trueIcon : m_falseIcon);
+		m_groupedThumbnailsMenuItem.Image = (viewMode == ResultsOptions.ViewMode.GroupedThumbnails ? m_trueIcon : m_falseIcon);
+	}
+}

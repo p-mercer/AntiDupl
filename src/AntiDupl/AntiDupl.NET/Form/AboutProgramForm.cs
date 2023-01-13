@@ -27,32 +27,32 @@ using System.Windows.Forms;
 namespace AntiDupl.NET;
 
 public class AboutProgramForm : Form
-    {
-        private readonly CoreLib m_core;
+{
+	private readonly CoreLib m_core;
 
-        private AboutProgramPanel m_aboutProgramPanel;
-        private Button m_okButton;
+	private AboutProgramPanel m_aboutProgramPanel;
+	private Button m_okButton;
 
-        public AboutProgramForm(CoreLib core)
-        {
-            m_core = core;
-            InitializeComponent();
-            UpdateStrings();
-        }
+	public AboutProgramForm(CoreLib core)
+	{
+		m_core = core;
+		InitializeComponent();
+		UpdateStrings();
+	}
 
-        private void InitializeComponent()
-        {
-            ClientSize = new System.Drawing.Size(310, 350);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            StartPosition = FormStartPosition.CenterScreen;
-            ShowInTaskbar = false;
-            MaximizeBox = false;
-            MinimizeBox = false;
+	private void InitializeComponent()
+	{
+		ClientSize = new System.Drawing.Size(310, 350);
+		FormBorderStyle = FormBorderStyle.FixedDialog;
+		StartPosition = FormStartPosition.CenterScreen;
+		ShowInTaskbar = false;
+		MaximizeBox = false;
+		MinimizeBox = false;
 
-            var mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
-            mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
-            mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            Controls.Add(mainTableLayoutPanel);
+		var mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
+		mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
+		mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+		Controls.Add(mainTableLayoutPanel);
 
 		m_aboutProgramPanel = new AboutProgramPanel(m_core)
 		{
@@ -61,27 +61,27 @@ public class AboutProgramForm : Form
 		};
 		mainTableLayoutPanel.Controls.Add(m_aboutProgramPanel, 0, 0);
 
-            var okButtonTableLayoutPanel = InitFactory.Layout.Create(3, 1);
-            okButtonTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            okButtonTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-            okButtonTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            mainTableLayoutPanel.Controls.Add(okButtonTableLayoutPanel, 0, 1);
+		var okButtonTableLayoutPanel = InitFactory.Layout.Create(3, 1);
+		okButtonTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+		okButtonTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+		okButtonTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+		mainTableLayoutPanel.Controls.Add(okButtonTableLayoutPanel, 0, 1);
 
-            m_okButton = new Button();
-            m_okButton.Click += new System.EventHandler(OnOkButtonClick);
-            okButtonTableLayoutPanel.Controls.Add(m_okButton, 1, 0);
-        }
+		m_okButton = new Button();
+		m_okButton.Click += new System.EventHandler(OnOkButtonClick);
+		okButtonTableLayoutPanel.Controls.Add(m_okButton, 1, 0);
+	}
 
-        private void UpdateStrings()
-        {
-            var s = Resources.Strings.Current;
+	private void UpdateStrings()
+	{
+		var s = Resources.Strings.Current;
 
-            Text = s.AboutProgramForm_Text;
-            m_okButton.Text = s.OkButton_Text;
-        }
+		Text = s.AboutProgramForm_Text;
+		m_okButton.Text = s.OkButton_Text;
+	}
 
-        private void OnOkButtonClick(object sender, EventArgs e)
-        {
-            Close();
-        }
-    }
+	private void OnOkButtonClick(object sender, EventArgs e)
+	{
+		Close();
+	}
+}

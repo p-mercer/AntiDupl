@@ -27,74 +27,74 @@ using System.Text;
 namespace AntiDupl.NET;
 
 public class CoreVersion
-    {
-        public int major;
-        public int minor;
-        public int release;
-        public int revision;
+{
+	public int major;
+	public int minor;
+	public int release;
+	public int revision;
 
-        public CoreVersion(sbyte[] buffer)
-        {
-            var versions = Parse(buffer).Split('.');
-            major = versions.Length > 0 ? Convert.ToInt32(versions[0]) : -1;
-            minor = versions.Length > 1 ? Convert.ToInt32(versions[1]) : -1;
-            release = versions.Length > 2 ? Convert.ToInt32(versions[2]) : -1;
-            revision = versions.Length > 3 ? Convert.ToInt32(versions[3]) : -1;
-        }
-        
-        public override string ToString()
-        {
-            var builder = new StringBuilder();
-            var already = false;
-            if (major >= 0)
-            {
-                builder.Append(major.ToString());
-                already = true;
-            }
-            if (minor >= 0)
-            {
-                if(already)
+	public CoreVersion(sbyte[] buffer)
+	{
+		var versions = Parse(buffer).Split('.');
+		major = versions.Length > 0 ? Convert.ToInt32(versions[0]) : -1;
+		minor = versions.Length > 1 ? Convert.ToInt32(versions[1]) : -1;
+		release = versions.Length > 2 ? Convert.ToInt32(versions[2]) : -1;
+		revision = versions.Length > 3 ? Convert.ToInt32(versions[3]) : -1;
+	}
+
+	public override string ToString()
+	{
+		var builder = new StringBuilder();
+		var already = false;
+		if (major >= 0)
+		{
+			builder.Append(major.ToString());
+			already = true;
+		}
+		if (minor >= 0)
+		{
+			if (already)
 			{
 				builder.Append('.');
 			}
 
 			builder.Append(minor.ToString());
-                already = true;
-            }
-            if (release >= 0)
-            {
-                if (already)
+			already = true;
+		}
+		if (release >= 0)
+		{
+			if (already)
 			{
 				builder.Append('.');
 			}
 
 			builder.Append(release.ToString());
-                already = true;
-            }
-            if(revision >= 0)
-            {
-                if (already)
+			already = true;
+		}
+		if (revision >= 0)
+		{
+			if (already)
 			{
 				builder.Append('.');
 			}
 
 			builder.Append(revision.ToString());
-            }
-            return builder.ToString();
-        }
+		}
+		return builder.ToString();
+	}
 
-        private static string Parse(sbyte[] buffer)
-        {
-            var builder = new StringBuilder();
-            for (var i = 0; i < buffer.Length; ++i)
-            {
-                if(buffer[i] == 0)
+	private static string Parse(sbyte[] buffer)
+	{
+		var builder = new StringBuilder();
+		for (var i = 0; i < buffer.Length; ++i)
+		{
+			if (buffer[i] == 0)
 			{
 				break;
 			}
 
 			builder.Append(Convert.ToChar(buffer[i]));
-            }
-            return builder.ToString();
-        }
-    }
+		}
+		return builder.ToString();
+	}
+}

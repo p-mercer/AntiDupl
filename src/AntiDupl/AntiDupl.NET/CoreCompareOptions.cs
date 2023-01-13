@@ -25,86 +25,86 @@
 namespace AntiDupl.NET;
 
 public class CoreCompareOptions
-    {
-        public bool checkOnEquality;
-        public bool transformedImage;
-        public bool sizeControl;
-        public bool typeControl;
-        public bool ratioControl;
-        public int thresholdDifference;
-        public int minimalImageSize;
-        public int maximalImageSize;
-        public bool compareInsideOneFolder;
-        public bool compareInsideOneSearchPath;
-        public CoreDll.AlgorithmComparing algorithmComparing;
+{
+	public bool checkOnEquality;
+	public bool transformedImage;
+	public bool sizeControl;
+	public bool typeControl;
+	public bool ratioControl;
+	public int thresholdDifference;
+	public int minimalImageSize;
+	public int maximalImageSize;
+	public bool compareInsideOneFolder;
+	public bool compareInsideOneSearchPath;
+	public CoreDll.AlgorithmComparing algorithmComparing;
 
-        public CoreCompareOptions()
-        {
-        }
+	public CoreCompareOptions()
+	{
+	}
 
-        public CoreCompareOptions(CoreCompareOptions compareOptions)
-        {
-            checkOnEquality = compareOptions.checkOnEquality;
-            transformedImage = compareOptions.transformedImage;
-            sizeControl = compareOptions.sizeControl;
-            typeControl = compareOptions.typeControl;
-            ratioControl = compareOptions.ratioControl;
+	public CoreCompareOptions(CoreCompareOptions compareOptions)
+	{
+		checkOnEquality = compareOptions.checkOnEquality;
+		transformedImage = compareOptions.transformedImage;
+		sizeControl = compareOptions.sizeControl;
+		typeControl = compareOptions.typeControl;
+		ratioControl = compareOptions.ratioControl;
 		algorithmComparing = compareOptions.algorithmComparing;
-            thresholdDifference = compareOptions.thresholdDifference;
-            minimalImageSize = compareOptions.minimalImageSize;
-            maximalImageSize = compareOptions.maximalImageSize;
-            compareInsideOneFolder = compareOptions.compareInsideOneFolder;
-            compareInsideOneSearchPath = compareOptions.compareInsideOneSearchPath;
-        }
+		thresholdDifference = compareOptions.thresholdDifference;
+		minimalImageSize = compareOptions.minimalImageSize;
+		maximalImageSize = compareOptions.maximalImageSize;
+		compareInsideOneFolder = compareOptions.compareInsideOneFolder;
+		compareInsideOneSearchPath = compareOptions.compareInsideOneSearchPath;
+	}
 
-        public CoreCompareOptions(ref CoreDll.adCompareOptions compareOptions)
-        {
-            checkOnEquality = compareOptions.checkOnEquality != CoreDll.FALSE;
-            transformedImage = compareOptions.transformedImage != CoreDll.FALSE;
-            sizeControl = compareOptions.sizeControl != CoreDll.FALSE;
-            typeControl = compareOptions.typeControl != CoreDll.FALSE;
-            ratioControl = compareOptions.ratioControl != CoreDll.FALSE;
+	public CoreCompareOptions(ref CoreDll.adCompareOptions compareOptions)
+	{
+		checkOnEquality = compareOptions.checkOnEquality != CoreDll.FALSE;
+		transformedImage = compareOptions.transformedImage != CoreDll.FALSE;
+		sizeControl = compareOptions.sizeControl != CoreDll.FALSE;
+		typeControl = compareOptions.typeControl != CoreDll.FALSE;
+		ratioControl = compareOptions.ratioControl != CoreDll.FALSE;
 		algorithmComparing = compareOptions.algorithmComparing;
-            thresholdDifference = compareOptions.thresholdDifference;
-            minimalImageSize = compareOptions.minimalImageSize;
-            maximalImageSize = compareOptions.maximalImageSize;
-            compareInsideOneFolder = compareOptions.compareInsideOneFolder != CoreDll.FALSE;
-            compareInsideOneSearchPath = compareOptions.compareInsideOneSearchPath != CoreDll.FALSE;
-        }
+		thresholdDifference = compareOptions.thresholdDifference;
+		minimalImageSize = compareOptions.minimalImageSize;
+		maximalImageSize = compareOptions.maximalImageSize;
+		compareInsideOneFolder = compareOptions.compareInsideOneFolder != CoreDll.FALSE;
+		compareInsideOneSearchPath = compareOptions.compareInsideOneSearchPath != CoreDll.FALSE;
+	}
 
-        public void ConvertTo(ref CoreDll.adCompareOptions compareOptions)
-        {
-            compareOptions.checkOnEquality = checkOnEquality ? CoreDll.TRUE : CoreDll.FALSE;
-            compareOptions.transformedImage = transformedImage ? CoreDll.TRUE : CoreDll.FALSE;
-            compareOptions.sizeControl = sizeControl ? CoreDll.TRUE : CoreDll.FALSE;
-            compareOptions.typeControl = typeControl ? CoreDll.TRUE : CoreDll.FALSE;
-            compareOptions.ratioControl = ratioControl ? CoreDll.TRUE : CoreDll.FALSE;
+	public void ConvertTo(ref CoreDll.adCompareOptions compareOptions)
+	{
+		compareOptions.checkOnEquality = checkOnEquality ? CoreDll.TRUE : CoreDll.FALSE;
+		compareOptions.transformedImage = transformedImage ? CoreDll.TRUE : CoreDll.FALSE;
+		compareOptions.sizeControl = sizeControl ? CoreDll.TRUE : CoreDll.FALSE;
+		compareOptions.typeControl = typeControl ? CoreDll.TRUE : CoreDll.FALSE;
+		compareOptions.ratioControl = ratioControl ? CoreDll.TRUE : CoreDll.FALSE;
 		compareOptions.algorithmComparing = algorithmComparing;
-            compareOptions.thresholdDifference = thresholdDifference;
-            compareOptions.minimalImageSize = minimalImageSize;
-            compareOptions.maximalImageSize = maximalImageSize;
-            compareOptions.compareInsideOneFolder = compareInsideOneFolder ? CoreDll.TRUE : CoreDll.FALSE;
-            compareOptions.compareInsideOneSearchPath = compareInsideOneSearchPath ? CoreDll.TRUE : CoreDll.FALSE;
-        }
+		compareOptions.thresholdDifference = thresholdDifference;
+		compareOptions.minimalImageSize = minimalImageSize;
+		compareOptions.maximalImageSize = maximalImageSize;
+		compareOptions.compareInsideOneFolder = compareInsideOneFolder ? CoreDll.TRUE : CoreDll.FALSE;
+		compareOptions.compareInsideOneSearchPath = compareInsideOneSearchPath ? CoreDll.TRUE : CoreDll.FALSE;
+	}
 
-        public CoreCompareOptions Clone()
-        {
-            return new CoreCompareOptions(this);
-        }
+	public CoreCompareOptions Clone()
+	{
+		return new CoreCompareOptions(this);
+	}
 
-        public bool Equals(CoreCompareOptions compareOptions)
-        {
-            return
-                checkOnEquality == compareOptions.checkOnEquality &&
-                transformedImage == compareOptions.transformedImage &&
-                sizeControl == compareOptions.sizeControl &&
-                typeControl == compareOptions.typeControl &&
-                ratioControl == compareOptions.ratioControl &&
-			algorithmComparing == compareOptions.algorithmComparing &&
-                thresholdDifference == compareOptions.thresholdDifference &&
-                minimalImageSize == compareOptions.minimalImageSize &&
-                maximalImageSize == compareOptions.maximalImageSize &&
-                compareInsideOneFolder == compareOptions.compareInsideOneFolder &&
-                compareInsideOneSearchPath == compareOptions.compareInsideOneSearchPath;
-        }
-    }
+	public bool Equals(CoreCompareOptions compareOptions)
+	{
+		return
+			checkOnEquality == compareOptions.checkOnEquality &&
+			transformedImage == compareOptions.transformedImage &&
+			sizeControl == compareOptions.sizeControl &&
+			typeControl == compareOptions.typeControl &&
+			ratioControl == compareOptions.ratioControl &&
+		algorithmComparing == compareOptions.algorithmComparing &&
+			thresholdDifference == compareOptions.thresholdDifference &&
+			minimalImageSize == compareOptions.minimalImageSize &&
+			maximalImageSize == compareOptions.maximalImageSize &&
+			compareInsideOneFolder == compareOptions.compareInsideOneFolder &&
+			compareInsideOneSearchPath == compareOptions.compareInsideOneSearchPath;
+	}
+}

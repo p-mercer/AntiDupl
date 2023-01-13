@@ -22,107 +22,107 @@
 * SOFTWARE.
 */
 using System;
-using System.Windows.Forms;
-using System.Net;
 using System.Drawing;
 using System.IO;
+using System.Net;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
 public class NewVersionMenuItem : ToolStripMenuItem
-    {
+{
 	private bool m_downloadingFinished = false;
 
-        private Version m_localVersion;
-        private Version m_onlineVersion;
+	private Version m_localVersion;
+	private Version m_onlineVersion;
 
-        private readonly Options m_options;
+	private readonly Options m_options;
 
-        private System.Windows.Forms.Timer m_timer;
+	private System.Windows.Forms.Timer m_timer;
 
-        public NewVersionMenuItem(Options options)
-        {
-            m_options = options;
-            InitializeComponents();
-            if(m_options.checkingForUpdates)
-            {
-                InitializeVersions();
-            }
-            else
-            {
-                m_downloadingFinished = true;
-            }
-        }
+	public NewVersionMenuItem(Options options)
+	{
+		m_options = options;
+		InitializeComponents();
+		if (m_options.checkingForUpdates)
+		{
+			InitializeVersions();
+		}
+		else
+		{
+			m_downloadingFinished = true;
+		}
+	}
 
-        private void InitializeComponents()
-        {
-            Visible = false;
-            ForeColor = Color.Red;
-            Click += new EventHandler(OnClick);
-            Resources.Strings.OnCurrentChange += new Resources.Strings.CurrentChangeHandler(UpdateStrings);
+	private void InitializeComponents()
+	{
+		Visible = false;
+		ForeColor = Color.Red;
+		Click += new EventHandler(OnClick);
+		Resources.Strings.OnCurrentChange += new Resources.Strings.CurrentChangeHandler(UpdateStrings);
 
 		m_timer = new System.Windows.Forms.Timer
 		{
 			Interval = 1000
 		};
 		m_timer.Tick += new EventHandler(TimerCallback);
-            m_timer.Start();
-        }
+		m_timer.Start();
+	}
 
-        private void OnClick(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(Resources.WebLinks.GithubComAntiduplCurrent);
-        }
+	private void OnClick(object sender, EventArgs e)
+	{
+		System.Diagnostics.Process.Start(Resources.WebLinks.GithubComAntiduplCurrent);
+	}
 
-        private void UpdateStrings()
-        {
-            var s = Resources.Strings.Current;
+	private void UpdateStrings()
+	{
+		var s = Resources.Strings.Current;
 
-            Text = s.MainMenu_NewVersionMenuItem_Text;
-            if (m_onlineVersion != null)
-            {
-                ToolTipText = string.Format(s.MainMenu_NewVersionMenuItem_Tooltip, m_onlineVersion.ToString());
-            }
-        }
+		Text = s.MainMenu_NewVersionMenuItem_Text;
+		if (m_onlineVersion != null)
+		{
+			ToolTipText = string.Format(s.MainMenu_NewVersionMenuItem_Tooltip, m_onlineVersion.ToString());
+		}
+	}
 
 	private void TimerCallback(object obj, EventArgs eventArgs)
-        {
-            if (m_downloadingFinished)
-            {
-                if (m_onlineVersion != null)
-                {
-                    if (Version.Compare(m_localVersion, m_onlineVersion) < 0)
-                    {
-                        Visible = true;
-                        UpdateStrings();
-                    }
-                }
-                m_timer.Stop();
-            }
-        }
+	{
+		if (m_downloadingFinished)
+		{
+			if (m_onlineVersion != null)
+			{
+				if (Version.Compare(m_localVersion, m_onlineVersion) < 0)
+				{
+					Visible = true;
+					UpdateStrings();
+				}
+			}
+			m_timer.Stop();
+		}
+	}
 
-        private void InitializeVersions()
-        {
-            m_localVersion = new Version();
-            //m_localVersion.Save("version.xml");
+	private void InitializeVersions()
+	{
+		m_localVersion = new Version();
+		//m_localVersion.Save("version.xml");
 
-            var thread = new Thread(OnlineVersionDownloadThreadTask);
-            thread.Start();
-        }
+		var thread = new Thread(OnlineVersionDownloadThreadTask);
+		thread.Start();
+	}
 
-        private void OnlineVersionDownloadThreadTask()
-        {
-            try
-            {
-                var webClient = new WebClient();
-                var buffer = webClient.DownloadData(Resources.WebLinks.Version);
-                m_onlineVersion = Version.LoadXml(new MemoryStream(buffer));
-            }
-            catch
-            {
-                m_onlineVersion = null;
-            }
-            m_downloadingFinished = true;
-        }
-    }
+	private void OnlineVersionDownloadThreadTask()
+	{
+		try
+		{
+			var webClient = new WebClient();
+			var buffer = webClient.DownloadData(Resources.WebLinks.Version);
+			m_onlineVersion = Version.LoadXml(new MemoryStream(buffer));
+		}
+		catch
+		{
+			m_onlineVersion = null;
+		}
+		m_downloadingFinished = true;
+	}
+}

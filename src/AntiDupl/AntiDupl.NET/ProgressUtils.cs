@@ -27,42 +27,42 @@ using System.Text;
 namespace AntiDupl.NET;
 
 public static class ProgressUtils
-    {
-        public static string GetProgressString(double progress, DateTime startDateTime)
-        {
-            var s = Resources.Strings.Current;
-            var builder = new StringBuilder();
-            builder.AppendFormat(s.ProgressUtils_Completed, Convert.ToInt32(Math.Ceiling(progress * 100)).ToString());
-            if (progress > 0.0001)
-            {
-                builder.Append("; ");
-                var used = DateTime.Now - startDateTime;
-                var usedMilliseconds = used.TotalMilliseconds;
-                var remainedMilliseconds = usedMilliseconds * (1 - progress) / progress;
-                var remained = TimeSpan.FromMilliseconds(remainedMilliseconds);
-                if (remained.Hours >= 4 || remained.Days > 0)
-                {
-                    builder.AppendFormat(s.ProgressUtils_5HoursRemaining, remained.Days*24 + remained.Hours + 1);
-                }
-                else if (remained.Hours >= 1)
-                {
-                    builder.AppendFormat(s.ProgressUtils_2HoursRemaining, remained.Hours + 1);
-                }
-                else if (remained.Minutes >= 4)
-                {
-                    var minuts = (remained.Minutes / 5 + 1) * 5;
-                    builder.AppendFormat(s.ProgressUtils_5MinutesRemaining, minuts);
-                }
-                else if (remained.Minutes >= 1)
-                {
-                    builder.AppendFormat(s.ProgressUtils_2MinutesRemaining, remained.Minutes + 1);
-                }
-                else
-                {
-                    var seconds = (remained.Seconds / 5 + 1) * 5;
-                    builder.AppendFormat(s.ProgressUtils_5SecondsRemaining, seconds);
-                }
-            }
-            return builder.ToString();
-        }
-    }
+{
+	public static string GetProgressString(double progress, DateTime startDateTime)
+	{
+		var s = Resources.Strings.Current;
+		var builder = new StringBuilder();
+		builder.AppendFormat(s.ProgressUtils_Completed, Convert.ToInt32(Math.Ceiling(progress * 100)).ToString());
+		if (progress > 0.0001)
+		{
+			builder.Append("; ");
+			var used = DateTime.Now - startDateTime;
+			var usedMilliseconds = used.TotalMilliseconds;
+			var remainedMilliseconds = usedMilliseconds * (1 - progress) / progress;
+			var remained = TimeSpan.FromMilliseconds(remainedMilliseconds);
+			if (remained.Hours >= 4 || remained.Days > 0)
+			{
+				builder.AppendFormat(s.ProgressUtils_5HoursRemaining, remained.Days * 24 + remained.Hours + 1);
+			}
+			else if (remained.Hours >= 1)
+			{
+				builder.AppendFormat(s.ProgressUtils_2HoursRemaining, remained.Hours + 1);
+			}
+			else if (remained.Minutes >= 4)
+			{
+				var minuts = (remained.Minutes / 5 + 1) * 5;
+				builder.AppendFormat(s.ProgressUtils_5MinutesRemaining, minuts);
+			}
+			else if (remained.Minutes >= 1)
+			{
+				builder.AppendFormat(s.ProgressUtils_2MinutesRemaining, remained.Minutes + 1);
+			}
+			else
+			{
+				var seconds = (remained.Seconds / 5 + 1) * 5;
+				builder.AppendFormat(s.ProgressUtils_5SecondsRemaining, seconds);
+			}
+		}
+		return builder.ToString();
+	}
+}

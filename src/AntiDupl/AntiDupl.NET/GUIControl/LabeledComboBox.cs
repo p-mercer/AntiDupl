@@ -27,19 +27,19 @@ using System.Windows.Forms;
 namespace AntiDupl.NET;
 
 public class LabeledComboBox : TableLayoutPanel
-    {
-        private readonly ComboBox m_comboBox;
-        private readonly Label m_label;
+{
+	private readonly ComboBox m_comboBox;
+	private readonly Label m_label;
 
-        public ComboBox comboBox { get { return m_comboBox; } }
-        public override string Text { get { return m_label.Text; } set { m_label.Text = value; } }
+	public ComboBox comboBox { get { return m_comboBox; } }
+	public override string Text { get { return m_label.Text; } set { m_label.Text = value; } }
 
-        public LabeledComboBox(int comboBoxWidth, int comboBoxHeight, EventHandler selectedIndexChanged)
-        {
-            Location = new System.Drawing.Point(0, 0);
-            AutoSize = true;
-            ColumnCount = 2;
-            RowCount = 1;
+	public LabeledComboBox(int comboBoxWidth, int comboBoxHeight, EventHandler selectedIndexChanged)
+	{
+		Location = new System.Drawing.Point(0, 0);
+		AutoSize = true;
+		ColumnCount = 2;
+		RowCount = 1;
 
 		m_comboBox = new ComboBox
 		{
@@ -49,57 +49,57 @@ public class LabeledComboBox : TableLayoutPanel
 			DropDownStyle = ComboBoxStyle.DropDownList
 		};
 		m_comboBox.SelectedIndexChanged += new EventHandler(selectedIndexChanged);
-            Controls.Add(m_comboBox, 0, 0);
+		Controls.Add(m_comboBox, 0, 0);
 
-            m_label = InitFactory.Label.Create();
-            m_label.Padding = new Padding(0, 5, 5, 5);
-            Controls.Add(m_label, 1, 0);
-        }
+		m_label = InitFactory.Label.Create();
+		m_label.Padding = new Padding(0, 5, 5, 5);
+		Controls.Add(m_label, 1, 0);
+	}
 
-        public class Value : object
-        {
-            public int value;
-            public string description;
+	public class Value : object
+	{
+		public int value;
+		public string description;
 
-            public Value(int val, string desc)
-            {
-                value = val;
-                description = desc;
-            }
+		public Value(int val, string desc)
+		{
+			value = val;
+			description = desc;
+		}
 
-            public override string ToString()
-            {
-                return description;
-            }
-        }
+		public override string ToString()
+		{
+			return description;
+		}
+	}
 
-        public int SelectedValue
-        {
-            get
-            {
-                var val = (Value)m_comboBox.SelectedItem;
-                return val.value;
-            }
-            set
-            {
-                var index = -1;
-                var difference = int.MaxValue;
-                for (var i = 0; i < m_comboBox.Items.Count; i++)
-                {
-                    var current = (Value)m_comboBox.Items[i];
-                    if (Math.Abs(current.value - value) < difference)
-                    {
-                        difference = Math.Abs(current.value - value);
-                        index = i;
-                    }
-                }
-                m_comboBox.SelectedIndex = index;
-            }
-        }
+	public int SelectedValue
+	{
+		get
+		{
+			var val = (Value)m_comboBox.SelectedItem;
+			return val.value;
+		}
+		set
+		{
+			var index = -1;
+			var difference = int.MaxValue;
+			for (var i = 0; i < m_comboBox.Items.Count; i++)
+			{
+				var current = (Value)m_comboBox.Items[i];
+				if (Math.Abs(current.value - value) < difference)
+				{
+					difference = Math.Abs(current.value - value);
+					index = i;
+				}
+			}
+			m_comboBox.SelectedIndex = index;
+		}
+	}
 
-        public void SetDescription(int index, string description)
-        {
-            var value = (Value)m_comboBox.Items[index];
-            value.description = description;
-        }
-    }
+	public void SetDescription(int index, string description)
+	{
+		var value = (Value)m_comboBox.Items[index];
+		value.description = description;
+	}
+}

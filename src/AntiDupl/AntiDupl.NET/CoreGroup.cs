@@ -27,20 +27,20 @@ using System.Drawing;
 namespace AntiDupl.NET;
 
 public class CoreGroup
-    {
-        public int id;
-        public CoreImageInfo[] images;
+{
+	public int id;
+	public CoreImageInfo[] images;
 
-        public Size sizeMax = new(0, 0);
+	public Size sizeMax = new(0, 0);
 
-        public CoreGroup(ref CoreDll.adGroup group, CoreLib core)
-        {
-            id = group.id.ToInt32();
-            images = core.GetImageInfo(id, 0, (uint)group.size);
-            for (var i = 0; i < images.Length; ++i)
-            {
-                sizeMax.Width = Math.Max(sizeMax.Width, (int)images[i].width);
-                sizeMax.Height = Math.Max(sizeMax.Height, (int)images[i].height);
-            }
-        }
-    }
+	public CoreGroup(ref CoreDll.adGroup group, CoreLib core)
+	{
+		id = group.id.ToInt32();
+		images = core.GetImageInfo(id, 0, (uint)group.size);
+		for (var i = 0; i < images.Length; ++i)
+		{
+			sizeMax.Width = Math.Max(sizeMax.Width, (int)images[i].width);
+			sizeMax.Height = Math.Max(sizeMax.Height, (int)images[i].height);
+		}
+	}
+}

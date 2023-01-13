@@ -22,9 +22,9 @@
 * SOFTWARE.
 */
 using System;
-using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 

@@ -22,49 +22,48 @@
 * SOFTWARE.
 */
 using System.Text;
-
-using TypeVertical = AntiDupl.NET.ResultsListView.ColumnsTypeVertical;
 using TypeHorizontal = AntiDupl.NET.ResultsListView.ColumnsTypeHorizontal;
+using TypeVertical = AntiDupl.NET.ResultsListView.ColumnsTypeVertical;
 
 namespace AntiDupl.NET;
 
 public class ClipboardContentBuilder
-    {
-        private readonly StringBuilder m_builder;
-        private readonly ResultsOptions m_options;
-        private bool m_insertTab;
+{
+	private readonly StringBuilder m_builder;
+	private readonly ResultsOptions m_options;
+	private bool m_insertTab;
 
-        public ClipboardContentBuilder(ResultsOptions options)
-        {
-            m_options = options;
-            m_builder = new StringBuilder();
-        }
+	public ClipboardContentBuilder(ResultsOptions options)
+	{
+		m_options = options;
+		m_builder = new StringBuilder();
+	}
 
-        public void Add(CoreResult result)
-        {
-            m_insertTab = false;
-            switch (m_options.viewMode)
-            {
-                case ResultsOptions.ViewMode.VerticalPairTable:
-                    AddCommon(result, m_options.columnOptionsVertical);
-                    AddVertical(result, m_options.columnOptionsVertical);
-                    break;
-                case ResultsOptions.ViewMode.HorizontalPairTable:
-                    AddCommon(result, m_options.columnOptionsHorizontal);
-                    AddHorizontal(result, m_options.columnOptionsHorizontal);
-                    break;
-            }
-            m_builder.AppendLine("");
-        }
+	public void Add(CoreResult result)
+	{
+		m_insertTab = false;
+		switch (m_options.viewMode)
+		{
+			case ResultsOptions.ViewMode.VerticalPairTable:
+				AddCommon(result, m_options.columnOptionsVertical);
+				AddVertical(result, m_options.columnOptionsVertical);
+				break;
+			case ResultsOptions.ViewMode.HorizontalPairTable:
+				AddCommon(result, m_options.columnOptionsHorizontal);
+				AddHorizontal(result, m_options.columnOptionsHorizontal);
+				break;
+		}
+		m_builder.AppendLine("");
+	}
 
-        public override string ToString()
-        {
-            return m_builder.ToString();
-        }
+	public override string ToString()
+	{
+		return m_builder.ToString();
+	}
 
-        private void AddCommon(CoreResult result, ResultsOptions.ColumnOptions[] options)
-        {
-            if (options[(int)TypeVertical.Type].visible)
+	private void AddCommon(CoreResult result, ResultsOptions.ColumnOptions[] options)
+	{
+		if (options[(int)TypeVertical.Type].visible)
 		{
 			Append(result.type);
 		}
@@ -95,10 +94,10 @@ public class ClipboardContentBuilder
 		}
 	}
 
-        private void AddVertical(CoreResult result, ResultsOptions.ColumnOptions[] options)
-        {
-            if (options[(int)TypeVertical.FileName].visible ||
-                options[(int)TypeVertical.FileDirectory].visible)
+	private void AddVertical(CoreResult result, ResultsOptions.ColumnOptions[] options)
+	{
+		if (options[(int)TypeVertical.FileName].visible ||
+			options[(int)TypeVertical.FileDirectory].visible)
 		{
 			Append(result.first.path);
 		}
@@ -124,7 +123,7 @@ public class ClipboardContentBuilder
 		}
 
 		if (options[(int)TypeVertical.FileName].visible ||
-                options[(int)TypeVertical.FileDirectory].visible)
+				options[(int)TypeVertical.FileDirectory].visible)
 		{
 			Append(result.second.path);
 		}
@@ -150,10 +149,10 @@ public class ClipboardContentBuilder
 		}
 	}
 
-        private void AddHorizontal(CoreResult result, ResultsOptions.ColumnOptions[] options)
-        {
-            if (options[(int)TypeHorizontal.FirstFileName].visible ||
-                options[(int)TypeHorizontal.FirstFileDirectory].visible)
+	private void AddHorizontal(CoreResult result, ResultsOptions.ColumnOptions[] options)
+	{
+		if (options[(int)TypeHorizontal.FirstFileName].visible ||
+			options[(int)TypeHorizontal.FirstFileDirectory].visible)
 		{
 			Append(result.first.path);
 		}
@@ -179,7 +178,7 @@ public class ClipboardContentBuilder
 		}
 
 		if (options[(int)TypeHorizontal.SecondFileName].visible ||
-                options[(int)TypeHorizontal.SecondFileDirectory].visible)
+				options[(int)TypeHorizontal.SecondFileDirectory].visible)
 		{
 			Append(result.second.path);
 		}
@@ -205,14 +204,14 @@ public class ClipboardContentBuilder
 		}
 	}
 
-        private void Append(object value)
-        {
-            if (m_insertTab)
+	private void Append(object value)
+	{
+		if (m_insertTab)
 		{
 			m_builder.Append('\t');
 		}
 
 		m_builder.Append(value.ToString());
-            m_insertTab = true;
-        }
-    }
+		m_insertTab = true;
+	}
+}

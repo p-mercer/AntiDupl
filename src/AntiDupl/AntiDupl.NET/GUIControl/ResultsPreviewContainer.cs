@@ -21,8 +21,8 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
@@ -30,25 +30,25 @@ namespace AntiDupl.NET;
 /// Панель содеражшая или превью дефекта или дубликатов.
 /// </summary>
 public class ResultsPreviewContainer : Panel
-    {
-        private enum State
-        {
-            Empty,
-            Defect,
-            DuplPair
-        };
-        private State m_state = State.Empty;
+{
+	private enum State
+	{
+		Empty,
+		Defect,
+		DuplPair
+	};
+	private State m_state = State.Empty;
 
-        private readonly ResultsPreviewDefect m_resultsPreviewDefect;
-        private readonly ResultsPreviewDuplPair m_resultsPreviewDuplPair;
-        private readonly MainSplitContainer m_mainSplitContainer;
+	private readonly ResultsPreviewDefect m_resultsPreviewDefect;
+	private readonly ResultsPreviewDuplPair m_resultsPreviewDuplPair;
+	private readonly MainSplitContainer m_mainSplitContainer;
 
-        public ResultsPreviewContainer(CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
-        {
-            Location = new Point(0, 0);
-            Dock = DockStyle.Fill;
+	public ResultsPreviewContainer(CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
+	{
+		Location = new Point(0, 0);
+		Dock = DockStyle.Fill;
 
-            m_mainSplitContainer = mainSplitContainer;
+		m_mainSplitContainer = mainSplitContainer;
 		m_resultsPreviewDefect = new ResultsPreviewDefect(core, options, coreOptions, m_mainSplitContainer.resultsListView)
 		{
 			Location = new System.Drawing.Point(0, 0),
@@ -61,64 +61,64 @@ public class ResultsPreviewContainer : Panel
 			Dock = DockStyle.Fill
 		};
 
-		m_mainSplitContainer.OnCurrentResultChanged += 
-                new MainSplitContainer.CurrentResultChangedHandler(CurrentResultChanged);
-        }
+		m_mainSplitContainer.OnCurrentResultChanged +=
+				new MainSplitContainer.CurrentResultChangedHandler(CurrentResultChanged);
+	}
 
-        private void CurrentResultChanged()
-        {
-            var result = m_mainSplitContainer.resultsListView.GetCurrentResult();
-            var state = State.Empty;
-            if (result != null)
-            {
-                switch (result.type)
-                {
-                    case CoreDll.ResultType.DefectImage:
-                        state = State.Defect;
-                        break;
-                    case CoreDll.ResultType.DuplImagePair:
-                        state = State.DuplPair;
-                        break;
-                }
-            }
+	private void CurrentResultChanged()
+	{
+		var result = m_mainSplitContainer.resultsListView.GetCurrentResult();
+		var state = State.Empty;
+		if (result != null)
+		{
+			switch (result.type)
+			{
+				case CoreDll.ResultType.DefectImage:
+					state = State.Defect;
+					break;
+				case CoreDll.ResultType.DuplImagePair:
+					state = State.DuplPair;
+					break;
+			}
+		}
 
-            switch (state)
-            {
-                case State.Empty:
-                    break;
-                case State.Defect:
-                    m_resultsPreviewDefect.SetCurrentSearchResult(result);
-                    break;
-                case State.DuplPair:
-                    m_resultsPreviewDuplPair.SetCurrentSearchResult(result);
-                    break;
-            }
+		switch (state)
+		{
+			case State.Empty:
+				break;
+			case State.Defect:
+				m_resultsPreviewDefect.SetCurrentSearchResult(result);
+				break;
+			case State.DuplPair:
+				m_resultsPreviewDuplPair.SetCurrentSearchResult(result);
+				break;
+		}
 
-            if(state != m_state)
-            {
-                m_state = state;
+		if (state != m_state)
+		{
+			m_state = state;
 
-                m_mainSplitContainer.OnCurrentResultChanged -= new MainSplitContainer.CurrentResultChangedHandler(CurrentResultChanged);
-                Controls.Clear(); //Очишаем панель
-                m_mainSplitContainer.OnCurrentResultChanged += new MainSplitContainer.CurrentResultChangedHandler(CurrentResultChanged);
+			m_mainSplitContainer.OnCurrentResultChanged -= new MainSplitContainer.CurrentResultChangedHandler(CurrentResultChanged);
+			Controls.Clear(); //Очишаем панель
+			m_mainSplitContainer.OnCurrentResultChanged += new MainSplitContainer.CurrentResultChangedHandler(CurrentResultChanged);
 
-                switch (m_state)
-                {
-                    case State.Empty:
-                        break;
-                    case State.Defect:
-                        Controls.Add(m_resultsPreviewDefect);
-                        break;
-                    case State.DuplPair:
-                        Controls.Add(m_resultsPreviewDuplPair);
-                        break;
-                }
-            }
-        }
+			switch (m_state)
+			{
+				case State.Empty:
+					break;
+				case State.Defect:
+					Controls.Add(m_resultsPreviewDefect);
+					break;
+				case State.DuplPair:
+					Controls.Add(m_resultsPreviewDuplPair);
+					break;
+			}
+		}
+	}
 
-        public void SetViewMode(ResultsOptions.ViewMode viewMode)
-        {
-            m_resultsPreviewDefect.SetViewMode(viewMode);
-            m_resultsPreviewDuplPair.SetViewMode(viewMode);
-        }
-    }
+	public void SetViewMode(ResultsOptions.ViewMode viewMode)
+	{
+		m_resultsPreviewDefect.SetViewMode(viewMode);
+		m_resultsPreviewDuplPair.SetViewMode(viewMode);
+	}
+}

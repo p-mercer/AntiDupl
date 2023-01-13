@@ -21,70 +21,70 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
 public class ComplexProgressBar : ProgressBar
-    {
-        private int m_firstValue = 0;
-        public int FirstValue
-        {
-            get { return m_firstValue; }
-            set
-            {
-                if (m_firstValue != value)
-                {
-                    m_firstValue = value;
-                    Invalidate();
-                }
-            }
-        }
+{
+	private int m_firstValue = 0;
+	public int FirstValue
+	{
+		get { return m_firstValue; }
+		set
+		{
+			if (m_firstValue != value)
+			{
+				m_firstValue = value;
+				Invalidate();
+			}
+		}
+	}
 
-        private int m_secondValue = 0;
-        public int SecondValue
-        {
-            get { return m_secondValue; }
-            set
-            {
-                if (m_secondValue != value)
-                {
-                    m_secondValue = value;
-                    Invalidate();
-                }
-            }
-        }
+	private int m_secondValue = 0;
+	public int SecondValue
+	{
+		get { return m_secondValue; }
+		set
+		{
+			if (m_secondValue != value)
+			{
+				m_secondValue = value;
+				Invalidate();
+			}
+		}
+	}
 
-        public Color FirstForeColor
-        {
-            get { return ForeColor; }
-            set { ForeColor = value; }
-        }
+	public Color FirstForeColor
+	{
+		get { return ForeColor; }
+		set { ForeColor = value; }
+	}
 
-        private Color m_secondForeColor = new();
-        public Color SecondForeColor
-        {
-            get { return m_secondForeColor; }
-            set
-            {
-                m_secondForeColor = value;
-                Invalidate();
-            }
-        }
+	private Color m_secondForeColor = new();
+	public Color SecondForeColor
+	{
+		get { return m_secondForeColor; }
+		set
+		{
+			m_secondForeColor = value;
+			Invalidate();
+		}
+	}
 
-        public ComplexProgressBar()
-        {
-            SetStyle(ControlStyles.UserPaint, true);
-            m_secondForeColor = Color.FromArgb((ForeColor.R + BackColor.R) / 2, (ForeColor.G + BackColor.G) / 2, (ForeColor.B + BackColor.B) / 2);
-        }
+	public ComplexProgressBar()
+	{
+		SetStyle(ControlStyles.UserPaint, true);
+		m_secondForeColor = Color.FromArgb((ForeColor.R + BackColor.R) / 2, (ForeColor.G + BackColor.G) / 2, (ForeColor.B + BackColor.B) / 2);
+	}
 
-        override protected void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-            Brush secondBrush = new SolidBrush(SecondForeColor);
-            e.Graphics.FillRectangle(secondBrush, 1, 1, (Width - 2) * m_secondValue / (Maximum - Minimum), Height - 2);
-            Brush firstBrush = new SolidBrush(FirstForeColor);
-            e.Graphics.FillRectangle(firstBrush, 1, 1, (Width - 2) * m_firstValue / (Maximum - Minimum), Height - 2);
-        }
-    }
+	override protected void OnPaint(PaintEventArgs e)
+	{
+		base.OnPaint(e);
+		Brush secondBrush = new SolidBrush(SecondForeColor);
+		e.Graphics.FillRectangle(secondBrush, 1, 1, (Width - 2) * m_secondValue / (Maximum - Minimum), Height - 2);
+		Brush firstBrush = new SolidBrush(FirstForeColor);
+		e.Graphics.FillRectangle(firstBrush, 1, 1, (Width - 2) * m_firstValue / (Maximum - Minimum), Height - 2);
+	}
+}

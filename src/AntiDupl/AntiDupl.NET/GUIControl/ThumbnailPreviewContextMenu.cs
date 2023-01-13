@@ -22,99 +22,99 @@
 * SOFTWARE.
 */
 using System;
-using System.Windows.Forms;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
 public class ThumbnailPreviewContextMenu : ContextMenuStrip
-    {
-        private readonly CoreLib m_core;
-        private readonly Options m_options;
-        private readonly ThumbnailPreview m_thumbnailPreview;
-        private readonly ThumbnailGroupTable m_thumbnailGroupTable;
+{
+	private readonly CoreLib m_core;
+	private readonly Options m_options;
+	private readonly ThumbnailPreview m_thumbnailPreview;
+	private readonly ThumbnailGroupTable m_thumbnailGroupTable;
 
-        private ToolStripMenuItem m_copyPathItem;
-        private ToolStripMenuItem m_openImageItem;
-        private ToolStripMenuItem m_openFolderItem;
-        private ToolStripMenuItem m_renameImageItem;
+	private ToolStripMenuItem m_copyPathItem;
+	private ToolStripMenuItem m_openImageItem;
+	private ToolStripMenuItem m_openFolderItem;
+	private ToolStripMenuItem m_renameImageItem;
 
-        public ThumbnailPreviewContextMenu(CoreLib core, Options options, ThumbnailPreview thumbnailPreview, ThumbnailGroupTable thumbnailGroupTable)
-        {
-            m_core = core;
-            m_options = options;
-            m_thumbnailPreview = thumbnailPreview;
-            m_thumbnailGroupTable = thumbnailGroupTable;
-            InitializeComponents();
-            UpdateStrings();
-            Resources.Strings.OnCurrentChange += new Resources.Strings.CurrentChangeHandler(UpdateStrings);
-            Opening += new CancelEventHandler(OnOpening);
-        }
+	public ThumbnailPreviewContextMenu(CoreLib core, Options options, ThumbnailPreview thumbnailPreview, ThumbnailGroupTable thumbnailGroupTable)
+	{
+		m_core = core;
+		m_options = options;
+		m_thumbnailPreview = thumbnailPreview;
+		m_thumbnailGroupTable = thumbnailGroupTable;
+		InitializeComponents();
+		UpdateStrings();
+		Resources.Strings.OnCurrentChange += new Resources.Strings.CurrentChangeHandler(UpdateStrings);
+		Opening += new CancelEventHandler(OnOpening);
+	}
 
-        private void InitializeComponents()
-        {
-            RenderMode = ToolStripRenderMode.System;
+	private void InitializeComponents()
+	{
+		RenderMode = ToolStripRenderMode.System;
 
-            m_copyPathItem = InitFactory.MenuItem.Create(null, null, CopyPath);
-            m_openImageItem = InitFactory.MenuItem.Create(null, null, OpenImage);
-            m_openFolderItem = InitFactory.MenuItem.Create(null, null, OpenFolder);
-            m_renameImageItem = InitFactory.MenuItem.Create(null, null, RenameImage);
-            
-            Items.Add(new ToolStripSeparator());
-        }
-        
-        private void OnOpening(object sender, EventArgs e)
-        {
-            Items.Clear();
-            
-            Items.Add(m_copyPathItem);
-            Items.Add(new ToolStripSeparator());
-            Items.Add(m_openImageItem);
-            Items.Add(m_openFolderItem);
-            Items.Add(new ToolStripSeparator());
-            Items.Add(m_renameImageItem);
-        }
+		m_copyPathItem = InitFactory.MenuItem.Create(null, null, CopyPath);
+		m_openImageItem = InitFactory.MenuItem.Create(null, null, OpenImage);
+		m_openFolderItem = InitFactory.MenuItem.Create(null, null, OpenFolder);
+		m_renameImageItem = InitFactory.MenuItem.Create(null, null, RenameImage);
 
-        private void UpdateStrings()
-        {
-            var s = Resources.Strings.Current;
+		Items.Add(new ToolStripSeparator());
+	}
 
-            m_copyPathItem.Text = s.ImagePreviewContextMenu_CopyPathItem_Text;
-            m_openImageItem.Text = s.ImagePreviewContextMenu_OpenImageItem_Text;
-            m_openFolderItem.Text = s.ImagePreviewContextMenu_OpenFolderItem_Text;
-            m_renameImageItem.Text = s.ImagePreviewContextMenu_RenameImageItem_Text;
-        }
+	private void OnOpening(object sender, EventArgs e)
+	{
+		Items.Clear();
 
-        private void OpenImage(object sender, EventArgs e)
-        {
+		Items.Add(m_copyPathItem);
+		Items.Add(new ToolStripSeparator());
+		Items.Add(m_openImageItem);
+		Items.Add(m_openFolderItem);
+		Items.Add(new ToolStripSeparator());
+		Items.Add(m_renameImageItem);
+	}
+
+	private void UpdateStrings()
+	{
+		var s = Resources.Strings.Current;
+
+		m_copyPathItem.Text = s.ImagePreviewContextMenu_CopyPathItem_Text;
+		m_openImageItem.Text = s.ImagePreviewContextMenu_OpenImageItem_Text;
+		m_openFolderItem.Text = s.ImagePreviewContextMenu_OpenFolderItem_Text;
+		m_renameImageItem.Text = s.ImagePreviewContextMenu_RenameImageItem_Text;
+	}
+
+	private void OpenImage(object sender, EventArgs e)
+	{
 		var startInfo = new ProcessStartInfo
 		{
 			FileName = m_thumbnailPreview.ImageInfo.path
 		};
 		try
-            {
-                Process.Start(startInfo);
-            }
-            catch (System.Exception exeption)
-            {
-                MessageBox.Show(exeption.Message);
-            }
-        }
+		{
+			Process.Start(startInfo);
+		}
+		catch (System.Exception exeption)
+		{
+			MessageBox.Show(exeption.Message);
+		}
+	}
 
-        private void OpenFolder(object sender, EventArgs e)
-        {
-            FolderOpener.OpenContainingFolder(m_thumbnailPreview.ImageInfo);
-        }
+	private void OpenFolder(object sender, EventArgs e)
+	{
+		FolderOpener.OpenContainingFolder(m_thumbnailPreview.ImageInfo);
+	}
 
-        private void CopyPath(object sender, EventArgs e)
-        {
-            Clipboard.SetText(m_thumbnailPreview.ImageInfo.path);
-        }
+	private void CopyPath(object sender, EventArgs e)
+	{
+		Clipboard.SetText(m_thumbnailPreview.ImageInfo.path);
+	}
 
-        private void RenameImage(object sender, EventArgs e)
-        {
+	private void RenameImage(object sender, EventArgs e)
+	{
 		var dialog = new SaveFileDialog
 		{
 			FileName = m_thumbnailPreview.ImageInfo.path,
@@ -124,31 +124,31 @@ public class ThumbnailPreviewContextMenu : ContextMenuStrip
 			DefaultExt = (new FileInfo(m_thumbnailPreview.ImageInfo.path)).Extension
 		};
 		dialog.FileOk += new System.ComponentModel.CancelEventHandler(OnRenameImageDialogFileOk);
-            dialog.Title = Resources.Strings.Current.ImagePreviewContextMenu_RenameImageItem_Text;
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                if (m_thumbnailGroupTable.Rename(m_thumbnailPreview.Group, m_thumbnailPreview.Index, dialog.FileName))
-                {
-                    m_thumbnailPreview.SetThumbnail(m_thumbnailPreview.Group, m_thumbnailPreview.Index);
-                }
-            }
-        }
+		dialog.Title = Resources.Strings.Current.ImagePreviewContextMenu_RenameImageItem_Text;
+		if (dialog.ShowDialog() == DialogResult.OK)
+		{
+			if (m_thumbnailGroupTable.Rename(m_thumbnailPreview.Group, m_thumbnailPreview.Index, dialog.FileName))
+			{
+				m_thumbnailPreview.SetThumbnail(m_thumbnailPreview.Group, m_thumbnailPreview.Index);
+			}
+		}
+	}
 
-        private void OnRenameImageDialogFileOk(object sender, CancelEventArgs e)
-        {
-            var dialog = (SaveFileDialog)sender;
-            var oldFileInfo = new FileInfo(m_thumbnailPreview.ImageInfo.path);
-            var newFileInfo = new FileInfo(dialog.FileName);
-            if (newFileInfo.FullName != oldFileInfo.FullName && newFileInfo.Exists)
-            {
-                MessageBox.Show(Resources.Strings.Current.ErrorMessage_FileAlreadyExists,
-                    dialog.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                e.Cancel = true;
-            }
-            else if (newFileInfo.Extension != oldFileInfo.Extension && newFileInfo.Extension.Length > 0)
-            {
-                e.Cancel = MessageBox.Show(Resources.Strings.Current.WarningMessage_ChangeFileExtension,
-                    dialog.Title, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel;
-            }
-        }
-    }
+	private void OnRenameImageDialogFileOk(object sender, CancelEventArgs e)
+	{
+		var dialog = (SaveFileDialog)sender;
+		var oldFileInfo = new FileInfo(m_thumbnailPreview.ImageInfo.path);
+		var newFileInfo = new FileInfo(dialog.FileName);
+		if (newFileInfo.FullName != oldFileInfo.FullName && newFileInfo.Exists)
+		{
+			MessageBox.Show(Resources.Strings.Current.ErrorMessage_FileAlreadyExists,
+				dialog.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			e.Cancel = true;
+		}
+		else if (newFileInfo.Extension != oldFileInfo.Extension && newFileInfo.Extension.Length > 0)
+		{
+			e.Cancel = MessageBox.Show(Resources.Strings.Current.WarningMessage_ChangeFileExtension,
+				dialog.Title, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel;
+		}
+	}
+}

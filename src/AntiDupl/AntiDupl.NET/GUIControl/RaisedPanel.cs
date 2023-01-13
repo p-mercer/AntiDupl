@@ -26,30 +26,30 @@ using System.Windows.Forms;
 namespace AntiDupl.NET;
 
 public class RaisedPanel : Panel
-    {
-        /// <summary>
-        /// Создает окно с двойной рамкой.
-        /// </summary>
-        private const int WS_EX_DLGMODALFRAME = 0x00000001;
+{
+	/// <summary>
+	/// Создает окно с двойной рамкой.
+	/// </summary>
+	private const int WS_EX_DLGMODALFRAME = 0x00000001;
 
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                var p = base.CreateParams;
-                p.ExStyle |= WS_EX_DLGMODALFRAME;
-                return p;
-            }
-        }
+	protected override CreateParams CreateParams
+	{
+		get
+		{
+			var p = base.CreateParams;
+			p.ExStyle |= WS_EX_DLGMODALFRAME;
+			return p;
+		}
+	}
 
-        public new BorderStyle BorderStyle 
-        { 
-            get
-            {
-                return base.BorderStyle;
-            } 
-            private set
-            {
-            }
-        }  
-    }
+	public new BorderStyle BorderStyle
+	{
+		get
+		{
+			return base.BorderStyle;
+		}
+		private set
+		{
+		}
+	}
+}

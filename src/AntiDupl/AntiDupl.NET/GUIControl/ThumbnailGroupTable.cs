@@ -23,9 +23,9 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Drawing;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
@@ -33,408 +33,408 @@ namespace AntiDupl.NET;
 /// Таблица групп.
 /// </summary>
 public class ThumbnailGroupTable : Panel
-    {
-        private readonly CoreLib m_core;
-        private readonly AntiDupl.NET.Options m_options;
-        private CoreGroup[] m_groups;
-        private int m_maxGroupIndex = -1;
-        private readonly MainSplitContainer m_mainSplitContainer;
+{
+	private readonly CoreLib m_core;
+	private readonly AntiDupl.NET.Options m_options;
+	private CoreGroup[] m_groups;
+	private int m_maxGroupIndex = -1;
+	private readonly MainSplitContainer m_mainSplitContainer;
 
-        private readonly ThumbnailStorage m_thumbnailStorage = null;
-        private volatile bool m_abortUpdateThumbnailsThread = false;
-        private Thread m_updateThumbnailsThread = null;
+	private readonly ThumbnailStorage m_thumbnailStorage = null;
+	private volatile bool m_abortUpdateThumbnailsThread = false;
+	private Thread m_updateThumbnailsThread = null;
 
-        private ThumbnailGroupPanel[] m_thumbnailGroupPanels;
-        private bool m_changeControls = true;
-        private DateTime m_lastUpdate = DateTime.Now;
+	private ThumbnailGroupPanel[] m_thumbnailGroupPanels;
+	private bool m_changeControls = true;
+	private DateTime m_lastUpdate = DateTime.Now;
 
-        public delegate void CurrentThumbnailChangedHandler(CoreGroup group, int index);
-        public event CurrentThumbnailChangedHandler OnCurrentThumbnailChanged;
+	public delegate void CurrentThumbnailChangedHandler(CoreGroup group, int index);
+	public event CurrentThumbnailChangedHandler OnCurrentThumbnailChanged;
 
-        public ThumbnailGroupTable(CoreLib core, AntiDupl.NET.Options options, MainSplitContainer mainSplitContainer)
-        {
-            m_core = core;
-            m_options = options;
-            m_mainSplitContainer = mainSplitContainer;
-            m_thumbnailStorage = new ThumbnailStorage(m_core, m_options);
-            InitializeComponents();
-        }
+	public ThumbnailGroupTable(CoreLib core, AntiDupl.NET.Options options, MainSplitContainer mainSplitContainer)
+	{
+		m_core = core;
+		m_options = options;
+		m_mainSplitContainer = mainSplitContainer;
+		m_thumbnailStorage = new ThumbnailStorage(m_core, m_options);
+		InitializeComponents();
+	}
 
-        private void InitializeComponents()
-        {
-            Location = new Point(0, 0);
-            Dock = DockStyle.Fill;
-            AutoScroll = true;
-            DoubleBuffered = true;
-            BackColor = Color.Transparent;
+	private void InitializeComponents()
+	{
+		Location = new Point(0, 0);
+		Dock = DockStyle.Fill;
+		AutoScroll = true;
+		DoubleBuffered = true;
+		BackColor = Color.Transparent;
 
-            MouseEnter += new EventHandler(OnMouseEnter);
-        }
+		MouseEnter += new EventHandler(OnMouseEnter);
+	}
 
-        public void UpdateGroups()
-        {
-            UpdateThumbnailsStop();
-            GetGroups();
-            UpdateControls();
-            UpdateThumbnailsStart();
-            //if (OnUpdateResults != null)
-            //    OnUpdateResults();
-            Invalidate();
-        }
+	public void UpdateGroups()
+	{
+		UpdateThumbnailsStop();
+		GetGroups();
+		UpdateControls();
+		UpdateThumbnailsStart();
+		//if (OnUpdateResults != null)
+		//    OnUpdateResults();
+		Invalidate();
+	}
 
-        public void ClearGroups()
-        {
-            UpdateThumbnailsStop();
-            m_thumbnailStorage.Clear();
-            m_groups = new CoreGroup[0];
-            m_maxGroupIndex = -1;
-            Controls.Clear();
-        }
+	public void ClearGroups()
+	{
+		UpdateThumbnailsStop();
+		m_thumbnailStorage.Clear();
+		m_groups = new CoreGroup[0];
+		m_maxGroupIndex = -1;
+		Controls.Clear();
+	}
 
-        /// <summary>
-        /// Получаем из списка результатов группы и назначаем их скрытому полю m_groups.
-        /// </summary>
-        private void GetGroups()
-        {
-            var groupSize = m_core.GetGroupSize();
-            if (groupSize == 0)
-            {
-                m_groups = new CoreGroup[0];
-                m_maxGroupIndex = -1;
-                return;
-            }
-            m_groups = m_core.GetGroup(0, groupSize);
-            // Находим размер самой большой группы.
-            var groupSizeMax = 0;
-            for (var i = 0; i < m_groups.Length; ++i)
-            {
-                if (m_groups[i].images.Length > groupSizeMax)
-                {
-                    groupSizeMax = m_groups[i].images.Length;
-                    m_maxGroupIndex = i;
-                }
-            }
-        }
+	/// <summary>
+	/// Получаем из списка результатов группы и назначаем их скрытому полю m_groups.
+	/// </summary>
+	private void GetGroups()
+	{
+		var groupSize = m_core.GetGroupSize();
+		if (groupSize == 0)
+		{
+			m_groups = new CoreGroup[0];
+			m_maxGroupIndex = -1;
+			return;
+		}
+		m_groups = m_core.GetGroup(0, groupSize);
+		// Находим размер самой большой группы.
+		var groupSizeMax = 0;
+		for (var i = 0; i < m_groups.Length; ++i)
+		{
+			if (m_groups[i].images.Length > groupSizeMax)
+			{
+				groupSizeMax = m_groups[i].images.Length;
+				m_maxGroupIndex = i;
+			}
+		}
+	}
 
-        /// <summary>
-        /// Устанавливаем размеры таблицы
-        /// </summary>
-        private void UpdateControls()
-        {
-            SuspendDrawing(this);
-            Controls.Clear();
+	/// <summary>
+	/// Устанавливаем размеры таблицы
+	/// </summary>
+	private void UpdateControls()
+	{
+		SuspendDrawing(this);
+		Controls.Clear();
 
-            var width = Padding.Horizontal;
-            var height = Padding.Vertical;
-            
-            if (m_groups.Length > 0)
-            {
-                //Создаем массив панелей с группами дубликатов
-                m_thumbnailGroupPanels = new ThumbnailGroupPanel[m_groups.Length];
+		var width = Padding.Horizontal;
+		var height = Padding.Vertical;
 
-                //Добавляем пустые первую, самую большую и последнию панель с группами дубликатов
-                AddGroupPanel(0);
+		if (m_groups.Length > 0)
+		{
+			//Создаем массив панелей с группами дубликатов
+			m_thumbnailGroupPanels = new ThumbnailGroupPanel[m_groups.Length];
 
-                if (m_groups.Length > 1)
-                {
-                    AddGroupPanel(m_groups.Length - 1);
-                }
+			//Добавляем пустые первую, самую большую и последнию панель с группами дубликатов
+			AddGroupPanel(0);
 
-                if (m_maxGroupIndex != 0 && m_maxGroupIndex != m_groups.Length - 1)
-                {
-                    AddGroupPanel(m_maxGroupIndex);
-                }
+			if (m_groups.Length > 1)
+			{
+				AddGroupPanel(m_groups.Length - 1);
+			}
 
-                // Изменяем размеры таблицы в соотвествии с размерами самой большой группы
-                var maxPanel = m_thumbnailGroupPanels[m_maxGroupIndex];
-                height += (maxPanel.Height + maxPanel.Margin.Vertical) * m_groups.Length;
-                width += maxPanel.Width + maxPanel.Margin.Horizontal;
-            }
-            AutoScrollMinSize = new Size(width, height);
-            ResumeDrawing(this);
-        }
+			if (m_maxGroupIndex != 0 && m_maxGroupIndex != m_groups.Length - 1)
+			{
+				AddGroupPanel(m_maxGroupIndex);
+			}
 
-        /// <summary>
-        /// Это первая или последняя группа.
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        private bool IsSpecial(int index)
-        {
-            return (index == 0 || index == m_groups.Length - 1 || index == m_maxGroupIndex);
-        }
+			// Изменяем размеры таблицы в соотвествии с размерами самой большой группы
+			var maxPanel = m_thumbnailGroupPanels[m_maxGroupIndex];
+			height += (maxPanel.Height + maxPanel.Margin.Vertical) * m_groups.Length;
+			width += maxPanel.Width + maxPanel.Margin.Horizontal;
+		}
+		AutoScrollMinSize = new Size(width, height);
+		ResumeDrawing(this);
+	}
 
-        private int GetVisibleGroupIndexMin()
-        {
-            var height = m_thumbnailGroupPanels[0].Height + m_thumbnailGroupPanels[0].Margin.Vertical;
-            var index = (int)Math.Floor((-AutoScrollPosition.Y - Padding.Top) / (double)height);
-            return Math.Max(0, index);// - 1000);
-        }
+	/// <summary>
+	/// Это первая или последняя группа.
+	/// </summary>
+	/// <param name="index"></param>
+	/// <returns></returns>
+	private bool IsSpecial(int index)
+	{
+		return (index == 0 || index == m_groups.Length - 1 || index == m_maxGroupIndex);
+	}
 
-        private int GetVisibleGroupIndexMax()
-        {
-            var height = m_thumbnailGroupPanels[0].Height + m_thumbnailGroupPanels[0].Margin.Vertical;
-            var index = (int)Math.Ceiling((ClientSize.Height - AutoScrollPosition.Y - Padding.Top) / (double)height);
-            return Math.Min(m_groups.Length - 1, index);// + 1000);
-        }
+	private int GetVisibleGroupIndexMin()
+	{
+		var height = m_thumbnailGroupPanels[0].Height + m_thumbnailGroupPanels[0].Margin.Vertical;
+		var index = (int)Math.Floor((-AutoScrollPosition.Y - Padding.Top) / (double)height);
+		return Math.Max(0, index);// - 1000);
+	}
 
-        /// <summary>
-        /// Создаем и добавляем в хранилише m_thumbnailGroupPanels ThumbnailGroupPanel - панель с дубликатами
-        /// </summary>
-        /// <param name="index"></param>
-        private void AddGroupPanel(int index)
-        {
-            // Если хранилище еще не содержит панелей групп
-            if (m_thumbnailGroupPanels[index] == null)
-            {
+	private int GetVisibleGroupIndexMax()
+	{
+		var height = m_thumbnailGroupPanels[0].Height + m_thumbnailGroupPanels[0].Margin.Vertical;
+		var index = (int)Math.Ceiling((ClientSize.Height - AutoScrollPosition.Y - Padding.Top) / (double)height);
+		return Math.Min(m_groups.Length - 1, index);// + 1000);
+	}
 
-                var groupPanel = new ThumbnailGroupPanel(m_core, m_options, m_groups[index], this);
-                groupPanel.Location = new Point(
-                    Padding.Left + groupPanel.Margin.Left + AutoScrollPosition.X,
-                    Padding.Top + groupPanel.Margin.Top + AutoScrollPosition.Y + (groupPanel.Height + groupPanel.Margin.Vertical) * index);
+	/// <summary>
+	/// Создаем и добавляем в хранилише m_thumbnailGroupPanels ThumbnailGroupPanel - панель с дубликатами
+	/// </summary>
+	/// <param name="index"></param>
+	private void AddGroupPanel(int index)
+	{
+		// Если хранилище еще не содержит панелей групп
+		if (m_thumbnailGroupPanels[index] == null)
+		{
 
-                var thumbnailPanels = groupPanel.ThumbnailPanels;
-                for (var i = 0; i < thumbnailPanels.Length; ++i)
-                {
-                    if (m_thumbnailStorage.Exists(thumbnailPanels[i].ImageInfo))
-                    {
-                        thumbnailPanels[i].Thumbnail = m_thumbnailStorage.Get(thumbnailPanels[i].ImageInfo);
-                    }
-                }
-                m_thumbnailGroupPanels[index] = groupPanel;
-                Controls.Add(groupPanel);
-                m_changeControls = true;
-                Console.Write("a");
-            }
-        }
+			var groupPanel = new ThumbnailGroupPanel(m_core, m_options, m_groups[index], this);
+			groupPanel.Location = new Point(
+				Padding.Left + groupPanel.Margin.Left + AutoScrollPosition.X,
+				Padding.Top + groupPanel.Margin.Top + AutoScrollPosition.Y + (groupPanel.Height + groupPanel.Margin.Vertical) * index);
 
-        private void AddGroupPanels(int indexMin, int indexMax)
-        {
-            var controls = new List<Control>();
-            for (var i = indexMin; i < indexMax; ++i)
-            {
-                if (m_thumbnailGroupPanels[i] == null)
-                {
+			var thumbnailPanels = groupPanel.ThumbnailPanels;
+			for (var i = 0; i < thumbnailPanels.Length; ++i)
+			{
+				if (m_thumbnailStorage.Exists(thumbnailPanels[i].ImageInfo))
+				{
+					thumbnailPanels[i].Thumbnail = m_thumbnailStorage.Get(thumbnailPanels[i].ImageInfo);
+				}
+			}
+			m_thumbnailGroupPanels[index] = groupPanel;
+			Controls.Add(groupPanel);
+			m_changeControls = true;
+			Console.Write("a");
+		}
+	}
 
-                    var groupPanel = new ThumbnailGroupPanel(m_core, m_options, m_groups[i], this);
-                    groupPanel.Location = new Point(
-                        Padding.Left + groupPanel.Margin.Left + AutoScrollPosition.X,
-                        Padding.Top + groupPanel.Margin.Top + AutoScrollPosition.Y + (groupPanel.Height + groupPanel.Margin.Vertical) * i);
+	private void AddGroupPanels(int indexMin, int indexMax)
+	{
+		var controls = new List<Control>();
+		for (var i = indexMin; i < indexMax; ++i)
+		{
+			if (m_thumbnailGroupPanels[i] == null)
+			{
 
-                    var thumbnailPanels = groupPanel.ThumbnailPanels;
-                    for (var j = 0; j < thumbnailPanels.Length; ++j)
-                    {
-                        if (m_thumbnailStorage.Exists(thumbnailPanels[j].ImageInfo))
-                        {
-                            thumbnailPanels[j].Thumbnail = m_thumbnailStorage.Get(thumbnailPanels[j].ImageInfo);
-                        }
-                    }
+				var groupPanel = new ThumbnailGroupPanel(m_core, m_options, m_groups[i], this);
+				groupPanel.Location = new Point(
+					Padding.Left + groupPanel.Margin.Left + AutoScrollPosition.X,
+					Padding.Top + groupPanel.Margin.Top + AutoScrollPosition.Y + (groupPanel.Height + groupPanel.Margin.Vertical) * i);
 
-                    //groupPanel.Visible = false;
+				var thumbnailPanels = groupPanel.ThumbnailPanels;
+				for (var j = 0; j < thumbnailPanels.Length; ++j)
+				{
+					if (m_thumbnailStorage.Exists(thumbnailPanels[j].ImageInfo))
+					{
+						thumbnailPanels[j].Thumbnail = m_thumbnailStorage.Get(thumbnailPanels[j].ImageInfo);
+					}
+				}
 
-                    controls.Add(groupPanel);
+				//groupPanel.Visible = false;
 
-                    m_thumbnailGroupPanels[i] = groupPanel;
+				controls.Add(groupPanel);
 
-                }
-            }
+				m_thumbnailGroupPanels[i] = groupPanel;
 
-            if (controls.Count > 0)
-            {
-                Controls.AddRange(controls.ToArray());
-            }
-        }
+			}
+		}
 
-        /// <summary>
-        /// Удаляем из элементов управления и хранилиша m_thumbnailGroupPanels группу панелей.
-        /// </summary>
-        /// <param name="index"></param>
-        private void RemoveGroupPanel(int index)
-        {
-            if (index > 0 && m_thumbnailGroupPanels[index] != null && !IsSpecial(index))
-            {
-                Controls.Remove(m_thumbnailGroupPanels[index]);
-                m_thumbnailGroupPanels[index] = null;
-                m_changeControls = true;
-            }
-        }
+		if (controls.Count > 0)
+		{
+			Controls.AddRange(controls.ToArray());
+		}
+	}
 
-        private void UpdateVisiblePanels()
-        {
-            if (m_thumbnailGroupPanels != null && m_thumbnailGroupPanels.Length > 0 && m_thumbnailGroupPanels[0] != null)
-            {
-                var minIndex = GetVisibleGroupIndexMin();
-                var maxIndex = GetVisibleGroupIndexMax();
+	/// <summary>
+	/// Удаляем из элементов управления и хранилиша m_thumbnailGroupPanels группу панелей.
+	/// </summary>
+	/// <param name="index"></param>
+	private void RemoveGroupPanel(int index)
+	{
+		if (index > 0 && m_thumbnailGroupPanels[index] != null && !IsSpecial(index))
+		{
+			Controls.Remove(m_thumbnailGroupPanels[index]);
+			m_thumbnailGroupPanels[index] = null;
+			m_changeControls = true;
+		}
+	}
 
-                SuspendLayout();
-                //Visible = false;
-                for (var i = 0; i < minIndex; ++i)
-                {
-                    RemoveGroupPanel(i);
-                }
-                for (var i = minIndex; i < maxIndex; ++i)
-                {
-                    AddGroupPanel(i);
-                    //Application.DoEvents();
-                }
-                for (var i = maxIndex; i < m_thumbnailGroupPanels.Length; ++i)
-                {
-                    RemoveGroupPanel(i);
-                }
-                PerformLayout();
-                //Visible = true;
-            }
-        }
+	private void UpdateVisiblePanels()
+	{
+		if (m_thumbnailGroupPanels != null && m_thumbnailGroupPanels.Length > 0 && m_thumbnailGroupPanels[0] != null)
+		{
+			var minIndex = GetVisibleGroupIndexMin();
+			var maxIndex = GetVisibleGroupIndexMax();
 
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            if ((DateTime.Now - m_lastUpdate).TotalMilliseconds < 10)
-            {
-                return;
-            }
-            m_lastUpdate = DateTime.Now;
+			SuspendLayout();
+			//Visible = false;
+			for (var i = 0; i < minIndex; ++i)
+			{
+				RemoveGroupPanel(i);
+			}
+			for (var i = minIndex; i < maxIndex; ++i)
+			{
+				AddGroupPanel(i);
+				//Application.DoEvents();
+			}
+			for (var i = maxIndex; i < m_thumbnailGroupPanels.Length; ++i)
+			{
+				RemoveGroupPanel(i);
+			}
+			PerformLayout();
+			//Visible = true;
+		}
+	}
 
-            //for (int i = 0; i < Controls.Count; ++i)
-            //    SuspendDrawing(Controls[i]);
+	protected override void OnPaint(PaintEventArgs e)
+	{
+		if ((DateTime.Now - m_lastUpdate).TotalMilliseconds < 10)
+		{
+			return;
+		}
+		m_lastUpdate = DateTime.Now;
 
-            m_changeControls = false;
-            var t = DateTime.Now;
-            UpdateVisiblePanels();
-            var updateTime = DateTime.Now - t;
-            Console.WriteLine("ut = {0}; at = {1}.", updateTime.TotalMilliseconds.ToString(), t.Millisecond);
+		//for (int i = 0; i < Controls.Count; ++i)
+		//    SuspendDrawing(Controls[i]);
 
-            //for (int i = 0; i < Controls.Count; ++i)
-            //{
-            //    ResumeDrawing(Controls[i]);
-            //    Controls[i].Update();
-            //}
+		m_changeControls = false;
+		var t = DateTime.Now;
+		UpdateVisiblePanels();
+		var updateTime = DateTime.Now - t;
+		Console.WriteLine("ut = {0}; at = {1}.", updateTime.TotalMilliseconds.ToString(), t.Millisecond);
 
-            //ControlPaint.
+		//for (int i = 0; i < Controls.Count; ++i)
+		//{
+		//    ResumeDrawing(Controls[i]);
+		//    Controls[i].Update();
+		//}
 
-            //base.OnPaint(e);
-            //for (int i = 0; i < Controls.Count; ++i)
-            //{
-            //    //ResumeDrawing(Controls[i]);
-            //    Rectangle rect = new Rectangle(Controls[i].Location, Controls[i].Size);// .RectangleToClient();// .ClientRectangle;
-            //    rect.Offset(AutoScrollPosition.X, AutoScrollPosition.Y);
-            //    ControlPaint.DrawBorder3D(e.Graphics, rect, Border3DStyle.Raised, Border3DSide.All);
-            //}
+		//ControlPaint.
+
+		//base.OnPaint(e);
+		//for (int i = 0; i < Controls.Count; ++i)
+		//{
+		//    //ResumeDrawing(Controls[i]);
+		//    Rectangle rect = new Rectangle(Controls[i].Location, Controls[i].Size);// .RectangleToClient();// .ClientRectangle;
+		//    rect.Offset(AutoScrollPosition.X, AutoScrollPosition.Y);
+		//    ControlPaint.DrawBorder3D(e.Graphics, rect, Border3DStyle.Raised, Border3DSide.All);
+		//}
 
 
-            if (m_changeControls)
-            {
-                Invalidate();
-            }
-            else
+		if (m_changeControls)
+		{
+			Invalidate();
+		}
+		else
 		{
 			base.OnPaint(e);
 		}
 	}
 
-        protected override void OnScroll(ScrollEventArgs se)
-        {
-            //UpdateVisiblePanels();
-            base.OnScroll(se);
-        }
+	protected override void OnScroll(ScrollEventArgs se)
+	{
+		//UpdateVisiblePanels();
+		base.OnScroll(se);
+	}
 
-        protected override void OnResize(EventArgs eventargs)
-        {
-            //UpdateVisiblePanels();
-            base.OnResize(eventargs);
-        }
+	protected override void OnResize(EventArgs eventargs)
+	{
+		//UpdateVisiblePanels();
+		base.OnResize(eventargs);
+	}
 
-        protected override void OnMouseWheel(MouseEventArgs e)
-        {
-            //UpdateVisiblePanels();
-            base.OnMouseWheel(e);
-        }
+	protected override void OnMouseWheel(MouseEventArgs e)
+	{
+		//UpdateVisiblePanels();
+		base.OnMouseWheel(e);
+	}
 
-        public void UpdateThumbnailsStart()
-        {
-            m_abortUpdateThumbnailsThread = false;
-            m_updateThumbnailsThread = new Thread(UpdateThumbnailsThread);
-            m_updateThumbnailsThread.Start();
-        }
+	public void UpdateThumbnailsStart()
+	{
+		m_abortUpdateThumbnailsThread = false;
+		m_updateThumbnailsThread = new Thread(UpdateThumbnailsThread);
+		m_updateThumbnailsThread.Start();
+	}
 
-        public void UpdateThumbnailsStop()
-        {
-            m_abortUpdateThumbnailsThread = true;
-            m_updateThumbnailsThread?.Join();
-        }
+	public void UpdateThumbnailsStop()
+	{
+		m_abortUpdateThumbnailsThread = true;
+		m_updateThumbnailsThread?.Join();
+	}
 
-        /// <summary>
-        /// Заполняем хранилище изображений из групп. Запускается в отдельном потоке.
-        /// </summary>
-        private void UpdateThumbnailsThread()
-        {
-            for (var i = 0; i < m_groups.Length; ++i)
-            {
-                var images = m_groups[i].images;
-                for (var j = 0; j < images.Length; ++j)
-                {
-                    m_thumbnailStorage.Get(images[j]);
-                    if (m_abortUpdateThumbnailsThread)
+	/// <summary>
+	/// Заполняем хранилище изображений из групп. Запускается в отдельном потоке.
+	/// </summary>
+	private void UpdateThumbnailsThread()
+	{
+		for (var i = 0; i < m_groups.Length; ++i)
+		{
+			var images = m_groups[i].images;
+			for (var j = 0; j < images.Length; ++j)
+			{
+				m_thumbnailStorage.Get(images[j]);
+				if (m_abortUpdateThumbnailsThread)
 				{
 					return;
 				}
 			}
 
-                var groupPanel = m_thumbnailGroupPanels[i];
-                if(groupPanel != null)
-                {
-                    var thumbnailPanels = groupPanel.ThumbnailPanels;
-                    for (var j = 0; j < thumbnailPanels.Length; ++j)
-                    {
-                        if (m_thumbnailStorage.Exists(thumbnailPanels[j].ImageInfo))
-                        {
-                            thumbnailPanels[j].Thumbnail = m_thumbnailStorage.Get(thumbnailPanels[j].ImageInfo);
-                        }
-                    }
-                }
-            }
-        }
+			var groupPanel = m_thumbnailGroupPanels[i];
+			if (groupPanel != null)
+			{
+				var thumbnailPanels = groupPanel.ThumbnailPanels;
+				for (var j = 0; j < thumbnailPanels.Length; ++j)
+				{
+					if (m_thumbnailStorage.Exists(thumbnailPanels[j].ImageInfo))
+					{
+						thumbnailPanels[j].Thumbnail = m_thumbnailStorage.Get(thumbnailPanels[j].ImageInfo);
+					}
+				}
+			}
+		}
+	}
 
-        private void OnMouseEnter(object sender, EventArgs e)
-        {
-            Focus();
-        }
+	private void OnMouseEnter(object sender, EventArgs e)
+	{
+		Focus();
+	}
 
-        private const int WM_SETREDRAW = 0x000B;
+	private const int WM_SETREDRAW = 0x000B;
 
-        public static void SuspendDrawing(Control control)
-        {
-            var msgSuspendUpdate = Message.Create(control.Handle, WM_SETREDRAW, IntPtr.Zero,
-                IntPtr.Zero);
+	public static void SuspendDrawing(Control control)
+	{
+		var msgSuspendUpdate = Message.Create(control.Handle, WM_SETREDRAW, IntPtr.Zero,
+			IntPtr.Zero);
 
-            var window = NativeWindow.FromHandle(control.Handle);
-            window.DefWndProc(ref msgSuspendUpdate);
-        }
+		var window = NativeWindow.FromHandle(control.Handle);
+		window.DefWndProc(ref msgSuspendUpdate);
+	}
 
-        public static void ResumeDrawing(Control control)
-        {
-            // Create a C "true" boolean as an IntPtr
-            var wparam = new IntPtr(1);
-            var msgResumeUpdate = Message.Create(control.Handle, WM_SETREDRAW, wparam,
-                IntPtr.Zero);
+	public static void ResumeDrawing(Control control)
+	{
+		// Create a C "true" boolean as an IntPtr
+		var wparam = new IntPtr(1);
+		var msgResumeUpdate = Message.Create(control.Handle, WM_SETREDRAW, wparam,
+			IntPtr.Zero);
 
-            var window = NativeWindow.FromHandle(control.Handle);
-            window.DefWndProc(ref msgResumeUpdate);
+		var window = NativeWindow.FromHandle(control.Handle);
+		window.DefWndProc(ref msgResumeUpdate);
 
-            control.Invalidate();
-        }
+		control.Invalidate();
+	}
 
-        public void ChangeCurrentThumbnail(CoreGroup group, int index)
-        {
+	public void ChangeCurrentThumbnail(CoreGroup group, int index)
+	{
 		OnCurrentThumbnailChanged?.Invoke(group, index);
 	}
 
-        public bool Rename(CoreGroup group, int index, string newFileName)
-        {
-            if(m_core.Rename(group.id, index, newFileName))
-            {
-                UpdateGroups();
-                return true;
-            }
-            return false;
-        }
-    }
+	public bool Rename(CoreGroup group, int index, string newFileName)
+	{
+		if (m_core.Rename(group.id, index, newFileName))
+		{
+			UpdateGroups();
+			return true;
+		}
+		return false;
+	}
+}

@@ -26,68 +26,68 @@ using System.Windows.Forms;
 namespace AntiDupl.NET;
 
 public class HotKeyOptions
-    {
-        public enum Action
-        {
-            CurrentDefectDelete,
-            CurrentDuplPairDeleteFirst,
-            CurrentDuplPairDeleteSecond,
-            CurrentDuplPairDeleteBoth,
-            CurrentDuplPairRenameFirstToSecond,
-            CurrentDuplPairRenameSecondToFirst,
-            CurrentMistake,
-            ShowNeighbours,
-            Size
-        }
-        
-        public Keys[] keys;
-        
-        public HotKeyOptions()
-        {
-            keys = new Keys[(int)Action.Size];
-            SetDefault();
-        }
-    
-        public HotKeyOptions(HotKeyOptions options)
-        {
-            keys = new Keys[(int)Action.Size];
-            if (options.keys.Length == (int)Action.Size)
-            {
-                for (var i = 0; i < keys.Length; ++i)
+{
+	public enum Action
+	{
+		CurrentDefectDelete,
+		CurrentDuplPairDeleteFirst,
+		CurrentDuplPairDeleteSecond,
+		CurrentDuplPairDeleteBoth,
+		CurrentDuplPairRenameFirstToSecond,
+		CurrentDuplPairRenameSecondToFirst,
+		CurrentMistake,
+		ShowNeighbours,
+		Size
+	}
+
+	public Keys[] keys;
+
+	public HotKeyOptions()
+	{
+		keys = new Keys[(int)Action.Size];
+		SetDefault();
+	}
+
+	public HotKeyOptions(HotKeyOptions options)
+	{
+		keys = new Keys[(int)Action.Size];
+		if (options.keys.Length == (int)Action.Size)
+		{
+			for (var i = 0; i < keys.Length; ++i)
 			{
 				keys[i] = options.keys[i];
 			}
 		}
-            else
+		else
 		{
 			SetDefault();
 		}
 	}
-        
-        public void SetDefault()
-        {
-            keys[(int)Action.CurrentDefectDelete] = Keys.NumPad1;
-            keys[(int)Action.CurrentDuplPairDeleteFirst] = Keys.NumPad1;
-            keys[(int)Action.CurrentDuplPairDeleteSecond] = Keys.NumPad2;
-            keys[(int)Action.CurrentDuplPairDeleteBoth] = Keys.NumPad3;
-            keys[(int)Action.CurrentDuplPairRenameFirstToSecond] = Keys.NumPad4;
-            keys[(int)Action.CurrentDuplPairRenameSecondToFirst] = Keys.NumPad6;
-            keys[(int)Action.CurrentMistake] = Keys.NumPad5;
-            keys[(int)Action.ShowNeighbours] = Keys.Control | Keys.Q;
-        }
 
-        public void SetDefault(Action action)
-        {
-            var i = 1;
-            for (var key = Keys.NumPad1; key < Keys.NumPad5; key++, i++)
-            {
-                if ((int)action == i)
-                {
-                    keys[(int)action] = key;
-                    break;
-                }
-            }
-            if (action == Action.CurrentDefectDelete)
+	public void SetDefault()
+	{
+		keys[(int)Action.CurrentDefectDelete] = Keys.NumPad1;
+		keys[(int)Action.CurrentDuplPairDeleteFirst] = Keys.NumPad1;
+		keys[(int)Action.CurrentDuplPairDeleteSecond] = Keys.NumPad2;
+		keys[(int)Action.CurrentDuplPairDeleteBoth] = Keys.NumPad3;
+		keys[(int)Action.CurrentDuplPairRenameFirstToSecond] = Keys.NumPad4;
+		keys[(int)Action.CurrentDuplPairRenameSecondToFirst] = Keys.NumPad6;
+		keys[(int)Action.CurrentMistake] = Keys.NumPad5;
+		keys[(int)Action.ShowNeighbours] = Keys.Control | Keys.Q;
+	}
+
+	public void SetDefault(Action action)
+	{
+		var i = 1;
+		for (var key = Keys.NumPad1; key < Keys.NumPad5; key++, i++)
+		{
+			if ((int)action == i)
+			{
+				keys[(int)action] = key;
+				break;
+			}
+		}
+		if (action == Action.CurrentDefectDelete)
 		{
 			keys[(int)Action.CurrentDefectDelete] = Keys.NumPad1;
 		}
@@ -113,10 +113,10 @@ public class HotKeyOptions
 	   break;
 }*/
 	}
-        
-        public void CopyTo(ref HotKeyOptions options)
-        {
-            if (keys.Length != options.keys.Length)
+
+	public void CopyTo(ref HotKeyOptions options)
+	{
+		if (keys.Length != options.keys.Length)
 		{
 			options.keys = new Keys[(int)Action.Size];
 		}
@@ -127,9 +127,9 @@ public class HotKeyOptions
 		}
 	}
 
-        public bool Equals(HotKeyOptions options)
-        {
-            if (keys.Length != options.keys.Length)
+	public bool Equals(HotKeyOptions options)
+	{
+		if (keys.Length != options.keys.Length)
 		{
 			return false;
 		}
@@ -143,88 +143,88 @@ public class HotKeyOptions
 		}
 
 		return true;
-        }
+	}
 
-        public bool Valid(Action action)
-        {
-            var key = new KeyEventArgs(keys[(int)action]);
-            if(key.KeyData == Keys.None)
-            {
-                return true;
-            }
-            for(var i = 0; i < m_reservedKeys.Length; i++)
-            {
-                if(key.KeyCode == m_reservedKeys[i])
-                {
-                    return false;
-                }
-            }
-            for (var i = 0; i < m_reservedKeyCombinations.Length; i++)
-            {
-                if (key.KeyData == m_reservedKeyCombinations[i])
-                {
-                    return false;
-                }
-            }
-            
-            if(action == Action.CurrentDefectDelete)
-            {
-                if(key.KeyData == keys[(int)Action.CurrentMistake])
-                {
-                    return false;
-                }
-            }
-            else if (action == Action.CurrentMistake)
-            {
-                for (var a = Action.CurrentDefectDelete; a < Action.CurrentMistake; a++)
-                {
-                    if (key.KeyData == keys[(int)a])
-                    {
-                        return false;
-                    }
-                }
-            }
-            else
-            {
-                for (var a = Action.CurrentDuplPairDeleteFirst; a < Action.Size; a++)
-                {
-                    if (a != action && key.KeyData == keys[(int)a])
-                    {
-                        return false;
-                    }
-                }
-            }
+	public bool Valid(Action action)
+	{
+		var key = new KeyEventArgs(keys[(int)action]);
+		if (key.KeyData == Keys.None)
+		{
+			return true;
+		}
+		for (var i = 0; i < m_reservedKeys.Length; i++)
+		{
+			if (key.KeyCode == m_reservedKeys[i])
+			{
+				return false;
+			}
+		}
+		for (var i = 0; i < m_reservedKeyCombinations.Length; i++)
+		{
+			if (key.KeyData == m_reservedKeyCombinations[i])
+			{
+				return false;
+			}
+		}
 
-            return true;
-        }
+		if (action == Action.CurrentDefectDelete)
+		{
+			if (key.KeyData == keys[(int)Action.CurrentMistake])
+			{
+				return false;
+			}
+		}
+		else if (action == Action.CurrentMistake)
+		{
+			for (var a = Action.CurrentDefectDelete; a < Action.CurrentMistake; a++)
+			{
+				if (key.KeyData == keys[(int)a])
+				{
+					return false;
+				}
+			}
+		}
+		else
+		{
+			for (var a = Action.CurrentDuplPairDeleteFirst; a < Action.Size; a++)
+			{
+				if (a != action && key.KeyData == keys[(int)a])
+				{
+					return false;
+				}
+			}
+		}
 
-        public bool Valid()
-        {
-            for (var action = Action.CurrentDefectDelete; action < Action.Size; action++)
-            {
-                if(!Valid(action))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        
-        private static readonly Keys[] m_reservedKeyCombinations =
-        {
-            Keys.A | Keys.Control,
-            Keys.C | Keys.Control,
-            Keys.Z | Keys.Control,
-            Keys.Y | Keys.Control
-        };
+		return true;
+	}
 
-        private static readonly Keys[] m_reservedKeys =
-        {
-            Keys.Up, 
-            Keys.Down,
-            Keys.PageUp,
-            Keys.PageDown,
-            Keys.Home,
-            Keys.End             
-        };
-    }
+	public bool Valid()
+	{
+		for (var action = Action.CurrentDefectDelete; action < Action.Size; action++)
+		{
+			if (!Valid(action))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private static readonly Keys[] m_reservedKeyCombinations =
+	{
+			Keys.A | Keys.Control,
+			Keys.C | Keys.Control,
+			Keys.Z | Keys.Control,
+			Keys.Y | Keys.Control
+		};
+
+	private static readonly Keys[] m_reservedKeys =
+	{
+			Keys.Up,
+			Keys.Down,
+			Keys.PageUp,
+			Keys.PageDown,
+			Keys.Home,
+			Keys.End
+		};
+}
