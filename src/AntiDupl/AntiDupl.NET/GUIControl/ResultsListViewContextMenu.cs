@@ -91,7 +91,7 @@ namespace AntiDupl.NET
 
         private void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             m_deleteDefectItem.Text = s.ResultsListViewContextMenu_DeleteDefectItem_Text;
             m_deleteFirstItem.Text = s.ResultsListViewContextMenu_DeleteFirstItem_Text;
@@ -151,8 +151,8 @@ namespace AntiDupl.NET
 
         private void MakeAction(object sender, EventArgs e)
         {
-            ToolStripItem item = (ToolStripItem)sender;
-            CoreDll.LocalActionType action = (CoreDll.LocalActionType)item.Tag;
+            var item = (ToolStripItem)sender;
+            var action = (CoreDll.LocalActionType)item.Tag;
             m_mainSplitContainer.resultsListView.MakeAction(action, CoreDll.TargetType.Selected);
         }
 

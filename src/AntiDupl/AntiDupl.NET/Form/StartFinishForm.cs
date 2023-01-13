@@ -76,7 +76,7 @@ namespace AntiDupl.NET
             MaximizeBox = false;
             MinimizeBox = false;
 
-            TableLayoutPanel mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
+            var mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
             mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
             mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             Controls.Add(mainTableLayoutPanel);
@@ -103,7 +103,7 @@ namespace AntiDupl.NET
 
         private void CoreStartThreadTask()
         {
-            DateTime startTime = DateTime.Now;
+            var startTime = DateTime.Now;
 
             m_state = State.LoadMistakes;
             m_core.Load(CoreDll.FileType.MistakeDataBase, Options.GetMistakeDataBaseFileName(), m_options.checkMistakesAtLoading);
@@ -111,7 +111,7 @@ namespace AntiDupl.NET
             m_state = State.LoadResults;
             m_core.Load(CoreDll.FileType.Result, m_options.GetResultsFileName(), m_options.checkResultsAtLoading);
 
-            TimeSpan viewTime = DateTime.Now - startTime;
+            var viewTime = DateTime.Now - startTime;
             if (viewTime < VIEW_START_TIME_MIN)
             {
                 m_state = State.ViewStart;
@@ -142,7 +142,7 @@ namespace AntiDupl.NET
         {
             ShowInTaskbar = true;
             m_state = State.Start;
-            Thread searchThread = new Thread(CoreStartThreadTask);
+            var searchThread = new Thread(CoreStartThreadTask);
             searchThread.Start();
             ShowDialog();
         }
@@ -150,7 +150,7 @@ namespace AntiDupl.NET
         public void ExecuteFinish()
         {
             m_state = State.Start;
-            Thread searchThread = new Thread(CoreFinishThreadTask);
+            var searchThread = new Thread(CoreFinishThreadTask);
             searchThread.Start();
             ShowDialog();
         }
@@ -168,11 +168,11 @@ namespace AntiDupl.NET
             }
             else
             {
-                StringBuilder builder = new StringBuilder();
+                var builder = new StringBuilder();
                 builder.Append(Application.ProductName);
                 builder.Append(" - ");
 
-                Strings s = Resources.Strings.Current;
+                var s = Resources.Strings.Current;
                 switch (m_state)
                 {
                     case State.Start:
@@ -201,7 +201,7 @@ namespace AntiDupl.NET
                 }
                 Text = builder.ToString();
 
-                CoreStatus status = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
+                var status = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
                 if (status != null)
                 {
                     if (status.total > 0)

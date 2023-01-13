@@ -322,10 +322,10 @@ namespace AntiDupl.NET
         public ResultsOptions(ResultsOptions options)
         {
             columnOptionsVertical = new ColumnOptions[(int)ResultsListView.ColumnsTypeVertical.Size];
-            for (int i = 0; i < columnOptionsVertical.Length; i++)
+            for (var i = 0; i < columnOptionsVertical.Length; i++)
                 columnOptionsVertical[i] = options.columnOptionsVertical[i];
             columnOptionsHorizontal = new ColumnOptions[(int)ResultsListView.ColumnsTypeHorizontal.Size];
-            for (int i = 0; i < columnOptionsHorizontal.Length; i++)
+            for (var i = 0; i < columnOptionsHorizontal.Length; i++)
                 columnOptionsHorizontal[i] = options.columnOptionsHorizontal[i];
             sortTypeDefault = options.sortTypeDefault;
             increasingDefault = options.increasingDefault;
@@ -356,9 +356,9 @@ namespace AntiDupl.NET
 
         public void CopyTo(ref ResultsOptions options)
         {
-            for (int i = 0; i < columnOptionsVertical.Length; i++)
+            for (var i = 0; i < columnOptionsVertical.Length; i++)
                 options.columnOptionsVertical[i] = columnOptionsVertical[i];
-            for (int i = 0; i < columnOptionsHorizontal.Length; i++)
+            for (var i = 0; i < columnOptionsHorizontal.Length; i++)
                 options.columnOptionsHorizontal[i] = columnOptionsHorizontal[i];
             options.sortTypeDefault = sortTypeDefault;
             options.increasingDefault = increasingDefault;
@@ -371,10 +371,10 @@ namespace AntiDupl.NET
 
         public bool Equals(ResultsOptions options)
         {
-            for (int i = 0; i < columnOptionsVertical.Length; i++)
+            for (var i = 0; i < columnOptionsVertical.Length; i++)
                 if (!Equals(columnOptionsVertical[i], options.columnOptionsVertical[i]))
                     return false;
-            for (int i = 0; i < columnOptionsHorizontal.Length; i++)
+            for (var i = 0; i < columnOptionsHorizontal.Length; i++)
                 if (!Equals(columnOptionsHorizontal[i], options.columnOptionsHorizontal[i]))
                     return false;
             if (sortTypeDefault != options.sortTypeDefault)
@@ -418,10 +418,10 @@ namespace AntiDupl.NET
             if (columnOptionsVertical.Length < (int)ResultsListView.ColumnsTypeVertical.Size ||
                 columnOptionsHorizontal.Length < (int)ResultsListView.ColumnsTypeHorizontal.Size)
             {
-                ResultsOptions options = new ResultsOptions();
+                var options = new ResultsOptions();
                 if (columnOptionsVertical.Length < options.columnOptionsVertical.Length)
                 {
-                    for (int i = 0; i < columnOptionsVertical.Length; ++i)
+                    for (var i = 0; i < columnOptionsVertical.Length; ++i)
                     {
                         options.columnOptionsVertical[i].visible = columnOptionsVertical[i].visible;
                         options.columnOptionsVertical[i].width = columnOptionsVertical[i].width;
@@ -431,7 +431,7 @@ namespace AntiDupl.NET
                 }
                 if (columnOptionsHorizontal.Length < options.columnOptionsHorizontal.Length)
                 {
-                    for (int i = 0; i < columnOptionsHorizontal.Length; ++i)
+                    for (var i = 0; i < columnOptionsHorizontal.Length; ++i)
                     {
                         options.columnOptionsHorizontal[i].visible = columnOptionsHorizontal[i].visible;
                         options.columnOptionsHorizontal[i].width = columnOptionsHorizontal[i].width;

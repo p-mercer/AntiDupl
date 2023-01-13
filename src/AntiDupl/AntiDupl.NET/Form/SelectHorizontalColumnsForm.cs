@@ -65,12 +65,12 @@ namespace AntiDupl.NET
             MaximizeBox = false;
             MinimizeBox = false;
 
-            TableLayoutPanel mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
+            var mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
             mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 75F));
             mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             Controls.Add(mainTableLayoutPanel);
 
-            TableLayoutPanel columnsTableLayoutPanel = InitFactory.Layout.Create(3, 8, 5); //columns, rows, padding
+            var columnsTableLayoutPanel = InitFactory.Layout.Create(3, 8, 5); //columns, rows, padding
             columnsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
             columnsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 34F));
             columnsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
@@ -125,7 +125,7 @@ namespace AntiDupl.NET
             m_checkBoxes[(int)ResultsListView.ColumnsTypeHorizontal.SecondFileTime] = InitFactory.CheckBox.Create(OnOptionChanged);
             columnsTableLayoutPanel.Controls.Add(m_checkBoxes[(int)ResultsListView.ColumnsTypeHorizontal.SecondFileTime], 2, 7);
 
-            TableLayoutPanel buttonsTableLayoutPanel = InitFactory.Layout.Create(3, 1);
+            var buttonsTableLayoutPanel = InitFactory.Layout.Create(3, 1);
             buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
@@ -142,7 +142,7 @@ namespace AntiDupl.NET
 
         private void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             Text = s.MainMenu_View_SelectColumnsMenuItem_Text;
 
@@ -176,7 +176,7 @@ namespace AntiDupl.NET
 
         private void OnButtonClick(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
+            var button = (Button)sender;
             if(button == m_okButton)
             {
                 m_newResultOptions.CopyTo(ref m_options.resultsOptions);
@@ -196,7 +196,7 @@ namespace AntiDupl.NET
 
         private void GetOptions()
         {
-            for (int i = 0; i < (int)ResultsListView.ColumnsTypeHorizontal.Size; i++)
+            for (var i = 0; i < (int)ResultsListView.ColumnsTypeHorizontal.Size; i++)
             {
                 m_checkBoxes[i].Checked = m_newResultOptions.columnOptionsHorizontal[i].visible;
             }
@@ -204,7 +204,7 @@ namespace AntiDupl.NET
 
         private void SetOptions()
         {
-            for (int i = 0; i < (int)ResultsListView.ColumnsTypeHorizontal.Size; i++)
+            for (var i = 0; i < (int)ResultsListView.ColumnsTypeHorizontal.Size; i++)
             {
                 m_newResultOptions.columnOptionsHorizontal[i].visible = m_checkBoxes[i].Checked;
             }

@@ -82,7 +82,7 @@ namespace AntiDupl.NET
 
         private void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             m_copyPathItem.Text = s.ImagePreviewContextMenu_CopyPathItem_Text;
             m_openImageItem.Text = s.ImagePreviewContextMenu_OpenImageItem_Text;
@@ -92,7 +92,7 @@ namespace AntiDupl.NET
 
         private void OpenImage(object sender, EventArgs e)
         {
-            ProcessStartInfo startInfo = new ProcessStartInfo();
+            var startInfo = new ProcessStartInfo();
             startInfo.FileName = m_thumbnailPreview.ImageInfo.path;
             try
             {
@@ -116,7 +116,7 @@ namespace AntiDupl.NET
 
         private void RenameImage(object sender, EventArgs e)
         {
-            SaveFileDialog dialog = new SaveFileDialog();
+            var dialog = new SaveFileDialog();
             dialog.FileName = m_thumbnailPreview.ImageInfo.path;
             dialog.OverwritePrompt = false;
             dialog.AddExtension = true;
@@ -135,9 +135,9 @@ namespace AntiDupl.NET
 
         private void OnRenameImageDialogFileOk(object sender, CancelEventArgs e)
         {
-            SaveFileDialog dialog = (SaveFileDialog)sender;
-            FileInfo oldFileInfo = new FileInfo(m_thumbnailPreview.ImageInfo.path);
-            FileInfo newFileInfo = new FileInfo(dialog.FileName);
+            var dialog = (SaveFileDialog)sender;
+            var oldFileInfo = new FileInfo(m_thumbnailPreview.ImageInfo.path);
+            var newFileInfo = new FileInfo(dialog.FileName);
             if (newFileInfo.FullName != oldFileInfo.FullName && newFileInfo.Exists)
             {
                 MessageBox.Show(Resources.Strings.Current.ErrorMessage_FileAlreadyExists,

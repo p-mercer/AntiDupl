@@ -127,7 +127,7 @@ namespace AntiDupl.NET
 
         private void OnValueChanged(object sender, EventArgs e)
         {
-           float old = m_value;
+           var old = m_value;
 
             try
             {

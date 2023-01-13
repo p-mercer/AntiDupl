@@ -77,7 +77,7 @@ namespace AntiDupl.NET
 
         private void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             Text = s.MainMenu_NewVersionMenuItem_Text;
             if (m_onlineVersion != null)
@@ -107,7 +107,7 @@ namespace AntiDupl.NET
             m_localVersion = new Version();
             //m_localVersion.Save("version.xml");
 
-            Thread thread = new Thread(OnlineVersionDownloadThreadTask);
+            var thread = new Thread(OnlineVersionDownloadThreadTask);
             thread.Start();
         }
 
@@ -115,8 +115,8 @@ namespace AntiDupl.NET
         {
             try
             {
-                WebClient webClient = new WebClient();
-                byte[] buffer = webClient.DownloadData(Resources.WebLinks.Version);
+                var webClient = new WebClient();
+                var buffer = webClient.DownloadData(Resources.WebLinks.Version);
                 m_onlineVersion = Version.LoadXml(new MemoryStream(buffer));
             }
             catch

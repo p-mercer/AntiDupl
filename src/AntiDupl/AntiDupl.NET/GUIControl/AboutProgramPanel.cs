@@ -43,7 +43,7 @@ namespace AntiDupl.NET
 
         private void InitializeComponent()
         {
-            TableLayoutPanel layout = InitFactory.Layout.Create(1, 4, 5, 0);
+            var layout = InitFactory.Layout.Create(1, 4, 5, 0);
             layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
@@ -69,22 +69,22 @@ namespace AntiDupl.NET
                 case 0: text = Resources.Strings.Current.AboutProgramPanel_CopyrightLabel0_Text; break;
                 case 1: text = Resources.Strings.Current.AboutProgramPanel_CopyrightLabel1_Text; break;
             }
-            Label label = CreateLabel(text, new Font(this.Font.FontFamily, this.Font.Size * 1.2f));
+            var label = CreateLabel(text, new Font(this.Font.FontFamily, this.Font.Size * 1.2f));
             label.Margin = new Padding(0, (index == 0 ? 10 : 0), 0, (index == 1 ? 10 : 0));
             return label;
         }
 
         private TableLayoutPanel CreateLogotype(Font font)
         {
-            TableLayoutPanel layout = InitFactory.Layout.Create(4, 1, 0, 0);
+            var layout = InitFactory.Layout.Create(4, 1, 0, 0);
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             layout.AutoSize = true;
 
-            Bitmap bitmap = Resources.Icons.Get(new Size(LOGO_SIZE, LOGO_SIZE)).ToBitmap();
-            PictureBox pictureBox = new PictureBox();
+            var bitmap = Resources.Icons.Get(new Size(LOGO_SIZE, LOGO_SIZE)).ToBitmap();
+            var pictureBox = new PictureBox();
             pictureBox.Location = new System.Drawing.Point(0, 0);
             pictureBox.Dock = DockStyle.Fill;
             pictureBox.Padding = new Padding(0);
@@ -100,7 +100,7 @@ namespace AntiDupl.NET
 
         private Control CreateInfoTable(Font font)
         {
-            TableLayoutPanel table = InitFactory.Layout.Create(2, 7, 0, 0);
+            var table = InitFactory.Layout.Create(2, 7, 0, 0);
             table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             table.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
@@ -134,7 +134,7 @@ namespace AntiDupl.NET
 
         private Label CreateLabel(string text, Font font)
         {
-            System.Windows.Forms.Label label = new System.Windows.Forms.Label();
+            var label = new System.Windows.Forms.Label();
             label.AutoSize = true;
             label.Padding = new System.Windows.Forms.Padding(2);
             label.Font = font;
@@ -146,7 +146,7 @@ namespace AntiDupl.NET
 
         private LinkLabel CreateLinkLabel(string text, string link, Font font)
         {
-            LinkLabel linkLabel = new LinkLabel();
+            var linkLabel = new LinkLabel();
             linkLabel.AutoSize = true;
             linkLabel.Font = font;
             linkLabel.Text = text;
@@ -157,7 +157,7 @@ namespace AntiDupl.NET
             linkLabel.LinkClicked += new LinkLabelLinkClickedEventHandler(OnLinkLabelLinkClicked);
             linkLabel.TextAlign = ContentAlignment.MiddleCenter;
 
-            ToolTip toolTip = new ToolTip();
+            var toolTip = new ToolTip();
             toolTip.ShowAlways = true;
             toolTip.SetToolTip(linkLabel, link);
 
@@ -166,9 +166,9 @@ namespace AntiDupl.NET
 
         private void OnLinkLabelLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            LinkLabel linkLabel = (LinkLabel)sender;
-            int linkIndex = linkLabel.Links.IndexOf(e.Link);
-            LinkLabel.Link link = linkLabel.Links[linkIndex];
+            var linkLabel = (LinkLabel)sender;
+            var linkIndex = linkLabel.Links.IndexOf(e.Link);
+            var link = linkLabel.Links[linkIndex];
             link.Visited = true;
             System.Diagnostics.Process.Start(link.LinkData.ToString());
         }

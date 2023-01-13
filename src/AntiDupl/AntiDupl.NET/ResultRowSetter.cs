@@ -137,7 +137,7 @@ namespace AntiDupl.NET
 
         private void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             m_defectIconToolTipText = s.ResultRowSetter_DefectIcon_ToolTip_Text;
             m_duplPairIconToolTipText = s.ResultRowSetter_DuplPairIcon_ToolTip_Text;
@@ -254,7 +254,7 @@ namespace AntiDupl.NET
         /// </summary>
         private void SetDefectToRowVertical(DataGridViewCellCollection cells, CoreResult result)
         {
-            for (int col = (int)ResultsListView.ColumnsTypeVertical.FileName; col < (int)ResultsListView.ColumnsTypeVertical.Size; col++)
+            for (var col = (int)ResultsListView.ColumnsTypeVertical.FileName; col < (int)ResultsListView.ColumnsTypeVertical.Size; col++)
                 cells[col] = new DataGridViewTextBoxCell();
             cells[(int)ResultsListView.ColumnsTypeVertical.FileName].Value = Path.GetFileName(result.first.path);
             cells[(int)ResultsListView.ColumnsTypeVertical.FileDirectory].Value = result.first.GetDirectoryString();
@@ -279,7 +279,7 @@ namespace AntiDupl.NET
         /// </summary>
         private void SetDefectToRowHorizontal(DataGridViewCellCollection cells, CoreResult result)
         {
-            for (int col = (int)ResultsListView.ColumnsTypeHorizontal.FirstFileName; col < (int)ResultsListView.ColumnsTypeHorizontal.Size; col++)
+            for (var col = (int)ResultsListView.ColumnsTypeHorizontal.FirstFileName; col < (int)ResultsListView.ColumnsTypeHorizontal.Size; col++)
                 cells[col] = new DataGridViewTextBoxCell();
             cells[(int)ResultsListView.ColumnsTypeHorizontal.FirstFileName].Value = Path.GetFileName(result.first.path);
             cells[(int)ResultsListView.ColumnsTypeHorizontal.FirstFileDirectory].Value = result.first.GetDirectoryString();
@@ -489,7 +489,7 @@ namespace AntiDupl.NET
                     break;
             }
 
-            for (int col = (int)ResultsListView.ColumnsTypeHorizontal.FirstFileName; col < (int)ResultsListView.ColumnsTypeHorizontal.Size; col++)
+            for (var col = (int)ResultsListView.ColumnsTypeHorizontal.FirstFileName; col < (int)ResultsListView.ColumnsTypeHorizontal.Size; col++)
                 cells[col] = new DataGridViewTextBoxCell();
             cells[(int)ResultsListView.ColumnsTypeHorizontal.FirstFileName].Value = Path.GetFileName(result.first.path);
             cells[(int)ResultsListView.ColumnsTypeHorizontal.FirstFileDirectory].Value = result.first.GetDirectoryString();

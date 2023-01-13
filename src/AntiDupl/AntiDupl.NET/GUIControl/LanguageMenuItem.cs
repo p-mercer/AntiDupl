@@ -54,7 +54,7 @@ namespace AntiDupl.NET
             m_falseIcon = Resources.Images.GetNullImage();
 
             m_items = new ToolStripMenuItem[Resources.Strings.Count];
-            for (int i = 0; i < Resources.Strings.Count; i++)
+            for (var i = 0; i < Resources.Strings.Count; i++)
             {
                 m_items[i] = InitFactory.MenuItem.Create(null, i, OnClick);
                 m_items[i].Text = Resources.Strings.Get(i).OriginalLanguageName;
@@ -64,20 +64,20 @@ namespace AntiDupl.NET
 
         private void OnClick(object sender, EventArgs e)
         {
-            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            var item = (ToolStripMenuItem)sender;
             m_options.Language = Resources.Strings.Get((int)item.Tag).Name;
         }
 
         private void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             Text = s.LanguageMenuItem_Text;
         }
 
         void UpdateIcons()
         {
-            for (int i = 0; i < m_items.Length; i++)
+            for (var i = 0; i < m_items.Length; i++)
             {
                 m_items[i].Image = (i == Resources.Strings.CurrentIndex ? m_trueIcon : m_falseIcon);
             }

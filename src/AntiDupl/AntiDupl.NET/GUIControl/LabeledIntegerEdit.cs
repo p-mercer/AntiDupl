@@ -119,7 +119,7 @@ namespace AntiDupl.NET
 
         private void OnTextBoxKeyUp(object sender, KeyEventArgs e)
         {
-            int old = m_value;
+            var old = m_value;
 
             try
             {

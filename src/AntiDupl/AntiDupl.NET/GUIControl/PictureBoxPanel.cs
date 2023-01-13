@@ -160,13 +160,13 @@ namespace AntiDupl.NET
                 memoryStream.Dispose();
                 memoryStream = null;
             }
-            FileInfo fileInfo = new FileInfo(path);
+            var fileInfo = new FileInfo(path);
             if (fileInfo.Exists)
             {
                 try
                 {
-                    FileStream fileStream = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read);
-                    byte[] buffer = new byte[fileStream.Length];
+                    var fileStream = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read);
+                    var buffer = new byte[fileStream.Length];
                     fileStream.Read(buffer, 0, buffer.Length);
                     fileStream.Close();
                     memoryStream = new MemoryStream(buffer);
@@ -255,20 +255,20 @@ namespace AntiDupl.NET
             if (m_currentImageInfo != null)
             {
                 int horizontalPosition = 0, verticalPosition = 0;
-                int clientWidth = ClientSize.Width;
-                int clientHeight = ClientSize.Height;
-                int currentWidth = (int)m_currentImageInfo.width;
-                int currentHeight = (int)m_currentImageInfo.height;
-                int targetWidth = 100;
-                int targetHeight = 100;
+                var clientWidth = ClientSize.Width;
+                var clientHeight = ClientSize.Height;
+                var currentWidth = (int)m_currentImageInfo.width;
+                var currentHeight = (int)m_currentImageInfo.height;
+                var targetWidth = 100;
+                var targetHeight = 100;
                 if (currentWidth > 0 && currentHeight > 0)
                 {
                     if (m_options.resultsOptions.ProportionalImageSize)
                     {
-                        int neighbourWidth = (int)m_neighbourSizeMax.Width;
-                        int neighbourHeight = (int)m_neighbourSizeMax.Height;
-                        int maxWidth = Math.Max(currentWidth, neighbourWidth);
-                        int maxHeight = Math.Max(currentHeight, neighbourHeight);
+                        var neighbourWidth = (int)m_neighbourSizeMax.Width;
+                        var neighbourHeight = (int)m_neighbourSizeMax.Height;
+                        var maxWidth = Math.Max(currentWidth, neighbourWidth);
+                        var maxHeight = Math.Max(currentHeight, neighbourHeight);
                         if (m_options.resultsOptions.StretchSmallImages || maxWidth >= clientWidth || maxHeight >= clientHeight)
                         {
                             if (maxWidth * clientHeight > maxHeight * clientWidth)
@@ -417,10 +417,10 @@ namespace AntiDupl.NET
                 rectanglesOfDifferenceIn.CopyTo(m_rectanglesOfDifferences);
 
                 //преобразуем в соответсвии с размером полного изображения
-                double multiplierX = m_bitmap.Width / (double)m_options.resultsOptions.NormalizedSizeOfImage;
-                double multiplierY = m_bitmap.Height / (double)m_options.resultsOptions.NormalizedSizeOfImage;
+                var multiplierX = m_bitmap.Width / (double)m_options.resultsOptions.NormalizedSizeOfImage;
+                var multiplierY = m_bitmap.Height / (double)m_options.resultsOptions.NormalizedSizeOfImage;
 
-                for (int i = 0; i < m_rectanglesOfDifferences.Length; i++)
+                for (var i = 0; i < m_rectanglesOfDifferences.Length; i++)
                 {
                     m_rectanglesOfDifferences[i] = new Rectangle((int)(m_rectanglesOfDifferences[i].X * multiplierX),
                         (int)(m_rectanglesOfDifferences[i].Y * multiplierY),
@@ -428,13 +428,13 @@ namespace AntiDupl.NET
                         (int)(m_rectanglesOfDifferences[i].Height * multiplierY));
                 }
 
-                int penThickness = Math.Min(m_bitmap.Width, m_bitmap.Height) * m_options.resultsOptions.PenThickness / m_options.resultsOptions.NormalizedSizeOfImage;
+                var penThickness = Math.Min(m_bitmap.Width, m_bitmap.Height) * m_options.resultsOptions.PenThickness / m_options.resultsOptions.NormalizedSizeOfImage;
                 penForDifferences = new Pen(new SolidBrush(Color.Red), penThickness);
                 try
                 {
-                    using (Graphics gr = Graphics.FromImage(m_bitmap))
+                    using (var gr = Graphics.FromImage(m_bitmap))
                     {
-                        for (int i = 0; i < m_rectanglesOfDifferences.Length; i++)
+                        for (var i = 0; i < m_rectanglesOfDifferences.Length; i++)
                             gr.DrawRectangle(penForDifferences, m_rectanglesOfDifferences[i]);
                     }
                     this.Invalidate();
@@ -500,12 +500,12 @@ namespace AntiDupl.NET
         private Rectangle GetRectangle(ImagePreviewPanel.Position position, Bitmap bitmap, Neighbour neighbour)
         {
             const float PERCENT_OF_NEIGHBOUR = 0.30F;
-            int clientWidth = ClientSize.Width;
-            int clientHeight = ClientSize.Height;
-            int neighbourMaxWidth = (int)((float)clientWidth * PERCENT_OF_NEIGHBOUR);
-            int neighbourMaxHeight = (int)((float)clientHeight * PERCENT_OF_NEIGHBOUR);
-            int currentWidth = bitmap.Width;
-            int currentHeight = bitmap.Height;
+            var clientWidth = ClientSize.Width;
+            var clientHeight = ClientSize.Height;
+            var neighbourMaxWidth = (int)((float)clientWidth * PERCENT_OF_NEIGHBOUR);
+            var neighbourMaxHeight = (int)((float)clientHeight * PERCENT_OF_NEIGHBOUR);
+            var currentWidth = bitmap.Width;
+            var currentHeight = bitmap.Height;
             int horizontalPosition = 0, verticalPosition = 0;
             int neighbourWidth, neighbourHeight;
 
@@ -569,14 +569,14 @@ namespace AntiDupl.NET
         {
             if (m_prevFile == null && m_nextFile == null)
             {
-                DirectoryInfo directoryInfo = new DirectoryInfo(Path.GetDirectoryName(filePreview));
+                var directoryInfo = new DirectoryInfo(Path.GetDirectoryName(filePreview));
                 if (directoryInfo.Exists)
                 {
-                    FileInfo[] filesInfos = directoryInfo.GetFiles();
+                    var filesInfos = directoryInfo.GetFiles();
 
                     Array.Sort(filesInfos, new Comparison<FileInfo>((f, f2) => f.FullName.CompareTo(f2.FullName)));
 
-                    for (int i = 0; i < filesInfos.Length; i++)
+                    for (var i = 0; i < filesInfos.Length; i++)
                     {
                         if (filesInfos[i].FullName == filePreview)
                         {

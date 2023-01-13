@@ -51,7 +51,7 @@ namespace AntiDupl.NET
             Padding = new Padding(0);
             Height = 26;
 
-            TableLayoutPanel tableLayoutPanel = InitFactory.Layout.Create(4, 1);
+            var tableLayoutPanel = InitFactory.Layout.Create(4, 1);
             tableLayoutPanel.Margin = new Padding(0);
             tableLayoutPanel.Padding = new Padding(0);
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60));
@@ -101,9 +101,9 @@ namespace AntiDupl.NET
             m_currentLabel.Text = currentFirst.ToString();
             if (total > 0)
             {
-                int range = m_complexProgressBar.Maximum - m_complexProgressBar.Minimum;
-                int firstValue = currentFirst * range / total;
-                int secondValue = currentSecond * range / total;
+                var range = m_complexProgressBar.Maximum - m_complexProgressBar.Minimum;
+                var firstValue = currentFirst * range / total;
+                var secondValue = currentSecond * range / total;
                 m_complexProgressBar.FirstValue = Math.Max(m_complexProgressBar.Minimum, Math.Min(m_complexProgressBar.Maximum, firstValue));
                 m_complexProgressBar.SecondValue = Math.Max(m_complexProgressBar.Minimum, Math.Min(m_complexProgressBar.Maximum, secondValue));
             }
@@ -113,11 +113,11 @@ namespace AntiDupl.NET
                 m_complexProgressBar.SecondValue = m_complexProgressBar.Minimum;
             }
 
-            Graphics graphics = Graphics.FromHwnd(m_pathLabel.Handle);
-            SizeF size = graphics.MeasureString(path, m_pathLabel.Font);
+            var graphics = Graphics.FromHwnd(m_pathLabel.Handle);
+            var size = graphics.MeasureString(path, m_pathLabel.Font);
             if (size.Width > m_pathLabel.Width)
             {
-                int length = Convert.ToInt32(path.Length * m_pathLabel.Width / size.Width);
+                var length = Convert.ToInt32(path.Length * m_pathLabel.Width / size.Width);
                 m_pathLabel.Text = new string(path.ToCharArray(), 0, length);
             }
             else

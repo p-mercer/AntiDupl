@@ -97,7 +97,7 @@ namespace AntiDupl.NET
         /// </summary>
         private void GetGroups()
         {
-            uint groupSize = m_core.GetGroupSize();
+            var groupSize = m_core.GetGroupSize();
             if (groupSize == 0)
             {
                 m_groups = new CoreGroup[0];
@@ -106,8 +106,8 @@ namespace AntiDupl.NET
             }
             m_groups = m_core.GetGroup(0, groupSize);
             // Находим размер самой большой группы.
-            int groupSizeMax = 0;
-            for (int i = 0; i < m_groups.Length; ++i)
+            var groupSizeMax = 0;
+            for (var i = 0; i < m_groups.Length; ++i)
             {
                 if (m_groups[i].images.Length > groupSizeMax)
                 {
@@ -125,8 +125,8 @@ namespace AntiDupl.NET
             SuspendDrawing(this);
             Controls.Clear();
 
-            int width = Padding.Horizontal;
-            int height = Padding.Vertical;
+            var width = Padding.Horizontal;
+            var height = Padding.Vertical;
             
             if (m_groups.Length > 0)
             {
@@ -147,7 +147,7 @@ namespace AntiDupl.NET
                 }
 
                 // Изменяем размеры таблицы в соотвествии с размерами самой большой группы
-                ThumbnailGroupPanel maxPanel = m_thumbnailGroupPanels[m_maxGroupIndex];
+                var maxPanel = m_thumbnailGroupPanels[m_maxGroupIndex];
                 height += (maxPanel.Height + maxPanel.Margin.Vertical) * m_groups.Length;
                 width += maxPanel.Width + maxPanel.Margin.Horizontal;
             }
@@ -167,15 +167,15 @@ namespace AntiDupl.NET
 
         private int GetVisibleGroupIndexMin()
         {
-            int height = m_thumbnailGroupPanels[0].Height + m_thumbnailGroupPanels[0].Margin.Vertical;
-            int index = (int)Math.Floor((-AutoScrollPosition.Y - Padding.Top) / (double)height);
+            var height = m_thumbnailGroupPanels[0].Height + m_thumbnailGroupPanels[0].Margin.Vertical;
+            var index = (int)Math.Floor((-AutoScrollPosition.Y - Padding.Top) / (double)height);
             return Math.Max(0, index);// - 1000);
         }
 
         private int GetVisibleGroupIndexMax()
         {
-            int height = m_thumbnailGroupPanels[0].Height + m_thumbnailGroupPanels[0].Margin.Vertical;
-            int index = (int)Math.Ceiling((ClientSize.Height - AutoScrollPosition.Y - Padding.Top) / (double)height);
+            var height = m_thumbnailGroupPanels[0].Height + m_thumbnailGroupPanels[0].Margin.Vertical;
+            var index = (int)Math.Ceiling((ClientSize.Height - AutoScrollPosition.Y - Padding.Top) / (double)height);
             return Math.Min(m_groups.Length - 1, index);// + 1000);
         }
 
@@ -189,13 +189,13 @@ namespace AntiDupl.NET
             if (m_thumbnailGroupPanels[index] == null)
             {
 
-                ThumbnailGroupPanel groupPanel = new ThumbnailGroupPanel(m_core, m_options, m_groups[index], this);
+                var groupPanel = new ThumbnailGroupPanel(m_core, m_options, m_groups[index], this);
                 groupPanel.Location = new Point(
                     Padding.Left + groupPanel.Margin.Left + AutoScrollPosition.X,
                     Padding.Top + groupPanel.Margin.Top + AutoScrollPosition.Y + (groupPanel.Height + groupPanel.Margin.Vertical) * index);
 
-                ThumbnailPanel[] thumbnailPanels = groupPanel.ThumbnailPanels;
-                for (int i = 0; i < thumbnailPanels.Length; ++i)
+                var thumbnailPanels = groupPanel.ThumbnailPanels;
+                for (var i = 0; i < thumbnailPanels.Length; ++i)
                 {
                     if (m_thumbnailStorage.Exists(thumbnailPanels[i].ImageInfo))
                     {
@@ -211,19 +211,19 @@ namespace AntiDupl.NET
 
         private void AddGroupPanels(int indexMin, int indexMax)
         {
-            List<Control> controls = new List<Control>();
-            for (int i = indexMin; i < indexMax; ++i)
+            var controls = new List<Control>();
+            for (var i = indexMin; i < indexMax; ++i)
             {
                 if (m_thumbnailGroupPanels[i] == null)
                 {
 
-                    ThumbnailGroupPanel groupPanel = new ThumbnailGroupPanel(m_core, m_options, m_groups[i], this);
+                    var groupPanel = new ThumbnailGroupPanel(m_core, m_options, m_groups[i], this);
                     groupPanel.Location = new Point(
                         Padding.Left + groupPanel.Margin.Left + AutoScrollPosition.X,
                         Padding.Top + groupPanel.Margin.Top + AutoScrollPosition.Y + (groupPanel.Height + groupPanel.Margin.Vertical) * i);
 
-                    ThumbnailPanel[] thumbnailPanels = groupPanel.ThumbnailPanels;
-                    for (int j = 0; j < thumbnailPanels.Length; ++j)
+                    var thumbnailPanels = groupPanel.ThumbnailPanels;
+                    for (var j = 0; j < thumbnailPanels.Length; ++j)
                     {
                         if (m_thumbnailStorage.Exists(thumbnailPanels[j].ImageInfo))
                         {
@@ -264,21 +264,21 @@ namespace AntiDupl.NET
         {
             if (m_thumbnailGroupPanels != null && m_thumbnailGroupPanels.Length > 0 && m_thumbnailGroupPanels[0] != null)
             {
-                int minIndex = GetVisibleGroupIndexMin();
-                int maxIndex = GetVisibleGroupIndexMax();
+                var minIndex = GetVisibleGroupIndexMin();
+                var maxIndex = GetVisibleGroupIndexMax();
 
                 SuspendLayout();
                 //Visible = false;
-                for (int i = 0; i < minIndex; ++i)
+                for (var i = 0; i < minIndex; ++i)
                 {
                     RemoveGroupPanel(i);
                 }
-                for (int i = minIndex; i < maxIndex; ++i)
+                for (var i = minIndex; i < maxIndex; ++i)
                 {
                     AddGroupPanel(i);
                     //Application.DoEvents();
                 }
-                for (int i = maxIndex; i < m_thumbnailGroupPanels.Length; ++i)
+                for (var i = maxIndex; i < m_thumbnailGroupPanels.Length; ++i)
                 {
                     RemoveGroupPanel(i);
                 }
@@ -299,9 +299,9 @@ namespace AntiDupl.NET
             //    SuspendDrawing(Controls[i]);
 
             m_changeControls = false;
-            DateTime t = DateTime.Now;
+            var t = DateTime.Now;
             UpdateVisiblePanels();
-            TimeSpan updateTime = DateTime.Now - t;
+            var updateTime = DateTime.Now - t;
             Console.WriteLine("ut = {0}; at = {1}.", updateTime.TotalMilliseconds.ToString(), t.Millisecond);
 
             //for (int i = 0; i < Controls.Count; ++i)
@@ -369,21 +369,21 @@ namespace AntiDupl.NET
         /// </summary>
         private void UpdateThumbnailsThread()
         {
-            for (int i = 0; i < m_groups.Length; ++i)
+            for (var i = 0; i < m_groups.Length; ++i)
             {
-                CoreImageInfo[] images = m_groups[i].images;
-                for (int j = 0; j < images.Length; ++j)
+                var images = m_groups[i].images;
+                for (var j = 0; j < images.Length; ++j)
                 {
                     m_thumbnailStorage.Get(images[j]);
                     if (m_abortUpdateThumbnailsThread)
                         return;
                 }
 
-                ThumbnailGroupPanel groupPanel = m_thumbnailGroupPanels[i];
+                var groupPanel = m_thumbnailGroupPanels[i];
                 if(groupPanel != null)
                 {
-                    ThumbnailPanel[] thumbnailPanels = groupPanel.ThumbnailPanels;
-                    for (int j = 0; j < thumbnailPanels.Length; ++j)
+                    var thumbnailPanels = groupPanel.ThumbnailPanels;
+                    for (var j = 0; j < thumbnailPanels.Length; ++j)
                     {
                         if (m_thumbnailStorage.Exists(thumbnailPanels[j].ImageInfo))
                         {
@@ -403,21 +403,21 @@ namespace AntiDupl.NET
 
         public static void SuspendDrawing(Control control)
         {
-            Message msgSuspendUpdate = Message.Create(control.Handle, WM_SETREDRAW, IntPtr.Zero,
+            var msgSuspendUpdate = Message.Create(control.Handle, WM_SETREDRAW, IntPtr.Zero,
                 IntPtr.Zero);
 
-            NativeWindow window = NativeWindow.FromHandle(control.Handle);
+            var window = NativeWindow.FromHandle(control.Handle);
             window.DefWndProc(ref msgSuspendUpdate);
         }
 
         public static void ResumeDrawing(Control control)
         {
             // Create a C "true" boolean as an IntPtr
-            IntPtr wparam = new IntPtr(1);
-            Message msgResumeUpdate = Message.Create(control.Handle, WM_SETREDRAW, wparam,
+            var wparam = new IntPtr(1);
+            var msgResumeUpdate = Message.Create(control.Handle, WM_SETREDRAW, wparam,
                 IntPtr.Zero);
 
-            NativeWindow window = NativeWindow.FromHandle(control.Handle);
+            var window = NativeWindow.FromHandle(control.Handle);
             window.DefWndProc(ref msgResumeUpdate);
 
             control.Invalidate();

@@ -77,16 +77,16 @@ namespace AntiDupl.NET
         {
             get
             {
-                Value val = (Value)m_comboBox.SelectedItem;
+                var val = (Value)m_comboBox.SelectedItem;
                 return val.value;
             }
             set
             {
-                int index = -1;
-                int difference = int.MaxValue;
-                for (int i = 0; i < m_comboBox.Items.Count; i++)
+                var index = -1;
+                var difference = int.MaxValue;
+                for (var i = 0; i < m_comboBox.Items.Count; i++)
                 {
-                    Value current = (Value)m_comboBox.Items[i];
+                    var current = (Value)m_comboBox.Items[i];
                     if (Math.Abs(current.value - value) < difference)
                     {
                         difference = Math.Abs(current.value - value);
@@ -99,7 +99,7 @@ namespace AntiDupl.NET
 
         public void SetDescription(int index, string description)
         {
-            Value value = (Value)m_comboBox.Items[index];
+            var value = (Value)m_comboBox.Items[index];
             value.description = description;
         }
     }

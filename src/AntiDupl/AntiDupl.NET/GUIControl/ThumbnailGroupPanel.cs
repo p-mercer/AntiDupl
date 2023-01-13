@@ -58,10 +58,10 @@ namespace AntiDupl.NET
             DoubleBuffered = true;
             BackColor = Color.Transparent;
 
-            int width = 0;
-            int height = 0;
+            var width = 0;
+            var height = 0;
             m_thumbnailPanels = new ThumbnailPanel[m_group.images.Length];
-            for (int i = 0; i < m_group.images.Length; ++i)
+            for (var i = 0; i < m_group.images.Length; ++i)
             {
                 m_thumbnailPanels[i] = new ThumbnailPanel(m_core, m_options, m_group, i, this);
                 m_thumbnailPanels[i].Location = new Point(Padding.Left + m_thumbnailPanels[i].Margin.Left + (m_thumbnailPanels[i].Width + m_thumbnailPanels[i].Margin.Horizontal)*i,

@@ -40,7 +40,7 @@ namespace AntiDupl.NET
         {
             get
             {
-                CreateParams p = base.CreateParams;
+                var p = base.CreateParams;
                 p.ExStyle = p.ExStyle | WS_EX_DLGMODALFRAME;
                 return p;
             }

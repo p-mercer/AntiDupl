@@ -93,7 +93,7 @@ namespace AntiDupl.NET
 
         private void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             m_totalText = s.MainStatusStrip_TotalLabel_Text;
             m_currentText = s.MainStatusStrip_CurrentLabel_Text;
@@ -105,7 +105,7 @@ namespace AntiDupl.NET
         private void UpdateResults()
         {
             {
-                StringBuilder builder = new StringBuilder();
+                var builder = new StringBuilder();
                 builder.Append(m_totalText);
                 builder.Append(m_mainSplitContainer.resultsListView.GetTotalResultCount());
                 m_totalLabel.Text = builder.ToString();
@@ -118,9 +118,9 @@ namespace AntiDupl.NET
 
         private void SelectionChanged()
         {
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
             builder.Append(m_selectedText);
-            int selectedResultCount = m_mainSplitContainer.resultsListView.GetSelectedResultCount();
+            var selectedResultCount = m_mainSplitContainer.resultsListView.GetSelectedResultCount();
             if (m_mainSplitContainer.resultsListView.GetTotalResultCount() > 0)
                 builder.Append(selectedResultCount);
             else
@@ -142,7 +142,7 @@ namespace AntiDupl.NET
 
         private void CurrentResultChanged()
         {
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
             builder.Append(m_currentText);
             builder.Append(m_mainSplitContainer.resultsListView.GetTotalResultCount() > 0 ? m_mainSplitContainer.resultsListView.GetCurrentRowIndex() + 1 : 0);
             m_currentLabel.Text = builder.ToString();

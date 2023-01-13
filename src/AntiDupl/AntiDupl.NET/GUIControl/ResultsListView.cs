@@ -176,7 +176,7 @@ namespace AntiDupl.NET
 
         public void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             Columns[(int)ColumnsTypeVertical.Type].Name = s.ResultsListView_Type_Column_Text;
             Columns[(int)ColumnsTypeVertical.Group].Name = s.ResultsListView_Group_Column_Text;
@@ -224,14 +224,14 @@ namespace AntiDupl.NET
             m_updateColumnOrder = false;
             if (m_options.resultsOptions.viewMode == ResultsOptions.ViewMode.VerticalPairTable)
             {
-                for (int i = 0; i < (int)ColumnsTypeVertical.Size; i++)
+                for (var i = 0; i < (int)ColumnsTypeVertical.Size; i++)
                 {
                     Columns[i].Visible = m_options.resultsOptions.columnOptionsVertical[i].visible;
                 }
             }
             if (m_options.resultsOptions.viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
             {
-                for (int i = 0; i < (int)ColumnsTypeHorizontal.Size; i++)
+                for (var i = 0; i < (int)ColumnsTypeHorizontal.Size; i++)
                 {
                     Columns[i].Visible = m_options.resultsOptions.columnOptionsHorizontal[i].visible;
                 }
@@ -251,10 +251,10 @@ namespace AntiDupl.NET
 
         public int GetSelectedResultCount()
         {
-            int selectedResultsCount = 0;
-            for (int i = 0; i < Rows.Count; i++)
+            var selectedResultsCount = 0;
+            for (var i = 0; i < Rows.Count; i++)
             {
-                DataGridViewCustomRow row = (DataGridViewCustomRow)Rows[i];
+                var row = (DataGridViewCustomRow)Rows[i];
                 if (row.selected && i >= 0 && i < m_results.Length)
                 {
                     selectedResultsCount++;
@@ -266,14 +266,14 @@ namespace AntiDupl.NET
         public void MakeAction(CoreDll.LocalActionType action, CoreDll.TargetType target)
         {
             m_makeAction = true;
-            ProgressForm progressForm = new ProgressForm(action, target, m_core, m_options, m_coreOptions, m_mainSplitContainer);
+            var progressForm = new ProgressForm(action, target, m_core, m_options, m_coreOptions, m_mainSplitContainer);
             progressForm.Execute();
             m_makeAction = false;
         }
 
         public void RefreshResults()
         {
-            ProgressForm progressForm = new ProgressForm(ProgressForm.Type.RefreshResults, m_core, m_options, m_coreOptions, m_mainSplitContainer);
+            var progressForm = new ProgressForm(ProgressForm.Type.RefreshResults, m_core, m_options, m_coreOptions, m_mainSplitContainer);
             progressForm.Execute();
         }
 
@@ -285,7 +285,7 @@ namespace AntiDupl.NET
         public void RenameCurrent(CoreDll.RenameCurrentType renameCurrentType, string newFileName)
         {
             m_makeAction = true;
-            ProgressForm progressForm = new ProgressForm(renameCurrentType, newFileName, m_core, m_options, m_coreOptions, m_mainSplitContainer);
+            var progressForm = new ProgressForm(renameCurrentType, newFileName, m_core, m_options, m_coreOptions, m_mainSplitContainer);
             progressForm.Execute();
             m_makeAction = false;
         }
@@ -297,7 +297,7 @@ namespace AntiDupl.NET
         public void MoveCurrentGroupToDirectory(string directory)
         {
             m_makeAction = true;
-            ProgressForm progressForm = new ProgressForm(ProgressForm.Type.MoveCurrentGroup, directory, m_core, m_options, m_coreOptions, m_mainSplitContainer);
+            var progressForm = new ProgressForm(ProgressForm.Type.MoveCurrentGroup, directory, m_core, m_options, m_coreOptions, m_mainSplitContainer);
             progressForm.Execute();
             m_makeAction = false;
         }
@@ -305,7 +305,7 @@ namespace AntiDupl.NET
         public void RenameCurrentGroupAs(string filename)
         {
             m_makeAction = true;
-            ProgressForm progressForm = new ProgressForm(ProgressForm.Type.RenameCurrentGroupAs, filename, m_core, m_options, m_coreOptions, m_mainSplitContainer);
+            var progressForm = new ProgressForm(ProgressForm.Type.RenameCurrentGroupAs, filename, m_core, m_options, m_coreOptions, m_mainSplitContainer);
             progressForm.Execute();
             m_makeAction = false;
         }
@@ -318,14 +318,14 @@ namespace AntiDupl.NET
         {
             if (hotKey == (Keys.Z | Keys.Control) && m_core.CanApply(CoreDll.ActionEnableType.Undo))
             {
-                ProgressForm progressForm = new ProgressForm(ProgressForm.Type.Undo, m_core, m_options, m_coreOptions, m_mainSplitContainer);
+                var progressForm = new ProgressForm(ProgressForm.Type.Undo, m_core, m_options, m_coreOptions, m_mainSplitContainer);
                 progressForm.Execute();
                 return;
             }
 
             if (hotKey == (Keys.Y | Keys.Control) && m_core.CanApply(CoreDll.ActionEnableType.Redo))
             {
-                ProgressForm progressForm = new ProgressForm(ProgressForm.Type.Redo, m_core, m_options, m_coreOptions, m_mainSplitContainer);
+                var progressForm = new ProgressForm(ProgressForm.Type.Redo, m_core, m_options, m_coreOptions, m_mainSplitContainer);
                 progressForm.Execute();
                 return;
             }
@@ -378,7 +378,7 @@ namespace AntiDupl.NET
 
         private void GetResults()
         {
-            uint resultSize = m_core.GetResultSize();
+            var resultSize = m_core.GetResultSize();
             if (resultSize == 0)
             {
                 m_results = new CoreResult[0];
@@ -401,16 +401,16 @@ namespace AntiDupl.NET
                     Rows.Clear();
                 RowCount = m_results.Length;
 
-                bool[] selection = m_core.GetSelection(0, (uint)m_results.Length);
+                var selection = m_core.GetSelection(0, (uint)m_results.Length);
 
-                for (int i = 0; i < Rows.Count; i++)
+                for (var i = 0; i < Rows.Count; i++)
                 {
-                    DataGridViewCustomRow row = (DataGridViewCustomRow)Rows[i];
+                    var row = (DataGridViewCustomRow)Rows[i];
                     row.updated = false;
                     if (selection != null)
                         row.selected = selection[i];
                 }
-                int current = m_core.GetCurrent();
+                var current = m_core.GetCurrent();
                 if (current != -1)
                 {
                     SetCurrentRow(current);
@@ -425,8 +425,8 @@ namespace AntiDupl.NET
 
         protected override void OnRowPrePaint(DataGridViewRowPrePaintEventArgs e)
         {
-            int index = e.RowIndex;
-            DataGridViewCustomRow row = (DataGridViewCustomRow)Rows[index];
+            var index = e.RowIndex;
+            var row = (DataGridViewCustomRow)Rows[index];
             if (!row.updated && index >= 0 && index < m_results.Length)
             {
                 m_resultRowSetter.Set(m_results[index], row);
@@ -438,9 +438,9 @@ namespace AntiDupl.NET
 
         protected override void OnColumnHeaderMouseClick(DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn dataGridViewColumn = Columns[e.ColumnIndex];
+            var dataGridViewColumn = Columns[e.ColumnIndex];
 
-            CoreDll.SortType sortType = CoreDll.SortType.ByType;
+            var sortType = CoreDll.SortType.ByType;
             if (m_options.resultsOptions.viewMode == ResultsOptions.ViewMode.VerticalPairTable)
             {
                 switch ((ColumnsTypeVertical)e.ColumnIndex)
@@ -568,7 +568,7 @@ namespace AntiDupl.NET
                 }
             }
 
-            ListSortDirection direction = ListSortDirection.Ascending;
+            var direction = ListSortDirection.Ascending;
             switch (dataGridViewColumn.HeaderCell.SortGlyphDirection)
             {
                 case SortOrder.None:
@@ -585,7 +585,7 @@ namespace AntiDupl.NET
                     break;
             }
 
-            for (int col = 0; col < ColumnCount; col++)
+            for (var col = 0; col < ColumnCount; col++)
                 if (col != e.ColumnIndex)
                     Columns[col].HeaderCell.SortGlyphDirection = SortOrder.None;
 
@@ -686,7 +686,7 @@ namespace AntiDupl.NET
                 }
                 else if (e.Button == MouseButtons.Right)
                 {
-                    DataGridViewCustomRow row = (DataGridViewCustomRow)Rows[e.RowIndex];
+                    var row = (DataGridViewCustomRow)Rows[e.RowIndex];
                     if (!m_isControlDown && !row.selected)
                     {
                         SetCurrentRow(e.RowIndex);
@@ -738,7 +738,7 @@ namespace AntiDupl.NET
 
         protected override bool ProcessDataGridViewKey(KeyEventArgs e)
         {
-            Keys keyData = e.KeyData;
+            var keyData = e.KeyData;
             if (e.KeyCode == Keys.Up)
             {
                 SetCurrentRow(Math.Max(0, m_currentRowIndex - 1));
@@ -805,7 +805,7 @@ namespace AntiDupl.NET
 
                 if (m_makeAction)
                 {
-                    for (int col = 0; col < Rows[index].Cells.Count; col++)
+                    for (var col = 0; col < Rows[index].Cells.Count; col++)
                     {
                         if (Rows[index].Cells[col].Visible)
                         {
@@ -833,8 +833,8 @@ namespace AntiDupl.NET
                         if (m_firstSelectedRowIndex == -1 || m_firstSelectedRowIndex >= Rows.Count)
                             m_firstSelectedRowIndex = m_currentRowIndex;
 
-                        int selectionBegin = Math.Min(m_firstSelectedRowIndex, m_currentRowIndex);
-                        int selectionEnd = Math.Max(m_firstSelectedRowIndex, m_currentRowIndex);
+                        var selectionBegin = Math.Min(m_firstSelectedRowIndex, m_currentRowIndex);
+                        var selectionEnd = Math.Max(m_firstSelectedRowIndex, m_currentRowIndex);
                         SetRowSelection(0, selectionBegin, false);
                         SetRowSelection(selectionBegin, selectionEnd + 1, true);
                         SetRowSelection(selectionEnd + 1, Rows.Count, false);
@@ -846,7 +846,7 @@ namespace AntiDupl.NET
                         {
                             SetRowSelection(0, Rows.Count, false);
                         }
-                        bool value = !((DataGridViewCustomRow)Rows[m_currentRowIndex]).selected;
+                        var value = !((DataGridViewCustomRow)Rows[m_currentRowIndex]).selected;
                         SetRowSelection(m_currentRowIndex, m_currentRowIndex + 1, value);
                     }
                 }
@@ -856,9 +856,9 @@ namespace AntiDupl.NET
 
         private void SetRowSelection(int beginRowIndex, int endRowIndex, bool value)
         {
-            for (int i = beginRowIndex; i < endRowIndex; i++)
+            for (var i = beginRowIndex; i < endRowIndex; i++)
             {
-                DataGridViewCustomRow row = (DataGridViewCustomRow)Rows[i];
+                var row = (DataGridViewCustomRow)Rows[i];
                 row.selected = value;
             }
             m_core.SetSelection((UInt32)beginRowIndex, (UInt32)(endRowIndex - beginRowIndex), value);
@@ -894,7 +894,7 @@ namespace AntiDupl.NET
             if (viewMode == ResultsOptions.ViewMode.VerticalPairTable)
             {
                 ColumnCount = (int)ColumnsTypeVertical.Size;
-                for (int i = 0; i < (int)ColumnsTypeVertical.Size; i++)
+                for (var i = 0; i < (int)ColumnsTypeVertical.Size; i++)
                 {
                     Columns[i].Name = ((ColumnsTypeVertical)i).ToString();
                     Columns[i].SortMode = DataGridViewColumnSortMode.Programmatic;
@@ -906,7 +906,7 @@ namespace AntiDupl.NET
             if (viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
             {
                 ColumnCount = (int)ColumnsTypeHorizontal.Size;
-                for (int i = 0; i < (int)ColumnsTypeHorizontal.Size; i++)
+                for (var i = 0; i < (int)ColumnsTypeHorizontal.Size; i++)
                 {
                     Columns[i].Name = ((ColumnsTypeHorizontal)i).ToString();
                     Columns[i].SortMode = DataGridViewColumnSortMode.Programmatic;
@@ -924,13 +924,13 @@ namespace AntiDupl.NET
 
         public override DataObject GetClipboardContent()
         {
-            DataObject dataObject = new DataObject();
+            var dataObject = new DataObject();
             if (m_results.Length > 0)
             {
-                ClipboardContentBuilder builder = new ClipboardContentBuilder(m_options.resultsOptions);
-                for (int i = 0; i < Rows.Count; i++)
+                var builder = new ClipboardContentBuilder(m_options.resultsOptions);
+                for (var i = 0; i < Rows.Count; i++)
                 {
-                    DataGridViewCustomRow row = (DataGridViewCustomRow)Rows[i];
+                    var row = (DataGridViewCustomRow)Rows[i];
                     if (row.selected)
                         builder.Add(m_results[i]);
                 }
@@ -948,12 +948,12 @@ namespace AntiDupl.NET
 
         public bool MoveEnable()
         {
-            bool moveEnable = false;
+            var moveEnable = false;
             if (m_results.Length > 0)
             {
-                for (int i = 0; i < Rows.Count; i++)
+                for (var i = 0; i < Rows.Count; i++)
                 {
-                    DataGridViewCustomRow row = (DataGridViewCustomRow)Rows[i];
+                    var row = (DataGridViewCustomRow)Rows[i];
                     if (row.selected)
                     {
                         if (String.IsNullOrEmpty(m_results[i].second.path))

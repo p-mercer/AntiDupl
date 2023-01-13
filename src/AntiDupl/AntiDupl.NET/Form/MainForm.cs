@@ -62,7 +62,7 @@ namespace AntiDupl.NET
             }
             Resources.Strings.SetCurrent(m_options.Language);
 
-            StartFinishForm startFinishForm = new StartFinishForm(m_core, m_options);
+            var startFinishForm = new StartFinishForm(m_core, m_options);
             startFinishForm.ExecuteStart();
 
             InitializeComponents();
@@ -104,21 +104,21 @@ namespace AntiDupl.NET
             GetSavedViewOptions();
             m_options.Save();
 
-            StartFinishForm startFinishForm = new StartFinishForm(m_core, m_options);
+            var startFinishForm = new StartFinishForm(m_core, m_options);
             startFinishForm.ExecuteFinish();
             m_core.Dispose();
         }
 
         private void SetLoadedViewOptions()
         {
-            Point loc = m_options.mainFormOptions.location;
-            Size size = m_options.mainFormOptions.size;
+            var loc = m_options.mainFormOptions.location;
+            var size = m_options.mainFormOptions.size;
 
-            Size sizeMin = new Size(MIN_WIDTH, MIN_HEIGHT);
-            Size sizeMax = Screen.PrimaryScreen.WorkingArea.Size;
+            var sizeMin = new Size(MIN_WIDTH, MIN_HEIGHT);
+            var sizeMax = Screen.PrimaryScreen.WorkingArea.Size;
 
-            Point locMin = Screen.PrimaryScreen.WorkingArea.Location;
-            Point locMax = locMin + Screen.PrimaryScreen.WorkingArea.Size - sizeMin;
+            var locMin = Screen.PrimaryScreen.WorkingArea.Location;
+            var locMax = locMin + Screen.PrimaryScreen.WorkingArea.Size - sizeMin;
 
             loc = new Point(Restrict(loc.X, locMin.X, locMax.X), Restrict(loc.Y, locMin.Y, locMax.Y));
             size = new Size(Restrict(size.Width, sizeMin.Width, sizeMax.Width - loc.X),

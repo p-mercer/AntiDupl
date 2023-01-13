@@ -51,7 +51,7 @@ namespace AntiDupl.NET
             MaximizeBox = false;
             MinimizeBox = false;
 
-            TableLayoutPanel mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
+            var mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
             mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
             mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             Controls.Add(mainTableLayoutPanel);
@@ -61,7 +61,7 @@ namespace AntiDupl.NET
             m_aboutProgramPanel.Dock = DockStyle.Fill;
             mainTableLayoutPanel.Controls.Add(m_aboutProgramPanel, 0, 0);
 
-            TableLayoutPanel okButtonTableLayoutPanel = InitFactory.Layout.Create(3, 1);
+            var okButtonTableLayoutPanel = InitFactory.Layout.Create(3, 1);
             okButtonTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             okButtonTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             okButtonTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
@@ -74,7 +74,7 @@ namespace AntiDupl.NET
 
         private void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             Text = s.AboutProgramForm_Text;
             m_okButton.Text = s.OkButton_Text;

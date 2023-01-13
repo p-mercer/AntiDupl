@@ -69,13 +69,13 @@ namespace AntiDupl.NET
 
         private void OnClick(object sender, EventArgs e)
         {
-            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            var item = (ToolStripMenuItem)sender;
             m_options.resultsOptions.viewMode = (ResultsOptions.ViewMode)item.Tag;
         }
 
         private void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             Text = s.ViewModeMenuItem_Text;
             m_verticalPairTableMenuItem.Text = s.ViewModeMenuItem_VerticalPairTableMenuItem_Text;

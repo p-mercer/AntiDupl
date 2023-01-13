@@ -75,12 +75,12 @@ namespace AntiDupl.NET
             m_toolTip = new ToolTip();
             m_toolTip.ShowAlways = true;
 
-            TableLayoutPanel mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
+            var mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
             mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
             mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             Controls.Add(mainTableLayoutPanel);
 
-            TableLayoutPanel hotKeysTableLayoutPanel = InitFactory.Layout.Create(4, m_newHotKeyOptions.keys.Length, 5);
+            var hotKeysTableLayoutPanel = InitFactory.Layout.Create(4, m_newHotKeyOptions.keys.Length, 5);
             hotKeysTableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
             hotKeysTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8F));
             hotKeysTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66F));
@@ -89,9 +89,9 @@ namespace AntiDupl.NET
             mainTableLayoutPanel.Controls.Add(hotKeysTableLayoutPanel, 0, 0);
             
             m_hotKeyItems = new HotKeyItem[m_newHotKeyOptions.keys.Length];
-            for(int i = 0; i < m_hotKeyItems.Length; i++)
+            for(var i = 0; i < m_hotKeyItems.Length; i++)
             {
-                HotKeyItem item = new HotKeyItem();
+                var item = new HotKeyItem();
                 item.icon = new PictureBox();
                 item.icon.Location = new System.Drawing.Point(0, 0);
                 item.icon.Size = new System.Drawing.Size(20, 20);
@@ -126,7 +126,7 @@ namespace AntiDupl.NET
 
             InitializeIcons();
 
-            TableLayoutPanel buttonsTableLayoutPanel = InitFactory.Layout.Create(4, 1);
+            var buttonsTableLayoutPanel = InitFactory.Layout.Create(4, 1);
             buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
             buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
@@ -172,7 +172,7 @@ namespace AntiDupl.NET
 
         private void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             Text = s.MainMenu_View_HotKeysMenuItem_Text;
 
@@ -194,7 +194,7 @@ namespace AntiDupl.NET
 
         private void OnButtonClick(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
+            var button = (Button)sender;
             
             if(button == m_setDefaultButton)
             {
@@ -216,9 +216,9 @@ namespace AntiDupl.NET
 
         private void OnCheckBoxClick(object sender, EventArgs e)
         {
-            CheckBox checkBox = (CheckBox)sender;
-            int i = (int)checkBox.Tag;
-            HotKeyItem item = m_hotKeyItems[i];
+            var checkBox = (CheckBox)sender;
+            var i = (int)checkBox.Tag;
+            var item = m_hotKeyItems[i];
             if(!item.ckeck.Checked)
             {
                 m_newHotKeyOptions.keys[i] = Keys.None;
@@ -234,7 +234,7 @@ namespace AntiDupl.NET
 
         private void UpdateOptions()
         {
-            for(int i = 0; i < m_hotKeyItems.Length; i++)
+            for(var i = 0; i < m_hotKeyItems.Length; i++)
             {
                 m_hotKeyItems[i].ckeck.Checked = m_newHotKeyOptions.keys[i] != Keys.None;
                 m_hotKeyItems[i].edit.Text = m_newHotKeyOptions.keys[i].ToString().Replace(',', '+');
@@ -249,9 +249,9 @@ namespace AntiDupl.NET
         
         private void OnTextBoxKeyDown(object sender, KeyEventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
-            int i = (int)textBox.Tag;
-            HotKeyItem item = m_hotKeyItems[i];
+            var textBox = (TextBox)sender;
+            var i = (int)textBox.Tag;
+            var item = m_hotKeyItems[i];
             m_newHotKeyOptions.keys[i] = e.KeyData;
             UpdateOptions();
             UpdateBottomsEnabling();
@@ -260,7 +260,7 @@ namespace AntiDupl.NET
 
         private void VerifyValidness()
         {
-            for (int i = 0; i < m_hotKeyItems.Length; i++)
+            for (var i = 0; i < m_hotKeyItems.Length; i++)
             {
                 if (m_newHotKeyOptions.Valid((HotKeyOptions.Action)i))
                 {

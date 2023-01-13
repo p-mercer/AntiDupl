@@ -109,9 +109,9 @@ namespace AntiDupl.NET
                     break;
             }
 
-            Pen separatorPen = new Pen(m_separatorColor);
-            int separatorX = (cellBounds.Top + cellBounds.Bottom) / 2;
-            StringFormat format = new StringFormat();
+            var separatorPen = new Pen(m_separatorColor);
+            var separatorX = (cellBounds.Top + cellBounds.Bottom) / 2;
+            var format = new StringFormat();
             format.Trimming = StringTrimming.EllipsisCharacter;
             format.FormatFlags |= StringFormatFlags.NoWrap;
 
@@ -159,13 +159,13 @@ namespace AntiDupl.NET
                     break;
             }
 
-            Rectangle firstBounds = new Rectangle(
+            var firstBounds = new Rectangle(
               cellBounds.Left + LEFT_INTEND, cellBounds.Top + TOP_INTEND,
               cellBounds.Width - LEFT_INTEND - RIGHT_INTEND, cellBounds.Height / 2 - TOP_INTEND);
             graphics.DrawString(m_first.ToString(), cellStyle.Font, new SolidBrush(firstColor),
               firstBounds, format);
 
-            Rectangle secondBounds = new Rectangle(
+            var secondBounds = new Rectangle(
               cellBounds.Left + LEFT_INTEND, separatorX + SEPARATOR_WIDTH + TOP_INTEND,
               cellBounds.Width - LEFT_INTEND - RIGHT_INTEND, cellBounds.Height / 2 - TOP_INTEND);
             graphics.DrawString(m_second.ToString(), cellStyle.Font, new SolidBrush(secondColor),
@@ -175,7 +175,7 @@ namespace AntiDupl.NET
 
             if (GetPreferredSize(graphics, cellStyle, rowIndex, new Size(0, 0)).Width > cellBounds.Width)
             {
-                StringBuilder builder = new StringBuilder();
+                var builder = new StringBuilder();
                 builder.AppendLine(m_first.ToString());
                 builder.Append(m_second.ToString());
                 ToolTipText = builder.ToString();

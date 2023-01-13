@@ -38,31 +38,31 @@ namespace AntiDupl.NET
 
         protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle rowBounds, int rowIndex, DataGridViewElementStates rowState, bool isFirstDisplayedRow, bool isLastVisibleRow)
         {
-            DataGridViewElementStates state =
+            var state =
               (DataGridViewElementStates)((int)rowState & ~(int)DataGridViewElementStates.Selected) |
               (selected ? DataGridViewElementStates.Selected : 0);
             base.Paint(graphics, clipBounds, rowBounds, rowIndex, state, isFirstDisplayedRow, isLastVisibleRow);
             if (current)
             {
-                int cellsWidth = 0;
-                for (int i = 0; i < Cells.Count; i++)
+                var cellsWidth = 0;
+                for (var i = 0; i < Cells.Count; i++)
                 {
                     if (Cells[i].Visible)
                     {
                         cellsWidth += Cells[i].Size.Width;
                     }
                 }
-                Rectangle cellsBounds = new Rectangle(rowBounds.X, rowBounds.Y, 
+                var cellsBounds = new Rectangle(rowBounds.X, rowBounds.Y, 
                     rowBounds.X + cellsWidth - 2, rowBounds.Height - 2);
                 
-                Rectangle visibleClipBounds = new Rectangle(
+                var visibleClipBounds = new Rectangle(
                     (int)graphics.VisibleClipBounds.X, 
                     (int)graphics.VisibleClipBounds.Y,
                     (int)graphics.VisibleClipBounds.Width - 1, 
                     (int)graphics.VisibleClipBounds.Height - 1);
                 visibleClipBounds.Intersect(cellsBounds);
 
-                Pen pen = new Pen(Color.White);
+                var pen = new Pen(Color.White);
                 graphics.DrawRectangle(pen, visibleClipBounds);
                 pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
                 pen.Color = Color.Black;

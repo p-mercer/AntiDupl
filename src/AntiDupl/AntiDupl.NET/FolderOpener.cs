@@ -38,19 +38,19 @@ namespace AntiDupl.NET
 
         static private bool CanOpenFolderWithExplorer()
         {
-            RegistryKey rkFolder = Registry.ClassesRoot.OpenSubKey("Folder");
+            var rkFolder = Registry.ClassesRoot.OpenSubKey("Folder");
             if (rkFolder != null)
             {
-                RegistryKey rkShell = rkFolder.OpenSubKey("shell");
+                var rkShell = rkFolder.OpenSubKey("shell");
                 if (rkShell != null)
                 {
-                    RegistryKey rkExplore = rkShell.OpenSubKey("explore");
+                    var rkExplore = rkShell.OpenSubKey("explore");
                     if (rkExplore != null)
                     {
-                        RegistryKey rkCommand = rkExplore.OpenSubKey("command");
+                        var rkCommand = rkExplore.OpenSubKey("command");
                         if (rkCommand != null)
                         {
-                            string defaultValue = (string)rkCommand.GetValue("");
+                            var defaultValue = (string)rkCommand.GetValue("");
                             if (defaultValue != null)
                             {
                                 if (defaultValue.ToLowerInvariant().Contains("explorer.exe"))
@@ -60,13 +60,13 @@ namespace AntiDupl.NET
                             }
                         }
                     }
-                    RegistryKey rkOpen = rkShell.OpenSubKey("open");
+                    var rkOpen = rkShell.OpenSubKey("open");
                     if (rkOpen != null)
                     {
-                        RegistryKey rkCommand = rkOpen.OpenSubKey("command");
+                        var rkCommand = rkOpen.OpenSubKey("command");
                         if (rkCommand != null)
                         {
-                            string defaultValue = (string)rkCommand.GetValue("");
+                            var defaultValue = (string)rkCommand.GetValue("");
                             if (defaultValue != null)
                             {
                                 if (defaultValue.ToLowerInvariant().Contains("explorer.exe"))
@@ -85,7 +85,7 @@ namespace AntiDupl.NET
         {
             try
             {
-                ProcessStartInfo startInfo = new ProcessStartInfo();
+                var startInfo = new ProcessStartInfo();
                 if (m_canOpenFolderWithExplorer)
                 {
                     startInfo.FileName = "explorer.exe";

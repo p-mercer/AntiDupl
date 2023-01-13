@@ -58,7 +58,7 @@ namespace AntiDupl.NET
 
         private void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             m_deleteButton.ToolTipText = GetToolTip(s.ResultsPreviewDefect_DeleteButton_ToolTip_Text, HotKeyOptions.Action.CurrentDefectDelete);
             m_mistakeButton.ToolTipText = GetToolTip(s.ResultsPreviewDefect_MistakeButton_ToolTip_Text, HotKeyOptions.Action.CurrentMistake);
@@ -73,16 +73,16 @@ namespace AntiDupl.NET
 
         private void OnImageDoubleClicked(object sender, System.EventArgs e)
         {
-            PictureBox pictureBox = (PictureBox)sender;
-            ProcessStartInfo startInfo = new ProcessStartInfo();
+            var pictureBox = (PictureBox)sender;
+            var startInfo = new ProcessStartInfo();
             startInfo.FileName = pictureBox.ImageLocation;
             Process.Start(startInfo);
         }
 
         private void OnButtonClicked(object sender, System.EventArgs e)
         {
-            ToolStripButton item = (ToolStripButton)sender;
-            CoreDll.LocalActionType action = (CoreDll.LocalActionType)item.Tag;
+            var item = (ToolStripButton)sender;
+            var action = (CoreDll.LocalActionType)item.Tag;
             m_resultsListView.MakeAction(action, CoreDll.TargetType.Current);
         }
 

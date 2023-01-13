@@ -152,7 +152,7 @@ namespace AntiDupl.NET
 
         private Label CreateLabel()
         {
-            Label label = new Label();
+            var label = new Label();
             label.Location = new Point(0, 0);
             label.Padding = new Padding(0, 0, 0, 0);
             label.Margin = new Padding(0, 0, 0, 0);
@@ -177,23 +177,23 @@ namespace AntiDupl.NET
             m_fileNameLabel.Width = 128;
             m_fileNameLabel.Location = new Point(0, 0);
 
-            Font font = m_fileSizeLabel.Font;
-            int width = m_pictureBox.Width + Padding.Horizontal;
-            int height = m_pictureBox.Height + (font.Height + m_fileSizeLabel.Margin.Vertical + m_fileSizeLabel.Padding.Vertical +
+            var font = m_fileSizeLabel.Font;
+            var width = m_pictureBox.Width + Padding.Horizontal;
+            var height = m_pictureBox.Height + (font.Height + m_fileSizeLabel.Margin.Vertical + m_fileSizeLabel.Padding.Vertical +
                 m_infoLayout.Padding.Vertical)*3 + m_mainLayout.Padding.Vertical + m_mainLayout.Margin.Vertical + Padding.Vertical + 8;
             ClientSize = new Size(width, height);
         }
 
         private void SetImageInfo()
         {
-            CoreImageInfo info = m_group.images[m_index];
+            var info = m_group.images[m_index];
 
             m_fileSizeLabel.Text = info.GetFileSizeString();
             m_imageSizeLabel.Text = string.Format("{0}×{1}", info.width, info.height);
             m_imageTypeLabel.Text = (info.type == CoreDll.ImageType.None ? "   " : info.GetImageTypeString());
             m_fileNameLabel.Text = Path.GetFileNameWithoutExtension(info.path);
 
-            bool[] selected = m_core.GetSelection(m_group.id, (uint)m_index, 1);
+            var selected = m_core.GetSelection(m_group.id, (uint)m_index, 1);
             m_checkBox.Checked = selected[0];
         }
 

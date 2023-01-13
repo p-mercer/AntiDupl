@@ -161,7 +161,7 @@ namespace AntiDupl.NET
 
         public string[] GetActualExtensions()
         {
-            ArrayList extensions = new ArrayList();
+            var extensions = new ArrayList();
             if(JPEG)
                 extensions.AddRange(s_jpegExtensions);
             if(TIFF)

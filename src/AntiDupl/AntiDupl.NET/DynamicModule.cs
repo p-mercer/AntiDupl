@@ -49,17 +49,17 @@ namespace AntiDupl.NET
                 if (m_module == IntPtr.Zero)
                     throw new Exception(string.Format("Can't load {0} dynamic library!", m_fileName));
 
-                FieldInfo[] fields = this.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance);
-                for (int i = 0; i < fields.Length; ++i)
+                var fields = this.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance);
+                for (var i = 0; i < fields.Length; ++i)
                 {
-                    FieldInfo field = fields[i];
+                    var field = fields[i];
                     try
                     {
-                        object[] attributes = field.GetCustomAttributes(typeof(DynamicModuleApiAttribute), false);
+                        var attributes = field.GetCustomAttributes(typeof(DynamicModuleApiAttribute), false);
                         if (attributes.Length > 0)
                         {
-                            IntPtr address = GetProcAddress(m_module, field.Name);
-                            Delegate delegate_ = Marshal.GetDelegateForFunctionPointer(address, field.FieldType);
+                            var address = GetProcAddress(m_module, field.Name);
+                            var delegate_ = Marshal.GetDelegateForFunctionPointer(address, field.FieldType);
                             field.SetValue(this, delegate_);
                         }
                     }

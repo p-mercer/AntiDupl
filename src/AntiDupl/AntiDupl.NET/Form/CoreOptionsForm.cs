@@ -153,7 +153,7 @@ namespace AntiDupl.NET
 
             Resources.Help.Bind(this, Resources.Help.Options);
 
-            TableLayoutPanel mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
+            var mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
             mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 87F));
             mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 13F));
             Controls.Add(mainTableLayoutPanel);
@@ -174,7 +174,7 @@ namespace AntiDupl.NET
             InitilizeHighlightTabPage();
 
 
-            TableLayoutPanel mainButtonsTableLayoutPanel = InitFactory.Layout.Create(4, 1);
+            var mainButtonsTableLayoutPanel = InitFactory.Layout.Create(4, 1);
             mainButtonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             mainButtonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
             mainButtonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
@@ -201,7 +201,7 @@ namespace AntiDupl.NET
             m_compareTabPage = new TabPage();
             m_mainTabControl.Controls.Add(m_compareTabPage);
 
-            TableLayoutPanel checkTableLayoutPanel = InitFactory.Layout.Create(1, 10, 5); //column, row, padding
+            var checkTableLayoutPanel = InitFactory.Layout.Create(1, 10, 5); //column, row, padding
             checkTableLayoutPanel.AutoScroll = true;
             m_compareTabPage.Controls.Add(checkTableLayoutPanel);
 
@@ -227,10 +227,10 @@ namespace AntiDupl.NET
 
             m_thresholdDifferenceLabeledComboBox = new LabeledComboBox(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
             if (m_newCoreOptions.compareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum)
-                for (int i = 0; i <= THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM; i++)
+                for (var i = 0; i <= THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM; i++)
                     m_thresholdDifferenceLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
             else
-                for (int i = 0; i <= THRESHOLD_DIFFERENCE_MAX_SSIM; i++)
+                for (var i = 0; i <= THRESHOLD_DIFFERENCE_MAX_SSIM; i++)
                     m_thresholdDifferenceLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
             checkTableLayoutPanel.Controls.Add(m_thresholdDifferenceLabeledComboBox, 0, 6);
 
@@ -255,7 +255,7 @@ namespace AntiDupl.NET
             m_defectTabPage = new TabPage();
             m_mainTabControl.Controls.Add(m_defectTabPage);
 
-            TableLayoutPanel defectTableLayoutPanel = InitFactory.Layout.Create(1, 6, 5); //column, row, padding
+            var defectTableLayoutPanel = InitFactory.Layout.Create(1, 6, 5); //column, row, padding
             defectTableLayoutPanel.AutoScroll = true;
             m_defectTabPage.Controls.Add(defectTableLayoutPanel);
 
@@ -266,7 +266,7 @@ namespace AntiDupl.NET
             defectTableLayoutPanel.Controls.Add(m_checkOnBlockinessCheckBox, 0, 1);
 
             m_blockinessThresholdLabeledComboBox = new LabeledComboBox(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
-            for (int i = 0; i <= THRESHOLD_BLOCKINESS_MAX; i++)
+            for (var i = 0; i <= THRESHOLD_BLOCKINESS_MAX; i++)
                 m_blockinessThresholdLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0}", i)));
             defectTableLayoutPanel.Controls.Add(m_blockinessThresholdLabeledComboBox, 0, 2);
 
@@ -277,7 +277,7 @@ namespace AntiDupl.NET
             defectTableLayoutPanel.Controls.Add(m_checkOnBlurringCheckBox, 0, 4);
 
             m_blurringThresholdLabeledComboBox = new LabeledComboBox(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
-            for (int i = 0; i <= THRESHOLD_BLURRING_MAX; i++)
+            for (var i = 0; i <= THRESHOLD_BLURRING_MAX; i++)
                 m_blurringThresholdLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0}", i)));
             defectTableLayoutPanel.Controls.Add(m_blurringThresholdLabeledComboBox, 0, 5);
         }
@@ -287,7 +287,7 @@ namespace AntiDupl.NET
             m_searchTabPage = new TabPage();
             m_mainTabControl.Controls.Add(m_searchTabPage);
 
-            TableLayoutPanel searchTableLayoutPanel = InitFactory.Layout.Create(1, 4, 5);
+            var searchTableLayoutPanel = InitFactory.Layout.Create(1, 4, 5);
             searchTableLayoutPanel.AutoScroll = true;
             m_searchTabPage.Controls.Add(searchTableLayoutPanel);
 
@@ -295,7 +295,7 @@ namespace AntiDupl.NET
             m_searchFileTypeGroupBox.Size = new System.Drawing.Size(200, 140);
             searchTableLayoutPanel.Controls.Add(m_searchFileTypeGroupBox, 0, 0);
 
-            TableLayoutPanel searchFileTypeTableLayoutPanel = InitFactory.Layout.Create(3, 5, 5);
+            var searchFileTypeTableLayoutPanel = InitFactory.Layout.Create(3, 5, 5);
             searchFileTypeTableLayoutPanel.AutoScroll = true;
             m_searchFileTypeGroupBox.Controls.Add(searchFileTypeTableLayoutPanel);
 
@@ -356,7 +356,7 @@ namespace AntiDupl.NET
             m_advancedTabPage = new TabPage();
             m_mainTabControl.Controls.Add(m_advancedTabPage);
 
-            TableLayoutPanel advancedTableLayoutPanel = InitFactory.Layout.Create(1, 11, 5);
+            var advancedTableLayoutPanel = InitFactory.Layout.Create(1, 11, 5);
             advancedTableLayoutPanel.AutoScroll = true;
             m_advancedTabPage.Controls.Add(advancedTableLayoutPanel);
 
@@ -375,13 +375,13 @@ namespace AntiDupl.NET
 
             m_compareThreadCountLabeledComboBox = new LabeledComboBox(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
             m_compareThreadCountLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(0, "auto"));
-            for (int i = 0; i < Environment.ProcessorCount; i ++)
+            for (var i = 0; i < Environment.ProcessorCount; i ++)
                 m_compareThreadCountLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i + 1, (i + 1).ToString()));
             advancedTableLayoutPanel.Controls.Add(m_compareThreadCountLabeledComboBox, 0, 4);
 
             m_collectThreadCountLabeledComboBox = new LabeledComboBox(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
             m_collectThreadCountLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(0, "auto"));
-            for (int i = 0; i < Environment.ProcessorCount; i++)
+            for (var i = 0; i < Environment.ProcessorCount; i++)
                 m_collectThreadCountLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i + 1, (i + 1).ToString()));
             advancedTableLayoutPanel.Controls.Add(m_collectThreadCountLabeledComboBox, 0, 5);
 
@@ -415,7 +415,7 @@ namespace AntiDupl.NET
             m_highlightTabPage = new TabPage();
             m_mainTabControl.Controls.Add(m_highlightTabPage);
 
-            TableLayoutPanel highlightTableLayoutPanel = InitFactory.Layout.Create(1, 10, 5);
+            var highlightTableLayoutPanel = InitFactory.Layout.Create(1, 10, 5);
             highlightTableLayoutPanel.AutoScroll = true;
             m_highlightTabPage.Controls.Add(highlightTableLayoutPanel);
 
@@ -644,7 +644,7 @@ namespace AntiDupl.NET
 
         private void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             Text = s.CoreOptionsForm_Text;
             m_okButton.Text = s.OkButton_Text;
@@ -778,11 +778,11 @@ namespace AntiDupl.NET
 
             m_blurringThresholdLabeledComboBox.Enabled = m_newCoreOptions.defectOptions.checkOnBlurring;
 
-            int step = Math.Max(1, 64 / m_newCoreOptions.advancedOptions.reducedImageSize) * IGNORE_FRAME_WIDTH_STEP;
+            var step = Math.Max(1, 64 / m_newCoreOptions.advancedOptions.reducedImageSize) * IGNORE_FRAME_WIDTH_STEP;
             if (m_ignoreFrameWidthLabeledComboBox.comboBox.Items.Count != IGNORE_FRAME_WIDTH_MAX/step + 1)
             {
                 m_ignoreFrameWidthLabeledComboBox.comboBox.Items.Clear();
-                for (int i = 0; i <= IGNORE_FRAME_WIDTH_MAX; i += step)
+                for (var i = 0; i <= IGNORE_FRAME_WIDTH_MAX; i += step)
                     m_ignoreFrameWidthLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
                 m_ignoreFrameWidthLabeledComboBox.SelectedValue = (m_newCoreOptions.advancedOptions.ignoreFrameWidth + step - 1) / step * step;
             }
@@ -791,7 +791,7 @@ namespace AntiDupl.NET
                 m_thresholdDifferenceLabeledComboBox.comboBox.Items.Count > THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM + 1)
             {
                 m_thresholdDifferenceLabeledComboBox.comboBox.Items.Clear();
-                for (int i = 0; i <= THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM; i++)
+                for (var i = 0; i <= THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM; i++)
                     m_thresholdDifferenceLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
                 m_thresholdDifferenceLabeledComboBox.SelectedValue = THRESHOLD_DIFFERENCE_DEFAULT_SQUARED_SUM;
             }
@@ -799,7 +799,7 @@ namespace AntiDupl.NET
                 m_thresholdDifferenceLabeledComboBox.comboBox.Items.Count < THRESHOLD_DIFFERENCE_MAX_SSIM + 1)
             {
                 m_thresholdDifferenceLabeledComboBox.comboBox.Items.Clear();
-                for (int i = 0; i <= THRESHOLD_DIFFERENCE_MAX_SSIM; i++)
+                for (var i = 0; i <= THRESHOLD_DIFFERENCE_MAX_SSIM; i++)
                     m_thresholdDifferenceLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
                 m_thresholdDifferenceLabeledComboBox.SelectedValue = THRESHOLD_DIFFERENCE_DEFAULT_SSIM;
             }

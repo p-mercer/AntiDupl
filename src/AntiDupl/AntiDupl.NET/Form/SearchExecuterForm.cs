@@ -82,14 +82,14 @@ namespace AntiDupl.NET
 
         private void InitializeComponent()
         {
-            TableLayoutPanel mainTableLayoutPanel = InitFactory.Layout.Create(1, 2);
+            var mainTableLayoutPanel = InitFactory.Layout.Create(1, 2);
             mainTableLayoutPanel.Padding = new Padding(1, 5, 1, 0);
             Controls.Add(mainTableLayoutPanel);
 
             m_progressPanel = new ProgressPanel();
             mainTableLayoutPanel.Controls.Add(m_progressPanel, 0, 0);
 
-            TableLayoutPanel buttonsTableLayoutPanel = InitFactory.Layout.Create(5, 1);
+            var buttonsTableLayoutPanel = InitFactory.Layout.Create(5, 1);
             buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
@@ -125,8 +125,8 @@ namespace AntiDupl.NET
             MinimizeBox = false;
             KeyPreview = true;
             {
-                int width = 800;
-                int height = (m_progressPanel.Height + mainTableLayoutPanel.Margin.Vertical) +
+                var width = 800;
+                var height = (m_progressPanel.Height + mainTableLayoutPanel.Margin.Vertical) +
                   m_stopButton.Height + m_stopButton.Padding.Vertical + mainTableLayoutPanel.Margin.Vertical +
                   mainTableLayoutPanel.Padding.Vertical;
                 ClientSize = new Size(width, height);
@@ -174,7 +174,7 @@ namespace AntiDupl.NET
         {
             m_mainSplitContainer.ClearResults();
             m_state = State.Start;
-            Thread searchThread = new Thread(CoreThreadTask);
+            var searchThread = new Thread(CoreThreadTask);
             searchThread.Start();
             m_stopButton.Enabled = true;
             ShowDialog();
@@ -196,13 +196,13 @@ namespace AntiDupl.NET
             }
             else
             {
-                StringBuilder builder = new StringBuilder();
+                var builder = new StringBuilder();
                 if (m_notifyIcon.Visible || WindowState == FormWindowState.Minimized)
                 {
                     builder.Append(Application.ProductName);
                     builder.Append(" - ");
                 }
-                Strings s = Resources.Strings.Current;
+                var s = Resources.Strings.Current;
                 switch (m_state)
                 {
                     case State.Start:
@@ -227,7 +227,7 @@ namespace AntiDupl.NET
                         {
                             m_stopButton.Enabled = true;
                             builder.Append(s.SearchExecuterForm_Search);
-                            double progress = EstimateSearchProgress();
+                            var progress = EstimateSearchProgress();
                             builder.AppendFormat(" ({0})...", ProgressUtils.GetProgressString(progress, m_startDateTime));
                         }
                         break;
@@ -323,7 +323,7 @@ namespace AntiDupl.NET
 
         private void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             m_stopButton.Text = s.StopButton_Text;
             m_minimizeToTaskbarButton.Text = s.SearchExecuterForm_MinimizeToTaskbarButton_Text;
@@ -334,9 +334,9 @@ namespace AntiDupl.NET
         {
             double progress = 0;
             int total = 0, currentFirst = 0, currentSecond = 0;
-            string path = "";
+            var path = "";
 
-            CoreStatus mainThreadStatus = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
+            var mainThreadStatus = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
             if (mainThreadStatus != null)
             {
                 total = mainThreadStatus.total;
@@ -344,9 +344,9 @@ namespace AntiDupl.NET
                 {
                     if(m_coreOptions.compareOptions.checkOnEquality)
                     {
-                        for(int i = 0; ; i++)
+                        for(var i = 0; ; i++)
                         {
-                            CoreStatus compareThreadStatus = m_core.StatusGet(CoreDll.ThreadType.Compare, i);
+                            var compareThreadStatus = m_core.StatusGet(CoreDll.ThreadType.Compare, i);
                             if (compareThreadStatus == null)
                                 break;
                             if(i == 0)
@@ -360,9 +360,9 @@ namespace AntiDupl.NET
                     else
                     {
                         currentFirst = mainThreadStatus.current;
-                        for (int i = 0; ; i++)
+                        for (var i = 0; ; i++)
                         {
-                            CoreStatus collectThreadStatus = m_core.StatusGet(CoreDll.ThreadType.Collect, i);
+                            var collectThreadStatus = m_core.StatusGet(CoreDll.ThreadType.Collect, i);
                             if(collectThreadStatus == null)
                                 break;
                             if (i == 0)
@@ -392,7 +392,7 @@ namespace AntiDupl.NET
 
         private void EstimateOtherProgress()
         {
-            CoreStatus status = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
+            var status = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
             if (status != null)
                 m_progressPanel.UpdateStatus(status.total, status.current, status.current, "");
             else
@@ -418,7 +418,7 @@ namespace AntiDupl.NET
 
         private void LogPerformance(TimeSpan time, CoreStatistic statistic)
         {
-            StreamWriter writer = File.AppendText(Resources.Logs.Performance);
+            var writer = File.AppendText(Resources.Logs.Performance);
 
             writer.WriteLine("---------------------------------------------------------------");
             writer.WriteLine(string.Format("Search start time: {0}", m_startDateTime.ToString()));

@@ -56,7 +56,7 @@ namespace AntiDupl.NET
             keys = new Keys[(int)Action.Size];
             if (options.keys.Length == (int)Action.Size)
             {
-                for (int i = 0; i < keys.Length; ++i)
+                for (var i = 0; i < keys.Length; ++i)
                     keys[i] = options.keys[i];
             }
             else
@@ -77,8 +77,8 @@ namespace AntiDupl.NET
 
         public void SetDefault(Action action)
         {
-            int i = 1;
-            for (Keys key = Keys.NumPad1; key < Keys.NumPad5; key++, i++)
+            var i = 1;
+            for (var key = Keys.NumPad1; key < Keys.NumPad5; key++, i++)
             {
                 if ((int)action == i)
                 {
@@ -106,7 +106,7 @@ namespace AntiDupl.NET
         {
             if (keys.Length != options.keys.Length)
                 options.keys = new Keys[(int)Action.Size];
-            for (int i = 0; i < keys.Length; ++i)
+            for (var i = 0; i < keys.Length; ++i)
                 options.keys[i] = keys[i];
         }
 
@@ -114,7 +114,7 @@ namespace AntiDupl.NET
         {
             if (keys.Length != options.keys.Length)
                 return false;
-            for (int i = 0; i < keys.Length; ++i)
+            for (var i = 0; i < keys.Length; ++i)
                 if(options.keys[i] != keys[i])
                     return false;
             return true;
@@ -122,19 +122,19 @@ namespace AntiDupl.NET
 
         public bool Valid(Action action)
         {
-            KeyEventArgs key = new KeyEventArgs(keys[(int)action]);
+            var key = new KeyEventArgs(keys[(int)action]);
             if(key.KeyData == Keys.None)
             {
                 return true;
             }
-            for(int i = 0; i < m_reservedKeys.Length; i++)
+            for(var i = 0; i < m_reservedKeys.Length; i++)
             {
                 if(key.KeyCode == m_reservedKeys[i])
                 {
                     return false;
                 }
             }
-            for (int i = 0; i < m_reservedKeyCombinations.Length; i++)
+            for (var i = 0; i < m_reservedKeyCombinations.Length; i++)
             {
                 if (key.KeyData == m_reservedKeyCombinations[i])
                 {
@@ -151,7 +151,7 @@ namespace AntiDupl.NET
             }
             else if (action == Action.CurrentMistake)
             {
-                for (Action a = Action.CurrentDefectDelete; a < Action.CurrentMistake; a++)
+                for (var a = Action.CurrentDefectDelete; a < Action.CurrentMistake; a++)
                 {
                     if (key.KeyData == keys[(int)a])
                     {
@@ -161,7 +161,7 @@ namespace AntiDupl.NET
             }
             else
             {
-                for (Action a = Action.CurrentDuplPairDeleteFirst; a < Action.Size; a++)
+                for (var a = Action.CurrentDuplPairDeleteFirst; a < Action.Size; a++)
                 {
                     if (a != action && key.KeyData == keys[(int)a])
                     {
@@ -175,7 +175,7 @@ namespace AntiDupl.NET
 
         public bool Valid()
         {
-            for (Action action = Action.CurrentDefectDelete; action < Action.Size; action++)
+            for (var action = Action.CurrentDefectDelete; action < Action.Size; action++)
             {
                 if(!Valid(action))
                 {

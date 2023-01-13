@@ -66,8 +66,8 @@ namespace AntiDupl.NET
 
         private void CurrentResultChanged()
         {
-            CoreResult result = m_mainSplitContainer.resultsListView.GetCurrentResult();
-            State state = State.Empty;
+            var result = m_mainSplitContainer.resultsListView.GetCurrentResult();
+            var state = State.Empty;
             if (result != null)
             {
                 switch (result.type)

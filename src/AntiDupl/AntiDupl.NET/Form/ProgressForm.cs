@@ -142,14 +142,14 @@ namespace AntiDupl.NET
 
         private void InitializeComponent()
         {
-            TableLayoutPanel mainTableLayoutPanel = InitFactory.Layout.Create(1, 2);
+            var mainTableLayoutPanel = InitFactory.Layout.Create(1, 2);
             mainTableLayoutPanel.Padding = new Padding(1, 5, 1, 0);
             Controls.Add(mainTableLayoutPanel);
 
             m_progressPanel = new ProgressPanel();
             mainTableLayoutPanel.Controls.Add(m_progressPanel, 0, 0);
 
-            TableLayoutPanel buttonsTableLayoutPanel = InitFactory.Layout.Create(3, 1);
+            var buttonsTableLayoutPanel = InitFactory.Layout.Create(3, 1);
             buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             buttonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
@@ -168,8 +168,8 @@ namespace AntiDupl.NET
             MinimizeBox = false;
             KeyPreview = true;
             {
-                int width = 800;
-                int height = (m_progressPanel.Height + mainTableLayoutPanel.Margin.Vertical) +
+                var width = 800;
+                var height = (m_progressPanel.Height + mainTableLayoutPanel.Margin.Vertical) +
                   m_cancelButton.Height + m_cancelButton.Padding.Vertical + mainTableLayoutPanel.Margin.Vertical +
                   mainTableLayoutPanel.Padding.Vertical;
                 ClientSize = new System.Drawing.Size(width, height);
@@ -190,7 +190,7 @@ namespace AntiDupl.NET
         public void Execute()
         {
             m_state = State.Start;
-            Thread coreThread = new Thread(CoreThreadTask);
+            var coreThread = new Thread(CoreThreadTask);
             coreThread.Start();
             if (m_type >= Type.ApplyAction && m_type <= Type.RefreshResults)
             {
@@ -319,7 +319,7 @@ namespace AntiDupl.NET
 
         private void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             m_cancelButton.Text = s.CancelButton_Text;
         }
@@ -332,8 +332,8 @@ namespace AntiDupl.NET
             }
             else
             {
-                StringBuilder builder = new StringBuilder();
-                Strings s = Resources.Strings.Current;
+                var builder = new StringBuilder();
+                var s = Resources.Strings.Current;
                 switch (m_state)
                 {
                     case State.Start:
@@ -415,10 +415,10 @@ namespace AntiDupl.NET
                                     break;
                             }
 
-                            CoreStatus status = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
+                            var status = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
                             if (status != null)
                             {
-                                double progress = status.total > 0 ? ((double)status.current) / status.total : 0;
+                                var progress = status.total > 0 ? ((double)status.current) / status.total : 0;
                                 builder.AppendFormat(" ({0})...", ProgressUtils.GetProgressString(progress, m_startDateTime));
                                 m_progressPanel.UpdateStatus(status.total, status.current, status.current, status.path);
                             }

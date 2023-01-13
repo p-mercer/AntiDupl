@@ -36,7 +36,7 @@ namespace AntiDupl.NET
 
         public CoreVersion(sbyte[] buffer)
         {
-            string[] versions = Parse(buffer).Split('.');
+            var versions = Parse(buffer).Split('.');
             major = versions.Length > 0 ? Convert.ToInt32(versions[0]) : -1;
             minor = versions.Length > 1 ? Convert.ToInt32(versions[1]) : -1;
             release = versions.Length > 2 ? Convert.ToInt32(versions[2]) : -1;
@@ -45,8 +45,8 @@ namespace AntiDupl.NET
         
         public override string ToString()
         {
-            StringBuilder builder = new StringBuilder();
-            bool already = false;
+            var builder = new StringBuilder();
+            var already = false;
             if (major >= 0)
             {
                 builder.Append(major.ToString());
@@ -77,8 +77,8 @@ namespace AntiDupl.NET
 
         private string Parse(sbyte[] buffer)
         {
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < buffer.Length; ++i)
+            var builder = new StringBuilder();
+            for (var i = 0; i < buffer.Length; ++i)
             {
                 if(buffer[i] == 0)
                     break;

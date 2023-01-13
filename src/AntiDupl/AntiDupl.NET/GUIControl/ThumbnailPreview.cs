@@ -67,7 +67,7 @@ namespace AntiDupl.NET
 
         private void InnitializeTestButton()
         {
-            Button testButton = new Button();
+            var testButton = new Button();
             testButton.Text = "Test";
             testButton.Location = new Point(10, 10);
             testButton.AutoSize = true;

@@ -123,9 +123,9 @@ namespace AntiDupl.NET
 
         static private Point DefaultLocation()
         {
-            Rectangle rect = Screen.PrimaryScreen.WorkingArea;
-            int left = (rect.Left + rect.Width - MainForm.MIN_WIDTH)/2;
-            int top = (rect.Top + rect.Height - MainForm.MIN_HEIGHT)/2;
+            var rect = Screen.PrimaryScreen.WorkingArea;
+            var left = (rect.Left + rect.Width - MainForm.MIN_WIDTH)/2;
+            var top = (rect.Top + rect.Height - MainForm.MIN_HEIGHT)/2;
             return new Point(left, top);
         }
     }

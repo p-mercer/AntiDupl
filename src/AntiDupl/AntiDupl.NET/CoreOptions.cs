@@ -82,7 +82,7 @@ namespace AntiDupl.NET
 
         public void SetDefault(CoreLib core, bool onePath)
         {
-            CoreOptions old = new CoreOptions();
+            var old = new CoreOptions();
             old.Get(core, onePath);
             core.SetDefaultOptions();
             Get(core, onePath);
@@ -125,8 +125,8 @@ namespace AntiDupl.NET
             core.advancedOptions = advancedOptions.Clone();
             if (onePath)
             {
-                CorePathWithSubFolder[] tmpSearch = new CorePathWithSubFolder[1];
-                CorePathWithSubFolder[] tmpOther = new CorePathWithSubFolder[0];
+                var tmpSearch = new CorePathWithSubFolder[1];
+                var tmpOther = new CorePathWithSubFolder[0];
                 if (searchPath.Length > 0 && Directory.Exists(searchPath[0].path))
                     tmpSearch[0] = searchPath[0];
                 else
@@ -172,27 +172,27 @@ namespace AntiDupl.NET
         public static void PathCopy(string[] source, ref string[] destination)
         {
             destination = new string[source.GetLength(0)];
-            for (int i = 0; i < source.GetLength(0); ++i)
+            for (var i = 0; i < source.GetLength(0); ++i)
                 destination[i] = (string)source[i].Clone();
         }
 
         public static void PathCopy(CorePathWithSubFolder[] source, ref CorePathWithSubFolder[] destination)
         {
             destination = new CorePathWithSubFolder[source.GetLength(0)];
-            for (int i = 0; i < source.GetLength(0); ++i)
+            for (var i = 0; i < source.GetLength(0); ++i)
                 destination[i] = source[i];
         }
 
         public static string[] PathClone(string[] path)
         {
-            string[] clone = new string[0];
+            var clone = new string[0];
             PathCopy(path, ref clone);
             return clone;
         }
 
         public static CorePathWithSubFolder[] PathClone(CorePathWithSubFolder[] path)
         {
-            CorePathWithSubFolder[] clone = new CorePathWithSubFolder[0];
+            var clone = new CorePathWithSubFolder[0];
             PathCopy(path, ref clone);
             return clone;
         }
@@ -201,7 +201,7 @@ namespace AntiDupl.NET
         {
             if (path1.Length != path2.Length)
                 return false;
-            for (int i = 0; i < path1.Length; ++i)
+            for (var i = 0; i < path1.Length; ++i)
                 if (path1[i].CompareTo(path2[i]) != 0)
                     return false;
             return true;
@@ -231,15 +231,15 @@ namespace AntiDupl.NET
 
         static public CoreOptions Load(string fileName, CoreLib core, bool onePath)
         {
-            FileInfo fileInfo = new FileInfo(fileName);
+            var fileInfo = new FileInfo(fileName);
             if (fileInfo.Exists)
             {
                 FileStream fileStream = null;
                 try
                 {
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(CoreOptions));
+                    var xmlSerializer = new XmlSerializer(typeof(CoreOptions));
                     fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                    CoreOptions coreOptions = (CoreOptions)xmlSerializer.Deserialize(fileStream);
+                    var coreOptions = (CoreOptions)xmlSerializer.Deserialize(fileStream);
                     fileStream.Close();
                     coreOptions.Validate(core, onePath);
                     return coreOptions;
@@ -261,7 +261,7 @@ namespace AntiDupl.NET
             try
             {
                 writer = new StreamWriter(fileName);
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(CoreOptions));
+                var xmlSerializer = new XmlSerializer(typeof(CoreOptions));
                 xmlSerializer.Serialize(writer, this);
             }
             catch
@@ -273,8 +273,8 @@ namespace AntiDupl.NET
 
         public string GetImageDataBasePath()
         {
-            string directory = string.Format("{0}\\images\\{1}x{1}", Resources.UserPath, advancedOptions.reducedImageSize);
-            DirectoryInfo directoryInfo = new DirectoryInfo(directory);
+            var directory = string.Format("{0}\\images\\{1}x{1}", Resources.UserPath, advancedOptions.reducedImageSize);
+            var directoryInfo = new DirectoryInfo(directory);
             if (!directoryInfo.Exists)
                 directoryInfo.Create();
             return directory;

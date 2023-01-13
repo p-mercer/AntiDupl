@@ -326,7 +326,7 @@ namespace AntiDupl.NET
 
         static private Strings Create()
         {
-            Strings strings = new Strings();
+            var strings = new Strings();
             CopyTo(strings);
             return strings;
         }

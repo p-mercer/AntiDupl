@@ -91,7 +91,7 @@ namespace AntiDupl.NET
         // Запускается инициализация один раз при создание формы.
         private void InitializeComponents()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             Location = new System.Drawing.Point(0, 0);
             Margin = new Padding(0);
@@ -187,8 +187,8 @@ namespace AntiDupl.NET
         {
             /*bool updateCurrent = UpdateImageInfo(ref m_currentImageInfo, currentImageInfo);
             bool updateNeighbour = UpdateImageInfo(ref m_neighbourImageInfo, neighbourImageInfo);*/
-            bool updateCurrent = true;
-            bool updateNeighbour = true;
+            var updateCurrent = true;
+            var updateNeighbour = true;
             if (!m_options.resultsOptions.ShowNeighboursImages)
             {
                 m_currentImageInfo = currentImageInfo;
@@ -249,7 +249,7 @@ namespace AntiDupl.NET
             }
             if (updateCurrent || updateNeighbour)
             {
-                Size neighbourSizeMax = new Size(0, 0);
+                var neighbourSizeMax = new Size(0, 0);
                 if(m_neighbourImageInfo != null)
                     neighbourSizeMax = new Size((int)m_neighbourImageInfo.width, (int)m_neighbourImageInfo.height);
                 m_pictureBoxPanel.UpdateImagePadding(neighbourSizeMax);
@@ -321,7 +321,7 @@ namespace AntiDupl.NET
 
             m_pictureBoxPanel.Position = m_position;
             
-            TableLayoutPanel infoLayout = InitFactory.Layout.Create(7, 1); //number of controls in panel
+            var infoLayout = InitFactory.Layout.Create(7, 1); //number of controls in panel
             infoLayout.Height = m_imageSizeLabel.Height;
             if (m_position != Position.Left)
             {
@@ -396,8 +396,8 @@ namespace AntiDupl.NET
 
         public void RenameImage(object sender, EventArgs e)
         {
-            FileInfo fileInfo = new FileInfo(m_currentImageInfo.path);
-            SaveFileDialog dialog = new SaveFileDialog();
+            var fileInfo = new FileInfo(m_currentImageInfo.path);
+            var dialog = new SaveFileDialog();
             dialog.FileName = fileInfo.FullName;
             dialog.OverwritePrompt = false;
             dialog.AddExtension = true;
@@ -414,9 +414,9 @@ namespace AntiDupl.NET
 
         private void OnRenameImageDialogFileOk(object sender, CancelEventArgs e)
         {
-            SaveFileDialog dialog = (SaveFileDialog)sender;
-            FileInfo oldFileInfo = new FileInfo(m_currentImageInfo.path);
-            FileInfo newFileInfo = new FileInfo(dialog.FileName);
+            var dialog = (SaveFileDialog)sender;
+            var oldFileInfo = new FileInfo(m_currentImageInfo.path);
+            var newFileInfo = new FileInfo(dialog.FileName);
             if (newFileInfo.FullName != oldFileInfo.FullName && newFileInfo.Exists)
             {
                 MessageBox.Show(Resources.Strings.Current.ErrorMessage_FileAlreadyExists,
@@ -432,7 +432,7 @@ namespace AntiDupl.NET
 
         private List<string> GetExifList(CoreImageInfo currentImageInfo, Strings s)
         {
-            List<string> exifList = new List<string>();
+            var exifList = new List<string>();
             if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.imageDescription))
                 exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_ImageDescription + currentImageInfo.exifInfo.imageDescription);
             if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.equipMake))
@@ -455,14 +455,14 @@ namespace AntiDupl.NET
         /// </summary>
         private void SetExifTooltip(CoreImageInfo currentImageInfo)
         {
-            Strings s = Resources.Strings.Current;
-            string exifSting = String.Empty;
+            var s = Resources.Strings.Current;
+            var exifSting = String.Empty;
 
-            List<string> exifList = GetExifList(currentImageInfo, s);
+            var exifList = GetExifList(currentImageInfo, s);
 
             if (exifList.Count > 0)
             {
-                for (int i = 0; i < exifList.Count - 1; i++)
+                for (var i = 0; i < exifList.Count - 1; i++)
                 {
                     exifSting = exifSting + exifList[i];
                     exifSting = exifSting + Environment.NewLine;
@@ -517,23 +517,23 @@ namespace AntiDupl.NET
 
         public ComparableBitmap[] GetImageFragments()
         {
-            int amountOfFragments = m_options.resultsOptions.AmountOfFragmentsOnX * m_options.resultsOptions.AmountOfFragmentsOnY;
+            var amountOfFragments = m_options.resultsOptions.AmountOfFragmentsOnX * m_options.resultsOptions.AmountOfFragmentsOnY;
 
-            Bitmap bitmap = m_pictureBoxPanel.Bitmap;
+            var bitmap = m_pictureBoxPanel.Bitmap;
             if (bitmap != null && m_options.resultsOptions.NormalizedSizeOfImage > 16)
             {
-                Size smallSize = new Size(m_options.resultsOptions.NormalizedSizeOfImage, m_options.resultsOptions.NormalizedSizeOfImage);
+                var smallSize = new Size(m_options.resultsOptions.NormalizedSizeOfImage, m_options.resultsOptions.NormalizedSizeOfImage);
                 bitmap = ResizeImage(bitmap, smallSize);
 
                 if (bitmap != null)
                 {
-                    ComparableBitmap[] fragments = new ComparableBitmap[amountOfFragments];
-                    int widthOfFragment = bitmap.Width / m_options.resultsOptions.AmountOfFragmentsOnX;
-                    int heightOfFragment = bitmap.Height / m_options.resultsOptions.AmountOfFragmentsOnX;
+                    var fragments = new ComparableBitmap[amountOfFragments];
+                    var widthOfFragment = bitmap.Width / m_options.resultsOptions.AmountOfFragmentsOnX;
+                    var heightOfFragment = bitmap.Height / m_options.resultsOptions.AmountOfFragmentsOnX;
 
                     for (int i = 0, x = 0, y = 0; i < amountOfFragments; i++)
                     {
-                        Rectangle rectangle = new Rectangle(x, y, widthOfFragment, heightOfFragment);
+                        var rectangle = new Rectangle(x, y, widthOfFragment, heightOfFragment);
                         fragments[i] = new ComparableBitmap(bitmap, rectangle);
 
                         x += widthOfFragment;
@@ -565,8 +565,8 @@ namespace AntiDupl.NET
         {
             try
             {
-                Bitmap b = new Bitmap(size.Width, size.Height);
-                using (Graphics g = Graphics.FromImage((Image)b))
+                var b = new Bitmap(size.Width, size.Height);
+                using (var g = Graphics.FromImage((Image)b))
                 {
                     g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                     g.DrawImage(imgToResize, new Rectangle(0, 0, size.Width, size.Height),

@@ -122,7 +122,7 @@ namespace AntiDupl.NET
 
         private void UpdateStrings()
         {
-            Strings s = Resources.Strings.Current;
+            var s = Resources.Strings.Current;
 
             m_copyPathItem.Text = s.ImagePreviewContextMenu_CopyPathItem_Text;
             m_copyFileNameItem.Text = s.ImagePreviewContextMenu_CopyFileNameItem_Text;

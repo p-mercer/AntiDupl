@@ -173,7 +173,7 @@ namespace AntiDupl.NET
         
         private void SetSplitterDistance()
         {
-            ResultsOptions options = m_options.resultsOptions;
+            var options = m_options.resultsOptions;
             if (options.viewMode == ResultsOptions.ViewMode.VerticalPairTable || options.viewMode == ResultsOptions.ViewMode.GroupedThumbnails)
             {
                 if (m_mainForm.WindowState == FormWindowState.Maximized)
@@ -200,7 +200,7 @@ namespace AntiDupl.NET
         
         private void GetSplitterDistance()
         {
-            ResultsOptions options = m_options.resultsOptions;
+            var options = m_options.resultsOptions;
             if (options.viewMode == ResultsOptions.ViewMode.VerticalPairTable || options.viewMode == ResultsOptions.ViewMode.GroupedThumbnails)
             {
                 if (m_mainForm.WindowState == FormWindowState.Maximized)

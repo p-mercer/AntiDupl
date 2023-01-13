@@ -59,14 +59,14 @@ namespace AntiDupl.NET
         /// <returns></returns>
         public bool Exists(CoreImageInfo imageInfo)
         {
-            bool result = false;
+            var result = false;
             m_mutex.WaitOne();
             if (m_storage.ContainsKey(imageInfo.id))
             {
-                Bitmap bitmap = m_storage[imageInfo.id];
+                var bitmap = m_storage[imageInfo.id];
                 if(bitmap != null)
                 {
-                    Size size = GetThumbnailSize(imageInfo);
+                    var size = GetThumbnailSize(imageInfo);
                     result = (bitmap.Height == size.Height && bitmap.Width == size.Width);
                 }
             }
@@ -82,7 +82,7 @@ namespace AntiDupl.NET
         public Bitmap Get(CoreImageInfo imageInfo)
         {
             Bitmap bitmap = null;
-            Size size = GetThumbnailSize(imageInfo);
+            var size = GetThumbnailSize(imageInfo);
             m_mutex.WaitOne();
             m_storage.TryGetValue(imageInfo.id, out bitmap);
             if (bitmap == null || bitmap.Height != size.Height || bitmap.Width != size.Width)
@@ -98,7 +98,7 @@ namespace AntiDupl.NET
 
         private Size GetThumbnailSize(CoreImageInfo imageInfo)
         {
-            Size sizeMax = m_options.resultsOptions.thumbnailSizeMax;
+            var sizeMax = m_options.resultsOptions.thumbnailSizeMax;
             if (sizeMax.Width * imageInfo.height > sizeMax.Height * imageInfo.width)
             {
                 return new Size(sizeMax.Width, (int)(sizeMax.Height * imageInfo.height / imageInfo.width));
