@@ -576,7 +576,7 @@ public class CorePathsForm : Form
             RemovePath(false);
         }
 
-        private void OnTabControlSelected(Object sender, TabControlEventArgs e)
+        private void OnTabControlSelected(object sender, TabControlEventArgs e)
         {
             UpdateButtonEnabling();
         }

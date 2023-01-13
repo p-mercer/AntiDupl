@@ -152,7 +152,7 @@ public class MainSplitContainer : SplitContainer
             UpdateResults();
         }
 
-        private void OnSplitterPositionChanged(Object sender, SplitterEventArgs e)
+        private void OnSplitterPositionChanged(object sender, SplitterEventArgs e)
         {
             if (!m_setOrientationNow && m_atLeastOneTimeSetOrientation)
             {

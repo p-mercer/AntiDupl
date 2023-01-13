@@ -28,10 +28,10 @@ namespace AntiDupl.NET;
 
 public class CoreVersion
     {
-        public Int32 major;
-        public Int32 minor;
-        public Int32 release;
-        public Int32 revision;
+        public int major;
+        public int minor;
+        public int release;
+        public int revision;
 
         public CoreVersion(sbyte[] buffer)
         {

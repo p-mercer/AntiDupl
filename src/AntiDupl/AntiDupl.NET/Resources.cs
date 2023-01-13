@@ -418,7 +418,7 @@ static public class Resources
                     form.HelpButtonClicked += new CancelEventHandler(OnHelpButtonClicked);
                 }
 
-                private void OnHelpButtonClicked(Object sender, CancelEventArgs e)
+                private void OnHelpButtonClicked(object sender, CancelEventArgs e)
                 {
                     Help.Show(m_url);
                 }

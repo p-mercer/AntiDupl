@@ -192,7 +192,7 @@ public class ImagePreviewPanel : TableLayoutPanel
             // Период времени, в миллисекундах, ToolTip остается видимыми, когда указатель неподвижн на элементе управления. Значение по умолчанию - 5000. 
             // В десять раз больше, чем значение свойства AutomaticDelay. 
             // you cannot set the AutoPopDelay time higher than an Int16.MaxValue (i.e. 32767) and have it working. Using the tooltip Show() method leads to the same result. Any value higher than 32767 leads the timer to be reset to 5000ms.
-            m_toolTip.AutoPopDelay = Int16.MaxValue;
+            m_toolTip.AutoPopDelay = short.MaxValue;
         }
 
         /// <summary>
@@ -468,37 +468,37 @@ public class ImagePreviewPanel : TableLayoutPanel
         private List<string> GetExifList(CoreImageInfo currentImageInfo, Strings s)
         {
             var exifList = new List<string>();
-            if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.imageDescription))
+            if (!string.IsNullOrEmpty(currentImageInfo.exifInfo.imageDescription))
 		{
 			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_ImageDescription + currentImageInfo.exifInfo.imageDescription);
 		}
 
-		if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.equipMake))
+		if (!string.IsNullOrEmpty(currentImageInfo.exifInfo.equipMake))
 		{
 			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_EquipMake + currentImageInfo.exifInfo.equipMake);
 		}
 
-		if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.equipModel))
+		if (!string.IsNullOrEmpty(currentImageInfo.exifInfo.equipModel))
 		{
 			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_EquipModel + currentImageInfo.exifInfo.equipModel);
 		}
 
-		if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.softwareUsed))
+		if (!string.IsNullOrEmpty(currentImageInfo.exifInfo.softwareUsed))
 		{
 			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_SoftwareUsed + currentImageInfo.exifInfo.softwareUsed);
 		}
 
-		if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.dateTime))
+		if (!string.IsNullOrEmpty(currentImageInfo.exifInfo.dateTime))
 		{
 			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_DateTime + currentImageInfo.exifInfo.dateTime);
 		}
 
-		if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.artist))
+		if (!string.IsNullOrEmpty(currentImageInfo.exifInfo.artist))
 		{
 			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_Artist + currentImageInfo.exifInfo.artist);
 		}
 
-		if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.userComment))
+		if (!string.IsNullOrEmpty(currentImageInfo.exifInfo.userComment))
 		{
 			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_UserComment + currentImageInfo.exifInfo.userComment);
 		}
@@ -512,7 +512,7 @@ public class ImagePreviewPanel : TableLayoutPanel
         private void SetExifTooltip(CoreImageInfo currentImageInfo)
         {
             var s = Resources.Strings.Current;
-            var exifSting = String.Empty;
+            var exifSting = string.Empty;
 
             var exifList = GetExifList(currentImageInfo, s);
 

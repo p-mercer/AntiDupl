@@ -29,7 +29,7 @@ public class CoreStatistic
     {
         public uint scanedFolderNumber;
         public uint searchedImageNumber;
-        public UInt64 searchedImageSize;
+        public ulong searchedImageSize;
         public uint collectedImageNumber;
         public uint comparedImageNumber;
         public uint collectThreadCount;
@@ -38,7 +38,7 @@ public class CoreStatistic
         public uint duplImagePairNumber;
         public uint renamedImageNumber;
         public uint deletedImageNumber;
-        public UInt64 deletedImageSize;
+        public ulong deletedImageSize;
         
         public CoreStatistic(ref CoreDll.adStatistic statistic)
         {

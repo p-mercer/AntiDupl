@@ -40,7 +40,7 @@ internal static class Program
                     var directoryInfo = new DirectoryInfo(customSavePath);
                     if (!directoryInfo.Exists)
 				{
-					throw new Exception(String.Format("The directory '{0}' is not exists!", customSavePath));
+					throw new Exception(string.Format("The directory '{0}' is not exists!", customSavePath));
 				}
 
 				Resources.UserPath = customSavePath;
@@ -65,7 +65,7 @@ internal static class Program
         {
             for(var i = 0; i < args.Length - 1; i++)
             {
-                if(String.Compare(args[i], name) == 0)
+                if(string.Compare(args[i], name) == 0)
                 {
                     value = args[i + 1];
                     return true;

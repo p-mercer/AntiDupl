@@ -896,7 +896,7 @@ public class ResultsListView : DataGridView
                 var row = (DataGridViewCustomRow)Rows[i];
                 row.selected = value;
             }
-            m_core.SetSelection((UInt32)beginRowIndex, (UInt32)(endRowIndex - beginRowIndex), value);
+            m_core.SetSelection((uint)beginRowIndex, (uint)(endRowIndex - beginRowIndex), value);
         }
 
         protected override void OnVisibleChanged(EventArgs e)
@@ -1000,7 +1000,7 @@ public class ResultsListView : DataGridView
                     var row = (DataGridViewCustomRow)Rows[i];
                     if (row.selected)
                     {
-                        if (String.IsNullOrEmpty(m_results[i].second.path))
+                        if (string.IsNullOrEmpty(m_results[i].second.path))
 					{
 						return false;
 					}

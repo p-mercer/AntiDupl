@@ -160,7 +160,7 @@ public class StartFinishForm : Form
             ShowDialog();
         }
 
-	private void TimerCallback(Object obj, EventArgs eventArgs)
+	private void TimerCallback(object obj, EventArgs eventArgs)
         {
             if (m_state == State.Finish)
             {

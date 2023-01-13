@@ -36,7 +36,7 @@ public class LabeledIntegerEdit : TableLayoutPanel
         private int m_default = 0;
         private readonly EventHandler m_valueChangedHandler;
 
-        public override String Text { get { return m_label.Text; } set { m_label.Text = value; } }
+        public override string Text { get { return m_label.Text; } set { m_label.Text = value; } }
 
         public int Value
         {

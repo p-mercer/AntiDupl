@@ -39,11 +39,11 @@ internal class LabeledNumericUpDown : TableLayoutPanel
         private float m_default = 0;
         private readonly EventHandler m_valueChangedHandler;
 
-        public override String Text { get { return m_label.Text; } set { m_label.Text = value; } }
+        public override string Text { get { return m_label.Text; } set { m_label.Text = value; } }
 
         public float Value
         {
-            get { return Decimal.ToSingle(m_numericUpDown.Value); }
+            get { return decimal.ToSingle(m_numericUpDown.Value); }
             set
             {
                 if (value > m_max || value < m_min)
@@ -133,7 +133,7 @@ internal class LabeledNumericUpDown : TableLayoutPanel
 
             try
             {
-                m_value = Decimal.ToSingle(m_numericUpDown.Value);
+                m_value = decimal.ToSingle(m_numericUpDown.Value);
                 if (m_value > m_max || m_value < m_min)
                 {
                     m_value = old;

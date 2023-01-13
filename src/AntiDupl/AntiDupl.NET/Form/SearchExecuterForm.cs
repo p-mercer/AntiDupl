@@ -182,7 +182,7 @@ public class SearchExecuterForm : Form
             ShowDialog();
         }
 
-	private void TimerCallback(Object obj, EventArgs eventArgs)
+	private void TimerCallback(object obj, EventArgs eventArgs)
         {
             if (m_state == State.Finish)
             {
@@ -276,7 +276,7 @@ public class SearchExecuterForm : Form
             }
         }
 
-        private void OnStopButtonClick(Object obj, EventArgs eventArgs)
+        private void OnStopButtonClick(object obj, EventArgs eventArgs)
         {
             if(m_state == State.Search)
             {
@@ -286,14 +286,14 @@ public class SearchExecuterForm : Form
             }
         }
 
-        private void OnMinimizeToTaskbarButtonClick(Object obj, EventArgs eventArgs)
+        private void OnMinimizeToTaskbarButtonClick(object obj, EventArgs eventArgs)
         {
             m_mainFormWindowState = m_mainForm.WindowState;
             WindowState = FormWindowState.Minimized;
             m_mainForm.WindowState = FormWindowState.Minimized;
         }
 
-        private void OnMainFormResize(Object obj, EventArgs eventArgs)
+        private void OnMainFormResize(object obj, EventArgs eventArgs)
         {
             if (!Modal)
             {
@@ -306,7 +306,7 @@ public class SearchExecuterForm : Form
             }
         }
 
-        private void OnMinimizeToSystrayButtonClick(Object obj, EventArgs eventArgs)
+        private void OnMinimizeToSystrayButtonClick(object obj, EventArgs eventArgs)
         {
             m_mainFormWindowState = m_mainForm.WindowState;
             m_notifyIcon.Visible = true;
@@ -315,7 +315,7 @@ public class SearchExecuterForm : Form
             Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.Idle;
         }
 
-        private void OnNotifyIconDoubleClick(Object obj, EventArgs eventArgs)
+        private void OnNotifyIconDoubleClick(object obj, EventArgs eventArgs)
         {
             Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.Normal;
             m_notifyIcon.Visible = false;

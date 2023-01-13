@@ -82,11 +82,11 @@ public class NewVersionMenuItem : ToolStripMenuItem
             Text = s.MainMenu_NewVersionMenuItem_Text;
             if (m_onlineVersion != null)
             {
-                ToolTipText = String.Format(s.MainMenu_NewVersionMenuItem_Tooltip, m_onlineVersion.ToString());
+                ToolTipText = string.Format(s.MainMenu_NewVersionMenuItem_Tooltip, m_onlineVersion.ToString());
             }
         }
 
-	private void TimerCallback(Object obj, EventArgs eventArgs)
+	private void TimerCallback(object obj, EventArgs eventArgs)
         {
             if (m_downloadingFinished)
             {

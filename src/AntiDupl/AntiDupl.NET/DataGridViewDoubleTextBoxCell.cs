@@ -53,17 +53,17 @@ public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
         public MarkType markType { get { return m_markType; } set { m_markType = value; } }
 
 
-        private readonly Object m_first;
-        private readonly Object m_second;
+        private readonly object m_first;
+        private readonly object m_second;
 
-        public DataGridViewDoubleTextBoxCell(Object first, Object second)
+        public DataGridViewDoubleTextBoxCell(object first, object second)
         {
             m_first = first;
             m_second = second;
         }
 
         override protected void Paint(Graphics graphics, Rectangle clipBounds, Rectangle cellBounds,
-          int rowIndex, DataGridViewElementStates cellState, Object value, Object formattedValue,
+          int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue,
           string errorText, DataGridViewCellStyle cellStyle,
           DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
         {

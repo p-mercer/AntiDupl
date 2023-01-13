@@ -318,7 +318,7 @@ public class ProgressForm : Form
             }
         }
 
-        private void OnCancelButtonClick(Object obj, EventArgs eventArgs)
+        private void OnCancelButtonClick(object obj, EventArgs eventArgs)
         {
             if (m_state == State.Work)
             {
@@ -335,7 +335,7 @@ public class ProgressForm : Form
             m_cancelButton.Text = s.CancelButton_Text;
         }
 
-	private void TimerCallback(Object obj, EventArgs eventArgs)
+	private void TimerCallback(object obj, EventArgs eventArgs)
         {
             if (m_state == State.Finish)
             {

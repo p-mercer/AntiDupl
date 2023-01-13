@@ -32,7 +32,7 @@ public class LabeledComboBox : TableLayoutPanel
         private readonly Label m_label;
 
         public ComboBox comboBox { get { return m_comboBox; } }
-        public override String Text { get { return m_label.Text; } set { m_label.Text = value; } }
+        public override string Text { get { return m_label.Text; } set { m_label.Text = value; } }
 
         public LabeledComboBox(int comboBoxWidth, int comboBoxHeight, EventHandler selectedIndexChanged)
         {
