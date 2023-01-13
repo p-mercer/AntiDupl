@@ -108,19 +108,23 @@ internal class LabeledNumericUpDown : TableLayoutPanel
             ColumnCount = 2;
             RowCount = 1;
 
-            m_numericUpDown = new NumericUpDown();
-            m_numericUpDown.Margin = new Padding(0);
-            m_numericUpDown.DecimalPlaces = decimalPlaces;
-            m_numericUpDown.Increment = increment;
-            m_numericUpDown.Minimum = minimum;
-            m_numericUpDown.Value = value;
-            m_numericUpDown.ValueChanged += new System.EventHandler(OnValueChanged); //вызов сначала внутренней функции
+		m_numericUpDown = new NumericUpDown
+		{
+			Margin = new Padding(0),
+			DecimalPlaces = decimalPlaces,
+			Increment = increment,
+			Minimum = minimum,
+			Value = value
+		};
+		m_numericUpDown.ValueChanged += new System.EventHandler(OnValueChanged); //вызов сначала внутренней функции
             Controls.Add(m_numericUpDown, 0, 0);
 
-            m_label = new System.Windows.Forms.Label();
-            m_label.AutoSize = true;
-            m_label.Padding = new Padding(0, 5, 5, 5);
-            Controls.Add(m_label, 1, 0);
+		m_label = new System.Windows.Forms.Label
+		{
+			AutoSize = true,
+			Padding = new Padding(0, 5, 5, 5)
+		};
+		Controls.Add(m_label, 1, 0);
         }
 
         private void OnValueChanged(object sender, EventArgs e)

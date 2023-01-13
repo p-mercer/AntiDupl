@@ -393,9 +393,11 @@ public class MainMenu : MenuStrip
         {
             if (m_options.onePath)
             {
-                var dialog = new FolderBrowserDialog();
-                dialog.ShowNewFolderButton = false;
-                if (Directory.Exists(m_coreOptions.searchPath[0].path))
+			var dialog = new FolderBrowserDialog
+			{
+				ShowNewFolderButton = false
+			};
+			if (Directory.Exists(m_coreOptions.searchPath[0].path))
                     dialog.SelectedPath = m_coreOptions.searchPath[0].path;
                 else
                     dialog.SelectedPath = Application.StartupPath;

@@ -90,13 +90,15 @@ public class MainToolStrip : ToolStrip
             m_refreshButton = InitFactory.ToolButton.Create("RefreshButton", null, m_mainMenu.RefreshResultsAction);
             m_pathsButton = InitFactory.ToolButton.Create("PathsButton", null, m_mainMenu.PathsAction);
             m_optionsButton = InitFactory.ToolButton.Create("OptionsButton", null, m_mainMenu.OptionsAction);
-            
-            m_thresholdDifferenceComboBox = new ToolStripComboBox();
-            m_thresholdDifferenceComboBox.AutoSize = false;
-            m_thresholdDifferenceComboBox.Size = new System.Drawing.Size(50, 20);
-            m_thresholdDifferenceComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            m_thresholdDifferenceComboBox.FlatStyle = FlatStyle.Popup;
-            m_thresholdDifferenceComboBox.SelectedIndexChanged += new EventHandler(OnThresholdDifferenceChanged);
+
+		m_thresholdDifferenceComboBox = new ToolStripComboBox
+		{
+			AutoSize = false,
+			Size = new System.Drawing.Size(50, 20),
+			DropDownStyle = ComboBoxStyle.DropDownList,
+			FlatStyle = FlatStyle.Popup
+		};
+		m_thresholdDifferenceComboBox.SelectedIndexChanged += new EventHandler(OnThresholdDifferenceChanged);
             if (m_coreOptions.compareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum)
                 for (var i = 0; i <= CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM; i++)
                     m_thresholdDifferenceComboBox.Items.Add(string.Format("{0} %", i));
@@ -104,12 +106,14 @@ public class MainToolStrip : ToolStrip
                 for (var i = 0; i <= CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SSIM; i++)
                     m_thresholdDifferenceComboBox.Items.Add(string.Format("{0} %", i));
 
-            m_algorithmComparingComboBox = new ToolStripComboBox();
-            m_algorithmComparingComboBox.AutoSize = false;
-            m_algorithmComparingComboBox.Size = new System.Drawing.Size(70, 20);
-            m_algorithmComparingComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            m_algorithmComparingComboBox.FlatStyle = FlatStyle.Popup;
-            m_algorithmComparingComboBox.SelectedIndexChanged += new EventHandler(OnAlgorithmComparingChanged);
+		m_algorithmComparingComboBox = new ToolStripComboBox
+		{
+			AutoSize = false,
+			Size = new System.Drawing.Size(70, 20),
+			DropDownStyle = ComboBoxStyle.DropDownList,
+			FlatStyle = FlatStyle.Popup
+		};
+		m_algorithmComparingComboBox.SelectedIndexChanged += new EventHandler(OnAlgorithmComparingChanged);
             m_algorithmComparingComboBox.Items.Add(Resources.Strings.Current.CoreOptionsForm_AlgorithmComparingLabeledComboBox_SquaredSum);
             m_algorithmComparingComboBox.Items.Add("SSIM");
 

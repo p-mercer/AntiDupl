@@ -85,9 +85,11 @@ public class CoreOptions
             old.Set(core, onePath);
 
             ignorePath = new CorePathWithSubFolder[1];
-            ignorePath[0] = new CorePathWithSubFolder();
-            ignorePath[0].path = Resources.DataPath;
-        }
+		ignorePath[0] = new CorePathWithSubFolder
+		{
+			path = Resources.DataPath
+		};
+	}
 
         public void Get(CoreLib core, bool onePath)
         {

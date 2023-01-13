@@ -41,12 +41,14 @@ public class LabeledComboBox : TableLayoutPanel
             ColumnCount = 2;
             RowCount = 1;
 
-            m_comboBox = new ComboBox();
-            m_comboBox.Size = new System.Drawing.Size(comboBoxWidth, comboBoxHeight);
-            m_comboBox.Padding = new Padding(0, 0, 0, 0);
-            m_comboBox.Margin = new Padding(0, 0, 0, 0);
-            m_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            m_comboBox.SelectedIndexChanged += new EventHandler(selectedIndexChanged);
+		m_comboBox = new ComboBox
+		{
+			Size = new System.Drawing.Size(comboBoxWidth, comboBoxHeight),
+			Padding = new Padding(0, 0, 0, 0),
+			Margin = new Padding(0, 0, 0, 0),
+			DropDownStyle = ComboBoxStyle.DropDownList
+		};
+		m_comboBox.SelectedIndexChanged += new EventHandler(selectedIndexChanged);
             Controls.Add(m_comboBox, 0, 0);
 
             m_label = InitFactory.Label.Create();

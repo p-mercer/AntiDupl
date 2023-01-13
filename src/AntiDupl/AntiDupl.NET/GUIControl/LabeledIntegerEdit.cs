@@ -101,18 +101,22 @@ public class LabeledIntegerEdit : TableLayoutPanel
             ColumnCount = 2;
             RowCount = 1;
 
-            m_textBox = new TextBox();
-            m_textBox.Size = new System.Drawing.Size(textBoxWidth, textBoxHeight);
-            m_textBox.Padding = new Padding(0, 0, 0, 0);
-            m_textBox.Margin = new Padding(0, 0, 0, 0);
-            m_textBox.Multiline = false;
-            m_textBox.KeyUp += new KeyEventHandler(OnTextBoxKeyUp);
+		m_textBox = new TextBox
+		{
+			Size = new System.Drawing.Size(textBoxWidth, textBoxHeight),
+			Padding = new Padding(0, 0, 0, 0),
+			Margin = new Padding(0, 0, 0, 0),
+			Multiline = false
+		};
+		m_textBox.KeyUp += new KeyEventHandler(OnTextBoxKeyUp);
             Controls.Add(m_textBox, 0, 0);
 
-            m_label = new System.Windows.Forms.Label();
-            m_label.AutoSize = true;
-            m_label.Padding = new Padding(0, 5, 5, 5);
-            Controls.Add(m_label, 1, 0);
+		m_label = new System.Windows.Forms.Label
+		{
+			AutoSize = true,
+			Padding = new Padding(0, 5, 5, 5)
+		};
+		Controls.Add(m_label, 1, 0);
         }
 
         private void OnTextBoxKeyUp(object sender, KeyEventArgs e)

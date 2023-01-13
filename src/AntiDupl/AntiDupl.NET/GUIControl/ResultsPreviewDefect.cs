@@ -70,9 +70,11 @@ public class ResultsPreviewDefect : ResultsPreviewBase
         private void OnImageDoubleClicked(object sender, System.EventArgs e)
         {
             var pictureBox = (PictureBox)sender;
-            var startInfo = new ProcessStartInfo();
-            startInfo.FileName = pictureBox.ImageLocation;
-            Process.Start(startInfo);
+		var startInfo = new ProcessStartInfo
+		{
+			FileName = pictureBox.ImageLocation
+		};
+		Process.Start(startInfo);
         }
 
         private void OnButtonClicked(object sender, System.EventArgs e)

@@ -100,26 +100,30 @@ public class ThumbnailPanel :  RaisedPanel
 
             m_controlLayout = InitFactory.Layout.Create(1, 1, 0, 0);
             m_controlLayout.Height = 16;
-            m_checkBox = new CheckBox();
-            m_checkBox.Location = new Point(0, 0);
-            m_checkBox.Margin = new Padding(0);
-            m_checkBox.Padding = new Padding(0);
-            m_checkBox.Height = 16;
-            m_checkBox.Click += new EventHandler(OnCheckBoxClick);
+		m_checkBox = new CheckBox
+		{
+			Location = new Point(0, 0),
+			Margin = new Padding(0),
+			Padding = new Padding(0),
+			Height = 16
+		};
+		m_checkBox.Click += new EventHandler(OnCheckBoxClick);
 
 
             m_controlLayout.Controls.Add(m_checkBox, 0, 0);
 
 
-            m_pictureBox = new PictureBox();
-            m_pictureBox.Location = new Point(0, 0);
-            m_pictureBox.ClientSize = m_options.resultsOptions.thumbnailSizeMax;
-            m_pictureBox.SizeMode = PictureBoxSizeMode.Zoom; 
-            m_pictureBox.BorderStyle = BorderStyle.Fixed3D;
-            m_pictureBox.Image = null;
-            m_pictureBox.Padding = new Padding(0);
-            m_pictureBox.Margin = new Padding(0);
-            m_pictureBox.Location = new Point(Padding.Left, Padding.Top);
+		m_pictureBox = new PictureBox
+		{
+			Location = new Point(0, 0),
+			ClientSize = m_options.resultsOptions.thumbnailSizeMax,
+			SizeMode = PictureBoxSizeMode.Zoom,
+			BorderStyle = BorderStyle.Fixed3D,
+			Image = null,
+			Padding = new Padding(0),
+			Margin = new Padding(0)
+		};
+		m_pictureBox.Location = new Point(Padding.Left, Padding.Top);
             m_pictureBox.BackColor = Color.Transparent;
             m_pictureBox.Click += new EventHandler(OnClick);
 
@@ -150,14 +154,16 @@ public class ThumbnailPanel :  RaisedPanel
 
         private Label CreateLabel()
         {
-            var label = new Label();
-            label.Location = new Point(0, 0);
-            label.Padding = new Padding(0, 0, 0, 0);
-            label.Margin = new Padding(0, 0, 0, 0);
-            label.TextAlign = ContentAlignment.TopCenter;
-            label.AutoSize = false;
-            label.BorderStyle = BorderStyle.Fixed3D;
-            label.Height = label.Font.Height + 2;
+		var label = new Label
+		{
+			Location = new Point(0, 0),
+			Padding = new Padding(0, 0, 0, 0),
+			Margin = new Padding(0, 0, 0, 0),
+			TextAlign = ContentAlignment.TopCenter,
+			AutoSize = false,
+			BorderStyle = BorderStyle.Fixed3D
+		};
+		label.Height = label.Font.Height + 2;
             label.FlatStyle = FlatStyle.System;
             label.Text = "0";
             label.Click += new EventHandler(OnClick);

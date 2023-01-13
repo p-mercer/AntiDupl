@@ -191,9 +191,11 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
         private void OnImageDoubleClicked(object sender, System.EventArgs e)
         {
             var pictureBox = (PictureBox)sender;
-            var startInfo = new ProcessStartInfo();
-            startInfo.FileName = pictureBox.ImageLocation;
-            Process.Start(startInfo);
+		var startInfo = new ProcessStartInfo
+		{
+			FileName = pictureBox.ImageLocation
+		};
+		Process.Start(startInfo);
         }
 
         private void OnOpenBothFoldersButtonClicked(object sender, System.EventArgs e)
@@ -286,10 +288,12 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
                 _highlightStop = false;
                 var bitmap1 = m_firstImagePreviewPanel.GetImageFragments();
                 var bitmap2 = m_secondImagePreviewPanel.GetImageFragments();
-                _thread = new Thread(
-                     unused => CalculateRectanglesOfDifferences(bitmap1, bitmap2));
-                _thread.Name = "Calculate rectangles of differences";
-                _thread.Start();
+			_thread = new Thread(
+				 unused => CalculateRectanglesOfDifferences(bitmap1, bitmap2))
+			{
+				Name = "Calculate rectangles of differences"
+			};
+			_thread.Start();
             }
             else
             {

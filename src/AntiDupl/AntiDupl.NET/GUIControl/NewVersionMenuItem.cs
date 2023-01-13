@@ -62,9 +62,11 @@ public class NewVersionMenuItem : ToolStripMenuItem
             Click += new EventHandler(OnClick);
             Resources.Strings.OnCurrentChange += new Resources.Strings.CurrentChangeHandler(UpdateStrings);
 
-            m_timer = new System.Windows.Forms.Timer();
-            m_timer.Interval = 1000;
-            m_timer.Tick += new EventHandler(TimerCallback);
+		m_timer = new System.Windows.Forms.Timer
+		{
+			Interval = 1000
+		};
+		m_timer.Tick += new EventHandler(TimerCallback);
             m_timer.Start();
         }
 

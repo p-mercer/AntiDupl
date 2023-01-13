@@ -35,12 +35,14 @@ public static class InitFactory
         {
             public static TableLayoutPanel Create(int columCount, int rowCount)
             {
-                var layout = new TableLayoutPanel();
-                layout.Location = new System.Drawing.Point(0, 0);
-                layout.Dock = DockStyle.Fill;
-                layout.ColumnCount = columCount;
-                layout.RowCount = rowCount;
-                return layout;
+			var layout = new TableLayoutPanel
+			{
+				Location = new System.Drawing.Point(0, 0),
+				Dock = DockStyle.Fill,
+				ColumnCount = columCount,
+				RowCount = rowCount
+			};
+			return layout;
             }
 
             public static TableLayoutPanel Create(int columCount, int rowCount, int padding)
@@ -112,9 +114,11 @@ public static class InitFactory
         {
             public static System.Windows.Forms.Label Create()
             {
-                var label = new System.Windows.Forms.Label();
-                label.AutoSize = true;
-                return label;
+			var label = new System.Windows.Forms.Label
+			{
+				AutoSize = true
+			};
+			return label;
             }
 
             public static System.Windows.Forms.Label Create(float fontSize)
@@ -126,11 +130,13 @@ public static class InitFactory
 
             public static System.Windows.Forms.Label Create(string text, System.Drawing.Font font)
             {
-                var label = new System.Windows.Forms.Label();
-                label.AutoSize = true;
-                label.Font = font;
-                label.Text = text;
-                return label;
+			var label = new System.Windows.Forms.Label
+			{
+				AutoSize = true,
+				Font = font,
+				Text = text
+			};
+			return label;
             }
         };
 
@@ -149,10 +155,12 @@ public static class InitFactory
         {
             public static System.Windows.Forms.ListBox Create(EventHandler selectedIndexChanged, EventHandler doubleClick)
             {
-                var listBox = new System.Windows.Forms.ListBox();
-                listBox.Location = new System.Drawing.Point(0, 0);
-                listBox.Dock = DockStyle.Fill;
-                listBox.SelectedIndexChanged += new EventHandler(selectedIndexChanged);
+			var listBox = new System.Windows.Forms.ListBox
+			{
+				Location = new System.Drawing.Point(0, 0),
+				Dock = DockStyle.Fill
+			};
+			listBox.SelectedIndexChanged += new EventHandler(selectedIndexChanged);
                 listBox.DoubleClick += new EventHandler(doubleClick);
                 return listBox;
             }
@@ -162,10 +170,12 @@ public static class InitFactory
         {
             public static System.Windows.Forms.CheckedListBox Create(EventHandler selectedIndexChanged, EventHandler doubleClick, ItemCheckEventHandler itemCheck)
             {
-                var checkBox = new System.Windows.Forms.CheckedListBox();
-                checkBox.Location = new System.Drawing.Point(0, 0);
-                checkBox.Dock = DockStyle.Fill;
-                checkBox.SelectedIndexChanged += new EventHandler(selectedIndexChanged);
+			var checkBox = new System.Windows.Forms.CheckedListBox
+			{
+				Location = new System.Drawing.Point(0, 0),
+				Dock = DockStyle.Fill
+			};
+			checkBox.SelectedIndexChanged += new EventHandler(selectedIndexChanged);
                 checkBox.DoubleClick += new EventHandler(doubleClick);
                 checkBox.ItemCheck += new ItemCheckEventHandler(itemCheck);
                 checkBox.CheckOnClick = false;

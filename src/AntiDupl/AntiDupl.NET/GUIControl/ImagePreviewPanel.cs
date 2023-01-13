@@ -99,69 +99,87 @@ public class ImagePreviewPanel : TableLayoutPanel
             ColumnCount = 1;
             RowCount = 2;
 
-            m_pictureBoxPanel = new PictureBoxPanel(m_core, m_options);
-            m_pictureBoxPanel.ContextMenuStrip = new ImagePreviewContextMenu(m_core, m_options, m_resultsListView.CoreOptions, this, m_resultsListView);
-            
-            m_fileSizeLabel = new Label();
-            m_fileSizeLabel.Dock = DockStyle.Fill;
-            m_fileSizeLabel.BorderStyle = BorderStyle.Fixed3D;
-            m_fileSizeLabel.Padding = new Padding(1, 3, 1, 0);
-            m_fileSizeLabel.TextAlign = ContentAlignment.TopCenter;
-            m_fileSizeLabel.AutoSize = true;
-            
-            m_imageSizeLabel = new Label();
-            m_imageSizeLabel.Dock = DockStyle.Fill;
-            m_imageSizeLabel.BorderStyle = BorderStyle.Fixed3D;
-            m_imageSizeLabel.Padding = new Padding(1, 3, 1, 0);
-            m_imageSizeLabel.Margin = new Padding(IBW, 0, 0, 0);
-            m_imageSizeLabel.TextAlign = ContentAlignment.TopCenter;
-            m_imageSizeLabel.AutoSize = true;
+		m_pictureBoxPanel = new PictureBoxPanel(m_core, m_options)
+		{
+			ContextMenuStrip = new ImagePreviewContextMenu(m_core, m_options, m_resultsListView.CoreOptions, this, m_resultsListView)
+		};
 
-            m_imageBlocknessLabel = new Label();
-            m_imageBlocknessLabel.Dock = DockStyle.Fill;
-            m_imageBlocknessLabel.BorderStyle = BorderStyle.Fixed3D;
-            m_imageBlocknessLabel.Padding = new Padding(1, 3, 1, 0);
-            m_imageBlocknessLabel.Margin = new Padding(IBW, 0, 0, 0);
-            m_imageBlocknessLabel.TextAlign = ContentAlignment.TopCenter;
-            m_imageBlocknessLabel.AutoSize = true;
+		m_fileSizeLabel = new Label
+		{
+			Dock = DockStyle.Fill,
+			BorderStyle = BorderStyle.Fixed3D,
+			Padding = new Padding(1, 3, 1, 0),
+			TextAlign = ContentAlignment.TopCenter,
+			AutoSize = true
+		};
 
-            m_imageBlurringLabel = new Label();
-            m_imageBlurringLabel.Dock = DockStyle.Fill;
-            m_imageBlurringLabel.BorderStyle = BorderStyle.Fixed3D;
-            m_imageBlurringLabel.Padding = new Padding(1, 3, 1, 0);
-            m_imageBlurringLabel.Margin = new Padding(IBW, 0, 0, 0);
-            m_imageBlurringLabel.TextAlign = ContentAlignment.TopCenter;
-            m_imageBlurringLabel.AutoSize = true;
+		m_imageSizeLabel = new Label
+		{
+			Dock = DockStyle.Fill,
+			BorderStyle = BorderStyle.Fixed3D,
+			Padding = new Padding(1, 3, 1, 0),
+			Margin = new Padding(IBW, 0, 0, 0),
+			TextAlign = ContentAlignment.TopCenter,
+			AutoSize = true
+		};
 
-            m_imageTypeLabel = new Label();
-            m_imageTypeLabel.Dock = DockStyle.Fill;
-            m_imageTypeLabel.BorderStyle = BorderStyle.Fixed3D;
-            m_imageTypeLabel.Padding = new Padding(1, 3, 1, 0);
-            m_imageTypeLabel.Margin = new Padding(IBW, 0, 0, 0);
-            m_imageTypeLabel.TextAlign = ContentAlignment.TopCenter;
-            m_imageTypeLabel.AutoSize = true;
+		m_imageBlocknessLabel = new Label
+		{
+			Dock = DockStyle.Fill,
+			BorderStyle = BorderStyle.Fixed3D,
+			Padding = new Padding(1, 3, 1, 0),
+			Margin = new Padding(IBW, 0, 0, 0),
+			TextAlign = ContentAlignment.TopCenter,
+			AutoSize = true
+		};
 
-            m_imageExifLabel = new Label();
-            m_imageExifLabel.Dock = DockStyle.Fill;
-            m_imageExifLabel.BorderStyle = BorderStyle.Fixed3D;
-            m_imageExifLabel.Padding = new Padding(1, 3, 1, 0);
-            m_imageExifLabel.Margin = new Padding(IBW, 0, 0, 0);
-            m_imageExifLabel.TextAlign = ContentAlignment.TopCenter;
-            m_imageExifLabel.AutoSize = true;
-            m_imageExifLabel.Text = s.ImagePreviewPanel_EXIF_Text;
-            m_imageExifLabel.Visible = false;
+		m_imageBlurringLabel = new Label
+		{
+			Dock = DockStyle.Fill,
+			BorderStyle = BorderStyle.Fixed3D,
+			Padding = new Padding(1, 3, 1, 0),
+			Margin = new Padding(IBW, 0, 0, 0),
+			TextAlign = ContentAlignment.TopCenter,
+			AutoSize = true
+		};
 
-            m_pathLabel = new Label();
-            m_pathLabel.Location = new Point(0, 0);
-            m_pathLabel.Dock = DockStyle.Fill;
-            m_pathLabel.BorderStyle = BorderStyle.Fixed3D;
-            m_pathLabel.Padding = new Padding(1, 3, 1, 0);
-            m_pathLabel.AutoEllipsis = true;
-            m_pathLabel.DoubleClick += new EventHandler(RenameImage);
+		m_imageTypeLabel = new Label
+		{
+			Dock = DockStyle.Fill,
+			BorderStyle = BorderStyle.Fixed3D,
+			Padding = new Padding(1, 3, 1, 0),
+			Margin = new Padding(IBW, 0, 0, 0),
+			TextAlign = ContentAlignment.TopCenter,
+			AutoSize = true
+		};
 
-            m_toolTip = new ToolTip();
-            m_toolTip.ShowAlways = true;
-            m_toolTip.SetToolTip(m_imageBlocknessLabel, s.ResultsListView_Blockiness_Column_Text);
+		m_imageExifLabel = new Label
+		{
+			Dock = DockStyle.Fill,
+			BorderStyle = BorderStyle.Fixed3D,
+			Padding = new Padding(1, 3, 1, 0),
+			Margin = new Padding(IBW, 0, 0, 0),
+			TextAlign = ContentAlignment.TopCenter,
+			AutoSize = true,
+			Text = s.ImagePreviewPanel_EXIF_Text,
+			Visible = false
+		};
+
+		m_pathLabel = new Label
+		{
+			Location = new Point(0, 0),
+			Dock = DockStyle.Fill,
+			BorderStyle = BorderStyle.Fixed3D,
+			Padding = new Padding(1, 3, 1, 0),
+			AutoEllipsis = true
+		};
+		m_pathLabel.DoubleClick += new EventHandler(RenameImage);
+
+		m_toolTip = new ToolTip
+		{
+			ShowAlways = true
+		};
+		m_toolTip.SetToolTip(m_imageBlocknessLabel, s.ResultsListView_Blockiness_Column_Text);
             m_toolTip.SetToolTip(m_imageBlurringLabel, s.ResultsListView_Blurring_Column_Text);
             // Свойство AutomaticDelay позволяет установить одно значение задержки, которое затем используется для установки значений свойствAutoPopDelay, InitialDelay и ReshowDelay. Каждый раз при установке свойства AutomaticDelay устанавливаются следующие значения по умолчанию.
             //m_toolTip.AutomaticDelay = 500;
@@ -395,13 +413,15 @@ public class ImagePreviewPanel : TableLayoutPanel
         public void RenameImage(object sender, EventArgs e)
         {
             var fileInfo = new FileInfo(m_currentImageInfo.path);
-            var dialog = new SaveFileDialog();
-            dialog.FileName = fileInfo.FullName;
-            dialog.OverwritePrompt = false;
-            dialog.AddExtension = true;
-            dialog.CheckPathExists = true;
-            dialog.DefaultExt = fileInfo.Extension;
-            dialog.FileOk += new System.ComponentModel.CancelEventHandler(OnRenameImageDialogFileOk);
+		var dialog = new SaveFileDialog
+		{
+			FileName = fileInfo.FullName,
+			OverwritePrompt = false,
+			AddExtension = true,
+			CheckPathExists = true,
+			DefaultExt = fileInfo.Extension
+		};
+		dialog.FileOk += new System.ComponentModel.CancelEventHandler(OnRenameImageDialogFileOk);
             dialog.Title = Resources.Strings.Current.ImagePreviewContextMenu_RenameImageItem_Text;
             dialog.InitialDirectory = fileInfo.Directory.ToString();
             if (dialog.ShowDialog() == DialogResult.OK)

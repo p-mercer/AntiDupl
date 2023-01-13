@@ -81,14 +81,16 @@ public class AboutProgramPanel : Panel
             layout.AutoSize = true;
 
             var bitmap = Resources.Icons.Get(new Size(LOGO_SIZE, LOGO_SIZE)).ToBitmap();
-            var pictureBox = new PictureBox();
-            pictureBox.Location = new System.Drawing.Point(0, 0);
-            pictureBox.Dock = DockStyle.Fill;
-            pictureBox.Padding = new Padding(0);
-            pictureBox.Margin = new Padding(0);
-            pictureBox.ClientSize = bitmap.Size;
-            pictureBox.Image = bitmap;
-            layout.Controls.Add(pictureBox, 1, 0);
+		var pictureBox = new PictureBox
+		{
+			Location = new System.Drawing.Point(0, 0),
+			Dock = DockStyle.Fill,
+			Padding = new Padding(0),
+			Margin = new Padding(0),
+			ClientSize = bitmap.Size,
+			Image = bitmap
+		};
+		layout.Controls.Add(pictureBox, 1, 0);
 
             layout.Controls.Add(CreateLinkLabel(Application.ProductName, Resources.WebLinks.GithubComAntidupl, font), 2, 0);
 
@@ -131,32 +133,38 @@ public class AboutProgramPanel : Panel
 
         private Label CreateLabel(string text, Font font)
         {
-            var label = new System.Windows.Forms.Label();
-            label.AutoSize = true;
-            label.Padding = new System.Windows.Forms.Padding(2);
-            label.Font = font;
-            label.Text = text;
-            label.Dock = DockStyle.Fill;
-            label.TextAlign = ContentAlignment.MiddleCenter;
-            return label;
+		var label = new System.Windows.Forms.Label
+		{
+			AutoSize = true,
+			Padding = new System.Windows.Forms.Padding(2),
+			Font = font,
+			Text = text,
+			Dock = DockStyle.Fill,
+			TextAlign = ContentAlignment.MiddleCenter
+		};
+		return label;
         }
 
         private LinkLabel CreateLinkLabel(string text, string link, Font font)
         {
-            var linkLabel = new LinkLabel();
-            linkLabel.AutoSize = true;
-            linkLabel.Font = font;
-            linkLabel.Text = text;
-            linkLabel.Dock = DockStyle.Fill;
-            linkLabel.LinkBehavior = LinkBehavior.HoverUnderline;
-            linkLabel.Padding = new System.Windows.Forms.Padding(2);
-            linkLabel.Links.Add(new LinkLabel.Link(0, text.Length, link));
+		var linkLabel = new LinkLabel
+		{
+			AutoSize = true,
+			Font = font,
+			Text = text,
+			Dock = DockStyle.Fill,
+			LinkBehavior = LinkBehavior.HoverUnderline,
+			Padding = new System.Windows.Forms.Padding(2)
+		};
+		linkLabel.Links.Add(new LinkLabel.Link(0, text.Length, link));
             linkLabel.LinkClicked += new LinkLabelLinkClickedEventHandler(OnLinkLabelLinkClicked);
             linkLabel.TextAlign = ContentAlignment.MiddleCenter;
 
-            var toolTip = new ToolTip();
-            toolTip.ShowAlways = true;
-            toolTip.SetToolTip(linkLabel, link);
+		var toolTip = new ToolTip
+		{
+			ShowAlways = true
+		};
+		toolTip.SetToolTip(linkLabel, link);
 
             return linkLabel;
         }

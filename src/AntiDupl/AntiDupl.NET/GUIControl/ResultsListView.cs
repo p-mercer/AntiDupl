@@ -910,12 +910,16 @@ public class ResultsListView : DataGridView
                     Columns[i].Width = m_options.resultsOptions.columnOptionsHorizontal[i].width;
                     Columns[i].DisplayIndex = m_options.resultsOptions.columnOptionsHorizontal[i].order;
                 }
-                Rows[0].Cells[0] = new DataGridViewTextBoxCell();
-                Rows[0].Cells[0].Value = "0";
-            }
-            RowTemplate = new DataGridViewCustomRow();
-            RowTemplate.Height = Rows[0].Cells[0].PreferredSize.Height;
-            Rows.Clear();
+			Rows[0].Cells[0] = new DataGridViewTextBoxCell
+			{
+				Value = "0"
+			};
+		}
+		RowTemplate = new DataGridViewCustomRow
+		{
+			Height = Rows[0].Cells[0].PreferredSize.Height
+		};
+		Rows.Clear();
             UpdateRows();
         }
 

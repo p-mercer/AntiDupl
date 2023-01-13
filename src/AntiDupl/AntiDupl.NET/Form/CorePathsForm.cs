@@ -94,40 +94,52 @@ public class CorePathsForm : Form
             pathTableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
             mainTableLayoutPanel.Controls.Add(pathTableLayoutPanel, 0, 0);
 
-            m_tabControl = new TabControl();
-            m_tabControl.Dock = DockStyle.Fill;
-            m_tabControl.Location = new System.Drawing.Point(0, 0);
-            m_tabControl.Margin = new Padding(0);
-            m_tabControl.Selected += new TabControlEventHandler(OnTabControlSelected);
+		m_tabControl = new TabControl
+		{
+			Dock = DockStyle.Fill,
+			Location = new System.Drawing.Point(0, 0),
+			Margin = new Padding(0)
+		};
+		m_tabControl.Selected += new TabControlEventHandler(OnTabControlSelected);
             pathTableLayoutPanel.Controls.Add(m_tabControl, 0, 0);
 
-            m_searchTabPage = new TabPage();
-            m_searchTabPage.Tag = CoreDll.PathType.Search;
-            m_tabControl.Controls.Add(m_searchTabPage);
+		m_searchTabPage = new TabPage
+		{
+			Tag = CoreDll.PathType.Search
+		};
+		m_tabControl.Controls.Add(m_searchTabPage);
 
-            m_toolTip = new ToolTip();
-            m_toolTip.ShowAlways = true;
+		m_toolTip = new ToolTip
+		{
+			ShowAlways = true
+		};
 
-            m_searchCheckedList = InitFactory.CheckedListBox.Create(OnSelectedIndexChanged, OnListBoxDoubleClick, OnItemCheck);
+		m_searchCheckedList = InitFactory.CheckedListBox.Create(OnSelectedIndexChanged, OnListBoxDoubleClick, OnItemCheck);
             m_searchTabPage.Controls.Add(m_searchCheckedList);
 
-            m_ignoreTabPage = new TabPage();
-            m_ignoreTabPage.Tag = CoreDll.PathType.Ignore;
-            m_tabControl.Controls.Add(m_ignoreTabPage);
+		m_ignoreTabPage = new TabPage
+		{
+			Tag = CoreDll.PathType.Ignore
+		};
+		m_tabControl.Controls.Add(m_ignoreTabPage);
 
             m_ignoreListBox = InitFactory.ListBox.Create(OnSelectedIndexChanged, OnListBoxDoubleClick);
             m_ignoreTabPage.Controls.Add(m_ignoreListBox);
 
-            m_validTabPage = new TabPage();
-            m_validTabPage.Tag = CoreDll.PathType.Valid;
-            m_tabControl.Controls.Add(m_validTabPage);
+		m_validTabPage = new TabPage
+		{
+			Tag = CoreDll.PathType.Valid
+		};
+		m_tabControl.Controls.Add(m_validTabPage);
 
             m_validListBox = InitFactory.ListBox.Create(OnSelectedIndexChanged, OnListBoxDoubleClick);
             m_validTabPage.Controls.Add(m_validListBox);
 
-            m_deleteTabPage = new TabPage();
-            m_deleteTabPage.Tag = CoreDll.PathType.Delete;
-            m_tabControl.Controls.Add(m_deleteTabPage);
+		m_deleteTabPage = new TabPage
+		{
+			Tag = CoreDll.PathType.Delete
+		};
+		m_tabControl.Controls.Add(m_deleteTabPage);
 
             m_deleteListBox = InitFactory.ListBox.Create(OnSelectedIndexChanged, OnListBoxDoubleClick);
             m_deleteTabPage.Controls.Add(m_deleteListBox);
@@ -139,24 +151,32 @@ public class CorePathsForm : Form
             pathButtonsTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
             pathTableLayoutPanel.Controls.Add(pathButtonsTableLayoutPanel, 0, 1);
 
-            m_addFilesButton = new Button();
-            m_addFilesButton.AutoSize = true;
-            m_addFilesButton.Click += new EventHandler(OnAddFilesButtonClick);
+		m_addFilesButton = new Button
+		{
+			AutoSize = true
+		};
+		m_addFilesButton.Click += new EventHandler(OnAddFilesButtonClick);
             pathButtonsTableLayoutPanel.Controls.Add(m_addFilesButton, 0, 0);
 
-            m_addFolderButton = new Button();
-            m_addFolderButton.AutoSize = true;
-            m_addFolderButton.Click += new EventHandler(OnAddFolderButtonClick);
+		m_addFolderButton = new Button
+		{
+			AutoSize = true
+		};
+		m_addFolderButton.Click += new EventHandler(OnAddFolderButtonClick);
             pathButtonsTableLayoutPanel.Controls.Add(m_addFolderButton, 1, 0);
 
-            m_changeButton = new Button();
-            m_changeButton.AutoSize = true;
-            m_changeButton.Click += new EventHandler(OnChangeButtonClick);
+		m_changeButton = new Button
+		{
+			AutoSize = true
+		};
+		m_changeButton.Click += new EventHandler(OnChangeButtonClick);
             pathButtonsTableLayoutPanel.Controls.Add(m_changeButton, 2, 0);
 
-            m_removeButton = new Button();
-            m_removeButton.AutoSize = true;
-            m_removeButton.Click += new EventHandler(OnRemoveButtonClick);
+		m_removeButton = new Button
+		{
+			AutoSize = true
+		};
+		m_removeButton.Click += new EventHandler(OnRemoveButtonClick);
             pathButtonsTableLayoutPanel.Controls.Add(m_removeButton, 3, 0);
 
             var mainButtonsTableLayoutPanel = InitFactory.Layout.Create(3, 1);
@@ -395,9 +415,11 @@ public class CorePathsForm : Form
             var path = GetCurrentPath();
             if (path == null)
                 return;
-            var dialog = new FolderPicker();
-            dialog.InputPath = GetInitialPath(path);
-            if (dialog.ShowDialog(IntPtr.Zero) == true)
+		var dialog = new FolderPicker
+		{
+			InputPath = GetInitialPath(path)
+		};
+		if (dialog.ShowDialog(IntPtr.Zero) == true)
             {
                 Array.Resize(ref path, path.Length + 1);
                 path[path.Length - 1] = new CorePathWithSubFolder();
@@ -418,12 +440,14 @@ public class CorePathsForm : Form
             var path = GetCurrentPath();
             if (path == null)
                 return;
-            var dialog = new OpenFileDialog();
-            dialog.Multiselect = true;
-            dialog.RestoreDirectory = true;
-            dialog.InitialDirectory = GetInitialPath(path);
-            dialog.Filter = GetFilter();
-            if (dialog.ShowDialog() == DialogResult.OK)
+		var dialog = new OpenFileDialog
+		{
+			Multiselect = true,
+			RestoreDirectory = true,
+			InitialDirectory = GetInitialPath(path),
+			Filter = GetFilter()
+		};
+		if (dialog.ShowDialog() == DialogResult.OK)
             {
                 Array.Resize(ref path, path.Length + dialog.FileNames.Length);
                 for (var i = 0; i < dialog.FileNames.Length; ++i)
@@ -502,10 +526,12 @@ public class CorePathsForm : Form
                 return;
             if (Directory.Exists(path[listBox.SelectedIndex].path))
             {
-                var dialog = new FolderBrowserDialog();
-                dialog.ShowNewFolderButton = false;
-                dialog.SelectedPath = path[listBox.SelectedIndex].path;
-                if (dialog.ShowDialog() == DialogResult.OK)
+			var dialog = new FolderBrowserDialog
+			{
+				ShowNewFolderButton = false,
+				SelectedPath = path[listBox.SelectedIndex].path
+			};
+			if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     if (dialog.SelectedPath[dialog.SelectedPath.Length - 1] == Path.DirectorySeparatorChar)
                         path[listBox.SelectedIndex].path = dialog.SelectedPath.Remove(dialog.SelectedPath.Length - 1);
@@ -519,11 +545,13 @@ public class CorePathsForm : Form
             }
             else
             {
-                var dialog = new OpenFileDialog();
-                dialog.RestoreDirectory = true;
-                dialog.FileName = path[listBox.SelectedIndex].path;
-                dialog.Filter = GetFilter();
-                if (dialog.ShowDialog() == DialogResult.OK)
+			var dialog = new OpenFileDialog
+			{
+				RestoreDirectory = true,
+				FileName = path[listBox.SelectedIndex].path,
+				Filter = GetFilter()
+			};
+			if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     path[listBox.SelectedIndex].path = dialog.FileName;
                     SetCurrentPath(path);
@@ -569,10 +597,12 @@ public class CorePathsForm : Form
             {
                 if (Directory.Exists(path[i]))
                 {
-                    var sfPath = new CorePathWithSubFolder();
-                    sfPath.path = path[i];
-                    sfPath.enableSubFolder = true;
-                    actualPath.Add(sfPath);
+				var sfPath = new CorePathWithSubFolder
+				{
+					path = path[i],
+					enableSubFolder = true
+				};
+				actualPath.Add(sfPath);
                 }
                 else
                 {
@@ -584,10 +614,12 @@ public class CorePathsForm : Form
                         {
                             if (extension == actualExtensions[j]) //если расширение из списка поддерживаемых
                             {
-                                var sfPath = new CorePathWithSubFolder();
-                                sfPath.path = path[i];
-                                sfPath.enableSubFolder = false;
-                                actualPath.Add(sfPath);
+							var sfPath = new CorePathWithSubFolder
+							{
+								path = path[i],
+								enableSubFolder = false
+							};
+							actualPath.Add(sfPath);
                                 break;
                             }
                         }

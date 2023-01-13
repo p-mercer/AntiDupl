@@ -63,11 +63,13 @@ public class MainForm : Form
 
         private void InitializeComponents()
         {
-            m_mainSplitContainer = new MainSplitContainer(m_core, m_options, m_coreOptions, this);
-            m_mainSplitContainer.Dock = DockStyle.Fill;
-            m_mainSplitContainer.Location = new System.Drawing.Point(0, 0);
+		m_mainSplitContainer = new MainSplitContainer(m_core, m_options, m_coreOptions, this)
+		{
+			Dock = DockStyle.Fill,
+			Location = new System.Drawing.Point(0, 0)
+		};
 
-            m_mainMenu = new MainMenu(m_core, m_options, m_coreOptions, this, m_mainSplitContainer);
+		m_mainMenu = new MainMenu(m_core, m_options, m_coreOptions, this, m_mainSplitContainer);
 
             m_mainToolStrip = new MainToolStrip(m_core, m_options, m_coreOptions, m_mainMenu, this, m_mainSplitContainer);
 

@@ -110,10 +110,12 @@ public class SearchExecuterForm : Form
             m_minimizeToSystrayButton.AutoSize = true;
             buttonsTableLayoutPanel.Controls.Add(m_minimizeToSystrayButton, 3, 0);
 
-            m_notifyIcon = new NotifyIcon();
-            m_notifyIcon.Icon = Resources.Icons.Get();
-            m_notifyIcon.Text = Application.ProductName;
-            m_notifyIcon.DoubleClick += new EventHandler(OnNotifyIconDoubleClick);
+		m_notifyIcon = new NotifyIcon
+		{
+			Icon = Resources.Icons.Get(),
+			Text = Application.ProductName
+		};
+		m_notifyIcon.DoubleClick += new EventHandler(OnNotifyIconDoubleClick);
 
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             StartPosition = FormStartPosition.CenterScreen;
@@ -130,9 +132,11 @@ public class SearchExecuterForm : Form
                 ClientSize = new Size(width, height);
             }
 
-            m_timer = new System.Windows.Forms.Timer();
-            m_timer.Interval = 100;
-            m_timer.Tick += new EventHandler(TimerCallback);
+		m_timer = new System.Windows.Forms.Timer
+		{
+			Interval = 100
+		};
+		m_timer.Tick += new EventHandler(TimerCallback);
             m_timer.Start();
 
             KeyDown += new KeyEventHandler(OnKeyDown); 

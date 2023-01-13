@@ -80,21 +80,27 @@ public class StartFinishForm : Form
             mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             Controls.Add(mainTableLayoutPanel);
 
-            m_aboutProgramPanel = new AboutProgramPanel(m_core);
-            m_aboutProgramPanel.Location = new Point(0, 0);
-            m_aboutProgramPanel.Dock = DockStyle.Fill;
-            mainTableLayoutPanel.Controls.Add(m_aboutProgramPanel, 0, 0);
+		m_aboutProgramPanel = new AboutProgramPanel(m_core)
+		{
+			Location = new Point(0, 0),
+			Dock = DockStyle.Fill
+		};
+		mainTableLayoutPanel.Controls.Add(m_aboutProgramPanel, 0, 0);
 
-            m_progressBar = new ProgressBar();
-            m_progressBar.Location = new Point(0, 0);
-            m_progressBar.Dock = DockStyle.Bottom;
-            m_progressBar.Style = ProgressBarStyle.Continuous;
-            m_progressBar.Margin = new Padding(0);
-            mainTableLayoutPanel.Controls.Add(m_progressBar, 0, 1);
+		m_progressBar = new ProgressBar
+		{
+			Location = new Point(0, 0),
+			Dock = DockStyle.Bottom,
+			Style = ProgressBarStyle.Continuous,
+			Margin = new Padding(0)
+		};
+		mainTableLayoutPanel.Controls.Add(m_progressBar, 0, 1);
 
-            m_timer = new System.Windows.Forms.Timer();
-            m_timer.Interval = 100;
-            m_timer.Tick += new EventHandler(TimerCallback);
+		m_timer = new System.Windows.Forms.Timer
+		{
+			Interval = 100
+		};
+		m_timer.Tick += new EventHandler(TimerCallback);
             m_timer.Start();
 
             FormClosed += new FormClosedEventHandler(OnFormClosed);

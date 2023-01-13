@@ -54,10 +54,12 @@ public class AboutProgramForm : Form
             mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             Controls.Add(mainTableLayoutPanel);
 
-            m_aboutProgramPanel = new AboutProgramPanel(m_core);
-            m_aboutProgramPanel.Location = new System.Drawing.Point(0, 0);
-            m_aboutProgramPanel.Dock = DockStyle.Fill;
-            mainTableLayoutPanel.Controls.Add(m_aboutProgramPanel, 0, 0);
+		m_aboutProgramPanel = new AboutProgramPanel(m_core)
+		{
+			Location = new System.Drawing.Point(0, 0),
+			Dock = DockStyle.Fill
+		};
+		mainTableLayoutPanel.Controls.Add(m_aboutProgramPanel, 0, 0);
 
             var okButtonTableLayoutPanel = InitFactory.Layout.Create(3, 1);
             okButtonTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));

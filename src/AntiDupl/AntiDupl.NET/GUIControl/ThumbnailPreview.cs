@@ -64,11 +64,13 @@ public class ThumbnailPreview : Panel
 
         private void InnitializeTestButton()
         {
-            var testButton = new Button();
-            testButton.Text = "Test";
-            testButton.Location = new Point(10, 10);
-            testButton.AutoSize = true;
-            testButton.Click += (sender, e) =>
+		var testButton = new Button
+		{
+			Text = "Test",
+			Location = new Point(10, 10),
+			AutoSize = true
+		};
+		testButton.Click += (sender, e) =>
             {
                 m_mainSplitContainer.UpdateResults();
             };

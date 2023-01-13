@@ -89,9 +89,11 @@ public class ThumbnailPreviewContextMenu : ContextMenuStrip
 
         private void OpenImage(object sender, EventArgs e)
         {
-            var startInfo = new ProcessStartInfo();
-            startInfo.FileName = m_thumbnailPreview.ImageInfo.path;
-            try
+		var startInfo = new ProcessStartInfo
+		{
+			FileName = m_thumbnailPreview.ImageInfo.path
+		};
+		try
             {
                 Process.Start(startInfo);
             }
@@ -113,13 +115,15 @@ public class ThumbnailPreviewContextMenu : ContextMenuStrip
 
         private void RenameImage(object sender, EventArgs e)
         {
-            var dialog = new SaveFileDialog();
-            dialog.FileName = m_thumbnailPreview.ImageInfo.path;
-            dialog.OverwritePrompt = false;
-            dialog.AddExtension = true;
-            dialog.CheckPathExists = true;
-            dialog.DefaultExt = (new FileInfo(m_thumbnailPreview.ImageInfo.path)).Extension;
-            dialog.FileOk += new System.ComponentModel.CancelEventHandler(OnRenameImageDialogFileOk);
+		var dialog = new SaveFileDialog
+		{
+			FileName = m_thumbnailPreview.ImageInfo.path,
+			OverwritePrompt = false,
+			AddExtension = true,
+			CheckPathExists = true,
+			DefaultExt = (new FileInfo(m_thumbnailPreview.ImageInfo.path)).Extension
+		};
+		dialog.FileOk += new System.ComponentModel.CancelEventHandler(OnRenameImageDialogFileOk);
             dialog.Title = Resources.Strings.Current.ImagePreviewContextMenu_RenameImageItem_Text;
             if (dialog.ShowDialog() == DialogResult.OK)
             {

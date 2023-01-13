@@ -57,39 +57,47 @@ public class ProgressPanel : Panel
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 500));
             Controls.Add(tableLayoutPanel);
 
-            m_totalLabel = new Label();
-            m_totalLabel.Location = new Point(0, 0);
-            m_totalLabel.Dock = DockStyle.Fill;
-            m_totalLabel.Width = (int)tableLayoutPanel.ColumnStyles[0].Width;
-            m_totalLabel.BorderStyle = BorderStyle.Fixed3D;
-            m_totalLabel.TextAlign = ContentAlignment.MiddleCenter;
-            m_totalLabel.Margin = new Padding(0, 0, 1, 0);
-            tableLayoutPanel.Controls.Add(m_totalLabel, 0, 0);
+		m_totalLabel = new Label
+		{
+			Location = new Point(0, 0),
+			Dock = DockStyle.Fill,
+			Width = (int)tableLayoutPanel.ColumnStyles[0].Width,
+			BorderStyle = BorderStyle.Fixed3D,
+			TextAlign = ContentAlignment.MiddleCenter,
+			Margin = new Padding(0, 0, 1, 0)
+		};
+		tableLayoutPanel.Controls.Add(m_totalLabel, 0, 0);
 
-            m_currentLabel = new Label();
-            m_currentLabel.Location = new Point(0, 0);
-            m_currentLabel.Dock = DockStyle.Fill;
-            m_currentLabel.Width = (int)tableLayoutPanel.ColumnStyles[1].Width;
-            m_currentLabel.BorderStyle = BorderStyle.Fixed3D;
-            m_currentLabel.TextAlign = ContentAlignment.MiddleCenter;
-            m_currentLabel.Margin = new Padding(0, 0, 1, 0);
-            tableLayoutPanel.Controls.Add(m_currentLabel, 1, 0);
+		m_currentLabel = new Label
+		{
+			Location = new Point(0, 0),
+			Dock = DockStyle.Fill,
+			Width = (int)tableLayoutPanel.ColumnStyles[1].Width,
+			BorderStyle = BorderStyle.Fixed3D,
+			TextAlign = ContentAlignment.MiddleCenter,
+			Margin = new Padding(0, 0, 1, 0)
+		};
+		tableLayoutPanel.Controls.Add(m_currentLabel, 1, 0);
 
-            m_complexProgressBar = new ComplexProgressBar();
-            m_complexProgressBar.Location = new Point(0, 0);
-            m_complexProgressBar.Dock = DockStyle.Fill;
-            m_complexProgressBar.Width = (int)tableLayoutPanel.ColumnStyles[2].Width;
-            m_complexProgressBar.Margin = new Padding(0);
-            tableLayoutPanel.Controls.Add(m_complexProgressBar, 2, 0);
+		m_complexProgressBar = new ComplexProgressBar
+		{
+			Location = new Point(0, 0),
+			Dock = DockStyle.Fill,
+			Width = (int)tableLayoutPanel.ColumnStyles[2].Width,
+			Margin = new Padding(0)
+		};
+		tableLayoutPanel.Controls.Add(m_complexProgressBar, 2, 0);
 
-            m_pathLabel = new Label();
-            m_pathLabel.Location = new Point(0, 0);
-            m_pathLabel.Dock = DockStyle.Fill;
-            m_pathLabel.Width = (int)tableLayoutPanel.ColumnStyles[3].Width;
-            m_pathLabel.BorderStyle = BorderStyle.Fixed3D;
-            m_pathLabel.TextAlign = ContentAlignment.MiddleLeft;
-            m_pathLabel.Margin = new Padding(1, 0, 0, 0);
-            tableLayoutPanel.Controls.Add(m_pathLabel, 3, 0);
+		m_pathLabel = new Label
+		{
+			Location = new Point(0, 0),
+			Dock = DockStyle.Fill,
+			Width = (int)tableLayoutPanel.ColumnStyles[3].Width,
+			BorderStyle = BorderStyle.Fixed3D,
+			TextAlign = ContentAlignment.MiddleLeft,
+			Margin = new Padding(1, 0, 0, 0)
+		};
+		tableLayoutPanel.Controls.Add(m_pathLabel, 3, 0);
         }
 
         public void UpdateStatus(int total, int currentFirst, int currentSecond, string path)

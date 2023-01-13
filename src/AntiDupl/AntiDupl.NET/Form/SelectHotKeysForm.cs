@@ -70,10 +70,12 @@ public class SelectHotKeysForm : Form
 
             Resources.Help.Bind(this, Resources.Help.HotKeys);
 
-            m_toolTip = new ToolTip();
-            m_toolTip.ShowAlways = true;
+		m_toolTip = new ToolTip
+		{
+			ShowAlways = true
+		};
 
-            var mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
+		var mainTableLayoutPanel = InitFactory.Layout.Create(1, 2, 5);
             mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
             mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             Controls.Add(mainTableLayoutPanel);
@@ -89,33 +91,43 @@ public class SelectHotKeysForm : Form
             m_hotKeyItems = new HotKeyItem[m_newHotKeyOptions.keys.Length];
             for(var i = 0; i < m_hotKeyItems.Length; i++)
             {
-                var item = new HotKeyItem();
-                item.icon = new PictureBox();
-                item.icon.Location = new System.Drawing.Point(0, 0);
-                item.icon.Size = new System.Drawing.Size(20, 20);
-                item.icon.SizeMode = PictureBoxSizeMode.Zoom;
-                hotKeysTableLayoutPanel.Controls.Add(item.icon, 0, i);
+			var item = new HotKeyItem
+			{
+				icon = new PictureBox
+				{
+					Location = new System.Drawing.Point(0, 0),
+					Size = new System.Drawing.Size(20, 20),
+					SizeMode = PictureBoxSizeMode.Zoom
+				}
+			};
+			hotKeysTableLayoutPanel.Controls.Add(item.icon, 0, i);
 
-                item.text = new Label();
-                item.text.Location = new System.Drawing.Point(0, 0);
-                item.text.Dock = DockStyle.Fill;
-                item.text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                hotKeysTableLayoutPanel.Controls.Add(item.text, 1, i);
-                
-                item.ckeck = new CheckBox();
-                item.ckeck.Location = new System.Drawing.Point(0, 0);
-                item.ckeck.Size = new System.Drawing.Size(20, 20);
-                item.ckeck.Dock = DockStyle.Fill;
-                item.ckeck.Tag = i;
-                item.ckeck.Click += new EventHandler(OnCheckBoxClick);
+			item.text = new Label
+			{
+				Location = new System.Drawing.Point(0, 0),
+				Dock = DockStyle.Fill,
+				TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+			};
+			hotKeysTableLayoutPanel.Controls.Add(item.text, 1, i);
+
+			item.ckeck = new CheckBox
+			{
+				Location = new System.Drawing.Point(0, 0),
+				Size = new System.Drawing.Size(20, 20),
+				Dock = DockStyle.Fill,
+				Tag = i
+			};
+			item.ckeck.Click += new EventHandler(OnCheckBoxClick);
                 hotKeysTableLayoutPanel.Controls.Add(item.ckeck, 2, i);
 
-                item.edit = new TextBox();
-                item.edit.Location = new System.Drawing.Point(0, 0);
-                item.edit.Dock = DockStyle.Fill;
-                item.edit.ReadOnly = true;
-                item.edit.Multiline = false;
-                item.edit.KeyDown += new KeyEventHandler(OnTextBoxKeyDown);
+			item.edit = new TextBox
+			{
+				Location = new System.Drawing.Point(0, 0),
+				Dock = DockStyle.Fill,
+				ReadOnly = true,
+				Multiline = false
+			};
+			item.edit.KeyDown += new KeyEventHandler(OnTextBoxKeyDown);
                 item.edit.Tag = i;
                 hotKeysTableLayoutPanel.Controls.Add(item.edit, 3, i);
                 
@@ -138,10 +150,12 @@ public class SelectHotKeysForm : Form
             m_cancelButton = new Button();
             m_cancelButton.Click += new System.EventHandler(OnButtonClick);
             buttonsTableLayoutPanel.Controls.Add(m_cancelButton, 2, 0);
-            
-            m_setDefaultButton = new Button();
-            m_setDefaultButton.AutoSize = true;
-            m_setDefaultButton.Click += new System.EventHandler(OnButtonClick);
+
+		m_setDefaultButton = new Button
+		{
+			AutoSize = true
+		};
+		m_setDefaultButton.Click += new System.EventHandler(OnButtonClick);
             buttonsTableLayoutPanel.Controls.Add(m_setDefaultButton, 3, 0);
         }
         

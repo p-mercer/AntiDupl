@@ -109,9 +109,11 @@ public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
 
             var separatorPen = new Pen(m_separatorColor);
             var separatorX = (cellBounds.Top + cellBounds.Bottom) / 2;
-            var format = new StringFormat();
-            format.Trimming = StringTrimming.EllipsisCharacter;
-            format.FormatFlags |= StringFormatFlags.NoWrap;
+		var format = new StringFormat
+		{
+			Trimming = StringTrimming.EllipsisCharacter
+		};
+		format.FormatFlags |= StringFormatFlags.NoWrap;
 
             switch (cellStyle.Alignment)
             {

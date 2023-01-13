@@ -174,9 +174,11 @@ public class ProgressForm : Form
                 ClientSize = new System.Drawing.Size(width, height);
             }
 
-            m_timer = new System.Windows.Forms.Timer();
-            m_timer.Interval = 100;
-            m_timer.Tick += new EventHandler(TimerCallback);
+		m_timer = new System.Windows.Forms.Timer
+		{
+			Interval = 100
+		};
+		m_timer.Tick += new EventHandler(TimerCallback);
             m_timer.Start();
 
             FormClosed += new FormClosedEventHandler(OnFormClosed);

@@ -715,9 +715,11 @@ public class CoreLib : IDisposable
                     pathWSF = new CorePathWithSubFolder[size[0].ToInt32()];
                     for (var i = 0; i < size[0].ToInt32(); ++i)
                     {
-                        pathWSF[i] = new CorePathWithSubFolder();
-                        pathWSF[i].path = BufferToString(buffer, i * (CoreDll.MAX_PATH_EX + 1), CoreDll.MAX_PATH_EX);
-                        if (buffer[(CoreDll.MAX_PATH_EX + 1) * i + CoreDll.MAX_PATH_EX] == (char)1)
+					pathWSF[i] = new CorePathWithSubFolder
+					{
+						path = BufferToString(buffer, i * (CoreDll.MAX_PATH_EX + 1), CoreDll.MAX_PATH_EX)
+					};
+					if (buffer[(CoreDll.MAX_PATH_EX + 1) * i + CoreDll.MAX_PATH_EX] == (char)1)
                             pathWSF[i].enableSubFolder = true;
                         else
                             pathWSF[i].enableSubFolder = false;

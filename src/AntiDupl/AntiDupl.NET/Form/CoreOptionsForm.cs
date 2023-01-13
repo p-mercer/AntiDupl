@@ -155,10 +155,12 @@ public class CoreOptionsForm : Form
             mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 13F));
             Controls.Add(mainTableLayoutPanel);
 
-            m_mainTabControl = new TabControl();
-            m_mainTabControl.Dock = DockStyle.Fill;
-            m_mainTabControl.Location = new System.Drawing.Point(0, 0);
-            mainTableLayoutPanel.Controls.Add(m_mainTabControl, 0, 0);
+		m_mainTabControl = new TabControl
+		{
+			Dock = DockStyle.Fill,
+			Location = new System.Drawing.Point(0, 0)
+		};
+		mainTableLayoutPanel.Controls.Add(m_mainTabControl, 0, 0);
 
             InitilizeCompareTabPage();
 
@@ -186,10 +188,12 @@ public class CoreOptionsForm : Form
             m_cancelButton.Click += new EventHandler(OnCancelButtonClick);
             mainButtonsTableLayoutPanel.Controls.Add(m_cancelButton, 2, 0);
 
-            m_setDefaultButton = new Button();
-            m_setDefaultButton.AutoSize = true;
-            m_setDefaultButton.Width = 100;
-            m_setDefaultButton.Click += new EventHandler(OnSetDefaultButtonClick);
+		m_setDefaultButton = new Button
+		{
+			AutoSize = true,
+			Width = 100
+		};
+		m_setDefaultButton.Click += new EventHandler(OnSetDefaultButtonClick);
             mainButtonsTableLayoutPanel.Controls.Add(m_setDefaultButton, 3, 0);
         }
 
@@ -231,15 +235,19 @@ public class CoreOptionsForm : Form
                     m_thresholdDifferenceLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
             checkTableLayoutPanel.Controls.Add(m_thresholdDifferenceLabeledComboBox, 0, 6);
 
-            m_minimalImageSizeLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
-            m_minimalImageSizeLabeledIntegerEdit.Min = 0;
-            m_minimalImageSizeLabeledIntegerEdit.Default = m_defaultCoreOptions.compareOptions.minimalImageSize;
-            checkTableLayoutPanel.Controls.Add(m_minimalImageSizeLabeledIntegerEdit, 0, 7);
+		m_minimalImageSizeLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged)
+		{
+			Min = 0,
+			Default = m_defaultCoreOptions.compareOptions.minimalImageSize
+		};
+		checkTableLayoutPanel.Controls.Add(m_minimalImageSizeLabeledIntegerEdit, 0, 7);
 
-            m_maximalImageSizeLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
-            m_maximalImageSizeLabeledIntegerEdit.Min = 0;
-            m_maximalImageSizeLabeledIntegerEdit.Default = m_defaultCoreOptions.compareOptions.maximalImageSize;
-            checkTableLayoutPanel.Controls.Add(m_maximalImageSizeLabeledIntegerEdit, 0, 8);
+		m_maximalImageSizeLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged)
+		{
+			Min = 0,
+			Default = m_defaultCoreOptions.compareOptions.maximalImageSize
+		};
+		checkTableLayoutPanel.Controls.Add(m_maximalImageSizeLabeledIntegerEdit, 0, 8);
 
             m_compareInsideOneFolderCheckBox = InitFactory.CheckBox.Create(OnOptionChanged);
             checkTableLayoutPanel.Controls.Add(m_compareInsideOneFolderCheckBox, 0, 9);
@@ -288,9 +296,11 @@ public class CoreOptionsForm : Form
             searchTableLayoutPanel.AutoScroll = true;
             m_searchTabPage.Controls.Add(searchTableLayoutPanel);
 
-            m_searchFileTypeGroupBox = new GroupBox();
-            m_searchFileTypeGroupBox.Size = new System.Drawing.Size(200, 140);
-            searchTableLayoutPanel.Controls.Add(m_searchFileTypeGroupBox, 0, 0);
+		m_searchFileTypeGroupBox = new GroupBox
+		{
+			Size = new System.Drawing.Size(200, 140)
+		};
+		searchTableLayoutPanel.Controls.Add(m_searchFileTypeGroupBox, 0, 0);
 
             var searchFileTypeTableLayoutPanel = InitFactory.Layout.Create(3, 5, 5);
             searchFileTypeTableLayoutPanel.AutoScroll = true;
@@ -389,16 +399,20 @@ public class CoreOptionsForm : Form
             m_reducedImageSizeLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(128, "128x128"));
             advancedTableLayoutPanel.Controls.Add(m_reducedImageSizeLabeledComboBox, 0, 6);
 
-            m_undoQueueSizeLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
-            m_undoQueueSizeLabeledIntegerEdit.Min = 0;
-            m_undoQueueSizeLabeledIntegerEdit.Default = m_defaultCoreOptions.advancedOptions.undoQueueSize;
-            m_undoQueueSizeLabeledIntegerEdit.Max = 16;
-            advancedTableLayoutPanel.Controls.Add(m_undoQueueSizeLabeledIntegerEdit, 0, 7);
+		m_undoQueueSizeLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged)
+		{
+			Min = 0,
+			Default = m_defaultCoreOptions.advancedOptions.undoQueueSize,
+			Max = 16
+		};
+		advancedTableLayoutPanel.Controls.Add(m_undoQueueSizeLabeledIntegerEdit, 0, 7);
 
-            m_resultCountMaxLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
-            m_resultCountMaxLabeledIntegerEdit.Min = 1;
-            m_resultCountMaxLabeledIntegerEdit.Default = m_defaultCoreOptions.advancedOptions.resultCountMax;
-            advancedTableLayoutPanel.Controls.Add(m_resultCountMaxLabeledIntegerEdit, 0, 8);
+		m_resultCountMaxLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged)
+		{
+			Min = 1,
+			Default = m_defaultCoreOptions.advancedOptions.resultCountMax
+		};
+		advancedTableLayoutPanel.Controls.Add(m_resultCountMaxLabeledIntegerEdit, 0, 8);
 
             m_ignoreFrameWidthLabeledComboBox = new LabeledComboBox(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
             advancedTableLayoutPanel.Controls.Add(m_ignoreFrameWidthLabeledComboBox, 0, 9);
@@ -438,45 +452,57 @@ public class CoreOptionsForm : Form
             m_notHighlightIfFragmentsMoreThemCheckBox.Checked = m_options.resultsOptions.NotHighlightIfFragmentsMoreThan;
             highlightTableLayoutPanel.Controls.Add(m_notHighlightIfFragmentsMoreThemCheckBox, 0, 3);
 
-            m_maxFragmentsForDisableHighlightLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnHighlightChanged);
-            m_maxFragmentsForDisableHighlightLabeledIntegerEdit.Min = 0;
-            m_maxFragmentsForDisableHighlightLabeledIntegerEdit.Max = 4000;
-            m_maxFragmentsForDisableHighlightLabeledIntegerEdit.Value = m_options.resultsOptions. NotHighlightMaxFragments;
-            highlightTableLayoutPanel.Controls.Add(m_maxFragmentsForDisableHighlightLabeledIntegerEdit, 0, 4);
+		m_maxFragmentsForDisableHighlightLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnHighlightChanged)
+		{
+			Min = 0,
+			Max = 4000,
+			Value = m_options.resultsOptions.NotHighlightMaxFragments
+		};
+		highlightTableLayoutPanel.Controls.Add(m_maxFragmentsForDisableHighlightLabeledIntegerEdit, 0, 4);
 
             m_highlightAllDifferencesCheckBox = InitFactory.CheckBox.Create(OnHighlightChanged);
             m_highlightAllDifferencesCheckBox.Checked = m_options.resultsOptions.HighlightAllDifferences;
             highlightTableLayoutPanel.Controls.Add(m_highlightAllDifferencesCheckBox, 0, 5);
 
-            m_maxFragmentsForHighlightLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnHighlightChanged);
-            m_maxFragmentsForHighlightLabeledIntegerEdit.Min = 0;
-            m_maxFragmentsForHighlightLabeledIntegerEdit.Max = 4000;
-            m_maxFragmentsForHighlightLabeledIntegerEdit.Value = m_options.resultsOptions.MaxFragmentsForHighlight;
-            highlightTableLayoutPanel.Controls.Add(m_maxFragmentsForHighlightLabeledIntegerEdit, 0, 6);
+		m_maxFragmentsForHighlightLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnHighlightChanged)
+		{
+			Min = 0,
+			Max = 4000,
+			Value = m_options.resultsOptions.MaxFragmentsForHighlight
+		};
+		highlightTableLayoutPanel.Controls.Add(m_maxFragmentsForHighlightLabeledIntegerEdit, 0, 6);
 
-            m_amountOfFragmentsOnXLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnHighlightChanged);
-            m_amountOfFragmentsOnXLabeledIntegerEdit.Min = 0;
-            m_amountOfFragmentsOnXLabeledIntegerEdit.Max = 100;
-            m_amountOfFragmentsOnXLabeledIntegerEdit.Value = m_options.resultsOptions.AmountOfFragmentsOnX;
-            highlightTableLayoutPanel.Controls.Add(m_amountOfFragmentsOnXLabeledIntegerEdit, 0, 7);
+		m_amountOfFragmentsOnXLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnHighlightChanged)
+		{
+			Min = 0,
+			Max = 100,
+			Value = m_options.resultsOptions.AmountOfFragmentsOnX
+		};
+		highlightTableLayoutPanel.Controls.Add(m_amountOfFragmentsOnXLabeledIntegerEdit, 0, 7);
 
-            m_amountOfFragmentsOnYLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnHighlightChanged);
-            m_amountOfFragmentsOnYLabeledIntegerEdit.Min = 0;
-            m_amountOfFragmentsOnYLabeledIntegerEdit.Max = 100;
-            m_amountOfFragmentsOnYLabeledIntegerEdit.Value = m_options.resultsOptions.AmountOfFragmentsOnY;
-            highlightTableLayoutPanel.Controls.Add(m_amountOfFragmentsOnYLabeledIntegerEdit, 0, 8);
+		m_amountOfFragmentsOnYLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnHighlightChanged)
+		{
+			Min = 0,
+			Max = 100,
+			Value = m_options.resultsOptions.AmountOfFragmentsOnY
+		};
+		highlightTableLayoutPanel.Controls.Add(m_amountOfFragmentsOnYLabeledIntegerEdit, 0, 8);
 
-            m_normalizedSizeOfImageLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnHighlightChanged);
-            m_normalizedSizeOfImageLabeledIntegerEdit.Min = 0;
-            m_normalizedSizeOfImageLabeledIntegerEdit.Max = 2048;
-            m_normalizedSizeOfImageLabeledIntegerEdit.Value = m_options.resultsOptions.NormalizedSizeOfImage;
-            highlightTableLayoutPanel.Controls.Add(m_normalizedSizeOfImageLabeledIntegerEdit, 0, 9);
+		m_normalizedSizeOfImageLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnHighlightChanged)
+		{
+			Min = 0,
+			Max = 2048,
+			Value = m_options.resultsOptions.NormalizedSizeOfImage
+		};
+		highlightTableLayoutPanel.Controls.Add(m_normalizedSizeOfImageLabeledIntegerEdit, 0, 9);
 
-            m_penThicknessLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnHighlightChanged);
-            m_penThicknessLabeledIntegerEdit.Min = 0;
-            m_penThicknessLabeledIntegerEdit.Max = 100;
-            m_penThicknessLabeledIntegerEdit.Value = m_options.resultsOptions.PenThickness;
-            highlightTableLayoutPanel.Controls.Add(m_penThicknessLabeledIntegerEdit, 0, 10);
+		m_penThicknessLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnHighlightChanged)
+		{
+			Min = 0,
+			Max = 100,
+			Value = m_options.resultsOptions.PenThickness
+		};
+		highlightTableLayoutPanel.Controls.Add(m_penThicknessLabeledIntegerEdit, 0, 10);
 
             UpdateHighlightItemsEnabling();
         }
