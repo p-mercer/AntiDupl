@@ -55,8 +55,10 @@ public class ResultsOptions
                 {
                     m_viewMode = value;
                     if (OnViewModeChange != null)
-                        OnViewModeChange(m_viewMode);
-                }
+				{
+					OnViewModeChange(m_viewMode);
+				}
+			}
             }
         }
 
@@ -80,8 +82,10 @@ public class ResultsOptions
                 {
                     m_stretchSmallImages = value;
                     if (OnImageViewChange != null)
-                        OnImageViewChange();
-                }
+				{
+					OnImageViewChange();
+				}
+			}
             }
         }
         private bool m_proportionalImageSize = true;
@@ -97,8 +101,10 @@ public class ResultsOptions
                 {
                     m_proportionalImageSize = value;
                     if (OnImageViewChange != null)
-                        OnImageViewChange();
-                }
+				{
+					OnImageViewChange();
+				}
+			}
             }
         }
 
@@ -107,8 +113,10 @@ public class ResultsOptions
         public void RaiseEventOnHighlightDifferenceChange()
         {
             if (OnHighlightDifferenceChange != null)
-                OnHighlightDifferenceChange();
-        }
+		{
+			OnHighlightDifferenceChange();
+		}
+	}
 
         private bool m_highlightDifference = false;
         public bool HighlightDifference
@@ -285,8 +293,10 @@ public class ResultsOptions
                 {
                     m_showNeighboursImages = value;
                     if (OnImageViewChange != null)
-                        OnImageViewChange();
-                }
+				{
+					OnImageViewChange();
+				}
+			}
             }
         }
 
@@ -318,11 +328,17 @@ public class ResultsOptions
         {
             columnOptionsVertical = new ColumnOptions[(int)ResultsListView.ColumnsTypeVertical.Size];
             for (var i = 0; i < columnOptionsVertical.Length; i++)
-                columnOptionsVertical[i] = options.columnOptionsVertical[i];
-            columnOptionsHorizontal = new ColumnOptions[(int)ResultsListView.ColumnsTypeHorizontal.Size];
+		{
+			columnOptionsVertical[i] = options.columnOptionsVertical[i];
+		}
+
+		columnOptionsHorizontal = new ColumnOptions[(int)ResultsListView.ColumnsTypeHorizontal.Size];
             for (var i = 0; i < columnOptionsHorizontal.Length; i++)
-                columnOptionsHorizontal[i] = options.columnOptionsHorizontal[i];
-            sortTypeDefault = options.sortTypeDefault;
+		{
+			columnOptionsHorizontal[i] = options.columnOptionsHorizontal[i];
+		}
+
+		sortTypeDefault = options.sortTypeDefault;
             increasingDefault = options.increasingDefault;
             splitterDistanceVerticalMaximized = options.splitterDistanceVerticalMaximized;
             splitterDistanceVerticalNormal = options.splitterDistanceVerticalNormal;
@@ -352,10 +368,16 @@ public class ResultsOptions
         public void CopyTo(ref ResultsOptions options)
         {
             for (var i = 0; i < columnOptionsVertical.Length; i++)
-                options.columnOptionsVertical[i] = columnOptionsVertical[i];
-            for (var i = 0; i < columnOptionsHorizontal.Length; i++)
-                options.columnOptionsHorizontal[i] = columnOptionsHorizontal[i];
-            options.sortTypeDefault = sortTypeDefault;
+		{
+			options.columnOptionsVertical[i] = columnOptionsVertical[i];
+		}
+
+		for (var i = 0; i < columnOptionsHorizontal.Length; i++)
+		{
+			options.columnOptionsHorizontal[i] = columnOptionsHorizontal[i];
+		}
+
+		options.sortTypeDefault = sortTypeDefault;
             options.increasingDefault = increasingDefault;
             options.splitterDistanceVerticalMaximized = splitterDistanceVerticalMaximized;
             options.splitterDistanceVerticalNormal = splitterDistanceVerticalNormal;
@@ -367,27 +389,57 @@ public class ResultsOptions
         public bool Equals(ResultsOptions options)
         {
             for (var i = 0; i < columnOptionsVertical.Length; i++)
-                if (!Equals(columnOptionsVertical[i], options.columnOptionsVertical[i]))
-                    return false;
-            for (var i = 0; i < columnOptionsHorizontal.Length; i++)
-                if (!Equals(columnOptionsHorizontal[i], options.columnOptionsHorizontal[i]))
-                    return false;
-            if (sortTypeDefault != options.sortTypeDefault)
-                return false;
-            if (increasingDefault != options.increasingDefault)
-                return false;
-            if (splitterDistanceVerticalMaximized != options.splitterDistanceVerticalMaximized)
-                return false;
-            if (splitterDistanceVerticalNormal != options.splitterDistanceVerticalNormal)
-                return false;
-            if (splitterDistanceHorizontalMaximized != options.splitterDistanceHorizontalMaximized)
-                return false;
-            if (splitterDistanceHorizontalNormal != options.splitterDistanceHorizontalNormal)
-                return false;
-            if (thumbnailSizeMax != options.thumbnailSizeMax)
-                return false;
+		{
+			if (!Equals(columnOptionsVertical[i], options.columnOptionsVertical[i]))
+			{
+				return false;
+			}
+		}
 
-            return true;
+		for (var i = 0; i < columnOptionsHorizontal.Length; i++)
+		{
+			if (!Equals(columnOptionsHorizontal[i], options.columnOptionsHorizontal[i]))
+			{
+				return false;
+			}
+		}
+
+		if (sortTypeDefault != options.sortTypeDefault)
+		{
+			return false;
+		}
+
+		if (increasingDefault != options.increasingDefault)
+		{
+			return false;
+		}
+
+		if (splitterDistanceVerticalMaximized != options.splitterDistanceVerticalMaximized)
+		{
+			return false;
+		}
+
+		if (splitterDistanceVerticalNormal != options.splitterDistanceVerticalNormal)
+		{
+			return false;
+		}
+
+		if (splitterDistanceHorizontalMaximized != options.splitterDistanceHorizontalMaximized)
+		{
+			return false;
+		}
+
+		if (splitterDistanceHorizontalNormal != options.splitterDistanceHorizontalNormal)
+		{
+			return false;
+		}
+
+		if (thumbnailSizeMax != options.thumbnailSizeMax)
+		{
+			return false;
+		}
+
+		return true;
         }
 
         public void SetDefault()

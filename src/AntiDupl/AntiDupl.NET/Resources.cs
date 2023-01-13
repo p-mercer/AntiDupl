@@ -44,8 +44,11 @@ static public class Resources
         {
             var directoryInfo = new DirectoryInfo(path);
             if (!directoryInfo.Exists)
-                directoryInfo.Create();
-            return path;
+		{
+			directoryInfo.Create();
+		}
+
+		return path;
         }
 
         static public string GetDefaultUserPath()
@@ -81,10 +84,14 @@ static public class Resources
                     {
                         var yy = y - height / 2;
                         if (xx * xx + yy * yy < radius * radius)
-                            bitmap.SetPixel(x, y, Color.FromArgb(0xFF, 0, 0, 0));
-                        else
-                            bitmap.SetPixel(x, y, Color.FromArgb(0, 0, 0, 0));
-                    }
+					{
+						bitmap.SetPixel(x, y, Color.FromArgb(0xFF, 0, 0, 0));
+					}
+					else
+					{
+						bitmap.SetPixel(x, y, Color.FromArgb(0, 0, 0, 0));
+					}
+				}
                 }
                 return bitmap;
             }
@@ -96,8 +103,11 @@ static public class Resources
                 {
                     var extension = System.IO.Path.GetExtension(name);
                     if (string.IsNullOrEmpty(extension))
-                        extension = Extension;
-                    image = Image.FromFile(GetPath(Path, System.IO.Path.GetFileNameWithoutExtension(name), extension));
+				{
+					extension = Extension;
+				}
+
+				image = Image.FromFile(GetPath(Path, System.IO.Path.GetFileNameWithoutExtension(name), extension));
                 }
                 catch
                 {
@@ -209,8 +219,10 @@ static public class Resources
                     }
                 }
                 else
-                    return null;
-            }
+			{
+				return null;
+			}
+		}
 
             static private void Save(AntiDupl.NET.Strings strings)
             {
@@ -254,19 +266,27 @@ static public class Resources
                 get 
                 {
                     if (m_currentIndex < Count && m_currentIndex >= 0)
-                        return (AntiDupl.NET.Strings)m_strings[m_currentIndex];
-                    else
-                        return null; 
-                }
+				{
+					return (AntiDupl.NET.Strings)m_strings[m_currentIndex];
+				}
+				else
+				{
+					return null;
+				}
+			}
             }
             
             public static AntiDupl.NET.Strings Get(int index)
             {
                 if (index < Count && index >= 0)
-                    return (AntiDupl.NET.Strings)m_strings[index];
-                else
-                    return null;
-            }
+			{
+				return (AntiDupl.NET.Strings)m_strings[index];
+			}
+			else
+			{
+				return null;
+			}
+		}
 
             public static bool SetCurrent(int index)
             {
@@ -274,12 +294,17 @@ static public class Resources
                 {
                     m_currentIndex = index;
                     if (OnCurrentChange != null)
-                        OnCurrentChange();
-                    return true;
+				{
+					OnCurrentChange();
+				}
+
+				return true;
                 }
                 else
-                    return false;
-            }
+			{
+				return false;
+			}
+		}
             
             public static bool SetCurrent(string name)
             {
@@ -323,8 +348,10 @@ static public class Resources
             public static void Update()
             {
                 if (OnCurrentChange != null)
-                    OnCurrentChange();
-            }
+			{
+				OnCurrentChange();
+			}
+		}
         }
 
         static public class WebLinks
@@ -345,10 +372,14 @@ static public class Resources
                 get
                 {
                     if (Strings.IsCurrentRussianFamily())
-                        return GithubComAntiduplRussian;
-                    else
-                        return GithubComAntiduplEnglish;
-                }
+				{
+					return GithubComAntiduplRussian;
+				}
+				else
+				{
+					return GithubComAntiduplEnglish;
+				}
+			}
             }
         }
 
@@ -359,10 +390,15 @@ static public class Resources
                 var builder = new StringBuilder(WebLinks.GithubComAntidupl);
                 builder.Append("/data/help");
                 if (Strings.IsCurrentRussianFamily())
-                    builder.Append("/russian");
-                else
-                    builder.Append("/english");
-                builder.Append("/index.html");
+			{
+				builder.Append("/russian");
+			}
+			else
+			{
+				builder.Append("/english");
+			}
+
+			builder.Append("/index.html");
                 if(page != null)
                 {
                     builder.Append("?page=");

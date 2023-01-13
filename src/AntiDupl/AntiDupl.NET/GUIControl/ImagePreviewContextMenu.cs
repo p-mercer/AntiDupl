@@ -192,10 +192,14 @@ public class ImagePreviewContextMenu : ContextMenuStrip
         private void RenameImageLikeNeighbour(object sender, EventArgs e)
         {
             if (m_imagePreviewPanel.RenameCurrentType == CoreDll.RenameCurrentType.First)
-                m_resultsListView.MakeAction(CoreDll.LocalActionType.RenameFirstLikeSecond, CoreDll.TargetType.Current);
-            else
-                m_resultsListView.MakeAction(CoreDll.LocalActionType.RenameSecondLikeFirst, CoreDll.TargetType.Current);
-        }
+		{
+			m_resultsListView.MakeAction(CoreDll.LocalActionType.RenameFirstLikeSecond, CoreDll.TargetType.Current);
+		}
+		else
+		{
+			m_resultsListView.MakeAction(CoreDll.LocalActionType.RenameSecondLikeFirst, CoreDll.TargetType.Current);
+		}
+	}
 
         /// <summary>
         /// Проверка на то, что директории у картинок разные.
@@ -212,18 +216,26 @@ public class ImagePreviewContextMenu : ContextMenuStrip
         private void MoveImageToNeighbour(object sender, EventArgs e)
         {
             if (m_imagePreviewPanel.RenameCurrentType == CoreDll.RenameCurrentType.First)
-                m_resultsListView.MakeAction(CoreDll.LocalActionType.MoveFirstToSecond, CoreDll.TargetType.Current);
-            else
-                m_resultsListView.MakeAction(CoreDll.LocalActionType.MoveSecondToFirst, CoreDll.TargetType.Current);
-        }
+		{
+			m_resultsListView.MakeAction(CoreDll.LocalActionType.MoveFirstToSecond, CoreDll.TargetType.Current);
+		}
+		else
+		{
+			m_resultsListView.MakeAction(CoreDll.LocalActionType.MoveSecondToFirst, CoreDll.TargetType.Current);
+		}
+	}
 
         private void MoveAndRenameToNeighbour(object sender, EventArgs e)
         {
             if (m_imagePreviewPanel.RenameCurrentType == CoreDll.RenameCurrentType.First)
-                m_resultsListView.MakeAction(CoreDll.LocalActionType.MoveAndRenameFirstToSecond, CoreDll.TargetType.Current);
-            else
-                m_resultsListView.MakeAction(CoreDll.LocalActionType.MoveAndRenameSecondToFirst, CoreDll.TargetType.Current);
-        }
+		{
+			m_resultsListView.MakeAction(CoreDll.LocalActionType.MoveAndRenameFirstToSecond, CoreDll.TargetType.Current);
+		}
+		else
+		{
+			m_resultsListView.MakeAction(CoreDll.LocalActionType.MoveAndRenameSecondToFirst, CoreDll.TargetType.Current);
+		}
+	}
 
         /// <summary>
         /// Возврашает истину, если в групе больше 2 файлов, тоесть есть смысл перемащать группами.
@@ -232,10 +244,14 @@ public class ImagePreviewContextMenu : ContextMenuStrip
         private bool MoveGroupEnable()
         {
             if (m_core.GetImageInfoSize(m_imagePreviewPanel.Group) > 2)
-                return true;
-            else
-                return false;
-        }
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
         /// <summary>
         /// Перенести группу в папку к соседней.

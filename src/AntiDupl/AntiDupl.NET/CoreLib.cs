@@ -52,8 +52,10 @@ public class CoreLib : IDisposable
                 m_handle = m_dll.adCreateW(userPath);
             }
             else
-                throw new Exception("Incompatible core library version!");
-        }
+		{
+			throw new Exception("Incompatible core library version!");
+		}
+	}
 
         ~CoreLib()
         {
@@ -123,10 +125,14 @@ public class CoreLib : IDisposable
         {
             var status = StatusGet(CoreDll.ThreadType.Main, 0);
             if (status != null)
-                return status.state != CoreDll.StateType.None;
-            else
-                return false;
-        }
+		{
+			return status.state != CoreDll.StateType.None;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
         public bool Stop()
         {
@@ -353,8 +359,11 @@ public class CoreLib : IDisposable
             {
                 var selection = new bool[pSelectionSize[0].ToUInt32()];
                 for (var i = 0; i < selection.Length; ++i)
-                    selection[i] = pSelection[i] != CoreDll.FALSE;
-                return selection;
+			{
+				selection[i] = pSelection[i] != CoreDll.FALSE;
+			}
+
+			return selection;
             }
             return null;
         }
@@ -500,8 +509,11 @@ public class CoreLib : IDisposable
             {
                 var selection = new bool[pSelectionSize[0].ToUInt32()];
                 for (var i = 0; i < selection.Length; ++i)
-                    selection[i] = pSelection[i] != CoreDll.FALSE;
-                return selection;
+			{
+				selection[i] = pSelection[i] != CoreDll.FALSE;
+			}
+
+			return selection;
             }
             return null;
         }
@@ -514,9 +526,11 @@ public class CoreLib : IDisposable
         public System.Drawing.Bitmap LoadBitmap(int width, int height, string path)
         {
             if (height * width == 0)
-                return null;
+		{
+			return null;
+		}
 
-            System.Drawing.Bitmap bitmap = null;
+		System.Drawing.Bitmap bitmap = null;
             try
             {
                 bitmap = new System.Drawing.Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
@@ -690,13 +704,18 @@ public class CoreLib : IDisposable
         static private string BufferToString(char[] buffer, int startIndex, int maxSize)
         {
             if (startIndex >= buffer.Length)
-                return null;
-            int i = 0, n = Math.Min(maxSize, buffer.Length - startIndex);
+		{
+			return null;
+		}
+
+		int i = 0, n = Math.Min(maxSize, buffer.Length - startIndex);
             for (; i < n; ++i)
             {
                 if (buffer[startIndex + i] == (char)0)
-                    break;
-            }
+			{
+				break;
+			}
+		}
             return new string(buffer, startIndex, i);
         }
 
@@ -720,10 +739,14 @@ public class CoreLib : IDisposable
 						path = BufferToString(buffer, i * (CoreDll.MAX_PATH_EX + 1), CoreDll.MAX_PATH_EX)
 					};
 					if (buffer[(CoreDll.MAX_PATH_EX + 1) * i + CoreDll.MAX_PATH_EX] == (char)1)
-                            pathWSF[i].enableSubFolder = true;
-                        else
-                            pathWSF[i].enableSubFolder = false;
-                    }
+					{
+						pathWSF[i].enableSubFolder = true;
+					}
+					else
+					{
+						pathWSF[i].enableSubFolder = false;
+					}
+				}
                 }
             }
             return pathWSF;

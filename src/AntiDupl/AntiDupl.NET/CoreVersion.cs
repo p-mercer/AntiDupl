@@ -54,22 +54,31 @@ public class CoreVersion
             if (minor >= 0)
             {
                 if(already)
-                    builder.Append(".");
-                builder.Append(minor.ToString());
+			{
+				builder.Append(".");
+			}
+
+			builder.Append(minor.ToString());
                 already = true;
             }
             if (release >= 0)
             {
                 if (already)
-                    builder.Append(".");
-                builder.Append(release.ToString());
+			{
+				builder.Append(".");
+			}
+
+			builder.Append(release.ToString());
                 already = true;
             }
             if(revision >= 0)
             {
                 if (already)
-                    builder.Append(".");
-                builder.Append(revision.ToString());
+			{
+				builder.Append(".");
+			}
+
+			builder.Append(revision.ToString());
             }
             return builder.ToString();
         }
@@ -80,8 +89,11 @@ public class CoreVersion
             for (var i = 0; i < buffer.Length; ++i)
             {
                 if(buffer[i] == 0)
-                    break;
-                builder.Append(Convert.ToChar(buffer[i]));
+			{
+				break;
+			}
+
+			builder.Append(Convert.ToChar(buffer[i]));
             }
             return builder.ToString();
         }

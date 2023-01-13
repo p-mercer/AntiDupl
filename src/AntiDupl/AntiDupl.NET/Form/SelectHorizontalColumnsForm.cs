@@ -40,9 +40,11 @@ public class SelectHorizontalColumnsForm : Form
         public SelectHorizontalColumnsForm(ResultsListView resultsListView, Options options)
         {
             if (options.resultsOptions.viewMode != ResultsOptions.ViewMode.HorizontalPairTable)
-                throw new Exception("Bad view mode!");
+		{
+			throw new Exception("Bad view mode!");
+		}
 
-            m_resultsListView = resultsListView;
+		m_resultsListView = resultsListView;
             m_options = options;
             m_newResultOptions = new ResultsOptions(m_options.resultsOptions);
             InitializeComponents();

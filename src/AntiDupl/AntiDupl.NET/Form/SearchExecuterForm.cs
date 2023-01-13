@@ -187,8 +187,11 @@ public class SearchExecuterForm : Form
             if (m_state == State.Finish)
             {
                 if(m_notifyIcon.Visible)
-                    OnNotifyIconDoubleClick(null, null);
-                m_timer.Stop();
+			{
+				OnNotifyIconDoubleClick(null, null);
+			}
+
+			m_timer.Stop();
                 Close();
                 m_mainForm.Resize -= new EventHandler(OnMainFormResize);
                 m_mainForm.WindowState = m_mainFormWindowState;
@@ -350,8 +353,11 @@ public class SearchExecuterForm : Form
                         {
                             var compareThreadStatus = m_core.StatusGet(CoreDll.ThreadType.Compare, i);
                             if (compareThreadStatus == null)
-                                break;
-                            if(i == 0)
+						{
+							break;
+						}
+
+						if (i == 0)
                             {
                                 path = compareThreadStatus.path;
                             }
@@ -366,8 +372,11 @@ public class SearchExecuterForm : Form
                         {
                             var collectThreadStatus = m_core.StatusGet(CoreDll.ThreadType.Collect, i);
                             if(collectThreadStatus == null)
-                                break;
-                            if (i == 0)
+						{
+							break;
+						}
+
+						if (i == 0)
                             {
                                 path = collectThreadStatus.path;
                             }
@@ -396,10 +405,14 @@ public class SearchExecuterForm : Form
         {
             var status = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
             if (status != null)
-                m_progressPanel.UpdateStatus(status.total, status.current, status.current, "");
-            else
-                m_progressPanel.UpdateStatus(0, 0, 0, "");
-        }
+		{
+			m_progressPanel.UpdateStatus(status.total, status.current, status.current, "");
+		}
+		else
+		{
+			m_progressPanel.UpdateStatus(0, 0, 0, "");
+		}
+	}
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
@@ -441,12 +454,20 @@ public class SearchExecuterForm : Form
             const ulong MB = 1024 * 1024;
             const ulong GB = 1024 * 1024 * 1024;
             if (size > GB * 0.977)
-                return string.Format("{0:F1} GB", (double)(size) / GB);
-            else if (size > MB * 0.977)
-                return string.Format("{0:F1} MB", (double)(size) / MB);
-            else if (size > KB * 0.977)
-                return string.Format("{0:F1} KB", (double)(size) / KB);
-            else 
-                return string.Format("{0} B", size);
-        }
+		{
+			return string.Format("{0:F1} GB", (double)(size) / GB);
+		}
+		else if (size > MB * 0.977)
+		{
+			return string.Format("{0:F1} MB", (double)(size) / MB);
+		}
+		else if (size > KB * 0.977)
+		{
+			return string.Format("{0:F1} KB", (double)(size) / KB);
+		}
+		else
+		{
+			return string.Format("{0} B", size);
+		}
+	}
     }

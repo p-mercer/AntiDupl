@@ -229,8 +229,11 @@ public class ImagePreviewPanel : TableLayoutPanel
                     SetExifTooltip(currentImageInfo);
                 }
                 else
-                    m_imageExifLabel.Visible = false;
-                m_pathLabel.Text = m_currentImageInfo.path;
+			{
+				m_imageExifLabel.Visible = false;
+			}
+
+			m_pathLabel.Text = m_currentImageInfo.path;
                 if (m_neighbourImageInfo != null) //подсветка highlight
                 {
                     m_imageSizeLabel.ForeColor =
@@ -267,8 +270,11 @@ public class ImagePreviewPanel : TableLayoutPanel
             {
                 var neighbourSizeMax = new Size(0, 0);
                 if(m_neighbourImageInfo != null)
-                    neighbourSizeMax = new Size((int)m_neighbourImageInfo.width, (int)m_neighbourImageInfo.height);
-                m_pictureBoxPanel.UpdateImagePadding(neighbourSizeMax);
+			{
+				neighbourSizeMax = new Size((int)m_neighbourImageInfo.width, (int)m_neighbourImageInfo.height);
+			}
+
+			m_pictureBoxPanel.UpdateImagePadding(neighbourSizeMax);
                 Refresh();
             }
         }
@@ -292,27 +298,38 @@ public class ImagePreviewPanel : TableLayoutPanel
         public void SetResult(CoreResult result)
         {
             if(result.type == CoreDll.ResultType.None)
-                throw new Exception("Bad result type!");
+		{
+			throw new Exception("Bad result type!");
+		}
 
-            m_group = result.group;
+		m_group = result.group;
 
             switch(m_position)
             {
             case Position.Left:
             case Position.Top:
                 if (result.type == CoreDll.ResultType.DuplImagePair)
-                    SetImageInfo(result.first, result.second);
-                else
-                    SetImageInfo(result.first, null);
+				{
+					SetImageInfo(result.first, result.second);
+				}
+				else
+				{
+					SetImageInfo(result.first, null);
+				}
 
-                break;
+				break;
             case Position.Right:
             case Position.Bottom:
                 if (result.type == CoreDll.ResultType.DuplImagePair)
-                    SetImageInfo(result.second, result.first);
-                else
-                    SetImageInfo(result.second, null);
-                break;
+				{
+					SetImageInfo(result.second, result.first);
+				}
+				else
+				{
+					SetImageInfo(result.second, null);
+				}
+
+				break;
             }
         }
         
@@ -452,20 +469,41 @@ public class ImagePreviewPanel : TableLayoutPanel
         {
             var exifList = new List<string>();
             if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.imageDescription))
-                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_ImageDescription + currentImageInfo.exifInfo.imageDescription);
-            if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.equipMake))
-                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_EquipMake + currentImageInfo.exifInfo.equipMake);
-            if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.equipModel))
-                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_EquipModel + currentImageInfo.exifInfo.equipModel);
-            if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.softwareUsed))
-                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_SoftwareUsed + currentImageInfo.exifInfo.softwareUsed);
-            if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.dateTime))
-                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_DateTime + currentImageInfo.exifInfo.dateTime);
-            if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.artist))
-                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_Artist + currentImageInfo.exifInfo.artist);
-            if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.userComment))
-                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_UserComment + currentImageInfo.exifInfo.userComment);
-            return exifList;
+		{
+			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_ImageDescription + currentImageInfo.exifInfo.imageDescription);
+		}
+
+		if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.equipMake))
+		{
+			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_EquipMake + currentImageInfo.exifInfo.equipMake);
+		}
+
+		if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.equipModel))
+		{
+			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_EquipModel + currentImageInfo.exifInfo.equipModel);
+		}
+
+		if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.softwareUsed))
+		{
+			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_SoftwareUsed + currentImageInfo.exifInfo.softwareUsed);
+		}
+
+		if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.dateTime))
+		{
+			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_DateTime + currentImageInfo.exifInfo.dateTime);
+		}
+
+		if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.artist))
+		{
+			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_Artist + currentImageInfo.exifInfo.artist);
+		}
+
+		if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.userComment))
+		{
+			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_UserComment + currentImageInfo.exifInfo.userComment);
+		}
+
+		return exifList;
         }
 
         /// <summary>
@@ -498,20 +536,28 @@ public class ImagePreviewPanel : TableLayoutPanel
         public void UpdateExifTooltip(CoreResult result)
         {
             if (result.type == CoreDll.ResultType.None)
-                throw new Exception("Bad result type!");
+		{
+			throw new Exception("Bad result type!");
+		}
 
-            switch (m_position)
+		switch (m_position)
             {
                 case Position.Left:
                 case Position.Top:
                     if (result.first.exifInfo.isEmpty == CoreDll.FALSE)
-                        SetExifTooltip(result.first);
-                    break;
+				{
+					SetExifTooltip(result.first);
+				}
+
+				break;
                 case Position.Right:
                 case Position.Bottom:
                     if (result.second.exifInfo.isEmpty == CoreDll.FALSE)
-                        SetExifTooltip(result.second);
-                    break;
+				{
+					SetExifTooltip(result.second);
+				}
+
+				break;
             }
         }
 
@@ -528,9 +574,11 @@ public class ImagePreviewPanel : TableLayoutPanel
                 imageExif1.imageDescription.CompareTo(imageExif2.imageDescription) == 0 &&
                 imageExif1.softwareUsed.CompareTo(imageExif2.softwareUsed) == 0 &&
                 imageExif1.userComment.CompareTo(imageExif2.userComment) == 0)
-                return true;
+		{
+			return true;
+		}
 
-            return false;
+		return false;
         }
 
         public ComparableBitmap[] GetImageFragments()

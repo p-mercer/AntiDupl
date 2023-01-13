@@ -123,8 +123,10 @@ public class PictureBoxPanel : Panel
                                 m_bitmap = new Bitmap(m_memoryStream);
                                 m_animationEnable = ImageAnimator.CanAnimate(m_bitmap);
                                 if (m_animationEnable)
-                                    m_currentlyAnimating = false;
-                            }
+							{
+								m_currentlyAnimating = false;
+							}
+						}
                             else
                             {
                                 m_bitmap = null;
@@ -146,8 +148,10 @@ public class PictureBoxPanel : Panel
                 }
 
                 if (m_options.resultsOptions.ShowNeighboursImages)
-                    ShowNeighboursImages(true);
-            }
+			{
+				ShowNeighboursImages(true);
+			}
+		}
         }
 
         private bool LoadFileToMemoryStream(ref MemoryStream memoryStream, string path)
@@ -215,10 +219,15 @@ public class PictureBoxPanel : Panel
             if (m_options.resultsOptions.ShowNeighboursImages)
             {
                 if (m_prevBitmap != null)
-                    e.Graphics.DrawImage(m_prevBitmap, m_prevBitmapRect);
-                if (m_nextBitmap != null)
-                    e.Graphics.DrawImage(m_nextBitmap, m_nextBitmapRect);
-            }
+			{
+				e.Graphics.DrawImage(m_prevBitmap, m_prevBitmapRect);
+			}
+
+			if (m_nextBitmap != null)
+			{
+				e.Graphics.DrawImage(m_nextBitmap, m_nextBitmapRect);
+			}
+		}
         }
 
         private void OnFrameChanged(object sender, EventArgs e)
@@ -235,16 +244,22 @@ public class PictureBoxPanel : Panel
         {
             UpdateImagePadding(m_neighbourSizeMax);
             if (m_options.resultsOptions.ShowNeighboursImages)
-                ShowNeighboursImages(false);
-            Refresh();
+		{
+			ShowNeighboursImages(false);
+		}
+
+		Refresh();
         }
 
         private void OnImageViewChange()
         {
             UpdateImagePadding(m_neighbourSizeMax);
             if (m_options.resultsOptions.ShowNeighboursImages)
-                ShowNeighboursImages(true);
-            Refresh();
+		{
+			ShowNeighboursImages(true);
+		}
+
+		Refresh();
         }
 
         public void UpdateImagePadding(Size neighbourSizeMax)
@@ -354,14 +369,19 @@ public class PictureBoxPanel : Panel
                                 if (m_options.resultsOptions.ShowNeighboursImages)
                                 {
                                     if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
-                                        verticalPosition = (clientHeight - targetHeight) / 2;
-                                    else
-                                        verticalPosition = 0;
-                                }
+								{
+									verticalPosition = (clientHeight - targetHeight) / 2;
+								}
+								else
+								{
+									verticalPosition = 0;
+								}
+							}
                                 else
-                                    verticalPosition = (clientHeight - targetHeight) / 2;
-
-                            }
+							{
+								verticalPosition = (clientHeight - targetHeight) / 2;
+							}
+						}
                             else
                             {
                                 targetWidth = clientHeight * currentWidth / currentHeight;
@@ -369,21 +389,29 @@ public class PictureBoxPanel : Panel
                                 if (m_options.resultsOptions.ShowNeighboursImages)
                                 {
                                     if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
-                                        horizontalPosition = clientWidth - targetWidth;
-                                }
+								{
+									horizontalPosition = clientWidth - targetWidth;
+								}
+							}
                                 else
-                                    horizontalPosition = (clientWidth - targetWidth) / 2;
-                            }
+							{
+								horizontalPosition = (clientWidth - targetWidth) / 2;
+							}
+						}
                         }
                         else
                         {
                             if (m_options.resultsOptions.ShowNeighboursImages)
                             {
                                 if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
-                                    horizontalPosition = clientWidth - currentWidth;
-                                else
-                                    verticalPosition = 0;
-                            }
+							{
+								horizontalPosition = clientWidth - currentWidth;
+							}
+							else
+							{
+								verticalPosition = 0;
+							}
+						}
                             else
                             {
                                 verticalPosition = (clientHeight - currentHeight) / 2;
@@ -407,11 +435,15 @@ public class PictureBoxPanel : Panel
             if (!m_animationEnable)
             {
                 if (m_originalBitmap == null)
-                    m_originalBitmap = m_bitmap.Clone() as Bitmap;
-                else if (m_bitmap != m_originalBitmap)
-                    m_bitmap = m_originalBitmap.Clone() as Bitmap;
+			{
+				m_originalBitmap = m_bitmap.Clone() as Bitmap;
+			}
+			else if (m_bitmap != m_originalBitmap)
+			{
+				m_bitmap = m_originalBitmap.Clone() as Bitmap;
+			}
 
-                m_rectanglesOfDifferences = new Rectangle[rectanglesOfDifferenceIn.Count];
+			m_rectanglesOfDifferences = new Rectangle[rectanglesOfDifferenceIn.Count];
                 rectanglesOfDifferenceIn.CopyTo(m_rectanglesOfDifferences);
 
                 //преобразуем в соответсвии с размером полного изображения
@@ -433,8 +465,10 @@ public class PictureBoxPanel : Panel
                     using (var gr = Graphics.FromImage(m_bitmap))
                     {
                         for (var i = 0; i < m_rectanglesOfDifferences.Length; i++)
-                            gr.DrawRectangle(penForDifferences, m_rectanglesOfDifferences[i]);
-                    }
+					{
+						gr.DrawRectangle(penForDifferences, m_rectanglesOfDifferences[i]);
+					}
+				}
                     Invalidate();
                     return true;
                 }
@@ -469,14 +503,25 @@ public class PictureBoxPanel : Panel
                     GetNeighboursFileNames(m_currentImageInfo.path, ref m_prevFile, ref m_nextFile);
                 }
                 if (m_prevFile != null)
-                    m_prevBitmap = GetBitmap(m_prevFile);
-                if (m_prevBitmap != null)
-                    m_prevBitmapRect = GetRectangle(m_position, m_prevBitmap, Neighbour.Previous);
-                if (m_nextFile != null)
-                    m_nextBitmap = GetBitmap(m_nextFile);
-                if (m_nextBitmap != null)
-                    m_nextBitmapRect = GetRectangle(m_position, m_nextBitmap, Neighbour.Next);
-            }
+			{
+				m_prevBitmap = GetBitmap(m_prevFile);
+			}
+
+			if (m_prevBitmap != null)
+			{
+				m_prevBitmapRect = GetRectangle(m_position, m_prevBitmap, Neighbour.Previous);
+			}
+
+			if (m_nextFile != null)
+			{
+				m_nextBitmap = GetBitmap(m_nextFile);
+			}
+
+			if (m_nextBitmap != null)
+			{
+				m_nextBitmapRect = GetRectangle(m_position, m_nextBitmap, Neighbour.Next);
+			}
+		}
             else
             {
                 CleanNeighbours();
@@ -486,14 +531,25 @@ public class PictureBoxPanel : Panel
         private void CleanNeighbours()
         {
             if (m_prevFile != null)
-                m_prevFile = null;
-            if (m_nextFile != null)
-                m_nextFile = null;
-            if (m_prevBitmap != null)
-                m_prevBitmap = null;
-            if (m_nextBitmap != null)
-                m_nextBitmap = null;
-        }
+		{
+			m_prevFile = null;
+		}
+
+		if (m_nextFile != null)
+		{
+			m_nextFile = null;
+		}
+
+		if (m_prevBitmap != null)
+		{
+			m_prevBitmap = null;
+		}
+
+		if (m_nextBitmap != null)
+		{
+			m_nextBitmap = null;
+		}
+	}
 
         private Rectangle GetRectangle(ImagePreviewPanel.Position position, Bitmap bitmap, Neighbour neighbour)
         {
@@ -579,12 +635,22 @@ public class PictureBoxPanel : Panel
                         if (filesInfos[i].FullName == filePreview)
                         {
                             if (i > 0)  //previos
-                                if (File.Exists(filesInfos[i - 1].FullName))
-                                    m_prevFile = filesInfos[i - 1].FullName;
-                            if (i < filesInfos.Length - 1) //next
-                                if (File.Exists(filesInfos[i + 1].FullName))
-                                    m_nextFile = filesInfos[i + 1].FullName;
-                            break;
+						{
+							if (File.Exists(filesInfos[i - 1].FullName))
+							{
+								m_prevFile = filesInfos[i - 1].FullName;
+							}
+						}
+
+						if (i < filesInfos.Length - 1) //next
+						{
+							if (File.Exists(filesInfos[i + 1].FullName))
+							{
+								m_nextFile = filesInfos[i + 1].FullName;
+							}
+						}
+
+						break;
                         }
                     }
                 }

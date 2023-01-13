@@ -36,8 +36,10 @@ public class Options
         public void Change()
         {
             if (OnChange != null)
-                OnChange();
-        }
+		{
+			OnChange();
+		}
+	}
 
         private string m_language = StringsDefaultEnglish.Get().Name;
         public string Language
@@ -93,13 +95,18 @@ public class Options
                 catch
                 {
                     if (fileStream != null)
-                        fileStream.Close();
-                    return new Options();
+				{
+					fileStream.Close();
+				}
+
+				return new Options();
                 }
             }
             else
-                return new Options();
-        }
+		{
+			return new Options();
+		}
+	}
 
         public Options()
         {
@@ -135,8 +142,10 @@ public class Options
             {
             }
             if (writer != null)
-                writer.Close();
-        }
+		{
+			writer.Close();
+		}
+	}
  
         public Options Clone()
         {
@@ -164,8 +173,10 @@ public class Options
         {
             destination = new string[source.GetLength(0)];
             for (var i = 0; i < source.GetLength(0); ++i)
-                destination[i] = (string)source[i].Clone();
-        }
+		{
+			destination[i] = (string)source[i].Clone();
+		}
+	}
 
         public static string[] PathClone(string[] path)
         {
@@ -177,11 +188,19 @@ public class Options
         public static bool Equals(string[] path1, string[] path2)
         {
             if (path1.Length != path2.Length)
-                return false;
-            for (var i = 0; i < path1.Length; ++i)
-                if (path1[i].CompareTo(path2[i]) != 0)
-                    return false;
-            return true;
+		{
+			return false;
+		}
+
+		for (var i = 0; i < path1.Length; ++i)
+		{
+			if (path1[i].CompareTo(path2[i]) != 0)
+			{
+				return false;
+			}
+		}
+
+		return true;
         }
 
         static public string GetOptionsFileName()
@@ -208,29 +227,65 @@ public class Options
         public bool Equals(Options options)
         {
             if (checkingForUpdates != options.checkingForUpdates)
-                return false;
-            if (onePath != options.onePath)
-                return false;
-            if (useImageDataBase != options.useImageDataBase)
-                return false;
-            if (checkResultsAtLoading != options.checkResultsAtLoading)
-                return false;
-            if (checkMistakesAtLoading != options.checkMistakesAtLoading)
-                return false;
-            if (loadProfileOnLoading != options.loadProfileOnLoading)
-                return false;
-            if (saveProfileOnClosing != options.saveProfileOnClosing)
-                return false;
-            if (m_language != options.m_language)
-                return false;
-            if (!resultsOptions.Equals(options.resultsOptions))
-                return false;
-            if (!mainFormOptions.Equals(options.mainFormOptions))
-                return false;
-            if (!hotKeyOptions.Equals(options.hotKeyOptions))
-                return false;
-            if (!coreOptionsFileName.Equals(options.coreOptionsFileName))
-                return false;
-            return true;
+		{
+			return false;
+		}
+
+		if (onePath != options.onePath)
+		{
+			return false;
+		}
+
+		if (useImageDataBase != options.useImageDataBase)
+		{
+			return false;
+		}
+
+		if (checkResultsAtLoading != options.checkResultsAtLoading)
+		{
+			return false;
+		}
+
+		if (checkMistakesAtLoading != options.checkMistakesAtLoading)
+		{
+			return false;
+		}
+
+		if (loadProfileOnLoading != options.loadProfileOnLoading)
+		{
+			return false;
+		}
+
+		if (saveProfileOnClosing != options.saveProfileOnClosing)
+		{
+			return false;
+		}
+
+		if (m_language != options.m_language)
+		{
+			return false;
+		}
+
+		if (!resultsOptions.Equals(options.resultsOptions))
+		{
+			return false;
+		}
+
+		if (!mainFormOptions.Equals(options.mainFormOptions))
+		{
+			return false;
+		}
+
+		if (!hotKeyOptions.Equals(options.hotKeyOptions))
+		{
+			return false;
+		}
+
+		if (!coreOptionsFileName.Equals(options.coreOptionsFileName))
+		{
+			return false;
+		}
+
+		return true;
         }
     }

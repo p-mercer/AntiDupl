@@ -235,43 +235,60 @@ public class MainSplitContainer : SplitContainer
             if (m_options.resultsOptions.IsPairTableView())
             {
                 if (m_resultsListView != null)
-                    m_resultsListView.UpdateResults();
-            }
+			{
+				m_resultsListView.UpdateResults();
+			}
+		}
             else
             {
                 if (m_thumbnailGroupTable != null)
-                    m_thumbnailGroupTable.UpdateGroups();
-            }
+			{
+				m_thumbnailGroupTable.UpdateGroups();
+			}
+		}
             if (OnUpdateResults != null)
-                OnUpdateResults();
-        }
+		{
+			OnUpdateResults();
+		}
+	}
 
         public void ClearResults()
         {
             if (m_options.resultsOptions.IsPairTableView())
             {
                 if (m_resultsListView != null)
-                    m_resultsListView.ClearResults();
-            }
+			{
+				m_resultsListView.ClearResults();
+			}
+		}
             else
             {
                 if (m_thumbnailGroupTable != null)
-                    m_thumbnailGroupTable.ClearGroups();
-            }
+			{
+				m_thumbnailGroupTable.ClearGroups();
+			}
+		}
             if (OnUpdateResults != null)
-                OnUpdateResults();
-            CurrentResultChanged();
+		{
+			OnUpdateResults();
+		}
+
+		CurrentResultChanged();
         }
 
         public void CurrentResultChanged()
         {
             if (OnCurrentResultChanged != null)
-                OnCurrentResultChanged();
-        }
+		{
+			OnCurrentResultChanged();
+		}
+	}
 
         public void SelectedResultsChanged()
         {
             if (OnSelectedResultsChanged != null)
-                OnSelectedResultsChanged();
-        }
+		{
+			OnSelectedResultsChanged();
+		}
+	}
     }

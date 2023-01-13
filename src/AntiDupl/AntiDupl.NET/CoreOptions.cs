@@ -126,10 +126,15 @@ public class CoreOptions
                 var tmpSearch = new CorePathWithSubFolder[1];
                 var tmpOther = new CorePathWithSubFolder[0];
                 if (searchPath.Length > 0 && Directory.Exists(searchPath[0].path))
-                    tmpSearch[0] = searchPath[0];
-                else
-                    tmpSearch[0].path = Application.StartupPath;
-                core.searchPath = tmpSearch;
+			{
+				tmpSearch[0] = searchPath[0];
+			}
+			else
+			{
+				tmpSearch[0].path = Application.StartupPath;
+			}
+
+			core.searchPath = tmpSearch;
                 core.ignorePath = tmpOther;
                 core.validPath = tmpOther;
                 core.deletePath = tmpOther;
@@ -171,15 +176,19 @@ public class CoreOptions
         {
             destination = new string[source.GetLength(0)];
             for (var i = 0; i < source.GetLength(0); ++i)
-                destination[i] = (string)source[i].Clone();
-        }
+		{
+			destination[i] = (string)source[i].Clone();
+		}
+	}
 
         public static void PathCopy(CorePathWithSubFolder[] source, ref CorePathWithSubFolder[] destination)
         {
             destination = new CorePathWithSubFolder[source.GetLength(0)];
             for (var i = 0; i < source.GetLength(0); ++i)
-                destination[i] = source[i];
-        }
+		{
+			destination[i] = source[i];
+		}
+	}
 
         public static string[] PathClone(string[] path)
         {
@@ -198,33 +207,64 @@ public class CoreOptions
         public static bool Equals(string[] path1, string[] path2)
         {
             if (path1.Length != path2.Length)
-                return false;
-            for (var i = 0; i < path1.Length; ++i)
-                if (path1[i].CompareTo(path2[i]) != 0)
-                    return false;
-            return true;
+		{
+			return false;
+		}
+
+		for (var i = 0; i < path1.Length; ++i)
+		{
+			if (path1[i].CompareTo(path2[i]) != 0)
+			{
+				return false;
+			}
+		}
+
+		return true;
         }
 
         public bool Equals(CoreOptions options)
         {
             if (!searchOptions.Equals(options.searchOptions))
-                return false;
-            if (!compareOptions.Equals(options.compareOptions))
-                return false;
-            if (!defectOptions.Equals(options.defectOptions))
-                return false;
-            if (!advancedOptions.Equals(options.advancedOptions))
-                return false;
-            if (!Equals(searchPath, options.searchPath))
-                return false;
-            if (!Equals(ignorePath, options.ignorePath))
-                return false;
-            if (!Equals(validPath, options.validPath))
-                return false;
-            if (!Equals(deletePath, options.deletePath))
-                return false;
+		{
+			return false;
+		}
 
-            return true;
+		if (!compareOptions.Equals(options.compareOptions))
+		{
+			return false;
+		}
+
+		if (!defectOptions.Equals(options.defectOptions))
+		{
+			return false;
+		}
+
+		if (!advancedOptions.Equals(options.advancedOptions))
+		{
+			return false;
+		}
+
+		if (!Equals(searchPath, options.searchPath))
+		{
+			return false;
+		}
+
+		if (!Equals(ignorePath, options.ignorePath))
+		{
+			return false;
+		}
+
+		if (!Equals(validPath, options.validPath))
+		{
+			return false;
+		}
+
+		if (!Equals(deletePath, options.deletePath))
+		{
+			return false;
+		}
+
+		return true;
         }
 
         static public CoreOptions Load(string fileName, CoreLib core, bool onePath)
@@ -245,13 +285,18 @@ public class CoreOptions
                 catch
                 {
                     if(fileStream != null)
-                        fileStream.Close();
-                    return new CoreOptions(core);
+				{
+					fileStream.Close();
+				}
+
+				return new CoreOptions(core);
                 }
             }
             else
-                return new CoreOptions(core);
-        }
+		{
+			return new CoreOptions(core);
+		}
+	}
 
         public void Save(string fileName)
         {
@@ -266,15 +311,20 @@ public class CoreOptions
             {
             }
             if (writer != null)
-                writer.Close();
-        }
+		{
+			writer.Close();
+		}
+	}
 
         public string GetImageDataBasePath()
         {
             var directory = string.Format("{0}\\images\\{1}x{1}", Resources.UserPath, advancedOptions.reducedImageSize);
             var directoryInfo = new DirectoryInfo(directory);
             if (!directoryInfo.Exists)
-                directoryInfo.Create();
-            return directory;
+		{
+			directoryInfo.Create();
+		}
+
+		return directory;
         }
     }

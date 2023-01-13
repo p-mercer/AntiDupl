@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -68,9 +68,11 @@ namespace AntiDupl.NET;
             if (!string.IsNullOrEmpty(InputPath))
             {
                 if (CheckHr(SHCreateItemFromParsingName(InputPath, null, typeof(IShellItem).GUID, out var item), throwOnError) != 0)
-                    return null;
+			{
+				return null;
+			}
 
-                dialog.SetFolder(item);
+			dialog.SetFolder(item);
             }
 
             var options = FOS.FOS_PICKFOLDERS;
@@ -103,18 +105,26 @@ namespace AntiDupl.NET;
 
             var hr = dialog.Show(owner);
             if (hr == ERROR_CANCELLED)
-                return null;
+		{
+			return null;
+		}
 
-            if (CheckHr(hr, throwOnError) != 0)
-                return null;
+		if (CheckHr(hr, throwOnError) != 0)
+		{
+			return null;
+		}
 
-            if (CheckHr(dialog.GetResult(out var result), throwOnError) != 0)
-                return null;
+		if (CheckHr(dialog.GetResult(out var result), throwOnError) != 0)
+		{
+			return null;
+		}
 
-            if (CheckHr(result.GetDisplayName(SIGDN.SIGDN_DESKTOPABSOLUTEPARSING, out var path), throwOnError) != 0)
-                return null;
+		if (CheckHr(result.GetDisplayName(SIGDN.SIGDN_DESKTOPABSOLUTEPARSING, out var path), throwOnError) != 0)
+		{
+			return null;
+		}
 
-            ResultPath = path;
+		ResultPath = path;
 
             if (CheckHr(result.GetDisplayName(SIGDN.SIGDN_DESKTOPABSOLUTEEDITING, out path), false) == 0)
             {
@@ -128,8 +138,10 @@ namespace AntiDupl.NET;
             if (hr != 0)
             {
                 if (throwOnError)
-                    Marshal.ThrowExceptionForHR(hr);
-            }
+			{
+				Marshal.ThrowExceptionForHR(hr);
+			}
+		}
             return hr;
         }
 

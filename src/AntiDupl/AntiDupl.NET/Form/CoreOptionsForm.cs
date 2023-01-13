@@ -228,12 +228,21 @@ public class CoreOptionsForm : Form
 
             m_thresholdDifferenceLabeledComboBox = new LabeledComboBox(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
             if (m_newCoreOptions.compareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum)
-                for (var i = 0; i <= THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM; i++)
-                    m_thresholdDifferenceLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
-            else
-                for (var i = 0; i <= THRESHOLD_DIFFERENCE_MAX_SSIM; i++)
-                    m_thresholdDifferenceLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
-            checkTableLayoutPanel.Controls.Add(m_thresholdDifferenceLabeledComboBox, 0, 6);
+		{
+			for (var i = 0; i <= THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM; i++)
+			{
+				m_thresholdDifferenceLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
+			}
+		}
+		else
+		{
+			for (var i = 0; i <= THRESHOLD_DIFFERENCE_MAX_SSIM; i++)
+			{
+				m_thresholdDifferenceLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
+			}
+		}
+
+		checkTableLayoutPanel.Controls.Add(m_thresholdDifferenceLabeledComboBox, 0, 6);
 
 		m_minimalImageSizeLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged)
 		{
@@ -272,8 +281,11 @@ public class CoreOptionsForm : Form
 
             m_blockinessThresholdLabeledComboBox = new LabeledComboBox(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
             for (var i = 0; i <= THRESHOLD_BLOCKINESS_MAX; i++)
-                m_blockinessThresholdLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0}", i)));
-            defectTableLayoutPanel.Controls.Add(m_blockinessThresholdLabeledComboBox, 0, 2);
+		{
+			m_blockinessThresholdLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0}", i)));
+		}
+
+		defectTableLayoutPanel.Controls.Add(m_blockinessThresholdLabeledComboBox, 0, 2);
 
             m_checkOnBlockinessOnlyNotJpegCheckBox = InitFactory.CheckBox.Create(OnOptionChanged);
             defectTableLayoutPanel.Controls.Add(m_checkOnBlockinessOnlyNotJpegCheckBox, 0, 3);
@@ -283,8 +295,11 @@ public class CoreOptionsForm : Form
 
             m_blurringThresholdLabeledComboBox = new LabeledComboBox(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
             for (var i = 0; i <= THRESHOLD_BLURRING_MAX; i++)
-                m_blurringThresholdLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0}", i)));
-            defectTableLayoutPanel.Controls.Add(m_blurringThresholdLabeledComboBox, 0, 5);
+		{
+			m_blurringThresholdLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0}", i)));
+		}
+
+		defectTableLayoutPanel.Controls.Add(m_blurringThresholdLabeledComboBox, 0, 5);
         }
 
         private void InitilizeSearchTabPage()
@@ -383,14 +398,20 @@ public class CoreOptionsForm : Form
             m_compareThreadCountLabeledComboBox = new LabeledComboBox(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
             m_compareThreadCountLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(0, "auto"));
             for (var i = 0; i < Environment.ProcessorCount; i ++)
-                m_compareThreadCountLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i + 1, (i + 1).ToString()));
-            advancedTableLayoutPanel.Controls.Add(m_compareThreadCountLabeledComboBox, 0, 4);
+		{
+			m_compareThreadCountLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i + 1, (i + 1).ToString()));
+		}
+
+		advancedTableLayoutPanel.Controls.Add(m_compareThreadCountLabeledComboBox, 0, 4);
 
             m_collectThreadCountLabeledComboBox = new LabeledComboBox(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
             m_collectThreadCountLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(0, "auto"));
             for (var i = 0; i < Environment.ProcessorCount; i++)
-                m_collectThreadCountLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i + 1, (i + 1).ToString()));
-            advancedTableLayoutPanel.Controls.Add(m_collectThreadCountLabeledComboBox, 0, 5);
+		{
+			m_collectThreadCountLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i + 1, (i + 1).ToString()));
+		}
+
+		advancedTableLayoutPanel.Controls.Add(m_collectThreadCountLabeledComboBox, 0, 5);
 
             m_reducedImageSizeLabeledComboBox = new LabeledComboBox(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
             m_reducedImageSizeLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(16, "16x16"));
@@ -806,8 +827,11 @@ public class CoreOptionsForm : Form
             {
                 m_ignoreFrameWidthLabeledComboBox.comboBox.Items.Clear();
                 for (var i = 0; i <= IGNORE_FRAME_WIDTH_MAX; i += step)
-                    m_ignoreFrameWidthLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
-                m_ignoreFrameWidthLabeledComboBox.SelectedValue = (m_newCoreOptions.advancedOptions.ignoreFrameWidth + step - 1) / step * step;
+			{
+				m_ignoreFrameWidthLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
+			}
+
+			m_ignoreFrameWidthLabeledComboBox.SelectedValue = (m_newCoreOptions.advancedOptions.ignoreFrameWidth + step - 1) / step * step;
             }
 
             if (m_algorithmComparingLabeledComboBox.SelectedValue == (int)CoreDll.AlgorithmComparing.SquaredSum &&
@@ -815,16 +839,22 @@ public class CoreOptionsForm : Form
             {
                 m_thresholdDifferenceLabeledComboBox.comboBox.Items.Clear();
                 for (var i = 0; i <= THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM; i++)
-                    m_thresholdDifferenceLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
-                m_thresholdDifferenceLabeledComboBox.SelectedValue = THRESHOLD_DIFFERENCE_DEFAULT_SQUARED_SUM;
+			{
+				m_thresholdDifferenceLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
+			}
+
+			m_thresholdDifferenceLabeledComboBox.SelectedValue = THRESHOLD_DIFFERENCE_DEFAULT_SQUARED_SUM;
             }
             if (m_algorithmComparingLabeledComboBox.SelectedValue == (int)CoreDll.AlgorithmComparing.SSIM &&
                 m_thresholdDifferenceLabeledComboBox.comboBox.Items.Count < THRESHOLD_DIFFERENCE_MAX_SSIM + 1)
             {
                 m_thresholdDifferenceLabeledComboBox.comboBox.Items.Clear();
                 for (var i = 0; i <= THRESHOLD_DIFFERENCE_MAX_SSIM; i++)
-                    m_thresholdDifferenceLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
-                m_thresholdDifferenceLabeledComboBox.SelectedValue = THRESHOLD_DIFFERENCE_DEFAULT_SSIM;
+			{
+				m_thresholdDifferenceLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
+			}
+
+			m_thresholdDifferenceLabeledComboBox.SelectedValue = THRESHOLD_DIFFERENCE_DEFAULT_SSIM;
             }
         }
 

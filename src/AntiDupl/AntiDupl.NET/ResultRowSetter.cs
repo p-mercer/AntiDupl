@@ -177,7 +177,9 @@ public class ResultRowSetter
         private void SetDefectToRow(DataGridViewCellCollection cells, CoreResult result)
         {
             if (result.type != CoreDll.ResultType.DefectImage)
-                throw new Exception("Bad result type!");
+		{
+			throw new Exception("Bad result type!");
+		}
 
 		cells[(int)ResultsListView.ColumnsTypeHorizontal.Type] = new DataGridViewImageCell
 		{
@@ -261,8 +263,11 @@ public class ResultRowSetter
         private void SetDefectToRowVertical(DataGridViewCellCollection cells, CoreResult result)
         {
             for (var col = (int)ResultsListView.ColumnsTypeVertical.FileName; col < (int)ResultsListView.ColumnsTypeVertical.Size; col++)
-                cells[col] = new DataGridViewTextBoxCell();
-            cells[(int)ResultsListView.ColumnsTypeVertical.FileName].Value = Path.GetFileName(result.first.path);
+		{
+			cells[col] = new DataGridViewTextBoxCell();
+		}
+
+		cells[(int)ResultsListView.ColumnsTypeVertical.FileName].Value = Path.GetFileName(result.first.path);
             cells[(int)ResultsListView.ColumnsTypeVertical.FileDirectory].Value = result.first.GetDirectoryString();
             cells[(int)ResultsListView.ColumnsTypeVertical.ImageSize].Value = result.first.GetImageSizeString();
             cells[(int)ResultsListView.ColumnsTypeVertical.ImageType].Value = result.first.GetImageTypeString();
@@ -286,8 +291,11 @@ public class ResultRowSetter
         private void SetDefectToRowHorizontal(DataGridViewCellCollection cells, CoreResult result)
         {
             for (var col = (int)ResultsListView.ColumnsTypeHorizontal.FirstFileName; col < (int)ResultsListView.ColumnsTypeHorizontal.Size; col++)
-                cells[col] = new DataGridViewTextBoxCell();
-            cells[(int)ResultsListView.ColumnsTypeHorizontal.FirstFileName].Value = Path.GetFileName(result.first.path);
+		{
+			cells[col] = new DataGridViewTextBoxCell();
+		}
+
+		cells[(int)ResultsListView.ColumnsTypeHorizontal.FirstFileName].Value = Path.GetFileName(result.first.path);
             cells[(int)ResultsListView.ColumnsTypeHorizontal.FirstFileDirectory].Value = result.first.GetDirectoryString();
             cells[(int)ResultsListView.ColumnsTypeHorizontal.FirstImageSize].Value = result.first.GetImageSizeString();
             cells[(int)ResultsListView.ColumnsTypeHorizontal.FirstImageType].Value = result.first.GetImageTypeString();
@@ -310,9 +318,11 @@ public class ResultRowSetter
         private void SetDuplPairToRow(DataGridViewCellCollection cells, CoreResult result)
         {
             if (result.type != CoreDll.ResultType.DuplImagePair)
-                throw new Exception("Bad result type!");
+		{
+			throw new Exception("Bad result type!");
+		}
 
-            cells[(int)ResultsListView.ColumnsTypeHorizontal.Type] = new DataGridViewImageCell();
+		cells[(int)ResultsListView.ColumnsTypeHorizontal.Type] = new DataGridViewImageCell();
             cells[(int)ResultsListView.ColumnsTypeHorizontal.Type].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             cells[(int)ResultsListView.ColumnsTypeHorizontal.Type].ToolTipText = m_duplPairIconToolTipText;
 
@@ -446,38 +456,61 @@ public class ResultRowSetter
 
             doubleCell = new DataGridViewDoubleTextBoxCell(result.first.GetImageSizeString(), result.second.GetImageSizeString());
             if (result.first.height * result.first.width > result.second.height * result.second.width)
-                doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.Second;
-            else if (result.first.height * result.first.width < result.second.height * result.second.width)
-                doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.First;
-            cells[(int)ResultsListView.ColumnsTypeVertical.ImageSize] = doubleCell;
+		{
+			doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.Second;
+		}
+		else if (result.first.height * result.first.width < result.second.height * result.second.width)
+		{
+			doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.First;
+		}
+
+		cells[(int)ResultsListView.ColumnsTypeVertical.ImageSize] = doubleCell;
 
             doubleCell = new DataGridViewDoubleTextBoxCell(result.first.GetImageTypeString(), result.second.GetImageTypeString());
             if (result.first.type != result.second.type)
-                doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.Both;
-            cells[(int)ResultsListView.ColumnsTypeVertical.ImageType] = doubleCell;
+		{
+			doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.Both;
+		}
+
+		cells[(int)ResultsListView.ColumnsTypeVertical.ImageType] = doubleCell;
 
             doubleCell = new DataGridViewDoubleTextBoxCell(result.first.GetFileSizeString(), result.second.GetFileSizeString());
             if (result.first.size > result.second.size)
-                doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.Second;
-            else if (result.first.size < result.second.size)
-                doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.First;
-            cells[(int)ResultsListView.ColumnsTypeVertical.FileSize] = doubleCell;
+		{
+			doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.Second;
+		}
+		else if (result.first.size < result.second.size)
+		{
+			doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.First;
+		}
+
+		cells[(int)ResultsListView.ColumnsTypeVertical.FileSize] = doubleCell;
             cells[(int)ResultsListView.ColumnsTypeVertical.FileSize].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             doubleCell = new DataGridViewDoubleTextBoxCell(result.first.GetBlockinessString(), result.second.GetBlockinessString());
             if (result.first.blockiness > result.second.blockiness) //подсветка highlight
-                doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.First;
-            else if (result.first.blockiness < result.second.blockiness)
-                doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.Second;
-            cells[(int)ResultsListView.ColumnsTypeVertical.Blockiness] = doubleCell;
+		{
+			doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.First;
+		}
+		else if (result.first.blockiness < result.second.blockiness)
+		{
+			doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.Second;
+		}
+
+		cells[(int)ResultsListView.ColumnsTypeVertical.Blockiness] = doubleCell;
             cells[(int)ResultsListView.ColumnsTypeVertical.Blockiness].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             doubleCell = new DataGridViewDoubleTextBoxCell(result.first.GetBlurringString(), result.second.GetBlurringString());
-            if (result.first.blurring > result.second.blurring) 
-                doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.First;
-            else if (result.first.blurring < result.second.blurring)
-                doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.Second;
-            cells[(int)ResultsListView.ColumnsTypeVertical.Blurring] = doubleCell;
+            if (result.first.blurring > result.second.blurring)
+		{
+			doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.First;
+		}
+		else if (result.first.blurring < result.second.blurring)
+		{
+			doubleCell.markType = DataGridViewDoubleTextBoxCell.MarkType.Second;
+		}
+
+		cells[(int)ResultsListView.ColumnsTypeVertical.Blurring] = doubleCell;
             cells[(int)ResultsListView.ColumnsTypeVertical.Blurring].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             cells[(int)ResultsListView.ColumnsTypeVertical.FileTime] = new DataGridViewDoubleTextBoxCell(result.first.GetFileTimeString(), result.second.GetFileTimeString());
@@ -504,8 +537,11 @@ public class ResultRowSetter
             }
 
             for (var col = (int)ResultsListView.ColumnsTypeHorizontal.FirstFileName; col < (int)ResultsListView.ColumnsTypeHorizontal.Size; col++)
-                cells[col] = new DataGridViewTextBoxCell();
-            cells[(int)ResultsListView.ColumnsTypeHorizontal.FirstFileName].Value = Path.GetFileName(result.first.path);
+		{
+			cells[col] = new DataGridViewTextBoxCell();
+		}
+
+		cells[(int)ResultsListView.ColumnsTypeHorizontal.FirstFileName].Value = Path.GetFileName(result.first.path);
             cells[(int)ResultsListView.ColumnsTypeHorizontal.FirstFileDirectory].Value = result.first.GetDirectoryString();
             cells[(int)ResultsListView.ColumnsTypeHorizontal.FirstImageSize].Value = result.first.GetImageSizeString();
             cells[(int)ResultsListView.ColumnsTypeHorizontal.FirstImageType].Value = result.first.GetImageTypeString();

@@ -127,10 +127,15 @@ internal class MainStatusStrip : StatusStrip
             builder.Append(m_selectedText);
             var selectedResultCount = m_mainSplitContainer.resultsListView.GetSelectedResultCount();
             if (m_mainSplitContainer.resultsListView.GetTotalResultCount() > 0)
-                builder.Append(selectedResultCount);
-            else
-                builder.Append(0);
-            m_selectedLabel.Text = builder.ToString();
+		{
+			builder.Append(selectedResultCount);
+		}
+		else
+		{
+			builder.Append(0);
+		}
+
+		m_selectedLabel.Text = builder.ToString();
         }
 
         private void OnResize(object sender, EventArgs e)

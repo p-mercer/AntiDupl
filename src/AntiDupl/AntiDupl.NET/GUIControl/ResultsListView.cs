@@ -332,28 +332,48 @@ public class ResultsListView : DataGridView
                 if (m_results[m_currentRowIndex].type == CoreDll.ResultType.DefectImage)
                 {
                     if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentDefectDelete])
-                        MakeAction(CoreDll.LocalActionType.DeleteDefect, CoreDll.TargetType.Current);
-                    else if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentMistake])
-                        MakeAction(CoreDll.LocalActionType.Mistake, CoreDll.TargetType.Current);
-                    return;
+				{
+					MakeAction(CoreDll.LocalActionType.DeleteDefect, CoreDll.TargetType.Current);
+				}
+				else if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentMistake])
+				{
+					MakeAction(CoreDll.LocalActionType.Mistake, CoreDll.TargetType.Current);
+				}
+
+				return;
                 }
                 if (m_results[m_currentRowIndex].type == CoreDll.ResultType.DuplImagePair)
                 {
                     if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentDuplPairDeleteFirst])
-                        MakeAction(CoreDll.LocalActionType.DeleteFirst, CoreDll.TargetType.Current);
-                    else if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentDuplPairDeleteSecond])
-                        MakeAction(CoreDll.LocalActionType.DeleteSecond, CoreDll.TargetType.Current);
-                    else if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentDuplPairDeleteBoth])
-                        MakeAction(CoreDll.LocalActionType.DeleteBoth, CoreDll.TargetType.Current);
-                    else if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentDuplPairRenameFirstToSecond])
-                        MakeAction(CoreDll.LocalActionType.RenameFirstToSecond, CoreDll.TargetType.Current);
-                    else if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentDuplPairRenameSecondToFirst])
-                        MakeAction(CoreDll.LocalActionType.RenameSecondToFirst, CoreDll.TargetType.Current);
-                    else if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentMistake])
-                        MakeAction(CoreDll.LocalActionType.Mistake, CoreDll.TargetType.Current);
-                    else if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.ShowNeighbours])
-                        m_options.resultsOptions.ShowNeighboursImages = !m_options.resultsOptions.ShowNeighboursImages;
-                    return;
+				{
+					MakeAction(CoreDll.LocalActionType.DeleteFirst, CoreDll.TargetType.Current);
+				}
+				else if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentDuplPairDeleteSecond])
+				{
+					MakeAction(CoreDll.LocalActionType.DeleteSecond, CoreDll.TargetType.Current);
+				}
+				else if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentDuplPairDeleteBoth])
+				{
+					MakeAction(CoreDll.LocalActionType.DeleteBoth, CoreDll.TargetType.Current);
+				}
+				else if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentDuplPairRenameFirstToSecond])
+				{
+					MakeAction(CoreDll.LocalActionType.RenameFirstToSecond, CoreDll.TargetType.Current);
+				}
+				else if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentDuplPairRenameSecondToFirst])
+				{
+					MakeAction(CoreDll.LocalActionType.RenameSecondToFirst, CoreDll.TargetType.Current);
+				}
+				else if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentMistake])
+				{
+					MakeAction(CoreDll.LocalActionType.Mistake, CoreDll.TargetType.Current);
+				}
+				else if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.ShowNeighbours])
+				{
+					m_options.resultsOptions.ShowNeighboursImages = !m_options.resultsOptions.ShowNeighboursImages;
+				}
+
+				return;
                 }
             }
         }
@@ -395,8 +415,11 @@ public class ResultsListView : DataGridView
             else
             {
                 if (m_results.Length < RowCount - 1000)//rows are removed very slowly!!!
-                    Rows.Clear();
-                RowCount = m_results.Length;
+			{
+				Rows.Clear();
+			}
+
+			RowCount = m_results.Length;
 
                 var selection = m_core.GetSelection(0, (uint)m_results.Length);
 
@@ -405,8 +428,10 @@ public class ResultsListView : DataGridView
                     var row = (DataGridViewCustomRow)Rows[i];
                     row.updated = false;
                     if (selection != null)
-                        row.selected = selection[i];
-                }
+				{
+					row.selected = selection[i];
+				}
+			}
                 var current = m_core.GetCurrent();
                 if (current != -1)
                 {
@@ -583,10 +608,14 @@ public class ResultsListView : DataGridView
             }
 
             for (var col = 0; col < ColumnCount; col++)
-                if (col != e.ColumnIndex)
-                    Columns[col].HeaderCell.SortGlyphDirection = SortOrder.None;
+		{
+			if (col != e.ColumnIndex)
+			{
+				Columns[col].HeaderCell.SortGlyphDirection = SortOrder.None;
+			}
+		}
 
-            m_options.resultsOptions.sortTypeDefault = (int)sortType;
+		m_options.resultsOptions.sortTypeDefault = (int)sortType;
             m_options.resultsOptions.increasingDefault = direction == ListSortDirection.Ascending;
             m_core.SortResult(sortType, direction == ListSortDirection.Ascending);
 
@@ -660,8 +689,10 @@ public class ResultsListView : DataGridView
             if (m_isShiftDown)
             {
                 if (m_firstSelectedRowIndex == -1)
-                    m_firstSelectedRowIndex = m_currentRowIndex;
-            }
+			{
+				m_firstSelectedRowIndex = m_currentRowIndex;
+			}
+		}
             base.OnKeyDown(e);
             MakeAction(e.KeyData);
         }
@@ -785,8 +816,11 @@ public class ResultsListView : DataGridView
             if (index >= 0 && index < Rows.Count)
             {
                 if (m_currentRowIndex >= 0 && m_currentRowIndex < Rows.Count)
-                    ((DataGridViewCustomRow)Rows[m_currentRowIndex]).current = false;
-                if (m_results.Length > 0)
+			{
+				((DataGridViewCustomRow)Rows[m_currentRowIndex]).current = false;
+			}
+
+			if (m_results.Length > 0)
                 {
                     ((DataGridViewCustomRow)Rows[index]).current = true;
                     m_core.SetCurrent(index);
@@ -798,9 +832,11 @@ public class ResultsListView : DataGridView
                 m_currentRowIndex = index;
 
                 if (m_firstSelectedRowIndex >= Rows.Count)
-                    m_firstSelectedRowIndex = m_currentRowIndex;
+			{
+				m_firstSelectedRowIndex = m_currentRowIndex;
+			}
 
-                if (m_makeAction)
+			if (m_makeAction)
                 {
                     for (var col = 0; col < Rows[index].Cells.Count; col++)
                     {
@@ -828,9 +864,11 @@ public class ResultsListView : DataGridView
                     if (m_isShiftDown)
                     {
                         if (m_firstSelectedRowIndex == -1 || m_firstSelectedRowIndex >= Rows.Count)
-                            m_firstSelectedRowIndex = m_currentRowIndex;
+					{
+						m_firstSelectedRowIndex = m_currentRowIndex;
+					}
 
-                        var selectionBegin = Math.Min(m_firstSelectedRowIndex, m_currentRowIndex);
+					var selectionBegin = Math.Min(m_firstSelectedRowIndex, m_currentRowIndex);
                         var selectionEnd = Math.Max(m_firstSelectedRowIndex, m_currentRowIndex);
                         SetRowSelection(0, selectionBegin, false);
                         SetRowSelection(selectionBegin, selectionEnd + 1, true);
@@ -933,8 +971,10 @@ public class ResultsListView : DataGridView
                 {
                     var row = (DataGridViewCustomRow)Rows[i];
                     if (row.selected)
-                        builder.Add(m_results[i]);
-                }
+				{
+					builder.Add(m_results[i]);
+				}
+			}
                 dataObject.SetText(builder.ToString());
             }
             return dataObject;
@@ -943,8 +983,11 @@ public class ResultsListView : DataGridView
         public CoreResult GetCurrentResult()
         {
             if (m_currentRowIndex < m_results.Length && m_currentRowIndex >= 0)
-                return m_results[m_currentRowIndex];
-            return null;
+		{
+			return m_results[m_currentRowIndex];
+		}
+
+		return null;
         }
 
         public bool MoveEnable()
@@ -958,8 +1001,11 @@ public class ResultsListView : DataGridView
                     if (row.selected)
                     {
                         if (String.IsNullOrEmpty(m_results[i].second.path))
-                            return false;
-                        if (!Path.GetDirectoryName(m_results[i].first.path).Equals(Path.GetDirectoryName(m_results[i].second.path)))
+					{
+						return false;
+					}
+
+					if (!Path.GetDirectoryName(m_results[i].first.path).Equals(Path.GetDirectoryName(m_results[i].second.path)))
                         {
                             moveEnable = true;
                             break;

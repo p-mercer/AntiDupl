@@ -326,8 +326,10 @@ public class ThumbnailGroupTable : Panel
                 Invalidate();
             }
             else
-                base.OnPaint(e);
-        }
+		{
+			base.OnPaint(e);
+		}
+	}
 
         protected override void OnScroll(ScrollEventArgs se)
         {
@@ -375,8 +377,10 @@ public class ThumbnailGroupTable : Panel
                 {
                     m_thumbnailStorage.Get(images[j]);
                     if (m_abortUpdateThumbnailsThread)
-                        return;
-                }
+				{
+					return;
+				}
+			}
 
                 var groupPanel = m_thumbnailGroupPanels[i];
                 if(groupPanel != null)
@@ -425,8 +429,10 @@ public class ThumbnailGroupTable : Panel
         public void ChangeCurrentThumbnail(CoreGroup group, int index)
         {
             if (OnCurrentThumbnailChanged != null)
-                OnCurrentThumbnailChanged(group, index);
-        }
+		{
+			OnCurrentThumbnailChanged(group, index);
+		}
+	}
 
         public bool Rename(CoreGroup group, int index, string newFileName)
         {

@@ -160,33 +160,75 @@ public class CoreSearchOptions
         {
             var extensions = new ArrayList();
             if(JPEG)
-                extensions.AddRange(s_jpegExtensions);
-            if(TIFF)
-                extensions.AddRange(s_tiffExtensions);
-            if(BMP)
-                extensions.AddRange(s_bmpExtensions);
-            if(GIF)
-                extensions.AddRange(s_gifExtensions);
-            if(PNG)
-                extensions.AddRange(s_pngExtensions);
-            if(EMF)
-                extensions.AddRange(s_emfExtensions);
-            if(WMF)
-                extensions.AddRange(s_wmfExtensions);
-            if(ICON)
-                extensions.AddRange(s_iconExtensions);
-            if(JP2)
-                extensions.AddRange(s_jp2Extensions);
-            if(PSD)
-                extensions.AddRange(s_psdExtensions);
-            if (DDS)
-                extensions.AddRange(s_ddsExtensions);
-            if (TGA)
-                extensions.AddRange(s_tgaExtensions);
-            if (WEBP)
-                extensions.AddRange(s_tgaExtensions);
-            if (HEIF)
-                extensions.AddRange(s_heifExtensions);
-            return (string[])extensions.ToArray(typeof(string));
+		{
+			extensions.AddRange(s_jpegExtensions);
+		}
+
+		if (TIFF)
+		{
+			extensions.AddRange(s_tiffExtensions);
+		}
+
+		if (BMP)
+		{
+			extensions.AddRange(s_bmpExtensions);
+		}
+
+		if (GIF)
+		{
+			extensions.AddRange(s_gifExtensions);
+		}
+
+		if (PNG)
+		{
+			extensions.AddRange(s_pngExtensions);
+		}
+
+		if (EMF)
+		{
+			extensions.AddRange(s_emfExtensions);
+		}
+
+		if (WMF)
+		{
+			extensions.AddRange(s_wmfExtensions);
+		}
+
+		if (ICON)
+		{
+			extensions.AddRange(s_iconExtensions);
+		}
+
+		if (JP2)
+		{
+			extensions.AddRange(s_jp2Extensions);
+		}
+
+		if (PSD)
+		{
+			extensions.AddRange(s_psdExtensions);
+		}
+
+		if (DDS)
+		{
+			extensions.AddRange(s_ddsExtensions);
+		}
+
+		if (TGA)
+		{
+			extensions.AddRange(s_tgaExtensions);
+		}
+
+		if (WEBP)
+		{
+			extensions.AddRange(s_tgaExtensions);
+		}
+
+		if (HEIF)
+		{
+			extensions.AddRange(s_heifExtensions);
+		}
+
+		return (string[])extensions.ToArray(typeof(string));
         }
     }

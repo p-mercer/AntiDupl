@@ -39,8 +39,11 @@ internal static class Program
                 {
                     var directoryInfo = new DirectoryInfo(customSavePath);
                     if (!directoryInfo.Exists)
-                        throw new Exception(String.Format("The directory '{0}' is not exists!", customSavePath));
-                    Resources.UserPath = customSavePath;
+				{
+					throw new Exception(String.Format("The directory '{0}' is not exists!", customSavePath));
+				}
+
+				Resources.UserPath = customSavePath;
                 }
                 else
                 {
@@ -53,8 +56,10 @@ internal static class Program
             }
             else if (MessageBox.Show("You Need Microsoft .NET Framework 3.5 in order to run this program. Want to download .Net Framework 3.5?", "Warning",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
-                System.Diagnostics.Process.Start("http://www.microsoft.com/ru-ru/download/details.aspx?id=22");
-        }
+		{
+			System.Diagnostics.Process.Start("http://www.microsoft.com/ru-ru/download/details.aspx?id=22");
+		}
+	}
 
 	private static bool GetParameter(string[] args, string name, ref string value)
         {

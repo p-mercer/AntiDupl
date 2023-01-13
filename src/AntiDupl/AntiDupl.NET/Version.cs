@@ -89,11 +89,15 @@ public class Version
                     return v1.release - v2.release;
                 }
                 else
-                    return v1.minor - v2.minor;
-            }
+			{
+				return v1.minor - v2.minor;
+			}
+		}
             else
-                return v1.major - v2.major;
-        }
+		{
+			return v1.major - v2.major;
+		}
+	}
 
         static public bool Compatible(CoreVersion coreVersion)
         {

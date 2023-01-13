@@ -42,8 +42,10 @@ public class MainFormOptions
                 {
                     m_toolStripView = value;
                     if (OnToolStripVisibleChange != null)
-                        OnToolStripVisibleChange(m_toolStripView);
-                }
+				{
+					OnToolStripVisibleChange(m_toolStripView);
+				}
+			}
             }
         }
         
@@ -61,8 +63,10 @@ public class MainFormOptions
                 {
                     m_statusStripView = value;
                     if (OnStatusStripVisibleChange != null)
-                        OnStatusStripVisibleChange(m_statusStripView);
-                }
+				{
+					OnStatusStripVisibleChange(m_statusStripView);
+				}
+			}
             }
         }
 
@@ -96,17 +100,31 @@ public class MainFormOptions
         public bool Equals(MainFormOptions options)
         {
             if (location != options.location)
-                return false;
-            if (size != options.size)
-                return false;
-            if (maximized != options.maximized)
-                return false;
-            if (m_toolStripView != options.m_toolStripView)
-                return false;
-            if (m_statusStripView != options.m_statusStripView)
-                return false;
+		{
+			return false;
+		}
 
-            return true;
+		if (size != options.size)
+		{
+			return false;
+		}
+
+		if (maximized != options.maximized)
+		{
+			return false;
+		}
+
+		if (m_toolStripView != options.m_toolStripView)
+		{
+			return false;
+		}
+
+		if (m_statusStripView != options.m_statusStripView)
+		{
+			return false;
+		}
+
+		return true;
         }
 
         public void SetDefault()

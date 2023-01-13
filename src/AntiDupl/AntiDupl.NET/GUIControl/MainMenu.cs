@@ -215,11 +215,15 @@ public class MainMenu : MenuStrip
             m_view_proportionalImageViewMenuItem.Text = s.MainMenu_View_ProportionalImageSizeMenuItem_Text;
             if (m_options.hotKeyOptions.keys.Length > (int)HotKeyOptions.Action.ShowNeighbours &&
                 m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.ShowNeighbours] != null)
-                    m_view_showNeighbourImageMenuItem.Text = s.MainMenu_View_ShowNeighbourImageMenuItem_Text + String.Format(" ({0})", m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.ShowNeighbours].ToString().Replace(',', '+'));
-            else
-                m_view_showNeighbourImageMenuItem.Text = s.MainMenu_View_ShowNeighbourImageMenuItem_Text;
+		{
+			m_view_showNeighbourImageMenuItem.Text = s.MainMenu_View_ShowNeighbourImageMenuItem_Text + String.Format(" ({0})", m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.ShowNeighbours].ToString().Replace(',', '+'));
+		}
+		else
+		{
+			m_view_showNeighbourImageMenuItem.Text = s.MainMenu_View_ShowNeighbourImageMenuItem_Text;
+		}
 
-            m_searchMenuItem.Text = s.MainMenu_SearchMenuItem_Text;
+		m_searchMenuItem.Text = s.MainMenu_SearchMenuItem_Text;
             m_search_startMenuItem.Text = s.MainMenu_Search_StartMenuItem_Text;
             m_search_refreshResultsMenuItem.Text = s.MainMenu_Search_RefreshResultsMenuItem_Text;
             m_search_refreshImagesMenuItem.Text = s.MainMenu_Search_RefreshImagesMenuItem_Text;
@@ -330,8 +334,11 @@ public class MainMenu : MenuStrip
                 dialog.InitialDirectory = fileInfo.Directory.ToString();
             }
             else
-                dialog.InitialDirectory = Resources.ProfilesPath;
-            dialog.OverwritePrompt = false;
+		{
+			dialog.InitialDirectory = Resources.ProfilesPath;
+		}
+
+		dialog.OverwritePrompt = false;
             dialog.DefaultExt = "xml";
             dialog.Filter = "Antidupl profile files (*.xml)|*.xml";
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -361,8 +368,11 @@ public class MainMenu : MenuStrip
                 dialog.InitialDirectory = fileInfo.Directory.ToString();
             }
             else
-                dialog.InitialDirectory = Resources.ProfilesPath;
-            dialog.DefaultExt = "xml";
+		{
+			dialog.InitialDirectory = Resources.ProfilesPath;
+		}
+
+		dialog.DefaultExt = "xml";
             dialog.Filter = "Antidupl profile files (*.xml)|*.xml";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -398,10 +408,15 @@ public class MainMenu : MenuStrip
 				ShowNewFolderButton = false
 			};
 			if (Directory.Exists(m_coreOptions.searchPath[0].path))
-                    dialog.SelectedPath = m_coreOptions.searchPath[0].path;
-                else
-                    dialog.SelectedPath = Application.StartupPath;
-                dialog.ShowDialog();
+			{
+				dialog.SelectedPath = m_coreOptions.searchPath[0].path;
+			}
+			else
+			{
+				dialog.SelectedPath = Application.StartupPath;
+			}
+
+			dialog.ShowDialog();
                 m_coreOptions.searchPath[0].path = dialog.SelectedPath;
             }
             else

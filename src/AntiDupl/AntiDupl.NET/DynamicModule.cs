@@ -39,15 +39,19 @@ public class DynamicModule : IDisposable
             m_fileName = fileName;
 
             if (string.IsNullOrEmpty(m_fileName))
-                throw new Exception(string.Format("Bad library file name '{0}'!", m_fileName));
+		{
+			throw new Exception(string.Format("Bad library file name '{0}'!", m_fileName));
+		}
 
-            try
+		try
             {
                 m_module = LoadLibrary(m_fileName);
                 if (m_module == IntPtr.Zero)
-                    throw new Exception(string.Format("Can't load {0} dynamic library!", m_fileName));
+			{
+				throw new Exception(string.Format("Can't load {0} dynamic library!", m_fileName));
+			}
 
-                var fields = GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance);
+			var fields = GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance);
                 for (var i = 0; i < fields.Length; ++i)
                 {
                     var field = fields[i];

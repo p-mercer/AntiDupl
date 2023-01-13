@@ -305,15 +305,20 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
         private void CalculateRectanglesOfDifferences(ComparableBitmap[] bitmap1, ComparableBitmap[] bitmap2)
         {
             if ((bitmap1 == null) || (bitmap2 == null))
-                return;
+		{
+			return;
+		}
 
-            var rectangles = new List<RectanglesWithSimilarity>();
+		var rectangles = new List<RectanglesWithSimilarity>();
             float similarity;
             for (var i = 0; i < bitmap1.Length; i++)
             {
                 if (_highlightStop)
-                    return;
-                similarity = Comparator.Similarity(bitmap1[i].GrayscaleData, bitmap2[i].GrayscaleData);
+			{
+				return;
+			}
+
+			similarity = Comparator.Similarity(bitmap1[i].GrayscaleData, bitmap2[i].GrayscaleData);
                 if (similarity < m_options.resultsOptions.DifferenceThreshold)
                 {
                     rectangles.Add(new RectanglesWithSimilarity(bitmap1[i].Rect, similarity));
@@ -321,9 +326,11 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
             }
 
             if (m_options.resultsOptions.NotHighlightIfFragmentsMoreThan && rectangles.Count > m_options.resultsOptions.NotHighlightMaxFragments)
-                return;
+		{
+			return;
+		}
 
-            if (!m_options.resultsOptions.HighlightAllDifferences)
+		if (!m_options.resultsOptions.HighlightAllDifferences)
             {
                 if (HighlightCompleteEvent != null)
                 {
@@ -334,8 +341,11 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
                     var src = rectangles.ToArray();
                     var dst = new List<Rectangle>();
                     for (int i = 0, n = Math.Min(src.Length, m_options.resultsOptions.MaxFragmentsForHighlight); i < n; ++i)
-                        dst.Add(src[i].rectangle);
-                    HighlightCompleteEvent(dst);
+				{
+					dst.Add(src[i].rectangle);
+				}
+
+				HighlightCompleteEvent(dst);
                 }
             }
 
@@ -344,8 +354,11 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
                 var src = rectangles.ToArray();
                 var dst = new List<Rectangle>();
                 for (var i = 0; i < src.Length; ++i)
-                    dst.Add(src[i].rectangle);
-                HighlightCompleteEvent(dst);
+			{
+				dst.Add(src[i].rectangle);
+			}
+
+			HighlightCompleteEvent(dst);
             }
         }
 

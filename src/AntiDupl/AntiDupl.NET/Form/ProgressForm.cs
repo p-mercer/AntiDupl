@@ -89,8 +89,11 @@ public class ProgressForm : Form
         public ProgressForm(Type type, CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
         {
             if (type == Type.ApplyAction)
-                throw new Exception("Wrong using of ProgressForm type!");
-            m_type = type;
+		{
+			throw new Exception("Wrong using of ProgressForm type!");
+		}
+
+		m_type = type;
             Initialize(core, options, coreOptions, mainSplitContainer);
         }
 
@@ -114,12 +117,19 @@ public class ProgressForm : Form
         {
             m_type = type;
             if (m_type == Type.MoveCurrentGroup)
-                m_directoryForMove = path;
-            else if (m_type == Type.RenameCurrentGroupAs)
-                m_newFileName = path;
-            else
-                throw new Exception("Unknown Type for action!");
-            Initialize(core, options, coreOptions, mainSplitContainer);
+		{
+			m_directoryForMove = path;
+		}
+		else if (m_type == Type.RenameCurrentGroupAs)
+		{
+			m_newFileName = path;
+		}
+		else
+		{
+			throw new Exception("Unknown Type for action!");
+		}
+
+		Initialize(core, options, coreOptions, mainSplitContainer);
         }
 
         /// <summary>

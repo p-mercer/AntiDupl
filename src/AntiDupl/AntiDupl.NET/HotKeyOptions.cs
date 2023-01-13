@@ -54,11 +54,15 @@ public class HotKeyOptions
             if (options.keys.Length == (int)Action.Size)
             {
                 for (var i = 0; i < keys.Length; ++i)
-                    keys[i] = options.keys[i];
-            }
+			{
+				keys[i] = options.keys[i];
+			}
+		}
             else
-                SetDefault();
-        }
+		{
+			SetDefault();
+		}
+	}
         
         public void SetDefault()
         {
@@ -84,37 +88,61 @@ public class HotKeyOptions
                 }
             }
             if (action == Action.CurrentDefectDelete)
-                keys[(int)Action.CurrentDefectDelete] = Keys.NumPad1;
-            if (action == Action.CurrentMistake)
-                keys[(int)Action.CurrentMistake] = Keys.NumPad5;
-            if (action == Action.CurrentDuplPairRenameSecondToFirst)
-                keys[(int)Action.CurrentDuplPairRenameSecondToFirst] = Keys.NumPad6;
-            if (action == Action.ShowNeighbours)
-                keys[(int)Action.ShowNeighbours] = Keys.Control | Keys.Q;
-            /*for(Keys key = Keys.NumPad1; key < Keys.NumPad7; key++)
-            {
-                keys[(int)action] = key;
-                if(Valid(action)) 
-                    break;
-            }*/
-        }
+		{
+			keys[(int)Action.CurrentDefectDelete] = Keys.NumPad1;
+		}
+
+		if (action == Action.CurrentMistake)
+		{
+			keys[(int)Action.CurrentMistake] = Keys.NumPad5;
+		}
+
+		if (action == Action.CurrentDuplPairRenameSecondToFirst)
+		{
+			keys[(int)Action.CurrentDuplPairRenameSecondToFirst] = Keys.NumPad6;
+		}
+
+		if (action == Action.ShowNeighbours)
+		{
+			keys[(int)Action.ShowNeighbours] = Keys.Control | Keys.Q;
+		}
+		/*for(Keys key = Keys.NumPad1; key < Keys.NumPad7; key++)
+{
+   keys[(int)action] = key;
+   if(Valid(action)) 
+	   break;
+}*/
+	}
         
         public void CopyTo(ref HotKeyOptions options)
         {
             if (keys.Length != options.keys.Length)
-                options.keys = new Keys[(int)Action.Size];
-            for (var i = 0; i < keys.Length; ++i)
-                options.keys[i] = keys[i];
-        }
+		{
+			options.keys = new Keys[(int)Action.Size];
+		}
+
+		for (var i = 0; i < keys.Length; ++i)
+		{
+			options.keys[i] = keys[i];
+		}
+	}
 
         public bool Equals(HotKeyOptions options)
         {
             if (keys.Length != options.keys.Length)
-                return false;
-            for (var i = 0; i < keys.Length; ++i)
-                if(options.keys[i] != keys[i])
-                    return false;
-            return true;
+		{
+			return false;
+		}
+
+		for (var i = 0; i < keys.Length; ++i)
+		{
+			if (options.keys[i] != keys[i])
+			{
+				return false;
+			}
+		}
+
+		return true;
         }
 
         public bool Valid(Action action)
