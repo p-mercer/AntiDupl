@@ -64,14 +64,11 @@ public class CoreLib : IDisposable
 
 	public void Release()
 	{
-		if (m_dll != null && m_handle != IntPtr.Zero)
+		if (m_dll != null && m_handle != IntPtr.Zero && m_dll.adRelease(m_handle) == CoreDll.Error.AccessDenied)
 		{
-			if (m_dll.adRelease(m_handle) == CoreDll.Error.AccessDenied)
-			{
-				Stop();
-				Thread.Sleep(10);
-				m_dll.adRelease(m_handle);
-			}
+			Stop();
+			Thread.Sleep(10);
+			m_dll.adRelease(m_handle);
 		}
 	}
 
@@ -530,7 +527,7 @@ public class CoreLib : IDisposable
 			return null;
 		}
 
-		System.Drawing.Bitmap bitmap = null;
+		System.Drawing.Bitmap bitmap;
 		try
 		{
 			bitmap = new System.Drawing.Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
@@ -577,14 +574,14 @@ public class CoreLib : IDisposable
 
 	public System.Drawing.Bitmap LoadBitmap(CoreImageInfo imageInfo)
 	{
-		return LoadBitmap((int)imageInfo.width, (int)imageInfo.height, imageInfo.path);
+		return LoadBitmap((int)imageInfo.Width, (int)imageInfo.Height, imageInfo.Path);
 	}
 
 	//-----------Public properties----------------------------------------------
 
 	#region Public properties
 
-	public CoreSearchOptions searchOptions
+	public CoreSearchOptions SearchOptions
 	{
 		get
 		{
@@ -600,7 +597,7 @@ public class CoreLib : IDisposable
 		}
 	}
 
-	public CoreCompareOptions compareOptions
+	public CoreCompareOptions CompareOptions
 	{
 		get
 		{
@@ -616,7 +613,7 @@ public class CoreLib : IDisposable
 		}
 	}
 
-	public CoreDefectOptions defectOptions
+	public CoreDefectOptions DefectOptions
 	{
 		get
 		{
@@ -632,7 +629,7 @@ public class CoreLib : IDisposable
 		}
 	}
 
-	public CoreAdvancedOptions advancedOptions
+	public CoreAdvancedOptions AdvancedOptions
 	{
 		get
 		{
@@ -648,7 +645,7 @@ public class CoreLib : IDisposable
 		}
 	}
 
-	public CorePathWithSubFolder[] searchPath
+	public CorePathWithSubFolder[] SearchPath
 	{
 		get
 		{
@@ -660,7 +657,7 @@ public class CoreLib : IDisposable
 		}
 	}
 
-	public CorePathWithSubFolder[] ignorePath
+	public CorePathWithSubFolder[] IgnorePath
 	{
 		get
 		{
@@ -672,7 +669,7 @@ public class CoreLib : IDisposable
 		}
 	}
 
-	public CorePathWithSubFolder[] validPath
+	public CorePathWithSubFolder[] ValidPath
 	{
 		get
 		{
@@ -684,7 +681,7 @@ public class CoreLib : IDisposable
 		}
 	}
 
-	public CorePathWithSubFolder[] deletePath
+	public CorePathWithSubFolder[] DeletePath
 	{
 		get
 		{

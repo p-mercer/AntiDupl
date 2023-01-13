@@ -91,7 +91,7 @@ public class ThumbnailPreviewContextMenu : ContextMenuStrip
 	{
 		var startInfo = new ProcessStartInfo
 		{
-			FileName = m_thumbnailPreview.ImageInfo.path
+			FileName = m_thumbnailPreview.ImageInfo.Path
 		};
 		try
 		{
@@ -110,18 +110,18 @@ public class ThumbnailPreviewContextMenu : ContextMenuStrip
 
 	private void CopyPath(object sender, EventArgs e)
 	{
-		Clipboard.SetText(m_thumbnailPreview.ImageInfo.path);
+		Clipboard.SetText(m_thumbnailPreview.ImageInfo.Path);
 	}
 
 	private void RenameImage(object sender, EventArgs e)
 	{
 		var dialog = new SaveFileDialog
 		{
-			FileName = m_thumbnailPreview.ImageInfo.path,
+			FileName = m_thumbnailPreview.ImageInfo.Path,
 			OverwritePrompt = false,
 			AddExtension = true,
 			CheckPathExists = true,
-			DefaultExt = (new FileInfo(m_thumbnailPreview.ImageInfo.path)).Extension
+			DefaultExt = (new FileInfo(m_thumbnailPreview.ImageInfo.Path)).Extension
 		};
 		dialog.FileOk += new CancelEventHandler(OnRenameImageDialogFileOk);
 		dialog.Title = Resources.Strings.Current.ImagePreviewContextMenu_RenameImageItem_Text;
@@ -134,7 +134,7 @@ public class ThumbnailPreviewContextMenu : ContextMenuStrip
 	private void OnRenameImageDialogFileOk(object sender, CancelEventArgs e)
 	{
 		var dialog = (SaveFileDialog)sender;
-		var oldFileInfo = new FileInfo(m_thumbnailPreview.ImageInfo.path);
+		var oldFileInfo = new FileInfo(m_thumbnailPreview.ImageInfo.Path);
 		var newFileInfo = new FileInfo(dialog.FileName);
 		if (newFileInfo.FullName != oldFileInfo.FullName && newFileInfo.Exists)
 		{

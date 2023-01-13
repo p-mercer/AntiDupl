@@ -38,7 +38,7 @@ public class ThumbnailPreview : Panel
 	public CoreGroup Group { get; private set; } = null;
 
 	public int Index { get; private set; } = 0;
-	public CoreImageInfo ImageInfo { get { return Group.images[Index]; } }
+	public CoreImageInfo ImageInfo { get { return Group.Images[Index]; } }
 
 	private PictureBoxPanel m_pictureBoxPanel;
 
@@ -66,7 +66,7 @@ public class ThumbnailPreview : Panel
 		Group = group;
 		Index = index;
 		m_pictureBoxPanel.UpdateImage(ImageInfo);
-		m_pictureBoxPanel.UpdateImagePadding(Group.sizeMax);
+		m_pictureBoxPanel.UpdateImagePadding(Group.SizeMax);
 		m_pictureBoxPanel.Refresh();
 	}
 }

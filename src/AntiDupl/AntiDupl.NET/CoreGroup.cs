@@ -28,19 +28,19 @@ namespace AntiDupl.NET;
 
 public class CoreGroup
 {
-	public int id;
-	public CoreImageInfo[] images;
+	public int Id { get; set; }
+	public CoreImageInfo[] Images { get; set; }
 
-	public Size sizeMax = new(0, 0);
+	public Size SizeMax = new(0, 0);
 
 	public CoreGroup(ref CoreDll.adGroup group, CoreLib core)
 	{
-		id = group.id.ToInt32();
-		images = core.GetImageInfo(id, 0, (uint)group.size);
-		for (var i = 0; i < images.Length; ++i)
+		Id = group.id.ToInt32();
+		Images = core.GetImageInfo(Id, 0, (uint)group.size);
+		for (var i = 0; i < Images.Length; ++i)
 		{
-			sizeMax.Width = Math.Max(sizeMax.Width, (int)images[i].width);
-			sizeMax.Height = Math.Max(sizeMax.Height, (int)images[i].height);
+			SizeMax.Width = Math.Max(SizeMax.Width, (int)Images[i].Width);
+			SizeMax.Height = Math.Max(SizeMax.Height, (int)Images[i].Height);
 		}
 	}
 }

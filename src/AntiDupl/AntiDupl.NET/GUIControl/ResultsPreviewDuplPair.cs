@@ -196,8 +196,8 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 
 	private void OnOpenBothImagesButtonClicked(object sender, EventArgs e)
 	{
-		ImageOpener.OpenFile(m_firstImagePreviewPanel.CurrentImageInfo.path);
-		ImageOpener.OpenFile(m_secondImagePreviewPanel.CurrentImageInfo.path);
+		ImageOpener.OpenFile(m_firstImagePreviewPanel.CurrentImageInfo.Path);
+		ImageOpener.OpenFile(m_secondImagePreviewPanel.CurrentImageInfo.Path);
 	}
 
 	private void OnOptionsChanged()

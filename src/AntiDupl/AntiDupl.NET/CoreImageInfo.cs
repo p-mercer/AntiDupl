@@ -28,44 +28,44 @@ namespace AntiDupl.NET;
 
 public class CoreImageInfo
 {
-	public ulong id;
-	public string path;
-	public ulong size;
-	public ulong time;
-	public CoreDll.ImageType type;
-	public uint width;
-	public uint height;
-	public double blockiness;
-	public double blurring;
-	public CoreDll.adImageExifW exifInfo;
+	public ulong Id { get; set; }
+	public string Path { get; set; }
+	public ulong Size { get; set; }
+	public ulong Time { get; set; }
+	public CoreDll.ImageType Type { get; set; }
+	public uint Width { get; set; }
+	public uint Height { get; set; }
+	public double Blockiness { get; set; }
+	public double Blurring { get; set; }
+	public CoreDll.adImageExifW ExifInfo { get; set; }
 
 	public CoreImageInfo(ref CoreDll.adImageInfoW imageInfo)
 	{
-		id = (ulong)imageInfo.id;
-		path = imageInfo.path;
-		size = imageInfo.size;
-		time = imageInfo.time;
-		type = imageInfo.type;
-		width = imageInfo.width;
-		height = imageInfo.height;
-		blockiness = imageInfo.blockiness;
-		blurring = imageInfo.blurring;
-		exifInfo = imageInfo.exifInfo;
+		Id = (ulong)imageInfo.id;
+		Path = imageInfo.path;
+		Size = imageInfo.size;
+		Time = imageInfo.time;
+		Type = imageInfo.type;
+		Width = imageInfo.width;
+		Height = imageInfo.height;
+		Blockiness = imageInfo.blockiness;
+		Blurring = imageInfo.blurring;
+		ExifInfo = imageInfo.exifInfo;
 	}
 
 	public string GetImageSizeString()
 	{
 		var builder = new StringBuilder();
-		builder.Append(width);
+		builder.Append(Width);
 		builder.Append(" x ");
-		builder.Append(height);
+		builder.Append(Height);
 		return builder.ToString();
 	}
 
 	public string GetImageTypeString()
 	{
 		var builder = new StringBuilder();
-		switch (type)
+		switch (Type)
 		{
 			case CoreDll.ImageType.None:
 				builder.Append("");
@@ -115,23 +115,23 @@ public class CoreImageInfo
 
 	public string GetBlockinessString()
 	{
-		return blockiness.ToString("F2");
+		return Blockiness.ToString("F2");
 	}
 
 	public string GetBlurringString()
 	{
-		return blurring.ToString("F2");
+		return Blurring.ToString("F2");
 	}
 
 	public string GetFileTimeString()
 	{
-		return DateTime.FromFileTime((long)time).ToString();
+		return DateTime.FromFileTime((long)Time).ToString();
 	}
 
 	public string GetFileSizeString()
 	{
 		var builder = new StringBuilder();
-		var str = (Math.Ceiling(size / 1024.0)).ToString();
+		var str = (Math.Ceiling(Size / 1024.0)).ToString();
 		var start = str.Length % 3;
 		switch (start)
 		{
@@ -163,7 +163,7 @@ public class CoreImageInfo
 		var s = Resources.Strings.Current;
 		var builder = new StringBuilder();
 
-		builder.AppendLine(path);
+		builder.AppendLine(Path);
 
 		builder.Append(s.ResultsListView_ImageSize_Column_Text);
 		builder.Append(": ");
@@ -182,24 +182,17 @@ public class CoreImageInfo
 
 	public string GetDirectoryString()
 	{
-		var i = path.Length - 1;
-		while (i >= 0 && path[i] != '\\')
+		var i = Path.Length - 1;
+		while (i >= 0 && Path[i] != '\\')
 		{
 			i--;
 		}
 
-		if (i < 0)
-		{
-			return "";
-		}
-		else
-		{
-			return path[..i];
-		}
+		return i < 0 ? "" : Path[..i];
 	}
 
 	public string GetFileNameWithoutExtensionString()
 	{
-		return System.IO.Path.GetFileNameWithoutExtension(path);
+		return System.IO.Path.GetFileNameWithoutExtension(Path);
 	}
 }

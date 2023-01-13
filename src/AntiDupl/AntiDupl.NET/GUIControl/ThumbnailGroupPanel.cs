@@ -56,8 +56,8 @@ public class ThumbnailGroupPanel : RaisedPanel
 
 		var width = 0;
 		var height = 0;
-		ThumbnailPanels = new ThumbnailPanel[m_group.images.Length];
-		for (var i = 0; i < m_group.images.Length; ++i)
+		ThumbnailPanels = new ThumbnailPanel[m_group.Images.Length];
+		for (var i = 0; i < m_group.Images.Length; ++i)
 		{
 			ThumbnailPanels[i] = new ThumbnailPanel(m_core, m_options, m_group, i, this);
 			ThumbnailPanels[i].Location = new Point(Padding.Left + ThumbnailPanels[i].Margin.Left + (ThumbnailPanels[i].Width + ThumbnailPanels[i].Margin.Horizontal) * i,

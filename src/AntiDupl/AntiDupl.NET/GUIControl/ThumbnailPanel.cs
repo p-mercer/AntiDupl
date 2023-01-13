@@ -73,7 +73,7 @@ public class ThumbnailPanel : RaisedPanel
 		}
 	}
 
-	public CoreImageInfo ImageInfo { get { return m_group.images[m_index]; } }
+	public CoreImageInfo ImageInfo { get { return m_group.Images[m_index]; } }
 
 	public ThumbnailPanel(CoreLib core, Options options, CoreGroup group, int index, ThumbnailGroupPanel thumbnailGroupPanel)
 	{
@@ -188,14 +188,14 @@ public class ThumbnailPanel : RaisedPanel
 
 	private void SetImageInfo()
 	{
-		var info = m_group.images[m_index];
+		var info = m_group.Images[m_index];
 
 		m_fileSizeLabel.Text = info.GetFileSizeString();
-		m_imageSizeLabel.Text = string.Format("{0}×{1}", info.width, info.height);
-		m_imageTypeLabel.Text = (info.type == CoreDll.ImageType.None ? "   " : info.GetImageTypeString());
-		m_fileNameLabel.Text = Path.GetFileNameWithoutExtension(info.path);
+		m_imageSizeLabel.Text = string.Format("{0}×{1}", info.Width, info.Height);
+		m_imageTypeLabel.Text = (info.Type == CoreDll.ImageType.None ? "   " : info.GetImageTypeString());
+		m_fileNameLabel.Text = Path.GetFileNameWithoutExtension(info.Path);
 
-		var selected = m_core.GetSelection(m_group.id, (uint)m_index, 1);
+		var selected = m_core.GetSelection(m_group.Id, (uint)m_index, 1);
 		m_checkBox.Checked = selected[0];
 	}
 
@@ -203,11 +203,11 @@ public class ThumbnailPanel : RaisedPanel
 	{
 		if (m_checkBox.Checked)
 		{
-			m_core.SetSelection(m_group.id, m_index, CoreDll.SelectionType.SelectCurrent);
+			m_core.SetSelection(m_group.Id, m_index, CoreDll.SelectionType.SelectCurrent);
 		}
 		else
 		{
-			m_core.SetSelection(m_group.id, m_index, CoreDll.SelectionType.UnselectCurrent);
+			m_core.SetSelection(m_group.Id, m_index, CoreDll.SelectionType.UnselectCurrent);
 		}
 		m_thumbnailGroupPanel.Table.ChangeCurrentThumbnail(m_group, m_index);
 	}

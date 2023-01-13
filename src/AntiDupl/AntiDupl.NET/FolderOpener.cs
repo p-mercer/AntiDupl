@@ -85,7 +85,7 @@ static public class FolderOpener
 			if (m_canOpenFolderWithExplorer)
 			{
 				startInfo.FileName = "explorer.exe";
-				startInfo.Arguments = string.Format("/e, /select, \"{0}\"", imageInfo.path);
+				startInfo.Arguments = string.Format("/e, /select, \"{0}\"", imageInfo.Path);
 			}
 			else
 			{

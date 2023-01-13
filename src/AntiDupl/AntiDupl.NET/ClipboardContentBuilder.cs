@@ -99,7 +99,7 @@ public class ClipboardContentBuilder
 		if (options[(int)TypeVertical.FileName].visible ||
 			options[(int)TypeVertical.FileDirectory].visible)
 		{
-			Append(result.first.path);
+			Append(result.first.Path);
 		}
 
 		if (options[(int)TypeVertical.ImageSize].visible)
@@ -125,7 +125,7 @@ public class ClipboardContentBuilder
 		if (options[(int)TypeVertical.FileName].visible ||
 				options[(int)TypeVertical.FileDirectory].visible)
 		{
-			Append(result.second.path);
+			Append(result.second.Path);
 		}
 
 		if (options[(int)TypeVertical.ImageSize].visible)
@@ -154,7 +154,7 @@ public class ClipboardContentBuilder
 		if (options[(int)TypeHorizontal.FirstFileName].visible ||
 			options[(int)TypeHorizontal.FirstFileDirectory].visible)
 		{
-			Append(result.first.path);
+			Append(result.first.Path);
 		}
 
 		if (options[(int)TypeHorizontal.FirstImageSize].visible)
@@ -180,7 +180,7 @@ public class ClipboardContentBuilder
 		if (options[(int)TypeHorizontal.SecondFileName].visible ||
 				options[(int)TypeHorizontal.SecondFileDirectory].visible)
 		{
-			Append(result.second.path);
+			Append(result.second.Path);
 		}
 
 		if (options[(int)TypeHorizontal.SecondImageSize].visible)

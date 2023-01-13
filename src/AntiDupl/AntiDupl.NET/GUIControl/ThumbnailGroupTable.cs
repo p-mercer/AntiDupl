@@ -108,9 +108,9 @@ public class ThumbnailGroupTable : Panel
 		var groupSizeMax = 0;
 		for (var i = 0; i < m_groups.Length; ++i)
 		{
-			if (m_groups[i].images.Length > groupSizeMax)
+			if (m_groups[i].Images.Length > groupSizeMax)
 			{
-				groupSizeMax = m_groups[i].images.Length;
+				groupSizeMax = m_groups[i].Images.Length;
 				m_maxGroupIndex = i;
 			}
 		}
@@ -332,7 +332,7 @@ public class ThumbnailGroupTable : Panel
 	{
 		for (var i = 0; i < m_groups.Length; ++i)
 		{
-			var images = m_groups[i].images;
+			var images = m_groups[i].Images;
 			for (var j = 0; j < images.Length; ++j)
 			{
 				m_thumbnailStorage.Get(images[j]);
@@ -393,7 +393,7 @@ public class ThumbnailGroupTable : Panel
 
 	public bool Rename(CoreGroup group, int index, string newFileName)
 	{
-		if (m_core.Rename(group.id, index, newFileName))
+		if (m_core.Rename(group.Id, index, newFileName))
 		{
 			UpdateGroups();
 			return true;

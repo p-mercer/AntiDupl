@@ -218,8 +218,8 @@ public class ImagePreviewPanel : TableLayoutPanel
 			m_imageSizeLabel.Text = m_currentImageInfo.GetImageSizeString();
 			m_imageBlocknessLabel.Text = m_currentImageInfo.GetBlockinessString();
 			m_imageBlurringLabel.Text = m_currentImageInfo.GetBlurringString();
-			m_imageTypeLabel.Text = m_currentImageInfo.type == CoreDll.ImageType.None ? "   " : m_currentImageInfo.GetImageTypeString();
-			if (currentImageInfo.exifInfo.isEmpty == CoreDll.FALSE)
+			m_imageTypeLabel.Text = m_currentImageInfo.Type == CoreDll.ImageType.None ? "   " : m_currentImageInfo.GetImageTypeString();
+			if (currentImageInfo.ExifInfo.isEmpty == CoreDll.FALSE)
 			{
 				m_imageExifLabel.Visible = true;
 				SetExifTooltip(currentImageInfo);
@@ -229,37 +229,37 @@ public class ImagePreviewPanel : TableLayoutPanel
 				m_imageExifLabel.Visible = false;
 			}
 
-			m_pathLabel.Text = m_currentImageInfo.path;
+			m_pathLabel.Text = m_currentImageInfo.Path;
 			if (m_neighbourImageInfo != null) //подсветка highlight
 			{
 				m_imageSizeLabel.ForeColor =
-						m_currentImageInfo.height * m_currentImageInfo.width < m_neighbourImageInfo.height * m_neighbourImageInfo.width ?
+						m_currentImageInfo.Height * m_currentImageInfo.Width < m_neighbourImageInfo.Height * m_neighbourImageInfo.Width ?
 						Color.Red : DefaultForeColor;
-				m_imageTypeLabel.ForeColor = m_currentImageInfo.type != m_neighbourImageInfo.type ?
+				m_imageTypeLabel.ForeColor = m_currentImageInfo.Type != m_neighbourImageInfo.Type ?
 						Color.Red : DefaultForeColor;
-				m_fileSizeLabel.ForeColor = m_currentImageInfo.size < m_neighbourImageInfo.size ?
+				m_fileSizeLabel.ForeColor = m_currentImageInfo.Size < m_neighbourImageInfo.Size ?
 						Color.Red : DefaultForeColor;
-				m_imageBlocknessLabel.ForeColor = m_currentImageInfo.blockiness > m_neighbourImageInfo.blockiness ?
+				m_imageBlocknessLabel.ForeColor = m_currentImageInfo.Blockiness > m_neighbourImageInfo.Blockiness ?
 						Color.Red : DefaultForeColor;
-				m_imageBlurringLabel.ForeColor = m_currentImageInfo.blurring > m_neighbourImageInfo.blurring ?
+				m_imageBlurringLabel.ForeColor = m_currentImageInfo.Blurring > m_neighbourImageInfo.Blurring ?
 						Color.Red : DefaultForeColor;
-				m_imageExifLabel.ForeColor = ExifEqual(m_currentImageInfo.exifInfo, m_neighbourImageInfo.exifInfo) ?
+				m_imageExifLabel.ForeColor = ExifEqual(m_currentImageInfo.ExifInfo, m_neighbourImageInfo.ExifInfo) ?
 					DefaultForeColor : Color.Red;
 			}
 		}
 		else if (m_neighbourImageInfo != null)
 		{
-			m_imageSizeLabel.ForeColor = m_currentImageInfo.height * m_currentImageInfo.width < m_neighbourImageInfo.height * m_neighbourImageInfo.width ?
+			m_imageSizeLabel.ForeColor = m_currentImageInfo.Height * m_currentImageInfo.Width < m_neighbourImageInfo.Height * m_neighbourImageInfo.Width ?
 					Color.Red : DefaultForeColor;
-			m_imageTypeLabel.ForeColor = m_currentImageInfo.type != m_neighbourImageInfo.type ?
+			m_imageTypeLabel.ForeColor = m_currentImageInfo.Type != m_neighbourImageInfo.Type ?
 					Color.Red : DefaultForeColor;
-			m_fileSizeLabel.ForeColor = m_currentImageInfo.size < m_neighbourImageInfo.size ?
+			m_fileSizeLabel.ForeColor = m_currentImageInfo.Size < m_neighbourImageInfo.Size ?
 					Color.Red : DefaultForeColor;
-			m_imageBlocknessLabel.ForeColor = m_currentImageInfo.blockiness > m_neighbourImageInfo.blockiness ?
+			m_imageBlocknessLabel.ForeColor = m_currentImageInfo.Blockiness > m_neighbourImageInfo.Blockiness ?
 					Color.Red : DefaultForeColor;
-			m_imageBlurringLabel.ForeColor = m_currentImageInfo.blurring > m_neighbourImageInfo.blurring ?
+			m_imageBlurringLabel.ForeColor = m_currentImageInfo.Blurring > m_neighbourImageInfo.Blurring ?
 					Color.Red : DefaultForeColor;
-			m_imageExifLabel.ForeColor = ExifEqual(m_currentImageInfo.exifInfo, m_neighbourImageInfo.exifInfo) ?
+			m_imageExifLabel.ForeColor = ExifEqual(m_currentImageInfo.ExifInfo, m_neighbourImageInfo.ExifInfo) ?
 				DefaultForeColor : Color.Red;
 		}
 		if (updateCurrent || updateNeighbour)
@@ -267,7 +267,7 @@ public class ImagePreviewPanel : TableLayoutPanel
 			var neighbourSizeMax = new Size(0, 0);
 			if (m_neighbourImageInfo != null)
 			{
-				neighbourSizeMax = new Size((int)m_neighbourImageInfo.width, (int)m_neighbourImageInfo.height);
+				neighbourSizeMax = new Size((int)m_neighbourImageInfo.Width, (int)m_neighbourImageInfo.Height);
 			}
 
 			m_pictureBoxPanel.UpdateImagePadding(neighbourSizeMax);
@@ -281,9 +281,9 @@ public class ImagePreviewPanel : TableLayoutPanel
 	static private bool UpdateImageInfo(ref CoreImageInfo oldImageInfo, CoreImageInfo newImageInfo)
 	{
 		if (oldImageInfo == null ||
-			oldImageInfo.path.CompareTo(newImageInfo.path) != 0 ||
-			oldImageInfo.size != newImageInfo.size ||
-			oldImageInfo.time != newImageInfo.time)
+			oldImageInfo.Path.CompareTo(newImageInfo.Path) != 0 ||
+			oldImageInfo.Size != newImageInfo.Size ||
+			oldImageInfo.Time != newImageInfo.Time)
 		{
 			oldImageInfo = newImageInfo;
 			return true;
@@ -425,7 +425,7 @@ public class ImagePreviewPanel : TableLayoutPanel
 
 	public void RenameImage(object sender, EventArgs e)
 	{
-		var fileInfo = new FileInfo(m_currentImageInfo.path);
+		var fileInfo = new FileInfo(m_currentImageInfo.Path);
 		var dialog = new SaveFileDialog
 		{
 			FileName = fileInfo.FullName,
@@ -446,7 +446,7 @@ public class ImagePreviewPanel : TableLayoutPanel
 	private void OnRenameImageDialogFileOk(object sender, CancelEventArgs e)
 	{
 		var dialog = (SaveFileDialog)sender;
-		var oldFileInfo = new FileInfo(m_currentImageInfo.path);
+		var oldFileInfo = new FileInfo(m_currentImageInfo.Path);
 		var newFileInfo = new FileInfo(dialog.FileName);
 		if (newFileInfo.FullName != oldFileInfo.FullName && newFileInfo.Exists)
 		{
@@ -464,39 +464,39 @@ public class ImagePreviewPanel : TableLayoutPanel
 	private static List<string> GetExifList(CoreImageInfo currentImageInfo, Strings s)
 	{
 		var exifList = new List<string>();
-		if (!string.IsNullOrEmpty(currentImageInfo.exifInfo.imageDescription))
+		if (!string.IsNullOrEmpty(currentImageInfo.ExifInfo.imageDescription))
 		{
-			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_ImageDescription + currentImageInfo.exifInfo.imageDescription);
+			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_ImageDescription + currentImageInfo.ExifInfo.imageDescription);
 		}
 
-		if (!string.IsNullOrEmpty(currentImageInfo.exifInfo.equipMake))
+		if (!string.IsNullOrEmpty(currentImageInfo.ExifInfo.equipMake))
 		{
-			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_EquipMake + currentImageInfo.exifInfo.equipMake);
+			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_EquipMake + currentImageInfo.ExifInfo.equipMake);
 		}
 
-		if (!string.IsNullOrEmpty(currentImageInfo.exifInfo.equipModel))
+		if (!string.IsNullOrEmpty(currentImageInfo.ExifInfo.equipModel))
 		{
-			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_EquipModel + currentImageInfo.exifInfo.equipModel);
+			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_EquipModel + currentImageInfo.ExifInfo.equipModel);
 		}
 
-		if (!string.IsNullOrEmpty(currentImageInfo.exifInfo.softwareUsed))
+		if (!string.IsNullOrEmpty(currentImageInfo.ExifInfo.softwareUsed))
 		{
-			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_SoftwareUsed + currentImageInfo.exifInfo.softwareUsed);
+			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_SoftwareUsed + currentImageInfo.ExifInfo.softwareUsed);
 		}
 
-		if (!string.IsNullOrEmpty(currentImageInfo.exifInfo.dateTime))
+		if (!string.IsNullOrEmpty(currentImageInfo.ExifInfo.dateTime))
 		{
-			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_DateTime + currentImageInfo.exifInfo.dateTime);
+			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_DateTime + currentImageInfo.ExifInfo.dateTime);
 		}
 
-		if (!string.IsNullOrEmpty(currentImageInfo.exifInfo.artist))
+		if (!string.IsNullOrEmpty(currentImageInfo.ExifInfo.artist))
 		{
-			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_Artist + currentImageInfo.exifInfo.artist);
+			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_Artist + currentImageInfo.ExifInfo.artist);
 		}
 
-		if (!string.IsNullOrEmpty(currentImageInfo.exifInfo.userComment))
+		if (!string.IsNullOrEmpty(currentImageInfo.ExifInfo.userComment))
 		{
-			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_UserComment + currentImageInfo.exifInfo.userComment);
+			exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_UserComment + currentImageInfo.ExifInfo.userComment);
 		}
 
 		return exifList;
@@ -540,7 +540,7 @@ public class ImagePreviewPanel : TableLayoutPanel
 		{
 			case Position.Left:
 			case Position.Top:
-				if (result.first.exifInfo.isEmpty == CoreDll.FALSE)
+				if (result.first.ExifInfo.isEmpty == CoreDll.FALSE)
 				{
 					SetExifTooltip(result.first);
 				}
@@ -548,7 +548,7 @@ public class ImagePreviewPanel : TableLayoutPanel
 				break;
 			case Position.Right:
 			case Position.Bottom:
-				if (result.second.exifInfo.isEmpty == CoreDll.FALSE)
+				if (result.second.ExifInfo.isEmpty == CoreDll.FALSE)
 				{
 					SetExifTooltip(result.second);
 				}

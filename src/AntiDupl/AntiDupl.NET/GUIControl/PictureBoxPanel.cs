@@ -103,13 +103,13 @@ public class PictureBoxPanel : Panel
 		if (currentImageInfo != null)
 		{
 			StopAnimate();
-			if (m_currentImageInfo.type != CoreDll.ImageType.None)
+			if (m_currentImageInfo.Type != CoreDll.ImageType.None)
 			{
-				if (m_currentImageInfo.path.Length < MAX_PATH && m_currentImageInfo.type <= CoreDll.ImageType.Icon)
+				if (m_currentImageInfo.Path.Length < MAX_PATH && m_currentImageInfo.Type <= CoreDll.ImageType.Icon)
 				{
 					try
 					{
-						if (LoadFileToMemoryStream(ref m_memoryStream, m_currentImageInfo.path))
+						if (LoadFileToMemoryStream(ref m_memoryStream, m_currentImageInfo.Path))
 						{
 							m_bitmap = new Bitmap(m_memoryStream);
 							m_animationEnable = ImageAnimator.CanAnimate(m_bitmap);
@@ -228,7 +228,7 @@ public class PictureBoxPanel : Panel
 
 	private void OnImageDoubleClicked(object sender, EventArgs e)
 	{
-		ImageOpener.OpenFile(m_currentImageInfo.path);
+		ImageOpener.OpenFile(m_currentImageInfo.Path);
 	}
 
 	private void OnSizeChanged(object sender, EventArgs e)
@@ -261,8 +261,8 @@ public class PictureBoxPanel : Panel
 			int horizontalPosition = 0, verticalPosition = 0;
 			var clientWidth = ClientSize.Width;
 			var clientHeight = ClientSize.Height;
-			var currentWidth = (int)m_currentImageInfo.width;
-			var currentHeight = (int)m_currentImageInfo.height;
+			var currentWidth = (int)m_currentImageInfo.Width;
+			var currentHeight = (int)m_currentImageInfo.Height;
 			var targetWidth = 100;
 			var targetHeight = 100;
 			if (currentWidth > 0 && currentHeight > 0)
@@ -491,7 +491,7 @@ public class PictureBoxPanel : Panel
 			if (forceLoad)
 			{
 				CleanNeighbours();
-				GetNeighboursFileNames(m_currentImageInfo.path, ref m_prevFile, ref m_nextFile);
+				GetNeighboursFileNames(m_currentImageInfo.Path, ref m_prevFile, ref m_nextFile);
 			}
 			if (m_prevFile != null)
 			{
