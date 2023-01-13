@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar, 2013-2018 Borisov Dmitry.
@@ -39,7 +39,7 @@ namespace AntiDupl.NET
         /// <summary>
         /// A colormatric we use to convert the image to grayscale.
         /// </summary>
-        private static ColorMatrix colorMatrix = new ColorMatrix(
+        private static ColorMatrix colorMatrix = new(
                new float[][]
               {
                  new float[] {.3f, .3f, .3f, 0, 0},

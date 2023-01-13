@@ -68,9 +68,9 @@ namespace AntiDupl.NET
         public bool loadProfileOnLoading = true;
         public bool saveProfileOnClosing = true;
 
-        public MainFormOptions mainFormOptions = new MainFormOptions();
-        public ResultsOptions resultsOptions = new ResultsOptions();
-        public HotKeyOptions hotKeyOptions= new HotKeyOptions();
+        public MainFormOptions mainFormOptions = new();
+        public ResultsOptions resultsOptions = new();
+        public HotKeyOptions hotKeyOptions= new();
 
         public string coreOptionsFileName = GetDefaultCoreOptionsFileName();
 

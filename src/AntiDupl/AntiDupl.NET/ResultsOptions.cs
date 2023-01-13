@@ -312,7 +312,7 @@ namespace AntiDupl.NET
         public int splitterDistanceHorizontalMaximized;
         public int splitterDistanceHorizontalNormal;
 
-        public System.Drawing.Size thumbnailSizeMax = new System.Drawing.Size(DEFAULT_THUMBNAIL_WIDTH_MAX, DEFAULT_THUMBNAIL_HEIGHT_MAX);
+        public System.Drawing.Size thumbnailSizeMax = new(DEFAULT_THUMBNAIL_WIDTH_MAX, DEFAULT_THUMBNAIL_HEIGHT_MAX);
 
         public ResultsOptions Clone()
         {

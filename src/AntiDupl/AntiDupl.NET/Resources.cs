@@ -319,7 +319,7 @@ namespace AntiDupl.NET
                     Current.Name.CompareTo("Ukrainian") == 0;
             }
             
-            private static ArrayList m_strings = new ArrayList();
+            private static ArrayList m_strings = new();
             private static int m_currentIndex = 0;
 
             public static void Update()

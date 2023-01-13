@@ -70,7 +70,7 @@ namespace AntiDupl.NET
         }
 
         public Point location = DefaultLocation();
-        public Size size = new Size(MainForm.MIN_WIDTH, MainForm.MIN_HEIGHT);
+        public Size size = new(MainForm.MIN_WIDTH, MainForm.MIN_HEIGHT);
         public bool maximized = false;
 
         public MainFormOptions()

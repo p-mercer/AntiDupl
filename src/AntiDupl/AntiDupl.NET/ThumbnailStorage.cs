@@ -36,8 +36,8 @@ namespace AntiDupl.NET
     {
         private CoreLib m_core;
         private Options m_options;
-        private Dictionary<ulong, Bitmap> m_storage = new Dictionary<ulong,Bitmap>();
-        private Mutex m_mutex = new Mutex();
+        private Dictionary<ulong, Bitmap> m_storage = new();
+        private Mutex m_mutex = new();
         
         public ThumbnailStorage(CoreLib core, Options options)
         {

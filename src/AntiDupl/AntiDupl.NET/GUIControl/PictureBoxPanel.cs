@@ -59,7 +59,7 @@ namespace AntiDupl.NET
 
         private Bitmap m_originalBitmap;
         private Rectangle[] m_rectanglesOfDifferences;
-        private Pen penForDifferences = new Pen(new SolidBrush(Color.Red), 4);
+        private Pen penForDifferences = new(new SolidBrush(Color.Red), 4);
 
         private ImagePreviewPanel.Position m_position;
         public ImagePreviewPanel.Position Position

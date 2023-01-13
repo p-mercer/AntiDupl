@@ -189,7 +189,7 @@ namespace AntiDupl.NET
         override protected Size GetPreferredSize(Graphics graphics, DataGridViewCellStyle cellStyle,
             int rowIndex, Size constraintSize)
         {
-            Size preferedSize = new Size(0, 0), firstSize = new Size(0, 0), secondSize = new Size(0, 0);
+            Size preferedSize = new(0, 0), firstSize = new(0, 0), secondSize = new(0, 0);
             if (m_first != null)
             {
                 firstSize.Height += cellStyle.Padding.Top;

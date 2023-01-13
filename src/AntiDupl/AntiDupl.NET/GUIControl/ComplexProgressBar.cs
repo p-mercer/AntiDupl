@@ -67,7 +67,7 @@ namespace AntiDupl.NET
             set { ForeColor = value; }
         }
 
-        private Color m_secondForeColor = new Color();
+        private Color m_secondForeColor = new();
         public Color SecondForeColor
         {
             get { return m_secondForeColor; }
