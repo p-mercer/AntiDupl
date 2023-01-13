@@ -30,8 +30,8 @@ namespace AntiDupl.NET;
 
     class MainStatusStrip : StatusStrip
     {
-        private MainSplitContainer m_mainSplitContainer;
-        private Options m_options;
+        private readonly MainSplitContainer m_mainSplitContainer;
+        private readonly Options m_options;
 
         private ToolStripStatusLabel m_totalLabel;
         private ToolStripStatusLabel m_currentLabel;

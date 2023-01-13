@@ -57,12 +57,12 @@ namespace AntiDupl.NET;
         }
         private Type m_type;
         
-        private CoreDll.LocalActionType m_action;
-        private CoreDll.TargetType m_target;
+        private readonly CoreDll.LocalActionType m_action;
+        private readonly CoreDll.TargetType m_target;
 
-        private CoreDll.RenameCurrentType m_renameCurrentType;
-        private string m_newFileName;
-        private string m_directoryForMove;
+        private readonly CoreDll.RenameCurrentType m_renameCurrentType;
+        private readonly string m_newFileName;
+        private readonly string m_directoryForMove;
 
         private enum State
         {

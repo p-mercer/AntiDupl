@@ -30,13 +30,13 @@ namespace AntiDupl.NET;
 
     public class LabeledIntegerEdit : TableLayoutPanel
     {
-        private TextBox m_textBox;
-        private Label m_label;
+        private readonly TextBox m_textBox;
+        private readonly Label m_label;
         private int m_value = 0;
         private int m_min = int.MinValue;
         private int m_max = int.MaxValue;
         private int m_default = 0;
-        private EventHandler m_valueChangedHandler;
+        private readonly EventHandler m_valueChangedHandler;
 
         public override String Text { get { return m_label.Text; } set { m_label.Text = value; } }
 

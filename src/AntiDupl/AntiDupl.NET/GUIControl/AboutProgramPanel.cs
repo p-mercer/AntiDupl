@@ -33,7 +33,7 @@ namespace AntiDupl.NET;
     {
         private const int LOGO_SIZE = 32;
 
-        private CoreLib m_core;
+        private readonly CoreLib m_core;
 
         public AboutProgramPanel(CoreLib core)
         {

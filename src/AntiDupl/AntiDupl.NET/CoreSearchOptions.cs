@@ -30,21 +30,21 @@ namespace AntiDupl.NET;
 
     public class CoreSearchOptions
     {
-        private static string[] s_jpegExtensions = {"JPEG", "JFIF", "JPG", "JPE", "JIFF", "JIF", "J", "JNG", "JFF"};
-        private static string[] s_tiffExtensions = {"TIF", "TIFF"};
-        private static string[] s_bmpExtensions = {"BMP", "DIB", "RLE"};
-        private static string[] s_gifExtensions = {"GIF"};
-        private static string[] s_pngExtensions = {"PNG"};
-        private static string[] s_emfExtensions = {"EMF", "EMZ"};
-        private static string[] s_wmfExtensions = {"WMF"};
-        private static string[] s_exifExtensions = {"EXIF"};
-        private static string[] s_iconExtensions = {"ICON", "ICO", "ICN"};
-        private static string[] s_jp2Extensions = {"JP2", "J2K", "J2C", "JPC", "JPF", "JPX"};
-        private static string[] s_psdExtensions = {"PSD"};
-        private static string[] s_ddsExtensions = {"DDS"};
-        private static string[] s_tgaExtensions = {"TGA", "TPIC"};
-        private static string[] s_webpExtensions = { "WEBP" };
-        private static string[] s_heifExtensions = { "HEIF", "HEIC" };
+        private static readonly string[] s_jpegExtensions = {"JPEG", "JFIF", "JPG", "JPE", "JIFF", "JIF", "J", "JNG", "JFF"};
+        private static readonly string[] s_tiffExtensions = {"TIF", "TIFF"};
+        private static readonly string[] s_bmpExtensions = {"BMP", "DIB", "RLE"};
+        private static readonly string[] s_gifExtensions = {"GIF"};
+        private static readonly string[] s_pngExtensions = {"PNG"};
+        private static readonly string[] s_emfExtensions = {"EMF", "EMZ"};
+        private static readonly string[] s_wmfExtensions = {"WMF"};
+        private static readonly string[] s_exifExtensions = {"EXIF"};
+        private static readonly string[] s_iconExtensions = {"ICON", "ICO", "ICN"};
+        private static readonly string[] s_jp2Extensions = {"JP2", "J2K", "J2C", "JPC", "JPF", "JPX"};
+        private static readonly string[] s_psdExtensions = {"PSD"};
+        private static readonly string[] s_ddsExtensions = {"DDS"};
+        private static readonly string[] s_tgaExtensions = {"TGA", "TPIC"};
+        private static readonly string[] s_webpExtensions = { "WEBP" };
+        private static readonly string[] s_heifExtensions = { "HEIF", "HEIC" };
 
         public bool subFolders;
         public bool system;

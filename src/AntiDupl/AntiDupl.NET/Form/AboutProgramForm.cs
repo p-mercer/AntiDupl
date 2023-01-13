@@ -30,7 +30,7 @@ namespace AntiDupl.NET;
 
     public class AboutProgramForm : Form
     {
-        private CoreLib m_core;
+        private readonly CoreLib m_core;
 
         private AboutProgramPanel m_aboutProgramPanel;
         private Button m_okButton;

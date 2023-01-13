@@ -34,7 +34,7 @@ namespace AntiDupl.NET;
 
     static public class FolderOpener
     {
-        static private bool m_canOpenFolderWithExplorer = CanOpenFolderWithExplorer();
+        private static readonly bool m_canOpenFolderWithExplorer = CanOpenFolderWithExplorer();
 
         static private bool CanOpenFolderWithExplorer()
         {

@@ -35,13 +35,13 @@ namespace AntiDupl.NET;
     /// </summary>
     public class ThumbnailGroupTable : Panel
     {
-        private CoreLib m_core;
-        private AntiDupl.NET.Options m_options;
+        private readonly CoreLib m_core;
+        private readonly AntiDupl.NET.Options m_options;
         private CoreGroup[] m_groups;
         private int m_maxGroupIndex = -1;
-        private MainSplitContainer m_mainSplitContainer;
+        private readonly MainSplitContainer m_mainSplitContainer;
 
-        private ThumbnailStorage m_thumbnailStorage = null;
+        private readonly ThumbnailStorage m_thumbnailStorage = null;
         private volatile bool m_abortUpdateThumbnailsThread = false;
         private Thread m_updateThumbnailsThread = null;
 

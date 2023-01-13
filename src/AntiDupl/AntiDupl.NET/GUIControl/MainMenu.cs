@@ -33,12 +33,12 @@ namespace AntiDupl.NET;
 
     public class MainMenu : MenuStrip
     {
-        private CoreLib m_core;
-        private Options m_options;
+        private readonly CoreLib m_core;
+        private readonly Options m_options;
         private CoreOptions m_coreOptions;
 
-        private MainForm m_mainForm;
-        private MainSplitContainer m_mainSplitContainer;
+        private readonly MainForm m_mainForm;
+        private readonly MainSplitContainer m_mainSplitContainer;
 
         private ToolStripMenuItem m_fileMenuItem;
         private ToolStripMenuItem m_file_profileOpenMenuItem;

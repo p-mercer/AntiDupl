@@ -319,7 +319,7 @@ namespace AntiDupl.NET;
                     Current.Name.CompareTo("Ukrainian") == 0;
             }
             
-            private static ArrayList m_strings = new();
+            private static readonly ArrayList m_strings = new();
             private static int m_currentIndex = 0;
 
             public static void Update()
@@ -375,7 +375,7 @@ namespace AntiDupl.NET;
 
             private class Starter
             {
-                private string m_url;
+                private readonly string m_url;
 
                 public Starter(Form form, string url)
                 {

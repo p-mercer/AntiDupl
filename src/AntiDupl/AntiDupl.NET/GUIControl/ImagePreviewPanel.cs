@@ -54,9 +54,9 @@ namespace AntiDupl.NET;
         private const int IBW = 1;//Internal border width
         private const int EBW = 2;//External border width
 
-        private CoreLib m_core;
-        private Options m_options;
-        private ResultsListView m_resultsListView;
+        private readonly CoreLib m_core;
+        private readonly Options m_options;
+        private readonly ResultsListView m_resultsListView;
 
         private int m_group;
         /// <summary>

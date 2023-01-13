@@ -35,8 +35,8 @@ namespace AntiDupl.NET;
     {
         private const int MAX_PATH = 260;
 
-        private CoreLib m_core;
-        private Options m_options;
+        private readonly CoreLib m_core;
+        private readonly Options m_options;
         private CoreImageInfo m_currentImageInfo;
         private Size m_neighbourSizeMax;
 

@@ -34,9 +34,9 @@ namespace AntiDupl.NET;
     /// </summary>
     public class ThumbnailPreview : Panel
     {
-        private CoreLib m_core;
-        private Options m_options;
-        private MainSplitContainer m_mainSplitContainer;
+        private readonly CoreLib m_core;
+        private readonly Options m_options;
+        private readonly MainSplitContainer m_mainSplitContainer;
         
         private CoreGroup m_group = null;
         public CoreGroup Group { get { return m_group; } }

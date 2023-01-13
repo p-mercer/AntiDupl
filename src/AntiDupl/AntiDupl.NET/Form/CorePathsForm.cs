@@ -37,10 +37,10 @@ namespace AntiDupl.NET;
         static public int FORM_WIDTH = 450;
         static public int FORM_HEIGHT = 350;
 
-        private CoreLib m_core;
-        private Options m_options;
+        private readonly CoreLib m_core;
+        private readonly Options m_options;
         private CoreOptions m_oldCoreOptions; //опции до изменения
-        private CoreOptions m_newCoreOptions; //опции после изменения
+        private readonly CoreOptions m_newCoreOptions; //опции после изменения
 
         private Button m_okButton;
         private Button m_cancelButton;

@@ -55,8 +55,8 @@ namespace AntiDupl.NET;
         public MarkType markType { get { return m_markType; } set { m_markType = value; } }
 
 
-        private Object m_first;
-        private Object m_second;
+        private readonly Object m_first;
+        private readonly Object m_second;
 
         public DataGridViewDoubleTextBoxCell(Object first, Object second)
         {

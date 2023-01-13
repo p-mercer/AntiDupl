@@ -34,11 +34,11 @@ namespace AntiDupl.NET;
 
     public class ImagePreviewContextMenu : ContextMenuStrip
     {
-        private CoreLib m_core;
-        private Options m_options;
-        private CoreOptions m_coreOptions;
-        private ImagePreviewPanel m_imagePreviewPanel;
-        private ResultsListView m_resultsListView;
+        private readonly CoreLib m_core;
+        private readonly Options m_options;
+        private readonly CoreOptions m_coreOptions;
+        private readonly ImagePreviewPanel m_imagePreviewPanel;
+        private readonly ResultsListView m_resultsListView;
 
         private ToolStripMenuItem m_copyPathItem;
         private ToolStripMenuItem m_copyFileNameItem;

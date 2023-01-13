@@ -95,7 +95,7 @@ namespace AntiDupl.NET;
         /************************************ Private Members: ************************************/
 
         private IntPtr m_module = IntPtr.Zero;
-        private string m_fileName;
+        private readonly string m_fileName;
 
         [DllImport("kernel32.dll",
             CharSet = CharSet.Ansi,

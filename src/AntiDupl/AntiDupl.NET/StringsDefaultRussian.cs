@@ -336,5 +336,5 @@ namespace AntiDupl.NET;
             return m_strings;
         }
 
-        static private Strings m_strings = Create();
+        private static readonly Strings m_strings = Create();
     }

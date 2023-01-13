@@ -36,8 +36,8 @@ namespace AntiDupl.NET;
     /// </summary>
     public class ResultRowSetter
     {
-        private AntiDupl.NET.Options m_options;
-        private DataGridView m_dataGridView;
+        private readonly AntiDupl.NET.Options m_options;
+        private readonly DataGridView m_dataGridView;
 
         private Image m_nullIcon;
 

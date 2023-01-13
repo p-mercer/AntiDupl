@@ -39,7 +39,7 @@ namespace AntiDupl.NET;
             public TextBox edit;
         };
 
-        private Options m_options;
+        private readonly Options m_options;
         private HotKeyOptions m_newHotKeyOptions;
 
         private Button m_setDefaultButton;

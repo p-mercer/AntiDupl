@@ -30,8 +30,8 @@ namespace AntiDupl.NET;
 
     public class LabeledComboBox : TableLayoutPanel
     {
-        private ComboBox m_comboBox;
-        private Label m_label;
+        private readonly ComboBox m_comboBox;
+        private readonly Label m_label;
 
         public ComboBox comboBox { get { return m_comboBox; } }
         public override String Text { get { return m_label.Text; } set { m_label.Text = value; } }

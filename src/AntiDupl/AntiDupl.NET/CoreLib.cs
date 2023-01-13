@@ -34,7 +34,7 @@ namespace AntiDupl.NET;
         private const uint VERSION_SIZE = 40;
         private const uint PAGE_SIZE = 16;
 
-        private IntPtr m_handle = IntPtr.Zero;
+        private readonly IntPtr m_handle = IntPtr.Zero;
         private CoreDll m_dll = null;
 
         //-----------Public functions----------------------------------------------

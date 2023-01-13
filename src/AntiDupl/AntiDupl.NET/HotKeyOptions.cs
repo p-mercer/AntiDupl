@@ -185,7 +185,7 @@ namespace AntiDupl.NET;
             return true;
         }
         
-        private static Keys[] m_reservedKeyCombinations =
+        private static readonly Keys[] m_reservedKeyCombinations =
         {
             Keys.A | Keys.Control,
             Keys.C | Keys.Control,
@@ -193,7 +193,7 @@ namespace AntiDupl.NET;
             Keys.Y | Keys.Control
         };
 
-        private static Keys[] m_reservedKeys =
+        private static readonly Keys[] m_reservedKeys =
         {
             Keys.Up, 
             Keys.Down,

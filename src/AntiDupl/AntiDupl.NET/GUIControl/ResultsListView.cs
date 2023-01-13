@@ -85,11 +85,11 @@ namespace AntiDupl.NET;
             Size
         }
 
-        private MainSplitContainer m_mainSplitContainer;
-        private CoreLib m_core;
-        private AntiDupl.NET.Options m_options;
+        private readonly MainSplitContainer m_mainSplitContainer;
+        private readonly CoreLib m_core;
+        private readonly AntiDupl.NET.Options m_options;
         public CoreOptions CoreOptions { get { return m_coreOptions; } } 
-        private CoreOptions m_coreOptions;
+        private readonly CoreOptions m_coreOptions;
         private CoreResult[] m_results;
         private ResultsOptions.ViewMode m_viewMode = ResultsOptions.ViewMode.VerticalPairTable;
 
@@ -107,7 +107,7 @@ namespace AntiDupl.NET;
         private int m_highestDragSelectedIndex = -1;
 
         ContextMenuStrip m_contextMenuStrip;
-        ResultRowSetter m_resultRowSetter;
+	readonly ResultRowSetter m_resultRowSetter;
 
         /// <summary>
         /// Returns the lower value of the first and last drag-selected row indices.

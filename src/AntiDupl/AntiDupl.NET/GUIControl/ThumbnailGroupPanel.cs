@@ -34,14 +34,14 @@ namespace AntiDupl.NET;
     /// </summary>
     public class ThumbnailGroupPanel : RaisedPanel
     {
-        private CoreLib m_core;
-        private CoreGroup m_group;
-        private AntiDupl.NET.Options m_options;
+        private readonly CoreLib m_core;
+        private readonly CoreGroup m_group;
+        private readonly AntiDupl.NET.Options m_options;
 
         private ThumbnailPanel[] m_thumbnailPanels;
         public ThumbnailPanel[] ThumbnailPanels { get { return m_thumbnailPanels; } }
 
-        private ThumbnailGroupTable m_thumbnailGroupTable;
+        private readonly ThumbnailGroupTable m_thumbnailGroupTable;
         public ThumbnailGroupTable Table { get { return m_thumbnailGroupTable; } }
 
         public ThumbnailGroupPanel(CoreLib core, AntiDupl.NET.Options options, CoreGroup group, ThumbnailGroupTable thumbnailGroupTable)

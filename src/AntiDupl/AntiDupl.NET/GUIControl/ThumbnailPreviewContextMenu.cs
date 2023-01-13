@@ -34,10 +34,10 @@ namespace AntiDupl.NET;
 
     public class ThumbnailPreviewContextMenu : ContextMenuStrip
     {
-        private CoreLib m_core;
-        private Options m_options;
-        private ThumbnailPreview m_thumbnailPreview;
-        private ThumbnailGroupTable m_thumbnailGroupTable;
+        private readonly CoreLib m_core;
+        private readonly Options m_options;
+        private readonly ThumbnailPreview m_thumbnailPreview;
+        private readonly ThumbnailGroupTable m_thumbnailGroupTable;
 
         private ToolStripMenuItem m_copyPathItem;
         private ToolStripMenuItem m_openImageItem;

@@ -32,10 +32,10 @@ namespace AntiDupl.NET;
 
     public class SelectHorizontalColumnsForm : Form
     {
-        private ResultsListView m_resultsListView;
-        private Options m_options;
-        private ResultsOptions m_newResultOptions;
-        private bool m_inited = false;
+        private readonly ResultsListView m_resultsListView;
+        private readonly Options m_options;
+        private readonly ResultsOptions m_newResultOptions;
+        private readonly bool m_inited = false;
 
         private CheckBox[] m_checkBoxes;
         private Button m_okButton;
