@@ -164,7 +164,7 @@ namespace AntiDupl.NET
             AllowUserToResizeRows = false;
             AllowUserToDeleteRows = false;
             AllowUserToOrderColumns = true;
-            this.BackgroundColor = Color.White;
+            BackgroundColor = Color.White;
             ReadOnly = true;
             ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
             DoubleBuffered = true;
@@ -721,7 +721,7 @@ namespace AntiDupl.NET
                     SetRowSelection(HigherDragSelectedRowIndex + 1, m_highestDragSelectedIndex + 1, false);
                 }
                 SetRowSelection(LowerDragSelectedRowIndex, HigherDragSelectedRowIndex + 1, true);
-                this.Refresh();
+                Refresh();
                 m_mainSplitContainer.SelectedResultsChanged();
             }
             base.OnCellMouseEnter(e);

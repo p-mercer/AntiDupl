@@ -72,7 +72,7 @@ namespace AntiDupl.NET
             RenderMode = ToolStripRenderMode.System;
 
             m_copyPathItem = InitFactory.MenuItem.Create(null, null, CopyPath);
-            m_copyFileNameItem = InitFactory.MenuItem.Create(null, null, new EventHandler(this.CopyFileName));
+            m_copyFileNameItem = InitFactory.MenuItem.Create(null, null, new EventHandler(CopyFileName));
             m_openImageItem = InitFactory.MenuItem.Create(null, null, OpenImage);
             m_openFolderItem = InitFactory.MenuItem.Create(null, null, OpenFolder);
             m_addToIgnore = InitFactory.MenuItem.Create(null, null, AddToIgnore);

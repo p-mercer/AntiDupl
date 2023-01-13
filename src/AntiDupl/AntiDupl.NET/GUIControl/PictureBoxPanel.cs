@@ -437,7 +437,7 @@ namespace AntiDupl.NET
                         for (var i = 0; i < m_rectanglesOfDifferences.Length; i++)
                             gr.DrawRectangle(penForDifferences, m_rectanglesOfDifferences[i]);
                     }
-                    this.Invalidate();
+                    Invalidate();
                     return true;
                 }
                 catch (Exception)
@@ -458,7 +458,7 @@ namespace AntiDupl.NET
                 m_originalBitmap = null;
             }
             m_rectanglesOfDifferences = null;
-            this.Invalidate();
+            Invalidate();
         }
 
         private void ShowNeighboursImages(bool forceLoad)
