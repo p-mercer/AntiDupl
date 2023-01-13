@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -22,15 +22,13 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Runtime.InteropServices;
 using System.Reflection;
 using System.Diagnostics;
 
 namespace AntiDupl.NET;
 
-    public class DynamicModule : IDisposable
+public class DynamicModule : IDisposable
     {
         public class DynamicModuleApiAttribute : Attribute
         {

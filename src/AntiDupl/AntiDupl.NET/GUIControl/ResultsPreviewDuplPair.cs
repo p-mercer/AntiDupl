@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -23,19 +23,17 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Diagnostics;
-using System.IO;
 using System.Threading;
 
 namespace AntiDupl.NET;
 
-    /// <summary>
-    /// Панель которая включает в себя две панели с просмотра изображений и панель инструментов для работы с дубликатами изображений.
-    /// </summary>
-    public class ResultsPreviewDuplPair : ResultsPreviewBase
+/// <summary>
+/// Панель которая включает в себя две панели с просмотра изображений и панель инструментов для работы с дубликатами изображений.
+/// </summary>
+public class ResultsPreviewDuplPair : ResultsPreviewBase
     {
         private ImagePreviewPanel m_firstImagePreviewPanel;
         private ImagePreviewPanel m_secondImagePreviewPanel;

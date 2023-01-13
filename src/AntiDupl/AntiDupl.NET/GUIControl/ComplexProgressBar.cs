@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -21,17 +21,12 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
 
 namespace AntiDupl.NET;
 
-    public class ComplexProgressBar : ProgressBar
+public class ComplexProgressBar : ProgressBar
     {
         private int m_firstValue = 0;
         public int FirstValue

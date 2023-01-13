@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar, 2014 Borisov Dmitry.
@@ -23,16 +23,14 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Collections;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-using System.Collections.Specialized;
 
 
 namespace AntiDupl.NET;
 
-    public class CorePathsForm : Form
+public class CorePathsForm : Form
     {
         static public int FORM_WIDTH = 450;
         static public int FORM_HEIGHT = 350;

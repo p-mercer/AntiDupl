@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -22,18 +22,15 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
-using System.Drawing;
 using System.ComponentModel;
 
 namespace AntiDupl.NET;
 
-    /// <summary>
-    /// Контекстное меню для списка дубликатов.
-    /// </summary>
-    public class ResultsListViewContextMenu : ContextMenuStrip
+/// <summary>
+/// Контекстное меню для списка дубликатов.
+/// </summary>
+public class ResultsListViewContextMenu : ContextMenuStrip
     {
         private readonly CoreLib m_core;
         private readonly Options m_options;

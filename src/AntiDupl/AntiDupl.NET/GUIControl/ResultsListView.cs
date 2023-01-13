@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar, 2013-2015 Borisov Dmitry.
@@ -22,8 +22,6 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
@@ -31,11 +29,11 @@ using System.IO;
 
 namespace AntiDupl.NET;
 
-    /// <summary>
-    /// Class output result in ListView.
-    /// Класс вывода результатов в ListView.
-    /// </summary>
-    public class ResultsListView : DataGridView
+/// <summary>
+/// Class output result in ListView.
+/// Класс вывода результатов в ListView.
+/// </summary>
+public class ResultsListView : DataGridView
     {
         public enum ColumnsTypeVertical
         {

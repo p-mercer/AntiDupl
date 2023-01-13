@@ -22,16 +22,13 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
-using System.Diagnostics;
 
 namespace AntiDupl.NET;
 
-    public class MainMenu : MenuStrip
+public class MainMenu : MenuStrip
     {
         private readonly CoreLib m_core;
         private readonly Options m_options;

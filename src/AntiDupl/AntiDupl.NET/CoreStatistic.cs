@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -22,12 +22,10 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AntiDupl.NET;
 
-    public class CoreStatistic
+public class CoreStatistic
     {
         public uint scanedFolderNumber;
         public uint searchedImageNumber;

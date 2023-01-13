@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar, 2013-2015 Borisov Dmitry.
@@ -22,14 +22,11 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
-using System.IO;
 
 namespace AntiDupl.NET;
 
-    public class CoreOptionsForm : Form
+public class CoreOptionsForm : Form
     {
         static public int THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM = 15;
         static public int THRESHOLD_DIFFERENCE_MAX_SSIM = 50;

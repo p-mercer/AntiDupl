@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -22,15 +22,13 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace AntiDupl.NET;
 
-    public class Version
+public class Version
     {
         public int major;
         public int minor;

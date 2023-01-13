@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar, 2013-2015 Borisov Dmitry.
@@ -23,16 +23,14 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
-using System.Diagnostics;
 using System.Drawing;
 using System.ComponentModel;
 using System.IO;
 
 namespace AntiDupl.NET;
 
-    public class ImagePreviewPanel : TableLayoutPanel
+public class ImagePreviewPanel : TableLayoutPanel
     {
         private const int MAX_PATH = 260;
 

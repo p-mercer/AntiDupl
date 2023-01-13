@@ -21,15 +21,12 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
 namespace AntiDupl.NET;
 
-    public class AboutProgramPanel : Panel
+public class AboutProgramPanel : Panel
     {
         private const int LOGO_SIZE = 32;
 

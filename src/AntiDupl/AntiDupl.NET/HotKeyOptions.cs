@@ -21,14 +21,11 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
-    public class HotKeyOptions
+public class HotKeyOptions
     {
         public enum Action
         {

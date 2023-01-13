@@ -22,15 +22,11 @@
 * SOFTWARE.
 */
 using System;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
-    public class SelectHorizontalColumnsForm : Form
+public class SelectHorizontalColumnsForm : Form
     {
         private readonly ResultsListView m_resultsListView;
         private readonly Options m_options;

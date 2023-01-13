@@ -22,13 +22,11 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
-    public class AboutProgramForm : Form
+public class AboutProgramForm : Form
     {
         private readonly CoreLib m_core;
 

@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -21,18 +21,16 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.Threading;
 
 namespace AntiDupl.NET;
 
-    /// <summary>
-    /// Хранилище эскизов изображений.
-    /// </summary>
-    public class ThumbnailStorage
+/// <summary>
+/// Хранилище эскизов изображений.
+/// </summary>
+public class ThumbnailStorage
     {
         private readonly CoreLib m_core;
         private readonly Options m_options;

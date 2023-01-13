@@ -21,17 +21,13 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
-using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
-    public class Options
+public class Options
     {
         public delegate void VisibleChangeHandler(bool visible);
 

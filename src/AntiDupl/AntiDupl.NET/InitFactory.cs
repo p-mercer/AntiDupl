@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar, 2013-2018 Borisov Dmitry.
@@ -22,17 +22,14 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
-using System.Drawing;
 
 namespace AntiDupl.NET;
 
-    /// <summary>
-    /// Фабрика создает элементы GUI
-    /// </summary>
-    public static class InitFactory
+/// <summary>
+/// Фабрика создает элементы GUI
+/// </summary>
+public static class InitFactory
     {
         public static class Layout
         {

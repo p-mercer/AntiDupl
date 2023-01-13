@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar, 2013-2018 Borisov Dmitry.
@@ -22,13 +22,11 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Runtime.InteropServices;
 
 namespace AntiDupl.NET;
 
-    public class CoreDll : DynamicModule
+public class CoreDll : DynamicModule
     {
         public CoreDll()
             : base(IntPtr.Size == 8 ? "AntiDupl64.dll" : "AntiDupl32.dll")

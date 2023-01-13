@@ -21,19 +21,14 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
-using System.IO;
 
 namespace AntiDupl.NET;
 
-    /// <summary>
-    /// Setting for table out (ListView).
-    /// Установки для таблицы вывода.
-    /// </summary>
-    public class ResultsOptions
+/// <summary>
+/// Setting for table out (ListView).
+/// Г“Г±ГІГ Г­Г®ГўГЄГЁ Г¤Г«Гї ГІГ ГЎГ«ГЁГ¶Г» ГўГ»ГўГ®Г¤Г .
+/// </summary>
+public class ResultsOptions
     {
         private const int DEFAULT_THUMBNAIL_WIDTH_MAX = 128;
         private const int DEFAULT_THUMBNAIL_HEIGHT_MAX = 128;

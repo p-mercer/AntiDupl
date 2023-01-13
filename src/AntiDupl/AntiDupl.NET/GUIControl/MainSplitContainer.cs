@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -22,17 +22,15 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
 namespace AntiDupl.NET;
 
-    /// <summary>
-    /// Две панели, разделенные подвижной строкой: таблицы и превью.
-    /// </summary>
-    public class MainSplitContainer : SplitContainer
+/// <summary>
+/// Две панели, разделенные подвижной строкой: таблицы и превью.
+/// </summary>
+public class MainSplitContainer : SplitContainer
     {
         public const int VIEW_MIN_WIDTH = 260;
         public const int LIST_MIN_WIDTH = 0;

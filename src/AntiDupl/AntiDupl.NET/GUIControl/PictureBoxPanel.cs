@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -23,15 +23,13 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
-using System.Diagnostics;
 using System.IO;
 
 namespace AntiDupl.NET;
 
-    public class PictureBoxPanel : Panel
+public class PictureBoxPanel : Panel
     {
         private const int MAX_PATH = 260;
 

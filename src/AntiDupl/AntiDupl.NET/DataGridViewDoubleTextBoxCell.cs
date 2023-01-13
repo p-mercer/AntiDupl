@@ -22,15 +22,13 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
-using System.ComponentModel;
 
 namespace AntiDupl.NET;
 
-    public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
+public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
     {
 	private const int PADDING = 3;
 	private const int SEPARATOR_WIDTH = 1;

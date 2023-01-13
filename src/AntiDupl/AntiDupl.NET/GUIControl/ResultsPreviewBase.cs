@@ -21,15 +21,12 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
 namespace AntiDupl.NET;
 
-    public abstract class ResultsPreviewBase : Panel
+public abstract class ResultsPreviewBase : Panel
     {
         protected ResultsListView m_resultsListView;
         protected Options m_options;

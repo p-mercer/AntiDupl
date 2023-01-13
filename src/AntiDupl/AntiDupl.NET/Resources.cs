@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -22,12 +22,10 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections; 
-using System.Collections.Generic;
+using System.Collections;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
-using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
 using System.Diagnostics;
@@ -35,7 +33,7 @@ using System.ComponentModel;
 
 namespace AntiDupl.NET;
 
-    static public class Resources
+static public class Resources
     {
         static private string GetPath(string path, string name, string extension)
         {

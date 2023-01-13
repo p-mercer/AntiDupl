@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -22,8 +22,6 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Net;
 using System.Drawing;
@@ -32,7 +30,7 @@ using System.Threading;
 
 namespace AntiDupl.NET;
 
-    public class NewVersionMenuItem : ToolStripMenuItem
+public class NewVersionMenuItem : ToolStripMenuItem
     {
 	private bool m_downloadingFinished = false;
 

@@ -22,15 +22,12 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
-using System.ComponentModel;
 
 namespace AntiDupl.NET;
 
-    public class ProgressPanel : Panel
+public class ProgressPanel : Panel
     {
         private Label m_totalLabel;
         private Label m_currentLabel;

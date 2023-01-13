@@ -22,16 +22,14 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
-using System.IO;
 using System.Drawing;
 using System.Threading;
 
 namespace AntiDupl.NET;
 
-    public class StartFinishForm : Form
+public class StartFinishForm : Form
     {
         private static readonly TimeSpan VIEW_START_TIME_MIN = TimeSpan.FromSeconds(3.0);
 

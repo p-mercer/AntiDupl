@@ -22,14 +22,12 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
 namespace AntiDupl.NET;
 
-    public class LanguageMenuItem : ToolStripMenuItem
+public class LanguageMenuItem : ToolStripMenuItem
     {
         private readonly Options m_options;
 

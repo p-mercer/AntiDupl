@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -21,14 +21,11 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System;
-using System.Collections.Generic;
 using System.Collections;
-using System.Text;
 
 namespace AntiDupl.NET;
 
-    public class CoreSearchOptions
+public class CoreSearchOptions
     {
         private static readonly string[] s_jpegExtensions = {"JPEG", "JFIF", "JPG", "JPE", "JIFF", "JIF", "J", "JNG", "JFF"};
         private static readonly string[] s_tiffExtensions = {"TIF", "TIFF"};

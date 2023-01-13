@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar, 2013-2015 Borisov Dmitry.
@@ -22,17 +22,13 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
-using System.Diagnostics;
 using System.IO;
-using Microsoft.Win32;
 using System.ComponentModel;
 
 namespace AntiDupl.NET;
 
-    public class ImagePreviewContextMenu : ContextMenuStrip
+public class ImagePreviewContextMenu : ContextMenuStrip
     {
         private readonly CoreLib m_core;
         private readonly Options m_options;

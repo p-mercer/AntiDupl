@@ -21,15 +21,12 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
 namespace AntiDupl.NET;
 
-    public class MainFormOptions
+public class MainFormOptions
     {
         public event Options.VisibleChangeHandler OnToolStripVisibleChange;
         private bool m_toolStripView = true;

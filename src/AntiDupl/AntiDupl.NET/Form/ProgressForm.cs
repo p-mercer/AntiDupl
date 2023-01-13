@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -22,17 +22,16 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 
 namespace AntiDupl.NET;
 
-    /// <summary>
-    /// Форма отображает прогресс длительных операций.
-    /// </summary>
-    public class ProgressForm : Form
+/// <summary>
+/// Форма отображает прогресс длительных операций.
+/// </summary>
+public class ProgressForm : Form
     {
         public enum Type
         {

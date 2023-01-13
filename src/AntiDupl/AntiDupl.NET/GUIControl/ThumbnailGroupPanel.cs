@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -22,17 +22,15 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
 namespace AntiDupl.NET;
 
-    /// <summary>
-    /// Панель содержит панели изображений одной группы.
-    /// </summary>
-    public class ThumbnailGroupPanel : RaisedPanel
+/// <summary>
+/// Панель содержит панели изображений одной группы.
+/// </summary>
+public class ThumbnailGroupPanel : RaisedPanel
     {
         private readonly CoreLib m_core;
         private readonly CoreGroup m_group;

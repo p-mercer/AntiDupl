@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -22,13 +22,11 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 
 namespace AntiDupl.NET;
 
-    public class CoreGroup
+public class CoreGroup
     {
         public int id;
         public CoreImageInfo[] images;

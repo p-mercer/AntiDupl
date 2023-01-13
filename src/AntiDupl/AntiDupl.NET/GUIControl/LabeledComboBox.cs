@@ -22,13 +22,11 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
-    public class LabeledComboBox : TableLayoutPanel
+public class LabeledComboBox : TableLayoutPanel
     {
         private readonly ComboBox m_comboBox;
         private readonly Label m_label;

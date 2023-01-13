@@ -22,20 +22,13 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Threading;
-using System.Xml;
-using System.Xml.Serialization;
 using System.IO;
 
 namespace AntiDupl.NET;
 
-    public class MainForm : Form
+public class MainForm : Form
     {
         public const int MIN_HEIGHT = 520;
         public const int MIN_WIDTH = 790;

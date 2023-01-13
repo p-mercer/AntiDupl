@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -22,14 +22,12 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace AntiDupl.NET;
 
-    public class CoreLib : IDisposable
+public class CoreLib : IDisposable
     {
         private const uint VERSION_SIZE = 40;
         private const uint PAGE_SIZE = 16;

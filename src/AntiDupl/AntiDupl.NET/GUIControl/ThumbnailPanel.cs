@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -22,18 +22,16 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 
 namespace AntiDupl.NET;
 
-    /// <summary>
-    /// Панель одного изображения и информации о нем, checkbox.
-    /// </summary>
-    public class ThumbnailPanel :  RaisedPanel
+/// <summary>
+/// Панель одного изображения и информации о нем, checkbox.
+/// </summary>
+public class ThumbnailPanel :  RaisedPanel
     {
         private const int IBW = 1;//Internal border width
         private const int EBW = 2;//External border width
