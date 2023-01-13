@@ -62,21 +62,6 @@ public class ThumbnailPreview : Panel
 		Controls.Add(m_pictureBoxPanel);
 	}
 
-	private void InnitializeTestButton()
-	{
-		var testButton = new Button
-		{
-			Text = "Test",
-			Location = new Point(10, 10),
-			AutoSize = true
-		};
-		testButton.Click += (sender, e) =>
-			{
-				m_mainSplitContainer.UpdateResults();
-			};
-		Controls.Add(testButton);
-	}
-
 	public void SetThumbnail(CoreGroup group, int index)
 	{
 		m_group = group;

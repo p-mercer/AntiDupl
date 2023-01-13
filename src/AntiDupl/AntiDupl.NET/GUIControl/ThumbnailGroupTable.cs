@@ -208,43 +208,6 @@ public class ThumbnailGroupTable : Panel
 		}
 	}
 
-	private void AddGroupPanels(int indexMin, int indexMax)
-	{
-		var controls = new List<Control>();
-		for (var i = indexMin; i < indexMax; ++i)
-		{
-			if (m_thumbnailGroupPanels[i] == null)
-			{
-
-				var groupPanel = new ThumbnailGroupPanel(m_core, m_options, m_groups[i], this);
-				groupPanel.Location = new Point(
-					Padding.Left + groupPanel.Margin.Left + AutoScrollPosition.X,
-					Padding.Top + groupPanel.Margin.Top + AutoScrollPosition.Y + (groupPanel.Height + groupPanel.Margin.Vertical) * i);
-
-				var thumbnailPanels = groupPanel.ThumbnailPanels;
-				for (var j = 0; j < thumbnailPanels.Length; ++j)
-				{
-					if (m_thumbnailStorage.Exists(thumbnailPanels[j].ImageInfo))
-					{
-						thumbnailPanels[j].Thumbnail = m_thumbnailStorage.Get(thumbnailPanels[j].ImageInfo);
-					}
-				}
-
-				//groupPanel.Visible = false;
-
-				controls.Add(groupPanel);
-
-				m_thumbnailGroupPanels[i] = groupPanel;
-
-			}
-		}
-
-		if (controls.Count > 0)
-		{
-			Controls.AddRange(controls.ToArray());
-		}
-	}
-
 	/// <summary>
 	/// Удаляем из элементов управления и хранилиша m_thumbnailGroupPanels группу панелей.
 	/// </summary>

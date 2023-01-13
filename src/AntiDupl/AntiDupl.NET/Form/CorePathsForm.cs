@@ -433,26 +433,6 @@ public class CorePathsForm : Form
 		return builder.ToString();
 	}
 
-	/// <summary>
-	/// Обновляет содержимое ListBox
-	/// </summary>
-	/// <param name="path">Пути для обновления</param>
-	/// <param name="box">Обновляемый ListBox</param>
-	static private void UpdatePath(string[] path, ListBox box)
-	{
-		var selectedIndex = box.SelectedIndex;
-		box.Items.Clear();
-		for (var i = 0; i < path.Length; ++i)
-		{
-			box.Items.Add(path[i]);
-		}
-
-		if (selectedIndex >= 0 && selectedIndex < path.Length)
-		{
-			box.SelectedIndex = selectedIndex;
-		}
-	}
-
 	static private void UpdatePath(CorePathWithSubFolder[] paths, CheckedListBox box)
 	{
 		var selectedIndex = box.SelectedIndex;

@@ -34,13 +34,11 @@ public class CoreSearchOptions
 	private static readonly string[] s_pngExtensions = { "PNG" };
 	private static readonly string[] s_emfExtensions = { "EMF", "EMZ" };
 	private static readonly string[] s_wmfExtensions = { "WMF" };
-	private static readonly string[] s_exifExtensions = { "EXIF" };
 	private static readonly string[] s_iconExtensions = { "ICON", "ICO", "ICN" };
 	private static readonly string[] s_jp2Extensions = { "JP2", "J2K", "J2C", "JPC", "JPF", "JPX" };
 	private static readonly string[] s_psdExtensions = { "PSD" };
 	private static readonly string[] s_ddsExtensions = { "DDS" };
 	private static readonly string[] s_tgaExtensions = { "TGA", "TPIC" };
-	private static readonly string[] s_webpExtensions = { "WEBP" };
 	private static readonly string[] s_heifExtensions = { "HEIF", "HEIC" };
 
 	public bool subFolders;

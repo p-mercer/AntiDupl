@@ -372,8 +372,6 @@ public class ResultsListView : DataGridView
 				{
 					m_options.resultsOptions.ShowNeighboursImages = !m_options.resultsOptions.ShowNeighboursImages;
 				}
-
-				return;
 			}
 		}
 	}
@@ -594,16 +592,13 @@ public class ResultsListView : DataGridView
 		switch (dataGridViewColumn.HeaderCell.SortGlyphDirection)
 		{
 			case SortOrder.None:
+			case SortOrder.Descending:
 				direction = ListSortDirection.Ascending;
 				dataGridViewColumn.HeaderCell.SortGlyphDirection = SortOrder.Ascending;
 				break;
 			case SortOrder.Ascending:
 				direction = ListSortDirection.Descending;
 				dataGridViewColumn.HeaderCell.SortGlyphDirection = SortOrder.Descending;
-				break;
-			case SortOrder.Descending:
-				direction = ListSortDirection.Ascending;
-				dataGridViewColumn.HeaderCell.SortGlyphDirection = SortOrder.Ascending;
 				break;
 		}
 
@@ -686,12 +681,9 @@ public class ResultsListView : DataGridView
 	{
 		m_isShiftDown = e.Shift;
 		m_isControlDown = e.Control;
-		if (m_isShiftDown)
+		if (m_isShiftDown && m_firstSelectedRowIndex == -1)
 		{
-			if (m_firstSelectedRowIndex == -1)
-			{
-				m_firstSelectedRowIndex = m_currentRowIndex;
-			}
+			m_firstSelectedRowIndex = m_currentRowIndex;
 		}
 		base.OnKeyDown(e);
 		MakeAction(e.KeyData);
@@ -982,12 +974,7 @@ public class ResultsListView : DataGridView
 
 	public CoreResult GetCurrentResult()
 	{
-		if (m_currentRowIndex < m_results.Length && m_currentRowIndex >= 0)
-		{
-			return m_results[m_currentRowIndex];
-		}
-
-		return null;
+		return m_currentRowIndex < m_results.Length && m_currentRowIndex >= 0 ? m_results[m_currentRowIndex] : null;
 	}
 
 	public bool MoveEnable()

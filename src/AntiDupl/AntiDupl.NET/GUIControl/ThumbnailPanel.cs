@@ -33,8 +33,6 @@ namespace AntiDupl.NET;
 /// </summary>
 public class ThumbnailPanel : RaisedPanel
 {
-	private const int IBW = 1;//Internal border width
-	private const int EBW = 2;//External border width
 
 	private readonly CoreLib m_core;
 	private readonly CoreGroup m_group;

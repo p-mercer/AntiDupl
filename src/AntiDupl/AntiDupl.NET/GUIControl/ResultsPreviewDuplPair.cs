@@ -188,16 +188,6 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 		m_resultsListView.MakeAction(action, CoreDll.TargetType.Current);
 	}
 
-	private void OnImageDoubleClicked(object sender, EventArgs e)
-	{
-		var pictureBox = (PictureBox)sender;
-		var startInfo = new ProcessStartInfo
-		{
-			FileName = pictureBox.ImageLocation
-		};
-		Process.Start(startInfo);
-	}
-
 	private void OnOpenBothFoldersButtonClicked(object sender, EventArgs e)
 	{
 		FolderOpener.OpenContainingFolder(m_firstImagePreviewPanel.CurrentImageInfo);
