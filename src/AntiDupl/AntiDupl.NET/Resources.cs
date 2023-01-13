@@ -293,10 +293,7 @@ static public class Resources
                 if (index != m_currentIndex && index < Count && index >= 0)
                 {
                     m_currentIndex = index;
-                    if (OnCurrentChange != null)
-				{
-					OnCurrentChange();
-				}
+				OnCurrentChange?.Invoke();
 
 				return true;
                 }
@@ -347,10 +344,7 @@ static public class Resources
 
             public static void Update()
             {
-                if (OnCurrentChange != null)
-			{
-				OnCurrentChange();
-			}
+			OnCurrentChange?.Invoke();
 		}
         }
 

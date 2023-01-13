@@ -564,22 +564,17 @@ public class ImagePreviewPanel : TableLayoutPanel
         /// </summary>
         private static bool ExifEqual(CoreDll.adImageExifW imageExif1, CoreDll.adImageExifW imageExif2)
         {
-            if (imageExif1.isEmpty == imageExif2.isEmpty &&
+		return imageExif1.isEmpty == imageExif2.isEmpty &&
                 imageExif1.artist.CompareTo(imageExif2.artist) == 0 &&
                 imageExif1.dateTime.CompareTo(imageExif2.dateTime) == 0 &&
                 imageExif1.equipMake.CompareTo(imageExif2.equipMake) == 0 &&
                 imageExif1.equipModel.CompareTo(imageExif2.equipModel) == 0 &&
                 imageExif1.imageDescription.CompareTo(imageExif2.imageDescription) == 0 &&
                 imageExif1.softwareUsed.CompareTo(imageExif2.softwareUsed) == 0 &&
-                imageExif1.userComment.CompareTo(imageExif2.userComment) == 0)
-		{
-			return true;
-		}
+                imageExif1.userComment.CompareTo(imageExif2.userComment) == 0;
+	}
 
-		return false;
-        }
-
-        public ComparableBitmap[] GetImageFragments()
+	public ComparableBitmap[] GetImageFragments()
         {
             var amountOfFragments = m_options.resultsOptions.AmountOfFragmentsOnX * m_options.resultsOptions.AmountOfFragmentsOnY;
 

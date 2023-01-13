@@ -35,10 +35,7 @@ public class Options
         public event ChangeHandler OnChange;
         public void Change()
         {
-            if (OnChange != null)
-		{
-			OnChange();
-		}
+		OnChange?.Invoke();
 	}
 
         private string m_language = StringsDefaultEnglish.Get().Name;
@@ -94,10 +91,7 @@ public class Options
                 }
                 catch
                 {
-                    if (fileStream != null)
-				{
-					fileStream.Close();
-				}
+                    fileStream?.Close();
 
 				return new Options();
                 }
@@ -141,10 +135,7 @@ public class Options
             catch
             {
             }
-            if (writer != null)
-		{
-			writer.Close();
-		}
+            writer?.Close();
 	}
  
         public Options Clone()

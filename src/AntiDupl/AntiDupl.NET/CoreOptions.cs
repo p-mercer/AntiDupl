@@ -284,10 +284,7 @@ public class CoreOptions
                 }
                 catch
                 {
-                    if(fileStream != null)
-				{
-					fileStream.Close();
-				}
+                    fileStream?.Close();
 
 				return new CoreOptions(core);
                 }
@@ -310,10 +307,7 @@ public class CoreOptions
             catch
             {
             }
-            if (writer != null)
-		{
-			writer.Close();
-		}
+            writer?.Close();
 	}
 
         public string GetImageDataBasePath()

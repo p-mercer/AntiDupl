@@ -54,10 +54,7 @@ public class ResultsOptions
                 if (m_viewMode != value)
                 {
                     m_viewMode = value;
-                    if (OnViewModeChange != null)
-				{
-					OnViewModeChange(m_viewMode);
-				}
+				OnViewModeChange?.Invoke(m_viewMode);
 			}
             }
         }
@@ -81,10 +78,7 @@ public class ResultsOptions
                 if (m_stretchSmallImages != value)
                 {
                     m_stretchSmallImages = value;
-                    if (OnImageViewChange != null)
-				{
-					OnImageViewChange();
-				}
+				OnImageViewChange?.Invoke();
 			}
             }
         }
@@ -100,10 +94,7 @@ public class ResultsOptions
                 if (m_proportionalImageSize != value)
                 {
                     m_proportionalImageSize = value;
-                    if (OnImageViewChange != null)
-				{
-					OnImageViewChange();
-				}
+				OnImageViewChange?.Invoke();
 			}
             }
         }
@@ -112,10 +103,7 @@ public class ResultsOptions
         public event HighlightDifferenceChangeHandler OnHighlightDifferenceChange;
         public void RaiseEventOnHighlightDifferenceChange()
         {
-            if (OnHighlightDifferenceChange != null)
-		{
-			OnHighlightDifferenceChange();
-		}
+		OnHighlightDifferenceChange?.Invoke();
 	}
 
         private bool m_highlightDifference = false;
@@ -292,10 +280,7 @@ public class ResultsOptions
                 if (m_showNeighboursImages != value)
                 {
                     m_showNeighboursImages = value;
-                    if (OnImageViewChange != null)
-				{
-					OnImageViewChange();
-				}
+				OnImageViewChange?.Invoke();
 			}
             }
         }

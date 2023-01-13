@@ -31,264 +31,240 @@ namespace AntiDupl.NET;
 /// Две панели, разделенные подвижной строкой: таблицы и превью.
 /// </summary>
 public class MainSplitContainer : SplitContainer
-    {
-        public const int VIEW_MIN_WIDTH = 260;
-        public const int LIST_MIN_WIDTH = 0;
-        public const int VIEW_MIN_HEIGHT = 200;
-        public const int LIST_MIN_HEIGHT = 0;
+{
+	public const int VIEW_MIN_WIDTH = 260;
+	public const int LIST_MIN_WIDTH = 0;
+	public const int VIEW_MIN_HEIGHT = 200;
+	public const int LIST_MIN_HEIGHT = 0;
 
-        private readonly MainForm m_mainForm;
-        private readonly Options m_options;
+	private readonly MainForm m_mainForm;
+	private readonly Options m_options;
 	private readonly CoreLib m_core;
-        private readonly CoreOptions m_coreOptions;
+	private readonly CoreOptions m_coreOptions;
 
-        private readonly ResultsListView m_resultsListView;
-        private readonly ResultsPreviewContainer m_resultsPreviewContainer;
+	private readonly ResultsListView m_resultsListView;
+	private readonly ResultsPreviewContainer m_resultsPreviewContainer;
 
-        private readonly ThumbnailGroupTable m_thumbnailGroupTable;
-        private readonly ThumbnailPreview m_thumbnailPreview;
+	private readonly ThumbnailGroupTable m_thumbnailGroupTable;
+	private readonly ThumbnailPreview m_thumbnailPreview;
 	private bool m_setOrientationNow = false;
 	private bool m_atLeastOneTimeSetOrientation = false;
 
-        public ResultsListView resultsListView { get { return m_resultsListView; } }
+	public ResultsListView resultsListView { get { return m_resultsListView; } }
 
-        public delegate void UpdateResultsHandler();
-        public event UpdateResultsHandler OnUpdateResults;
+	public delegate void UpdateResultsHandler();
+	public event UpdateResultsHandler OnUpdateResults;
 
-        public delegate void CurrentResultChangedHandler();
-        public event CurrentResultChangedHandler OnCurrentResultChanged;
+	public delegate void CurrentResultChangedHandler();
+	public event CurrentResultChangedHandler OnCurrentResultChanged;
 
-        public delegate void SelectedResultsChangedHandler();
-        public event SelectedResultsChangedHandler OnSelectedResultsChanged;
+	public delegate void SelectedResultsChangedHandler();
+	public event SelectedResultsChangedHandler OnSelectedResultsChanged;
 
-        public MainSplitContainer(CoreLib core, Options options, CoreOptions coreOptions, MainForm mainForm)
-        {
-            m_mainForm = mainForm;
-            m_options = options;
-            m_core = core;
-            m_coreOptions = coreOptions;
+	public MainSplitContainer(CoreLib core, Options options, CoreOptions coreOptions, MainForm mainForm)
+	{
+		m_mainForm = mainForm;
+		m_options = options;
+		m_core = core;
+		m_coreOptions = coreOptions;
 
-            m_resultsListView = new ResultsListView(m_core, m_options, m_coreOptions, this);
-            m_resultsPreviewContainer = new ResultsPreviewContainer(m_core, m_options, m_coreOptions, this);
+		m_resultsListView = new ResultsListView(m_core, m_options, m_coreOptions, this);
+		m_resultsPreviewContainer = new ResultsPreviewContainer(m_core, m_options, m_coreOptions, this);
 
-            //m_resultsListView.UpdateResults();
+		//m_resultsListView.UpdateResults();
 
-            m_thumbnailGroupTable = new ThumbnailGroupTable(m_core, m_options, this);
-            m_thumbnailPreview = new ThumbnailPreview(m_core, m_options, this);
-            m_thumbnailPreview.ContextMenuStrip = new ThumbnailPreviewContextMenu(m_core, m_options, m_thumbnailPreview, m_thumbnailGroupTable);
-            m_thumbnailGroupTable.OnCurrentThumbnailChanged += m_thumbnailPreview.SetThumbnail;
+		m_thumbnailGroupTable = new ThumbnailGroupTable(m_core, m_options, this);
+		m_thumbnailPreview = new ThumbnailPreview(m_core, m_options, this);
+		m_thumbnailPreview.ContextMenuStrip = new ThumbnailPreviewContextMenu(m_core, m_options, m_thumbnailPreview, m_thumbnailGroupTable);
+		m_thumbnailGroupTable.OnCurrentThumbnailChanged += m_thumbnailPreview.SetThumbnail;
 
-            //m_thumbnailGroupTable.UpdateGroups();
+		//m_thumbnailGroupTable.UpdateGroups();
 
-            InitializeComponents();
+		InitializeComponents();
 
-            // Связываем, чтобы при вызове события OnViewModeChange вызывалась функция SetViewMode
-            m_options.resultsOptions.OnViewModeChange += new ResultsOptions.ViewModeChangeHandler(SetViewMode);
+		// Связываем, чтобы при вызове события OnViewModeChange вызывалась функция SetViewMode
+		m_options.resultsOptions.OnViewModeChange += new ResultsOptions.ViewModeChangeHandler(SetViewMode);
 
-            SplitterMoved += new SplitterEventHandler(OnSplitterPositionChanged);
-            Resize += new EventHandler(OnSizeChanged);
-        }
+		SplitterMoved += new SplitterEventHandler(OnSplitterPositionChanged);
+		Resize += new EventHandler(OnSizeChanged);
+	}
 
-        private void InitializeComponents()
-        {
-            BorderStyle = BorderStyle.Fixed3D;
-            Dock = DockStyle.Fill;
-            Location = new Point(0, 0);
-            SplitterWidth = 2;
-            FixedPanel = FixedPanel.Panel1;
-            Size = new Size(VIEW_MIN_WIDTH + LIST_MIN_WIDTH, VIEW_MIN_HEIGHT + LIST_MIN_HEIGHT + SplitterWidth);
-            Panel1MinSize = VIEW_MIN_WIDTH;
-            Panel2MinSize = LIST_MIN_WIDTH;
-            SplitterDistance = VIEW_MIN_WIDTH;
-            Orientation = Orientation.Vertical;
-        }
+	private void InitializeComponents()
+	{
+		BorderStyle = BorderStyle.Fixed3D;
+		Dock = DockStyle.Fill;
+		Location = new Point(0, 0);
+		SplitterWidth = 2;
+		FixedPanel = FixedPanel.Panel1;
+		Size = new Size(VIEW_MIN_WIDTH + LIST_MIN_WIDTH, VIEW_MIN_HEIGHT + LIST_MIN_HEIGHT + SplitterWidth);
+		Panel1MinSize = VIEW_MIN_WIDTH;
+		Panel2MinSize = LIST_MIN_WIDTH;
+		SplitterDistance = VIEW_MIN_WIDTH;
+		Orientation = Orientation.Vertical;
+	}
 
-        public void SetViewMode(ResultsOptions.ViewMode viewMode)
-        {
-            Panel2.Controls.Clear();
-            Panel1.Controls.Clear();
-            if (viewMode == ResultsOptions.ViewMode.VerticalPairTable || viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
-            {
-                Panel2.Controls.Add(m_resultsListView);
-                Panel1.Controls.Add(m_resultsPreviewContainer);
-            }
-            if (viewMode == ResultsOptions.ViewMode.GroupedThumbnails)
-            {
-                Panel2.Controls.Add(m_thumbnailGroupTable);
-                Panel1.Controls.Add(m_thumbnailPreview);
-            }
-
-            if (viewMode == ResultsOptions.ViewMode.VerticalPairTable || viewMode == ResultsOptions.ViewMode.GroupedThumbnails)
-            {
-                Panel1MinSize = 0;
-                Panel2MinSize = 0;
-                m_setOrientationNow = true;
-                Orientation = Orientation.Vertical;
-                m_setOrientationNow = false;
-                SetSplitterDistance();
-                Panel1MinSize = VIEW_MIN_WIDTH;
-                Panel2MinSize = LIST_MIN_WIDTH;
-            }
-            if (viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
-            {
-                Panel1MinSize = 0;
-                Panel2MinSize = 0;
-                m_setOrientationNow = true;
-                Orientation = Orientation.Horizontal;
-                m_setOrientationNow = false;
-                SetSplitterDistance();
-                Panel1MinSize = VIEW_MIN_HEIGHT;
-                Panel2MinSize = LIST_MIN_HEIGHT;
-            }
-
-            if (viewMode == ResultsOptions.ViewMode.VerticalPairTable || viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
-            {
-                m_resultsPreviewContainer.SetViewMode(viewMode);
-                m_resultsListView.SetViewMode(viewMode);
-            }
-
-            m_atLeastOneTimeSetOrientation = true;
-
-            UpdateResults();
-        }
-
-        private void OnSplitterPositionChanged(object sender, SplitterEventArgs e)
-        {
-            if (!m_setOrientationNow && m_atLeastOneTimeSetOrientation)
-            {
-                GetSplitterDistance();
-            }
-        }
-
-        private void OnSizeChanged(object sender, System.EventArgs e)
-        {
-            if (m_atLeastOneTimeSetOrientation)
-            {
-                SetSplitterDistance();
-            }
-        }
-        
-        private void SetSplitterDistance()
-        {
-            var options = m_options.resultsOptions;
-            if (options.viewMode == ResultsOptions.ViewMode.VerticalPairTable || options.viewMode == ResultsOptions.ViewMode.GroupedThumbnails)
-            {
-                if (m_mainForm.WindowState == FormWindowState.Maximized)
-                {
-                    SplitterDistance = Math.Min(Math.Max(options.splitterDistanceVerticalMaximized, VIEW_MIN_WIDTH), Width - LIST_MIN_WIDTH - SplitterWidth);
-                }
-                if (m_mainForm.WindowState == FormWindowState.Normal)
-                {
-                    SplitterDistance = Math.Min(Math.Max(options.splitterDistanceVerticalNormal, VIEW_MIN_WIDTH), Width - LIST_MIN_WIDTH - SplitterWidth);
-                }
-            }
-            if (options.viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
-            {
-                if (m_mainForm.WindowState == FormWindowState.Maximized)
-                {
-                    SplitterDistance = Math.Min(Math.Max(options.splitterDistanceHorizontalMaximized, VIEW_MIN_HEIGHT), Height - LIST_MIN_HEIGHT - SplitterWidth);
-                }
-                if (m_mainForm.WindowState == FormWindowState.Normal)
-                {
-                    SplitterDistance = Math.Min(Math.Max(options.splitterDistanceHorizontalNormal, VIEW_MIN_HEIGHT), Height - LIST_MIN_HEIGHT - SplitterWidth);
-                }
-            }
-        }
-        
-        private void GetSplitterDistance()
-        {
-            var options = m_options.resultsOptions;
-            if (options.viewMode == ResultsOptions.ViewMode.VerticalPairTable || options.viewMode == ResultsOptions.ViewMode.GroupedThumbnails)
-            {
-                if (m_mainForm.WindowState == FormWindowState.Maximized)
-                {
-                    options.splitterDistanceVerticalMaximized = SplitterDistance;
-                }
-                if (m_mainForm.WindowState == FormWindowState.Normal)
-                {
-                    options.splitterDistanceVerticalNormal = SplitterDistance;
-                }
-            }
-            if (options.viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
-            {
-                if (m_mainForm.WindowState == FormWindowState.Maximized)
-                {
-                    options.splitterDistanceHorizontalMaximized = SplitterDistance;
-                }
-                if (m_mainForm.WindowState == FormWindowState.Normal)
-                {
-                    options.splitterDistanceHorizontalNormal = SplitterDistance;
-                }
-            }
-        }
-
-        protected override void OnKeyDown(KeyEventArgs e)
-        {
-            if (m_options.resultsOptions.IsPairTableView())
-            {
-                m_resultsListView.SetKeyDownEvent(e);
-            }
-        }
-
-        public void UpdateResults()
-        {
-            if (m_options.resultsOptions.IsPairTableView())
-            {
-                if (m_resultsListView != null)
-			{
-				m_resultsListView.UpdateResults();
-			}
-		}
-            else
-            {
-                if (m_thumbnailGroupTable != null)
-			{
-				m_thumbnailGroupTable.UpdateGroups();
-			}
-		}
-            if (OnUpdateResults != null)
+	public void SetViewMode(ResultsOptions.ViewMode viewMode)
+	{
+		Panel2.Controls.Clear();
+		Panel1.Controls.Clear();
+		if (viewMode == ResultsOptions.ViewMode.VerticalPairTable || viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
 		{
-			OnUpdateResults();
+			Panel2.Controls.Add(m_resultsListView);
+			Panel1.Controls.Add(m_resultsPreviewContainer);
+		}
+		if (viewMode == ResultsOptions.ViewMode.GroupedThumbnails)
+		{
+			Panel2.Controls.Add(m_thumbnailGroupTable);
+			Panel1.Controls.Add(m_thumbnailPreview);
+		}
+
+		if (viewMode == ResultsOptions.ViewMode.VerticalPairTable || viewMode == ResultsOptions.ViewMode.GroupedThumbnails)
+		{
+			Panel1MinSize = 0;
+			Panel2MinSize = 0;
+			m_setOrientationNow = true;
+			Orientation = Orientation.Vertical;
+			m_setOrientationNow = false;
+			SetSplitterDistance();
+			Panel1MinSize = VIEW_MIN_WIDTH;
+			Panel2MinSize = LIST_MIN_WIDTH;
+		}
+		if (viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
+		{
+			Panel1MinSize = 0;
+			Panel2MinSize = 0;
+			m_setOrientationNow = true;
+			Orientation = Orientation.Horizontal;
+			m_setOrientationNow = false;
+			SetSplitterDistance();
+			Panel1MinSize = VIEW_MIN_HEIGHT;
+			Panel2MinSize = LIST_MIN_HEIGHT;
+		}
+
+		if (viewMode == ResultsOptions.ViewMode.VerticalPairTable || viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
+		{
+			m_resultsPreviewContainer.SetViewMode(viewMode);
+			m_resultsListView.SetViewMode(viewMode);
+		}
+
+		m_atLeastOneTimeSetOrientation = true;
+
+		UpdateResults();
+	}
+
+	private void OnSplitterPositionChanged(object sender, SplitterEventArgs e)
+	{
+		if (!m_setOrientationNow && m_atLeastOneTimeSetOrientation)
+		{
+			GetSplitterDistance();
 		}
 	}
 
-        public void ClearResults()
-        {
-            if (m_options.resultsOptions.IsPairTableView())
-            {
-                if (m_resultsListView != null)
-			{
-				m_resultsListView.ClearResults();
-			}
-		}
-            else
-            {
-                if (m_thumbnailGroupTable != null)
-			{
-				m_thumbnailGroupTable.ClearGroups();
-			}
-		}
-            if (OnUpdateResults != null)
+	private void OnSizeChanged(object sender, System.EventArgs e)
+	{
+		if (m_atLeastOneTimeSetOrientation)
 		{
-			OnUpdateResults();
+			SetSplitterDistance();
 		}
+	}
+
+	private void SetSplitterDistance()
+	{
+		var options = m_options.resultsOptions;
+		if (options.viewMode == ResultsOptions.ViewMode.VerticalPairTable || options.viewMode == ResultsOptions.ViewMode.GroupedThumbnails)
+		{
+			if (m_mainForm.WindowState == FormWindowState.Maximized)
+			{
+				SplitterDistance = Math.Min(Math.Max(options.splitterDistanceVerticalMaximized, VIEW_MIN_WIDTH), Width - LIST_MIN_WIDTH - SplitterWidth);
+			}
+			if (m_mainForm.WindowState == FormWindowState.Normal)
+			{
+				SplitterDistance = Math.Min(Math.Max(options.splitterDistanceVerticalNormal, VIEW_MIN_WIDTH), Width - LIST_MIN_WIDTH - SplitterWidth);
+			}
+		}
+		if (options.viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
+		{
+			if (m_mainForm.WindowState == FormWindowState.Maximized)
+			{
+				SplitterDistance = Math.Min(Math.Max(options.splitterDistanceHorizontalMaximized, VIEW_MIN_HEIGHT), Height - LIST_MIN_HEIGHT - SplitterWidth);
+			}
+			if (m_mainForm.WindowState == FormWindowState.Normal)
+			{
+				SplitterDistance = Math.Min(Math.Max(options.splitterDistanceHorizontalNormal, VIEW_MIN_HEIGHT), Height - LIST_MIN_HEIGHT - SplitterWidth);
+			}
+		}
+	}
+
+	private void GetSplitterDistance()
+	{
+		var options = m_options.resultsOptions;
+		if (options.viewMode == ResultsOptions.ViewMode.VerticalPairTable || options.viewMode == ResultsOptions.ViewMode.GroupedThumbnails)
+		{
+			if (m_mainForm.WindowState == FormWindowState.Maximized)
+			{
+				options.splitterDistanceVerticalMaximized = SplitterDistance;
+			}
+			if (m_mainForm.WindowState == FormWindowState.Normal)
+			{
+				options.splitterDistanceVerticalNormal = SplitterDistance;
+			}
+		}
+		if (options.viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
+		{
+			if (m_mainForm.WindowState == FormWindowState.Maximized)
+			{
+				options.splitterDistanceHorizontalMaximized = SplitterDistance;
+			}
+			if (m_mainForm.WindowState == FormWindowState.Normal)
+			{
+				options.splitterDistanceHorizontalNormal = SplitterDistance;
+			}
+		}
+	}
+
+	protected override void OnKeyDown(KeyEventArgs e)
+	{
+		if (m_options.resultsOptions.IsPairTableView())
+		{
+			m_resultsListView.SetKeyDownEvent(e);
+		}
+	}
+
+	public void UpdateResults()
+	{
+		if (m_options.resultsOptions.IsPairTableView())
+		{
+			m_resultsListView?.UpdateResults();
+		}
+		else
+		{
+			m_thumbnailGroupTable?.UpdateGroups();
+		}
+		OnUpdateResults?.Invoke();
+	}
+
+	public void ClearResults()
+	{
+		if (m_options.resultsOptions.IsPairTableView())
+		{
+			m_resultsListView?.ClearResults();
+		}
+		else
+		{
+			m_thumbnailGroupTable?.ClearGroups();
+		}
+		OnUpdateResults?.Invoke();
 
 		CurrentResultChanged();
-        }
-
-        public void CurrentResultChanged()
-        {
-            if (OnCurrentResultChanged != null)
-		{
-			OnCurrentResultChanged();
-		}
 	}
 
-        public void SelectedResultsChanged()
-        {
-            if (OnSelectedResultsChanged != null)
-		{
-			OnSelectedResultsChanged();
-		}
+	public void CurrentResultChanged()
+	{
+		OnCurrentResultChanged?.Invoke();
 	}
-    }
+
+	public void SelectedResultsChanged()
+	{
+		OnSelectedResultsChanged?.Invoke();
+	}
+}

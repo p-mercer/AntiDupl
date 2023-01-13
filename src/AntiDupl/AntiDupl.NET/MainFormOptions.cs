@@ -41,10 +41,7 @@ public class MainFormOptions
                 if (m_toolStripView != value)
                 {
                     m_toolStripView = value;
-                    if (OnToolStripVisibleChange != null)
-				{
-					OnToolStripVisibleChange(m_toolStripView);
-				}
+				OnToolStripVisibleChange?.Invoke(m_toolStripView);
 			}
             }
         }
@@ -62,10 +59,7 @@ public class MainFormOptions
                 if (m_statusStripView != value)
                 {
                     m_statusStripView = value;
-                    if (OnStatusStripVisibleChange != null)
-				{
-					OnStatusStripVisibleChange(m_statusStripView);
-				}
+				OnStatusStripVisibleChange?.Invoke(m_statusStripView);
 			}
             }
         }

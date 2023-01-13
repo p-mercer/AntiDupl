@@ -359,10 +359,7 @@ public class ThumbnailGroupTable : Panel
         public void UpdateThumbnailsStop()
         {
             m_abortUpdateThumbnailsThread = true;
-            if (m_updateThumbnailsThread != null)
-            {
-                m_updateThumbnailsThread.Join();
-            }
+            m_updateThumbnailsThread?.Join();
         }
 
         /// <summary>
@@ -428,10 +425,7 @@ public class ThumbnailGroupTable : Panel
 
         public void ChangeCurrentThumbnail(CoreGroup group, int index)
         {
-            if (OnCurrentThumbnailChanged != null)
-		{
-			OnCurrentThumbnailChanged(group, index);
-		}
+		OnCurrentThumbnailChanged?.Invoke(group, index);
 	}
 
         public bool Rename(CoreGroup group, int index, string newFileName)
