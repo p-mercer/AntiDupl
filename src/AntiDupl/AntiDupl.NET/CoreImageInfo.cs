@@ -194,7 +194,7 @@ public class CoreImageInfo
 		}
 		else
 		{
-			return path.Substring(0, i);
+			return path[..i];
 		}
 	}
 

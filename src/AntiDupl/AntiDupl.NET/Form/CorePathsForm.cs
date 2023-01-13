@@ -741,7 +741,7 @@ public class CorePathsForm : Form
                     var fileInfo = new FileInfo(path[i]);
                     if (fileInfo.Extension.Length > 1)
                     {
-                        var extension = fileInfo.Extension.ToUpper().Substring(1);
+                        var extension = fileInfo.Extension.ToUpper()[1..];
                         for (var j = 0; j < actualExtensions.Length; ++j)
                         {
                             if (extension == actualExtensions[j]) //если расширение из списка поддерживаемых

@@ -428,7 +428,7 @@ static public class Resources
             {
                 try
                 {
-                    if (url.Substring(0, 4).ToUpper() != "HTTP")
+                    if (url[..4].ToUpper() != "HTTP")
                     {
                         var keyName = @"HTTP\shell\open\command";
                         var registryKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(keyName, false);
