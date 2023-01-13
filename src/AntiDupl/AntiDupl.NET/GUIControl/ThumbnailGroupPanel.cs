@@ -36,18 +36,16 @@ public class ThumbnailGroupPanel : RaisedPanel
 	private readonly CoreGroup m_group;
 	private readonly Options m_options;
 
-	private ThumbnailPanel[] m_thumbnailPanels;
-	public ThumbnailPanel[] ThumbnailPanels { get { return m_thumbnailPanels; } }
+	public ThumbnailPanel[] ThumbnailPanels { get; private set; }
 
-	private readonly ThumbnailGroupTable m_thumbnailGroupTable;
-	public ThumbnailGroupTable Table { get { return m_thumbnailGroupTable; } }
+	public ThumbnailGroupTable Table { get; }
 
 	public ThumbnailGroupPanel(CoreLib core, Options options, CoreGroup group, ThumbnailGroupTable thumbnailGroupTable)
 	{
 		m_core = core;
 		m_options = options;
 		m_group = group;
-		m_thumbnailGroupTable = thumbnailGroupTable;
+		Table = thumbnailGroupTable;
 		InitializeComponents();
 	}
 
@@ -58,18 +56,18 @@ public class ThumbnailGroupPanel : RaisedPanel
 
 		var width = 0;
 		var height = 0;
-		m_thumbnailPanels = new ThumbnailPanel[m_group.images.Length];
+		ThumbnailPanels = new ThumbnailPanel[m_group.images.Length];
 		for (var i = 0; i < m_group.images.Length; ++i)
 		{
-			m_thumbnailPanels[i] = new ThumbnailPanel(m_core, m_options, m_group, i, this);
-			m_thumbnailPanels[i].Location = new Point(Padding.Left + m_thumbnailPanels[i].Margin.Left + (m_thumbnailPanels[i].Width + m_thumbnailPanels[i].Margin.Horizontal) * i,
-				Padding.Top + m_thumbnailPanels[i].Margin.Top);
+			ThumbnailPanels[i] = new ThumbnailPanel(m_core, m_options, m_group, i, this);
+			ThumbnailPanels[i].Location = new Point(Padding.Left + ThumbnailPanels[i].Margin.Left + (ThumbnailPanels[i].Width + ThumbnailPanels[i].Margin.Horizontal) * i,
+				Padding.Top + ThumbnailPanels[i].Margin.Top);
 
-			width += m_thumbnailPanels[i].Width + m_thumbnailPanels[i].Padding.Horizontal + Margin.Horizontal;
-			height = Math.Max(height, m_thumbnailPanels[i].Height + m_thumbnailPanels[i].Padding.Vertical + Margin.Vertical);
+			width += ThumbnailPanels[i].Width + ThumbnailPanels[i].Padding.Horizontal + Margin.Horizontal;
+			height = Math.Max(height, ThumbnailPanels[i].Height + ThumbnailPanels[i].Padding.Vertical + Margin.Vertical);
 		}
 		ClientSize = new Size(width, height);
 
-		Controls.AddRange(m_thumbnailPanels);
+		Controls.AddRange(ThumbnailPanels);
 	}
 }

@@ -125,12 +125,9 @@ public class ThumbnailPreviewContextMenu : ContextMenuStrip
 		};
 		dialog.FileOk += new CancelEventHandler(OnRenameImageDialogFileOk);
 		dialog.Title = Resources.Strings.Current.ImagePreviewContextMenu_RenameImageItem_Text;
-		if (dialog.ShowDialog() == DialogResult.OK)
+		if (dialog.ShowDialog() == DialogResult.OK && m_thumbnailGroupTable.Rename(m_thumbnailPreview.Group, m_thumbnailPreview.Index, dialog.FileName))
 		{
-			if (m_thumbnailGroupTable.Rename(m_thumbnailPreview.Group, m_thumbnailPreview.Index, dialog.FileName))
-			{
-				m_thumbnailPreview.SetThumbnail(m_thumbnailPreview.Group, m_thumbnailPreview.Index);
-			}
+			m_thumbnailPreview.SetThumbnail(m_thumbnailPreview.Group, m_thumbnailPreview.Index);
 		}
 	}
 

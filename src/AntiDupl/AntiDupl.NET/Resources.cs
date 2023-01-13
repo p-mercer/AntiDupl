@@ -56,8 +56,7 @@ static public class Resources
 		return CreateIfNotExists(string.Format("{0}\\user", Application.StartupPath));
 	}
 
-	static private string m_userPath = null;
-	static public string UserPath { get { return m_userPath; } set { m_userPath = value; } }
+	static public string UserPath { get; set; } = null;
 
 	static public string ProfilesPath { get { return CreateIfNotExists(string.Format("{0}\\profiles", UserPath)); } }
 
@@ -253,21 +252,15 @@ static public class Resources
 			}
 		}
 
-		public static int CurrentIndex
-		{
-			get
-			{
-				return m_currentIndex;
-			}
-		}
+		public static int CurrentIndex { get; private set; } = 0;
 
 		public static NET.Strings Current
 		{
 			get
 			{
-				if (m_currentIndex < Count && m_currentIndex >= 0)
+				if (CurrentIndex < Count && CurrentIndex >= 0)
 				{
-					return (NET.Strings)m_strings[m_currentIndex];
+					return (NET.Strings)m_strings[CurrentIndex];
 				}
 				else
 				{
@@ -290,9 +283,9 @@ static public class Resources
 
 		public static bool SetCurrent(int index)
 		{
-			if (index != m_currentIndex && index < Count && index >= 0)
+			if (index != CurrentIndex && index < Count && index >= 0)
 			{
-				m_currentIndex = index;
+				CurrentIndex = index;
 				OnCurrentChange?.Invoke();
 
 				return true;
@@ -340,7 +333,6 @@ static public class Resources
 		}
 
 		private static readonly ArrayList m_strings = new();
-		private static int m_currentIndex = 0;
 
 		public static void Update()
 		{

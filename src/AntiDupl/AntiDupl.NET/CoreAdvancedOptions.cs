@@ -26,7 +26,6 @@ namespace AntiDupl.NET;
 
 public class CoreAdvancedOptions
 {
-	public bool deleteToRecycleBin;
 	public bool mistakeDataBase;
 	public int ratioResolution;
 	public int compareThreadCount;
@@ -37,13 +36,15 @@ public class CoreAdvancedOptions
 	public int ignoreFrameWidth;
 	public bool useLibJpegTurbo;
 
+	public bool DeleteToRecycleBin { get; set; }
+
 	public CoreAdvancedOptions()
 	{
 	}
 
 	public CoreAdvancedOptions(CoreAdvancedOptions advancedOptions)
 	{
-		deleteToRecycleBin = advancedOptions.deleteToRecycleBin;
+		DeleteToRecycleBin = advancedOptions.DeleteToRecycleBin;
 		mistakeDataBase = advancedOptions.mistakeDataBase;
 		ratioResolution = advancedOptions.ratioResolution;
 		compareThreadCount = advancedOptions.compareThreadCount;
@@ -57,7 +58,7 @@ public class CoreAdvancedOptions
 
 	public CoreAdvancedOptions(ref CoreDll.adAdvancedOptions advancedOptions)
 	{
-		deleteToRecycleBin = advancedOptions.deleteToRecycleBin != CoreDll.FALSE;
+		DeleteToRecycleBin = advancedOptions.deleteToRecycleBin != CoreDll.FALSE;
 		mistakeDataBase = advancedOptions.mistakeDataBase != CoreDll.FALSE;
 		ratioResolution = advancedOptions.ratioResolution;
 		compareThreadCount = advancedOptions.compareThreadCount;
@@ -71,7 +72,7 @@ public class CoreAdvancedOptions
 
 	public void ConvertTo(ref CoreDll.adAdvancedOptions advancedOptions)
 	{
-		advancedOptions.deleteToRecycleBin = deleteToRecycleBin ? CoreDll.TRUE : CoreDll.FALSE;
+		advancedOptions.deleteToRecycleBin = DeleteToRecycleBin ? CoreDll.TRUE : CoreDll.FALSE;
 		advancedOptions.mistakeDataBase = mistakeDataBase ? CoreDll.TRUE : CoreDll.FALSE;
 		advancedOptions.ratioResolution = ratioResolution;
 		advancedOptions.compareThreadCount = compareThreadCount;
@@ -91,7 +92,7 @@ public class CoreAdvancedOptions
 	public bool Equals(CoreAdvancedOptions advancedOptions)
 	{
 		return
-			deleteToRecycleBin == advancedOptions.deleteToRecycleBin &&
+			DeleteToRecycleBin == advancedOptions.DeleteToRecycleBin &&
 			mistakeDataBase == advancedOptions.mistakeDataBase &&
 			ratioResolution == advancedOptions.ratioResolution &&
 			compareThreadCount == advancedOptions.compareThreadCount &&

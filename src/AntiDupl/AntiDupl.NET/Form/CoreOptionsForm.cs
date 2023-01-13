@@ -620,7 +620,7 @@ public class CoreOptionsForm : Form
 		m_searchSystemCheckBox.Checked = m_newCoreOptions.searchOptions.system;
 		m_searchHiddenCheckBox.Checked = m_newCoreOptions.searchOptions.hidden;
 
-		m_deleteToRecycleBinCheckBox.Checked = m_newCoreOptions.advancedOptions.deleteToRecycleBin;
+		m_deleteToRecycleBinCheckBox.Checked = m_newCoreOptions.advancedOptions.DeleteToRecycleBin;
 		m_mistakeDataBaseCheckBox.Checked = m_newCoreOptions.advancedOptions.mistakeDataBase;
 		m_ratioResolutionLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.ratioResolution;
 		m_compareThreadCountLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.compareThreadCount;
@@ -674,7 +674,7 @@ public class CoreOptionsForm : Form
 		m_newCoreOptions.searchOptions.system = m_searchSystemCheckBox.Checked;
 		m_newCoreOptions.searchOptions.hidden = m_searchHiddenCheckBox.Checked;
 
-		m_newCoreOptions.advancedOptions.deleteToRecycleBin = m_deleteToRecycleBinCheckBox.Checked;
+		m_newCoreOptions.advancedOptions.DeleteToRecycleBin = m_deleteToRecycleBinCheckBox.Checked;
 		m_newCoreOptions.advancedOptions.mistakeDataBase = m_mistakeDataBaseCheckBox.Checked;
 		m_newCoreOptions.advancedOptions.ratioResolution = m_ratioResolutionLabeledComboBox.SelectedValue;
 		m_newCoreOptions.advancedOptions.compareThreadCount = m_compareThreadCountLabeledComboBox.SelectedValue;

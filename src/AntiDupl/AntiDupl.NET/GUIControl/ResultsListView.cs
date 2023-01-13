@@ -86,8 +86,8 @@ public class ResultsListView : DataGridView
 	private readonly MainSplitContainer m_mainSplitContainer;
 	private readonly CoreLib m_core;
 	private readonly Options m_options;
-	public CoreOptions CoreOptions { get { return m_coreOptions; } }
-	private readonly CoreOptions m_coreOptions;
+	public CoreOptions CoreOptions { get; }
+
 	private CoreResult[] m_results;
 	private ResultsOptions.ViewMode m_viewMode;
 
@@ -132,7 +132,7 @@ public class ResultsListView : DataGridView
 	{
 		m_core = core;
 		m_options = options;
-		m_coreOptions = coreOptions;
+		CoreOptions = coreOptions;
 		m_mainSplitContainer = mainSplitContainer;
 		m_results = Array.Empty<CoreResult>();
 		m_resultRowSetter = new ResultRowSetter(m_options, this);
@@ -167,7 +167,7 @@ public class ResultsListView : DataGridView
 		DoubleBuffered = true;
 		Location = new Point(0, 0);
 		Dock = DockStyle.Fill;
-		m_contextMenuStrip = new ResultsListViewContextMenu(m_core, m_options, m_coreOptions, m_mainSplitContainer);
+		m_contextMenuStrip = new ResultsListViewContextMenu(m_core, m_options, CoreOptions, m_mainSplitContainer);
 		m_contextMenuStrip.KeyUp += new KeyEventHandler(OnContextMenuKeyUp);
 	}
 
@@ -263,14 +263,14 @@ public class ResultsListView : DataGridView
 	public void MakeAction(CoreDll.LocalActionType action, CoreDll.TargetType target)
 	{
 		m_makeAction = true;
-		var progressForm = new ProgressForm(action, target, m_core, m_options, m_coreOptions, m_mainSplitContainer);
+		var progressForm = new ProgressForm(action, target, m_core, m_options, CoreOptions, m_mainSplitContainer);
 		progressForm.Execute();
 		m_makeAction = false;
 	}
 
 	public void RefreshResults()
 	{
-		var progressForm = new ProgressForm(ProgressForm.Type.RefreshResults, m_core, m_options, m_coreOptions, m_mainSplitContainer);
+		var progressForm = new ProgressForm(ProgressForm.Type.RefreshResults, m_core, m_options, CoreOptions, m_mainSplitContainer);
 		progressForm.Execute();
 	}
 
@@ -282,7 +282,7 @@ public class ResultsListView : DataGridView
 	public void RenameCurrent(CoreDll.RenameCurrentType renameCurrentType, string newFileName)
 	{
 		m_makeAction = true;
-		var progressForm = new ProgressForm(renameCurrentType, newFileName, m_core, m_options, m_coreOptions, m_mainSplitContainer);
+		var progressForm = new ProgressForm(renameCurrentType, newFileName, m_core, m_options, CoreOptions, m_mainSplitContainer);
 		progressForm.Execute();
 		m_makeAction = false;
 	}
@@ -294,7 +294,7 @@ public class ResultsListView : DataGridView
 	public void MoveCurrentGroupToDirectory(string directory)
 	{
 		m_makeAction = true;
-		var progressForm = new ProgressForm(ProgressForm.Type.MoveCurrentGroup, directory, m_core, m_options, m_coreOptions, m_mainSplitContainer);
+		var progressForm = new ProgressForm(ProgressForm.Type.MoveCurrentGroup, directory, m_core, m_options, CoreOptions, m_mainSplitContainer);
 		progressForm.Execute();
 		m_makeAction = false;
 	}
@@ -302,7 +302,7 @@ public class ResultsListView : DataGridView
 	public void RenameCurrentGroupAs(string filename)
 	{
 		m_makeAction = true;
-		var progressForm = new ProgressForm(ProgressForm.Type.RenameCurrentGroupAs, filename, m_core, m_options, m_coreOptions, m_mainSplitContainer);
+		var progressForm = new ProgressForm(ProgressForm.Type.RenameCurrentGroupAs, filename, m_core, m_options, CoreOptions, m_mainSplitContainer);
 		progressForm.Execute();
 		m_makeAction = false;
 	}
@@ -315,14 +315,14 @@ public class ResultsListView : DataGridView
 	{
 		if (hotKey == (Keys.Z | Keys.Control) && m_core.CanApply(CoreDll.ActionEnableType.Undo))
 		{
-			var progressForm = new ProgressForm(ProgressForm.Type.Undo, m_core, m_options, m_coreOptions, m_mainSplitContainer);
+			var progressForm = new ProgressForm(ProgressForm.Type.Undo, m_core, m_options, CoreOptions, m_mainSplitContainer);
 			progressForm.Execute();
 			return;
 		}
 
 		if (hotKey == (Keys.Y | Keys.Control) && m_core.CanApply(CoreDll.ActionEnableType.Redo))
 		{
-			var progressForm = new ProgressForm(ProgressForm.Type.Redo, m_core, m_options, m_coreOptions, m_mainSplitContainer);
+			var progressForm = new ProgressForm(ProgressForm.Type.Redo, m_core, m_options, CoreOptions, m_mainSplitContainer);
 			progressForm.Execute();
 			return;
 		}

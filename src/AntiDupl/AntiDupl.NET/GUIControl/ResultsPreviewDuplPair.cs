@@ -320,23 +320,20 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 			return;
 		}
 
-		if (!m_options.resultsOptions.HighlightAllDifferences)
+		if (!m_options.resultsOptions.HighlightAllDifferences && HighlightCompleteEvent != null)
 		{
-			if (HighlightCompleteEvent != null)
+			rectangles.Sort(delegate (RectanglesWithSimilarity a, RectanglesWithSimilarity b)
 			{
-				rectangles.Sort(delegate (RectanglesWithSimilarity a, RectanglesWithSimilarity b)
-				{
-					return a.similarity.CompareTo(b.similarity);
-				});
-				var src = rectangles.ToArray();
-				var dst = new List<Rectangle>();
-				for (int i = 0, n = Math.Min(src.Length, m_options.resultsOptions.MaxFragmentsForHighlight); i < n; ++i)
-				{
-					dst.Add(src[i].rectangle);
-				}
-
-				HighlightCompleteEvent(dst);
+				return a.similarity.CompareTo(b.similarity);
+			});
+			var src = rectangles.ToArray();
+			var dst = new List<Rectangle>();
+			for (int i = 0, n = Math.Min(src.Length, m_options.resultsOptions.MaxFragmentsForHighlight); i < n; ++i)
+			{
+				dst.Add(src[i].rectangle);
 			}
+
+			HighlightCompleteEvent(dst);
 		}
 
 		if (HighlightCompleteEvent != null)

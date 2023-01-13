@@ -41,8 +41,6 @@ public class MainSplitContainer : SplitContainer
 	private readonly Options m_options;
 	private readonly CoreLib m_core;
 	private readonly CoreOptions m_coreOptions;
-
-	private readonly ResultsListView m_resultsListView;
 	private readonly ResultsPreviewContainer m_resultsPreviewContainer;
 
 	private readonly ThumbnailGroupTable m_thumbnailGroupTable;
@@ -50,7 +48,7 @@ public class MainSplitContainer : SplitContainer
 	private bool m_setOrientationNow = false;
 	private bool m_atLeastOneTimeSetOrientation = false;
 
-	public ResultsListView resultsListView { get { return m_resultsListView; } }
+	public ResultsListView resultsListView { get; }
 
 	public delegate void UpdateResultsHandler();
 	public event UpdateResultsHandler OnUpdateResults;
@@ -68,7 +66,7 @@ public class MainSplitContainer : SplitContainer
 		m_core = core;
 		m_coreOptions = coreOptions;
 
-		m_resultsListView = new ResultsListView(m_core, m_options, m_coreOptions, this);
+		resultsListView = new ResultsListView(m_core, m_options, m_coreOptions, this);
 		m_resultsPreviewContainer = new ResultsPreviewContainer(m_core, m_options, m_coreOptions, this);
 
 		//m_resultsListView.UpdateResults();
@@ -109,7 +107,7 @@ public class MainSplitContainer : SplitContainer
 		Panel1.Controls.Clear();
 		if (viewMode == ResultsOptions.ViewMode.VerticalPairTable || viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
 		{
-			Panel2.Controls.Add(m_resultsListView);
+			Panel2.Controls.Add(resultsListView);
 			Panel1.Controls.Add(m_resultsPreviewContainer);
 		}
 		if (viewMode == ResultsOptions.ViewMode.GroupedThumbnails)
@@ -144,7 +142,7 @@ public class MainSplitContainer : SplitContainer
 		if (viewMode == ResultsOptions.ViewMode.VerticalPairTable || viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
 		{
 			m_resultsPreviewContainer.SetViewMode(viewMode);
-			m_resultsListView.SetViewMode(viewMode);
+			resultsListView.SetViewMode(viewMode);
 		}
 
 		m_atLeastOneTimeSetOrientation = true;
@@ -226,7 +224,7 @@ public class MainSplitContainer : SplitContainer
 	{
 		if (m_options.resultsOptions.IsPairTableView())
 		{
-			m_resultsListView.SetKeyDownEvent(e);
+			resultsListView.SetKeyDownEvent(e);
 		}
 	}
 
@@ -234,7 +232,7 @@ public class MainSplitContainer : SplitContainer
 	{
 		if (m_options.resultsOptions.IsPairTableView())
 		{
-			m_resultsListView?.UpdateResults();
+			resultsListView?.UpdateResults();
 		}
 		else
 		{
@@ -247,7 +245,7 @@ public class MainSplitContainer : SplitContainer
 	{
 		if (m_options.resultsOptions.IsPairTableView())
 		{
-			m_resultsListView?.ClearResults();
+			resultsListView?.ClearResults();
 		}
 		else
 		{

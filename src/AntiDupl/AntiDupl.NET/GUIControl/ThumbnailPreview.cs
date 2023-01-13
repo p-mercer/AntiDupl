@@ -35,11 +35,10 @@ public class ThumbnailPreview : Panel
 	private readonly Options m_options;
 	private readonly MainSplitContainer m_mainSplitContainer;
 
-	private CoreGroup m_group = null;
-	public CoreGroup Group { get { return m_group; } }
-	private int m_index = 0;
-	public int Index { get { return m_index; } }
-	public CoreImageInfo ImageInfo { get { return m_group.images[m_index]; } }
+	public CoreGroup Group { get; private set; } = null;
+
+	public int Index { get; private set; } = 0;
+	public CoreImageInfo ImageInfo { get { return Group.images[Index]; } }
 
 	private PictureBoxPanel m_pictureBoxPanel;
 
@@ -64,10 +63,10 @@ public class ThumbnailPreview : Panel
 
 	public void SetThumbnail(CoreGroup group, int index)
 	{
-		m_group = group;
-		m_index = index;
+		Group = group;
+		Index = index;
 		m_pictureBoxPanel.UpdateImage(ImageInfo);
-		m_pictureBoxPanel.UpdateImagePadding(m_group.sizeMax);
+		m_pictureBoxPanel.UpdateImagePadding(Group.sizeMax);
 		m_pictureBoxPanel.Refresh();
 	}
 }

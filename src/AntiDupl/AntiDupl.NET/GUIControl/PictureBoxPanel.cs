@@ -58,15 +58,7 @@ public class PictureBoxPanel : Panel
 	private Rectangle[] m_rectanglesOfDifferences;
 	private Pen penForDifferences = new(new SolidBrush(Color.Red), 4);
 
-	private ImagePreviewPanel.Position m_position;
-	public ImagePreviewPanel.Position Position
-	{
-		get { return m_position; }
-		set
-		{
-			m_position = value;
-		}
-	}
+	public ImagePreviewPanel.Position Position { get; set; }
 	private string m_prevFile;
 	private string m_nextFile;
 	private Bitmap m_prevBitmap;
@@ -291,7 +283,7 @@ public class PictureBoxPanel : Panel
 							verticalPosition = (clientHeight - targetHeight) / 2;
 							if (m_options.resultsOptions.ShowNeighboursImages)
 							{
-								if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
+								if (Position == ImagePreviewPanel.Position.Top || Position == ImagePreviewPanel.Position.Bottom)
 								{
 									horizontalPosition = clientWidth - targetWidth; //сдвигаем влево
 									verticalPosition = (clientHeight - targetHeight) / 2;
@@ -315,7 +307,7 @@ public class PictureBoxPanel : Panel
 
 							if (m_options.resultsOptions.ShowNeighboursImages)
 							{
-								if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
+								if (Position == ImagePreviewPanel.Position.Top || Position == ImagePreviewPanel.Position.Bottom)
 								{
 									horizontalPosition = clientWidth - targetWidth; //сдвигаем влево
 									verticalPosition = (clientHeight - targetHeight) / 2; //посеридине
@@ -339,7 +331,7 @@ public class PictureBoxPanel : Panel
 						targetWidth = currentWidth;
 						if (m_options.resultsOptions.ShowNeighboursImages)
 						{
-							if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
+							if (Position == ImagePreviewPanel.Position.Top || Position == ImagePreviewPanel.Position.Bottom)
 							{
 								verticalPosition = (clientHeight - currentHeight) / 2;
 								horizontalPosition = clientWidth - currentWidth;
@@ -367,7 +359,7 @@ public class PictureBoxPanel : Panel
 							targetHeight = clientWidth * currentHeight / currentWidth;
 							if (m_options.resultsOptions.ShowNeighboursImages)
 							{
-								if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
+								if (Position == ImagePreviewPanel.Position.Top || Position == ImagePreviewPanel.Position.Bottom)
 								{
 									verticalPosition = (clientHeight - targetHeight) / 2;
 								}
@@ -387,7 +379,7 @@ public class PictureBoxPanel : Panel
 							targetHeight = clientHeight;
 							if (m_options.resultsOptions.ShowNeighboursImages)
 							{
-								if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
+								if (Position == ImagePreviewPanel.Position.Top || Position == ImagePreviewPanel.Position.Bottom)
 								{
 									horizontalPosition = clientWidth - targetWidth;
 								}
@@ -402,7 +394,7 @@ public class PictureBoxPanel : Panel
 					{
 						if (m_options.resultsOptions.ShowNeighboursImages)
 						{
-							if (m_position == ImagePreviewPanel.Position.Top || m_position == ImagePreviewPanel.Position.Bottom)
+							if (Position == ImagePreviewPanel.Position.Top || Position == ImagePreviewPanel.Position.Bottom)
 							{
 								horizontalPosition = clientWidth - currentWidth;
 							}
@@ -508,7 +500,7 @@ public class PictureBoxPanel : Panel
 
 			if (m_prevBitmap != null)
 			{
-				m_prevBitmapRect = GetRectangle(m_position, m_prevBitmap, Neighbour.Previous);
+				m_prevBitmapRect = GetRectangle(Position, m_prevBitmap, Neighbour.Previous);
 			}
 
 			if (m_nextFile != null)
@@ -518,7 +510,7 @@ public class PictureBoxPanel : Panel
 
 			if (m_nextBitmap != null)
 			{
-				m_nextBitmapRect = GetRectangle(m_position, m_nextBitmap, Neighbour.Next);
+				m_nextBitmapRect = GetRectangle(Position, m_nextBitmap, Neighbour.Next);
 			}
 		}
 		else

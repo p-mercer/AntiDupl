@@ -25,7 +25,7 @@ using System;
 
 namespace AntiDupl.NET;
 
-internal class Comparator
+internal static class Comparator
 {
 	public static float Similarity(byte[] first, byte[] second)
 	{
@@ -49,6 +49,6 @@ internal class Comparator
 			sum += (int)Math.Pow((first[x] - second[x]), 2);
 		}
 
-		return sum / length;
+		return (float) sum / length;
 	}
 }

@@ -41,11 +41,10 @@ public class ImagePreviewPanel : TableLayoutPanel
 	}
 	private Position m_position;
 
-	private CoreDll.RenameCurrentType m_renameCurrentType;
 	/// <summary>
 	/// Переименовывать первую или вторую картинку.
 	/// </summary>
-	public CoreDll.RenameCurrentType RenameCurrentType { get { return m_renameCurrentType; } }
+	public CoreDll.RenameCurrentType RenameCurrentType { get; private set; }
 
 	private const int IBW = 1;//Internal border width
 	private const int EBW = 2;//External border width
@@ -54,11 +53,10 @@ public class ImagePreviewPanel : TableLayoutPanel
 	private readonly Options m_options;
 	private readonly ResultsListView m_resultsListView;
 
-	private int m_group;
 	/// <summary>
 	/// Группа дубликатов.
 	/// </summary>
-	public int Group { get { return m_group; } }
+	public int Group { get; private set; }
 
 	private CoreImageInfo m_currentImageInfo;
 	public CoreImageInfo CurrentImageInfo { get { return m_currentImageInfo; } }
@@ -300,7 +298,7 @@ public class ImagePreviewPanel : TableLayoutPanel
 			throw new Exception("Bad result type!");
 		}
 
-		m_group = result.group;
+		Group = result.group;
 
 		switch (m_position)
 		{
@@ -342,11 +340,11 @@ public class ImagePreviewPanel : TableLayoutPanel
 		{
 			case Position.Left:
 			case Position.Top:
-				m_renameCurrentType = CoreDll.RenameCurrentType.First;
+				RenameCurrentType = CoreDll.RenameCurrentType.First;
 				break;
 			case Position.Right:
 			case Position.Bottom:
-				m_renameCurrentType = CoreDll.RenameCurrentType.Second;
+				RenameCurrentType = CoreDll.RenameCurrentType.Second;
 				break;
 		}
 
@@ -441,7 +439,7 @@ public class ImagePreviewPanel : TableLayoutPanel
 		dialog.InitialDirectory = fileInfo.Directory.ToString();
 		if (dialog.ShowDialog() == DialogResult.OK)
 		{
-			m_resultsListView.RenameCurrent(m_renameCurrentType, dialog.FileName);
+			m_resultsListView.RenameCurrent(RenameCurrentType, dialog.FileName);
 		}
 	}
 

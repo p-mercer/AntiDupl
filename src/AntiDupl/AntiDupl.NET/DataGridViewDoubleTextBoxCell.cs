@@ -35,11 +35,8 @@ public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
 	private const int TOP_INTEND = 2;
 	private const int RIGHT_INTEND = 1;
 
-	private Color m_separatorColor = Color.LightGray;
-	private Color m_markerColor = Color.Red;
-
-	public Color separatorColor { get { return m_separatorColor; } set { m_separatorColor = value; } }
-	public Color markerColor { get { return m_markerColor; } set { m_markerColor = value; } }
+	public Color separatorColor { get; set; } = Color.LightGray;
+	public Color markerColor { get; set; } = Color.Red;
 
 	public enum MarkType
 	{
@@ -48,8 +45,8 @@ public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
 		Second,
 		Both
 	}
-	private MarkType m_markType = MarkType.None;
-	public MarkType markType { get { return m_markType; } set { m_markType = value; } }
+
+	public MarkType markType { get; set; } = MarkType.None;
 
 
 	private readonly object m_first;
@@ -74,15 +71,15 @@ public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
 		if ((cellState & DataGridViewElementStates.Selected) != 0)
 		{
 			ordinaryColor = cellStyle.SelectionForeColor;
-			markColor = m_markerColor;
+			markColor = markerColor;
 		}
 		else
 		{
 			ordinaryColor = cellStyle.ForeColor;
-			markColor = m_markerColor;
+			markColor = markerColor;
 		}
 
-		switch (m_markType)
+		switch (markType)
 		{
 			case MarkType.None:
 				firstColor = ordinaryColor;
@@ -106,7 +103,7 @@ public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
 				break;
 		}
 
-		var separatorPen = new Pen(m_separatorColor);
+		var separatorPen = new Pen(separatorColor);
 		var separatorX = (cellBounds.Top + cellBounds.Bottom) / 2;
 		var format = new StringFormat
 		{
