@@ -75,7 +75,7 @@ namespace AntiDupl.NET;
             Text = s.LanguageMenuItem_Text;
         }
 
-        void UpdateIcons()
+	private void UpdateIcons()
         {
             for (var i = 0; i < m_items.Length; i++)
             {

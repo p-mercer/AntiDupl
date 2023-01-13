@@ -28,7 +28,7 @@ using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
-    class MainStatusStrip : StatusStrip
+internal class MainStatusStrip : StatusStrip
     {
         private readonly MainSplitContainer m_mainSplitContainer;
         private readonly Options m_options;

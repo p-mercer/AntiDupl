@@ -83,7 +83,7 @@ namespace AntiDupl.NET;
             m_groupedThumbnailsMenuItem.Text = s.ViewModeMenuItem_GroupedThumbnailsMenuItem_Text;
         }
 
-        void UpdateIcons(ResultsOptions.ViewMode viewMode)
+	private void UpdateIcons(ResultsOptions.ViewMode viewMode)
         {
             m_verticalPairTableMenuItem.Image = (viewMode == ResultsOptions.ViewMode.VerticalPairTable ? m_trueIcon : m_falseIcon);
             m_horizontalPairTableMenuItem.Image = (viewMode == ResultsOptions.ViewMode.HorizontalPairTable ? m_trueIcon : m_falseIcon);

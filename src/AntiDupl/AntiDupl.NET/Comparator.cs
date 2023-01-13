@@ -25,7 +25,7 @@ using System;
 
 namespace AntiDupl.NET;
 
-    class Comparator
+internal class Comparator
     {
         public static float Similarity(byte[] first, byte[] second)
         {

@@ -41,7 +41,7 @@ namespace AntiDupl.NET;
 
         private readonly MainForm m_mainForm;
         private readonly Options m_options;
-	readonly CoreLib m_core;
+	private readonly CoreLib m_core;
         private readonly CoreOptions m_coreOptions;
 
         private readonly ResultsListView m_resultsListView;
@@ -49,9 +49,8 @@ namespace AntiDupl.NET;
 
         private readonly ThumbnailGroupTable m_thumbnailGroupTable;
         private readonly ThumbnailPreview m_thumbnailPreview;
-        
-        bool m_setOrientationNow = false;
-        bool m_atLeastOneTimeSetOrientation = false;
+	private bool m_setOrientationNow = false;
+	private bool m_atLeastOneTimeSetOrientation = false;
 
         public ResultsListView resultsListView { get { return m_resultsListView; } }
 

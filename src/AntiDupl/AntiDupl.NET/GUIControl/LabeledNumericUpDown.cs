@@ -28,10 +28,10 @@ using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
-    /// <summary>
-    /// NumericUpDown с подписью.
-    /// </summary>
-    class LabeledNumericUpDown : TableLayoutPanel
+/// <summary>
+/// NumericUpDown с подписью.
+/// </summary>
+internal class LabeledNumericUpDown : TableLayoutPanel
     {
         private readonly NumericUpDown m_numericUpDown;
         private readonly Label m_label;

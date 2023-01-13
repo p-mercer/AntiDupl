@@ -64,13 +64,13 @@ namespace AntiDupl.NET;
 		_grayScaleData = GetBmpBytes(ToGrayScale(sectionBmp));
 	}
 
-        /// <summary>
-        /// During this process, we chuck the RGBA channels.  The RGB channels are all equal, and the A channels is completely
-        /// irrelevant.  The remaining byte[] is simply a greyscale luma channel.
-        /// </summary>
-        /// <param name="sectionBmp"></param>
-        /// <returns></returns>
-        byte[] GetBmpBytes(Bitmap bmp)
+	/// <summary>
+	/// During this process, we chuck the RGBA channels.  The RGB channels are all equal, and the A channels is completely
+	/// irrelevant.  The remaining byte[] is simply a greyscale luma channel.
+	/// </summary>
+	/// <param name="sectionBmp"></param>
+	/// <returns></returns>
+	private byte[] GetBmpBytes(Bitmap bmp)
         {
             var bData = bmp.LockBits(new Rectangle(new Point(), bmp.Size), ImageLockMode.ReadOnly, bmp.PixelFormat);
             var byteCount = (bData.Stride * bmp.Height) / 4;

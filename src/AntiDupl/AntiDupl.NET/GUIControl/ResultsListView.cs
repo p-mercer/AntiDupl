@@ -105,9 +105,8 @@ namespace AntiDupl.NET;
         private int m_lastDragSelectedRowIndex = -1;
         private int m_lowestDragSelectedIndex = -1;
         private int m_highestDragSelectedIndex = -1;
-
-        ContextMenuStrip m_contextMenuStrip;
-	readonly ResultRowSetter m_resultRowSetter;
+	private ContextMenuStrip m_contextMenuStrip;
+	private readonly ResultRowSetter m_resultRowSetter;
 
         /// <summary>
         /// Returns the lower value of the first and last drag-selected row indices.

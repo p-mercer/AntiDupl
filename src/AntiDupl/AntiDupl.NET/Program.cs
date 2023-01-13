@@ -28,10 +28,10 @@ using System.IO;
 
 namespace AntiDupl.NET;
 
-    static class Program
+internal static class Program
     {
         [STAThread]
-        static void Main(string[] args)
+	private static void Main(string[] args)
         {
             if (IsDotNet35Installed)
             {
@@ -57,7 +57,7 @@ namespace AntiDupl.NET;
                 System.Diagnostics.Process.Start("http://www.microsoft.com/ru-ru/download/details.aspx?id=22");
         }
 
-        static bool GetParameter(string[] args, string name, ref string value)
+	private static bool GetParameter(string[] args, string name, ref string value)
         {
             for(var i = 0; i < args.Length - 1; i++)
             {

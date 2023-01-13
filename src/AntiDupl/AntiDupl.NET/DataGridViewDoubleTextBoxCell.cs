@@ -32,11 +32,11 @@ namespace AntiDupl.NET;
 
     public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
     {
-        const int PADDING = 3;
-        const int SEPARATOR_WIDTH = 1;
-        const int LEFT_INTEND = 1;
-        const int TOP_INTEND = 2;
-        const int RIGHT_INTEND = 1;
+	private const int PADDING = 3;
+	private const int SEPARATOR_WIDTH = 1;
+	private const int LEFT_INTEND = 1;
+	private const int TOP_INTEND = 2;
+	private const int RIGHT_INTEND = 1;
 
         private Color m_separatorColor = Color.LightGray;
         private Color m_markerColor = Color.Red;

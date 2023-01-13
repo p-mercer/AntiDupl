@@ -72,7 +72,7 @@ namespace AntiDupl.NET;
             UpdateButtonEnabling();
         }
 
-        void InitializeComponent()
+	private void InitializeComponent()
         {
             ClientSize = new System.Drawing.Size(FORM_WIDTH, FORM_HEIGHT);
             FormBorderStyle = FormBorderStyle.Sizable;

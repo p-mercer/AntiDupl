@@ -35,7 +35,7 @@ namespace AntiDupl.NET;
     /// </summary>
     public class ResultsPreviewDefect : ResultsPreviewBase
     {
-        ImagePreviewPanel m_imagePreviewPanel;
+	private ImagePreviewPanel m_imagePreviewPanel;
         private ToolStripButton m_deleteButton;
         private ToolStripButton m_mistakeButton;
 

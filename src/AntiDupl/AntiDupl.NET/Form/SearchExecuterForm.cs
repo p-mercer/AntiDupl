@@ -49,7 +49,8 @@ namespace AntiDupl.NET;
             Stopped,
             Finish
         }
-        State m_state = State.Start;
+
+	private State m_state = State.Start;
 
         private readonly CoreLib m_core;
         private readonly Options m_options;
@@ -180,7 +181,7 @@ namespace AntiDupl.NET;
             ShowDialog();
         }
 
-        void TimerCallback(Object obj, EventArgs eventArgs)
+	private void TimerCallback(Object obj, EventArgs eventArgs)
         {
             if (m_state == State.Finish)
             {

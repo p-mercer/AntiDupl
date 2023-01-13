@@ -324,7 +324,7 @@ namespace AntiDupl.NET;
             m_cancelButton.Text = s.CancelButton_Text;
         }
 
-        void TimerCallback(Object obj, EventArgs eventArgs)
+	private void TimerCallback(Object obj, EventArgs eventArgs)
         {
             if (m_state == State.Finish)
             {

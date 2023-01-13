@@ -34,7 +34,7 @@ namespace AntiDupl.NET;
 
     public class NewVersionMenuItem : ToolStripMenuItem
     {
-        bool m_downloadingFinished = false;
+	private bool m_downloadingFinished = false;
 
         private Version m_localVersion;
         private Version m_onlineVersion;
@@ -86,7 +86,7 @@ namespace AntiDupl.NET;
             }
         }
 
-        void TimerCallback(Object obj, EventArgs eventArgs)
+	private void TimerCallback(Object obj, EventArgs eventArgs)
         {
             if (m_downloadingFinished)
             {
