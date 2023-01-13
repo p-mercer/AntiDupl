@@ -51,13 +51,13 @@ public class ResultsPreviewContainer : Panel
 		m_mainSplitContainer = mainSplitContainer;
 		m_resultsPreviewDefect = new ResultsPreviewDefect(core, options, coreOptions, m_mainSplitContainer.resultsListView)
 		{
-			Location = new System.Drawing.Point(0, 0),
+			Location = new Point(0, 0),
 			Dock = DockStyle.Fill
 		};
 
 		m_resultsPreviewDuplPair = new ResultsPreviewDuplPair(core, options, coreOptions, m_mainSplitContainer.resultsListView)
 		{
-			Location = new System.Drawing.Point(0, 0),
+			Location = new Point(0, 0),
 			Dock = DockStyle.Fill
 		};
 

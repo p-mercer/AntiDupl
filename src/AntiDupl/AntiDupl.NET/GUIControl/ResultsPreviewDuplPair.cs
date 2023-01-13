@@ -181,14 +181,14 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 		m_renameSecondToFirstButton.BackColor = BackColor;
 	}
 
-	private void OnButtonClicked(object sender, System.EventArgs e)
+	private void OnButtonClicked(object sender, EventArgs e)
 	{
 		var item = (ToolStripButton)sender;
 		var action = (CoreDll.LocalActionType)item.Tag;
 		m_resultsListView.MakeAction(action, CoreDll.TargetType.Current);
 	}
 
-	private void OnImageDoubleClicked(object sender, System.EventArgs e)
+	private void OnImageDoubleClicked(object sender, EventArgs e)
 	{
 		var pictureBox = (PictureBox)sender;
 		var startInfo = new ProcessStartInfo
@@ -198,13 +198,13 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 		Process.Start(startInfo);
 	}
 
-	private void OnOpenBothFoldersButtonClicked(object sender, System.EventArgs e)
+	private void OnOpenBothFoldersButtonClicked(object sender, EventArgs e)
 	{
 		FolderOpener.OpenContainingFolder(m_firstImagePreviewPanel.CurrentImageInfo);
 		FolderOpener.OpenContainingFolder(m_secondImagePreviewPanel.CurrentImageInfo);
 	}
 
-	private void OnOpenBothImagesButtonClicked(object sender, System.EventArgs e)
+	private void OnOpenBothImagesButtonClicked(object sender, EventArgs e)
 	{
 		ImageOpener.OpenFile(m_firstImagePreviewPanel.CurrentImageInfo.path);
 		ImageOpener.OpenFile(m_secondImagePreviewPanel.CurrentImageInfo.path);

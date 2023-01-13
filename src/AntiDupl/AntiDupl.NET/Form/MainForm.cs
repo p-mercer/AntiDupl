@@ -68,7 +68,7 @@ public class MainForm : Form
 		m_mainSplitContainer = new MainSplitContainer(m_core, m_options, m_coreOptions, this)
 		{
 			Dock = DockStyle.Fill,
-			Location = new System.Drawing.Point(0, 0)
+			Location = new Point(0, 0)
 		};
 
 		m_mainMenu = new MainMenu(m_core, m_options, m_coreOptions, this, m_mainSplitContainer);

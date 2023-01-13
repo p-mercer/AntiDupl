@@ -200,16 +200,16 @@ static public class Resources
 			}
 		}
 
-		static private AntiDupl.NET.Strings Load(string path)
+		static private NET.Strings Load(string path)
 		{
 			var fileInfo = new FileInfo(path);
 			if (fileInfo.Exists)
 			{
 				try
 				{
-					var xmlSerializer = new XmlSerializer(typeof(AntiDupl.NET.Strings));
+					var xmlSerializer = new XmlSerializer(typeof(NET.Strings));
 					var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
-					var strings = (AntiDupl.NET.Strings)xmlSerializer.Deserialize(fileStream);
+					var strings = (NET.Strings)xmlSerializer.Deserialize(fileStream);
 					fileStream.Close();
 					return strings;
 				}
@@ -224,13 +224,13 @@ static public class Resources
 			}
 		}
 
-		static private void Save(AntiDupl.NET.Strings strings)
+		static private void Save(NET.Strings strings)
 		{
 			try
 			{
 
 				TextWriter writer = new StreamWriter(GetPath(Path, strings.Name, Extension));
-				var xmlSerializer = new XmlSerializer(typeof(AntiDupl.NET.Strings));
+				var xmlSerializer = new XmlSerializer(typeof(NET.Strings));
 				xmlSerializer.Serialize(writer, strings);
 				writer.Close();
 			}
@@ -261,13 +261,13 @@ static public class Resources
 			}
 		}
 
-		public static AntiDupl.NET.Strings Current
+		public static NET.Strings Current
 		{
 			get
 			{
 				if (m_currentIndex < Count && m_currentIndex >= 0)
 				{
-					return (AntiDupl.NET.Strings)m_strings[m_currentIndex];
+					return (NET.Strings)m_strings[m_currentIndex];
 				}
 				else
 				{
@@ -276,11 +276,11 @@ static public class Resources
 			}
 		}
 
-		public static AntiDupl.NET.Strings Get(int index)
+		public static NET.Strings Get(int index)
 		{
 			if (index < Count && index >= 0)
 			{
-				return (AntiDupl.NET.Strings)m_strings[index];
+				return (NET.Strings)m_strings[index];
 			}
 			else
 			{

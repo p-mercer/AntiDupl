@@ -185,9 +185,9 @@ public static class InitFactory
 
 	public static class MenuItem
 	{
-		public static System.Windows.Forms.ToolStripMenuItem Create(string image, object tag, EventHandler handler)
+		public static ToolStripMenuItem Create(string image, object tag, EventHandler handler)
 		{
-			var menuItem = new System.Windows.Forms.ToolStripMenuItem();
+			var menuItem = new ToolStripMenuItem();
 			if (image != null)
 			{
 				menuItem.Image = Resources.Images.Get(image);
@@ -198,7 +198,7 @@ public static class InitFactory
 			return menuItem;
 		}
 
-		public static System.Windows.Forms.ToolStripMenuItem Create(string image, object tag, EventHandler handler, bool checkedValue)
+		public static ToolStripMenuItem Create(string image, object tag, EventHandler handler, bool checkedValue)
 		{
 			var menuItem = Create(image, tag, handler);
 			menuItem.CheckOnClick = true;
@@ -209,9 +209,9 @@ public static class InitFactory
 
 	public static class ToolButton
 	{
-		public static System.Windows.Forms.ToolStripButton Create(string image, object tag, EventHandler handler)
+		public static ToolStripButton Create(string image, object tag, EventHandler handler)
 		{
-			var toolButton = new System.Windows.Forms.ToolStripButton();
+			var toolButton = new ToolStripButton();
 			if (image != null)
 			{
 				toolButton.Image = Resources.Images.Get(image);

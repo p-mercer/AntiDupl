@@ -34,7 +34,7 @@ namespace AntiDupl.NET;
 /// </summary>
 public class ResultRowSetter
 {
-	private readonly AntiDupl.NET.Options m_options;
+	private readonly Options m_options;
 	private readonly DataGridView m_dataGridView;
 
 	private Image m_nullIcon;
@@ -91,7 +91,7 @@ public class ResultRowSetter
 	private string m_mirrorTurn_180_IconToolTipText;
 	private string m_mirrorTurn_270_IconToolTipText;
 
-	public ResultRowSetter(AntiDupl.NET.Options options, DataGridView dataGridView)
+	public ResultRowSetter(Options options, DataGridView dataGridView)
 	{
 		m_options = options;
 		m_dataGridView = dataGridView;

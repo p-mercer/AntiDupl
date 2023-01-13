@@ -89,7 +89,7 @@ public class ImagePreviewPanel : TableLayoutPanel
 	{
 		var s = Resources.Strings.Current;
 
-		Location = new System.Drawing.Point(0, 0);
+		Location = new Point(0, 0);
 		Margin = new Padding(0);
 		Padding = new Padding(0);
 		Dock = DockStyle.Fill;
@@ -436,7 +436,7 @@ public class ImagePreviewPanel : TableLayoutPanel
 			CheckPathExists = true,
 			DefaultExt = fileInfo.Extension
 		};
-		dialog.FileOk += new System.ComponentModel.CancelEventHandler(OnRenameImageDialogFileOk);
+		dialog.FileOk += new CancelEventHandler(OnRenameImageDialogFileOk);
 		dialog.Title = Resources.Strings.Current.ImagePreviewContextMenu_RenameImageItem_Text;
 		dialog.InitialDirectory = fileInfo.Directory.ToString();
 		if (dialog.ShowDialog() == DialogResult.OK)

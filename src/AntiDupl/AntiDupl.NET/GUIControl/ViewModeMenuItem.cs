@@ -45,7 +45,7 @@ public class ViewModeMenuItem : ToolStripMenuItem
 		UpdateStrings();
 		UpdateIcons(m_options.resultsOptions.viewMode);
 		Resources.Strings.OnCurrentChange += new Resources.Strings.CurrentChangeHandler(UpdateStrings);
-		m_options.resultsOptions.OnViewModeChange += new AntiDupl.NET.ResultsOptions.ViewModeChangeHandler(UpdateIcons);
+		m_options.resultsOptions.OnViewModeChange += new ResultsOptions.ViewModeChangeHandler(UpdateIcons);
 	}
 
 	private void InitializeComponents()

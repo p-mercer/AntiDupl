@@ -48,8 +48,5 @@ public class RaisedPanel : Panel
 		{
 			return base.BorderStyle;
 		}
-		private set
-		{
-		}
 	}
 }

@@ -111,7 +111,7 @@ public class LabeledIntegerEdit : TableLayoutPanel
 		m_textBox.KeyUp += new KeyEventHandler(OnTextBoxKeyUp);
 		Controls.Add(m_textBox, 0, 0);
 
-		m_label = new System.Windows.Forms.Label
+		m_label = new Label
 		{
 			AutoSize = true,
 			Padding = new Padding(0, 5, 5, 5)
@@ -131,7 +131,7 @@ public class LabeledIntegerEdit : TableLayoutPanel
 				m_value = old;
 			}
 		}
-		catch (System.Exception)
+		catch (Exception)
 		{
 			m_value = old;
 		}

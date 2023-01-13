@@ -535,14 +535,14 @@ public class CoreLib : IDisposable
 		{
 			bitmap = new System.Drawing.Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 		}
-		catch (System.Exception)
+		catch (Exception)
 		{
 			GC.Collect();
 			try
 			{
 				bitmap = new System.Drawing.Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 			}
-			catch (System.Exception)
+			catch (Exception)
 			{
 				return null;
 			}
@@ -721,9 +721,9 @@ public class CoreLib : IDisposable
 
 	private CorePathWithSubFolder[] GetPath(CoreDll.PathType pathType)
 	{
-		var pathWSF = new CorePathWithSubFolder[0];
+		var pathWSF = Array.Empty<CorePathWithSubFolder>();
 		var size = new IntPtr[1];
-		var path = new string[0];
+		var path = Array.Empty<string>();
 		if (m_dll.adPathGetW(m_handle, pathType, new IntPtr(1), Marshal.UnsafeAddrOfPinnedArrayElement(size, 0)) ==
 						CoreDll.Error.OutputBufferIsTooSmall)
 		{

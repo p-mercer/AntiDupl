@@ -57,7 +57,7 @@ internal class MainStatusStrip : StatusStrip
 		m_totalLabel = new ToolStripStatusLabel
 		{
 			BorderStyle = Border3DStyle.SunkenOuter,
-			Margin = new System.Windows.Forms.Padding(0, 2, 1, 0),
+			Margin = new Padding(0, 2, 1, 0),
 			BorderSides = ToolStripStatusLabelBorderSides.All,
 			TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
 			AutoSize = false
@@ -66,7 +66,7 @@ internal class MainStatusStrip : StatusStrip
 		m_currentLabel = new ToolStripStatusLabel
 		{
 			BorderStyle = Border3DStyle.SunkenOuter,
-			Margin = new System.Windows.Forms.Padding(0, 2, 0, 0),
+			Margin = new Padding(0, 2, 0, 0),
 			BorderSides = ToolStripStatusLabelBorderSides.All,
 			TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
 			AutoSize = false
@@ -75,7 +75,7 @@ internal class MainStatusStrip : StatusStrip
 		m_selectedLabel = new ToolStripStatusLabel
 		{
 			BorderStyle = Border3DStyle.SunkenOuter,
-			Margin = new System.Windows.Forms.Padding(0, 2, 0, 0),
+			Margin = new Padding(0, 2, 0, 0),
 			BorderSides = ToolStripStatusLabelBorderSides.All,
 			TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
 			AutoSize = false

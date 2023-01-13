@@ -68,7 +68,7 @@ public class AboutProgramForm : Form
 		mainTableLayoutPanel.Controls.Add(okButtonTableLayoutPanel, 0, 1);
 
 		m_okButton = new Button();
-		m_okButton.Click += new System.EventHandler(OnOkButtonClick);
+		m_okButton.Click += new EventHandler(OnOkButtonClick);
 		okButtonTableLayoutPanel.Controls.Add(m_okButton, 1, 0);
 	}
 

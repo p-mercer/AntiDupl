@@ -116,10 +116,10 @@ internal class LabeledNumericUpDown : TableLayoutPanel
 			Minimum = minimum,
 			Value = value
 		};
-		m_numericUpDown.ValueChanged += new System.EventHandler(OnValueChanged); //вызов сначала внутренней функции
+		m_numericUpDown.ValueChanged += new EventHandler(OnValueChanged); //вызов сначала внутренней функции
 		Controls.Add(m_numericUpDown, 0, 0);
 
-		m_label = new System.Windows.Forms.Label
+		m_label = new Label
 		{
 			AutoSize = true,
 			Padding = new Padding(0, 5, 5, 5)
@@ -139,7 +139,7 @@ internal class LabeledNumericUpDown : TableLayoutPanel
 				m_value = old;
 			}
 		}
-		catch (System.Exception)
+		catch (Exception)
 		{
 			m_value = old;
 		}

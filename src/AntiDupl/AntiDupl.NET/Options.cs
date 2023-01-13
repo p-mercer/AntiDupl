@@ -171,7 +171,7 @@ public class Options
 
 	public static string[] PathClone(string[] path)
 	{
-		var clone = new string[0];
+		var clone = System.Array.Empty<string>();
 		PathCopy(path, ref clone);
 		return clone;
 	}

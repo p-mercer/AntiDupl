@@ -39,7 +39,7 @@ public class ThumbnailPanel : RaisedPanel
 	private readonly CoreLib m_core;
 	private readonly CoreGroup m_group;
 	private readonly int m_index;
-	private readonly AntiDupl.NET.Options m_options;
+	private readonly Options m_options;
 	private readonly ThumbnailGroupPanel m_thumbnailGroupPanel;
 
 	private TableLayoutPanel m_mainLayout;
@@ -77,7 +77,7 @@ public class ThumbnailPanel : RaisedPanel
 
 	public CoreImageInfo ImageInfo { get { return m_group.images[m_index]; } }
 
-	public ThumbnailPanel(CoreLib core, AntiDupl.NET.Options options, CoreGroup group, int index, ThumbnailGroupPanel thumbnailGroupPanel)
+	public ThumbnailPanel(CoreLib core, Options options, CoreGroup group, int index, ThumbnailGroupPanel thumbnailGroupPanel)
 	{
 		m_core = core;
 		m_options = options;

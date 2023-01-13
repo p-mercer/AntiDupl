@@ -54,7 +54,7 @@ public class ThumbnailPreview : Panel
 
 	private void InnitializeComponents()
 	{
-		Location = new System.Drawing.Point(0, 0);
+		Location = new Point(0, 0);
 		Dock = DockStyle.Fill;
 
 		m_pictureBoxPanel = new PictureBoxPanel(m_core, m_options);

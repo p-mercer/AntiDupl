@@ -67,7 +67,7 @@ public class StartFinishForm : Form
 
 	private void InitializeComponent()
 	{
-		ClientSize = new System.Drawing.Size(310, 310);
+		ClientSize = new Size(310, 310);
 		FormBorderStyle = FormBorderStyle.FixedDialog;
 		StartPosition = FormStartPosition.CenterScreen;
 		ShowInTaskbar = false;

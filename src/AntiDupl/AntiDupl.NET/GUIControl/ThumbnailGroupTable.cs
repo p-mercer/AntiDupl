@@ -35,7 +35,7 @@ namespace AntiDupl.NET;
 public class ThumbnailGroupTable : Panel
 {
 	private readonly CoreLib m_core;
-	private readonly AntiDupl.NET.Options m_options;
+	private readonly Options m_options;
 	private CoreGroup[] m_groups;
 	private int m_maxGroupIndex = -1;
 	private readonly MainSplitContainer m_mainSplitContainer;
@@ -51,7 +51,7 @@ public class ThumbnailGroupTable : Panel
 	public delegate void CurrentThumbnailChangedHandler(CoreGroup group, int index);
 	public event CurrentThumbnailChangedHandler OnCurrentThumbnailChanged;
 
-	public ThumbnailGroupTable(CoreLib core, AntiDupl.NET.Options options, MainSplitContainer mainSplitContainer)
+	public ThumbnailGroupTable(CoreLib core, Options options, MainSplitContainer mainSplitContainer)
 	{
 		m_core = core;
 		m_options = options;
@@ -86,7 +86,7 @@ public class ThumbnailGroupTable : Panel
 	{
 		UpdateThumbnailsStop();
 		m_thumbnailStorage.Clear();
-		m_groups = new CoreGroup[0];
+		m_groups = Array.Empty<CoreGroup>();
 		m_maxGroupIndex = -1;
 		Controls.Clear();
 	}
@@ -99,7 +99,7 @@ public class ThumbnailGroupTable : Panel
 		var groupSize = m_core.GetGroupSize();
 		if (groupSize == 0)
 		{
-			m_groups = new CoreGroup[0];
+			m_groups = Array.Empty<CoreGroup>();
 			m_maxGroupIndex = -1;
 			return;
 		}

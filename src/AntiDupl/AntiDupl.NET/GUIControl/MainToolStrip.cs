@@ -94,7 +94,7 @@ public class MainToolStrip : ToolStrip
 		m_thresholdDifferenceComboBox = new ToolStripComboBox
 		{
 			AutoSize = false,
-			Size = new System.Drawing.Size(50, 20),
+			Size = new Size(50, 20),
 			DropDownStyle = ComboBoxStyle.DropDownList,
 			FlatStyle = FlatStyle.Popup
 		};
@@ -117,7 +117,7 @@ public class MainToolStrip : ToolStrip
 		m_algorithmComparingComboBox = new ToolStripComboBox
 		{
 			AutoSize = false,
-			Size = new System.Drawing.Size(70, 20),
+			Size = new Size(70, 20),
 			DropDownStyle = ComboBoxStyle.DropDownList,
 			FlatStyle = FlatStyle.Popup
 		};

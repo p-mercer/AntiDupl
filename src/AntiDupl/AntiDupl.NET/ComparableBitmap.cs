@@ -91,7 +91,7 @@ public class ComparableBitmap
 		return bmpBytes;
 	}
 
-	public static Bitmap ToGrayScale(System.Drawing.Bitmap b)
+	public static Bitmap ToGrayScale(Bitmap b)
 	{
 		//create a blank bitmap the same size as original
 		var newBitmap = new Bitmap(b.Width, b.Height);

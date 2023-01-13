@@ -34,7 +34,7 @@ public class ThumbnailGroupPanel : RaisedPanel
 {
 	private readonly CoreLib m_core;
 	private readonly CoreGroup m_group;
-	private readonly AntiDupl.NET.Options m_options;
+	private readonly Options m_options;
 
 	private ThumbnailPanel[] m_thumbnailPanels;
 	public ThumbnailPanel[] ThumbnailPanels { get { return m_thumbnailPanels; } }
@@ -42,7 +42,7 @@ public class ThumbnailGroupPanel : RaisedPanel
 	private readonly ThumbnailGroupTable m_thumbnailGroupTable;
 	public ThumbnailGroupTable Table { get { return m_thumbnailGroupTable; } }
 
-	public ThumbnailGroupPanel(CoreLib core, AntiDupl.NET.Options options, CoreGroup group, ThumbnailGroupTable thumbnailGroupTable)
+	public ThumbnailGroupPanel(CoreLib core, Options options, CoreGroup group, ThumbnailGroupTable thumbnailGroupTable)
 	{
 		m_core = core;
 		m_options = options;

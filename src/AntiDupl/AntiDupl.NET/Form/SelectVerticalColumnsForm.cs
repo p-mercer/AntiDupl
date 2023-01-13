@@ -113,11 +113,11 @@ public class SelectVerticalColumnsForm : Form
 		mainTableLayoutPanel.Controls.Add(buttonsTableLayoutPanel, 0, 1);
 
 		m_okButton = new Button();
-		m_okButton.Click += new System.EventHandler(OnButtonClick);
+		m_okButton.Click += new EventHandler(OnButtonClick);
 		buttonsTableLayoutPanel.Controls.Add(m_okButton, 1, 0);
 
 		m_cancelButton = new Button();
-		m_cancelButton.Click += new System.EventHandler(OnButtonClick);
+		m_cancelButton.Click += new EventHandler(OnButtonClick);
 		buttonsTableLayoutPanel.Controls.Add(m_cancelButton, 2, 0);
 	}
 

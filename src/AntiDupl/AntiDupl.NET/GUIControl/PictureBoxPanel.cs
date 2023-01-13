@@ -90,7 +90,7 @@ public class PictureBoxPanel : Panel
 
 	private void InitializeComponents()
 	{
-		Location = new System.Drawing.Point(0, 0);
+		Location = new Point(0, 0);
 		Dock = DockStyle.Fill;
 		BorderStyle = BorderStyle.Fixed3D;
 		BackColor = Color.DarkGray;
@@ -234,7 +234,7 @@ public class PictureBoxPanel : Panel
 		Invalidate();
 	}
 
-	private void OnImageDoubleClicked(object sender, System.EventArgs e)
+	private void OnImageDoubleClicked(object sender, EventArgs e)
 	{
 		ImageOpener.OpenFile(m_currentImageInfo.path);
 	}

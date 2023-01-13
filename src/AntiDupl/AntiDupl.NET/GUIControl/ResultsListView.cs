@@ -85,11 +85,11 @@ public class ResultsListView : DataGridView
 
 	private readonly MainSplitContainer m_mainSplitContainer;
 	private readonly CoreLib m_core;
-	private readonly AntiDupl.NET.Options m_options;
+	private readonly Options m_options;
 	public CoreOptions CoreOptions { get { return m_coreOptions; } }
 	private readonly CoreOptions m_coreOptions;
 	private CoreResult[] m_results;
-	private ResultsOptions.ViewMode m_viewMode = ResultsOptions.ViewMode.VerticalPairTable;
+	private ResultsOptions.ViewMode m_viewMode;
 
 	private int m_firstSelectedRowIndex = -1;
 	private int m_currentRowIndex = -1;
@@ -128,13 +128,13 @@ public class ResultsListView : DataGridView
 		}
 	}
 
-	public ResultsListView(CoreLib core, AntiDupl.NET.Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
+	public ResultsListView(CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
 	{
 		m_core = core;
 		m_options = options;
 		m_coreOptions = coreOptions;
 		m_mainSplitContainer = mainSplitContainer;
-		m_results = new CoreResult[0];
+		m_results = Array.Empty<CoreResult>();
 		m_resultRowSetter = new ResultRowSetter(m_options, this);
 		InitializeComponents();
 		if (m_options.resultsOptions.viewMode == ResultsOptions.ViewMode.VerticalPairTable)
@@ -387,7 +387,7 @@ public class ResultsListView : DataGridView
 
 	public void ClearResults()
 	{
-		m_results = new CoreResult[0];
+		m_results = Array.Empty<CoreResult>();
 		Rows.Clear();
 		RowCount = 1;
 		m_currentRowIndex = 0;
@@ -398,7 +398,7 @@ public class ResultsListView : DataGridView
 		var resultSize = m_core.GetResultSize();
 		if (resultSize == 0)
 		{
-			m_results = new CoreResult[0];
+			m_results = Array.Empty<CoreResult>();
 			return;
 		}
 		m_results = m_core.GetResult(0, resultSize);

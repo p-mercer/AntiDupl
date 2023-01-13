@@ -83,7 +83,7 @@ public class AboutProgramPanel : Panel
 		var bitmap = Resources.Icons.Get(new Size(LOGO_SIZE, LOGO_SIZE)).ToBitmap();
 		var pictureBox = new PictureBox
 		{
-			Location = new System.Drawing.Point(0, 0),
+			Location = new Point(0, 0),
 			Dock = DockStyle.Fill,
 			Padding = new Padding(0),
 			Margin = new Padding(0),
@@ -133,10 +133,10 @@ public class AboutProgramPanel : Panel
 
 	private static Label CreateLabel(string text, Font font)
 	{
-		var label = new System.Windows.Forms.Label
+		var label = new Label
 		{
 			AutoSize = true,
-			Padding = new System.Windows.Forms.Padding(2),
+			Padding = new Padding(2),
 			Font = font,
 			Text = text,
 			Dock = DockStyle.Fill,
@@ -154,7 +154,7 @@ public class AboutProgramPanel : Panel
 			Text = text,
 			Dock = DockStyle.Fill,
 			LinkBehavior = LinkBehavior.HoverUnderline,
-			Padding = new System.Windows.Forms.Padding(2)
+			Padding = new Padding(2)
 		};
 		linkLabel.Links.Add(new LinkLabel.Link(0, text.Length, link));
 		linkLabel.LinkClicked += new LinkLabelLinkClickedEventHandler(OnLinkLabelLinkClicked);

@@ -61,7 +61,7 @@ public class SelectHotKeysForm : Form
 
 	private void InitializeComponents()
 	{
-		ClientSize = new System.Drawing.Size(420, 315);
+		ClientSize = new Size(420, 315);
 		FormBorderStyle = FormBorderStyle.FixedDialog;
 		StartPosition = FormStartPosition.CenterScreen;
 		ShowInTaskbar = false;
@@ -95,8 +95,8 @@ public class SelectHotKeysForm : Form
 			{
 				icon = new PictureBox
 				{
-					Location = new System.Drawing.Point(0, 0),
-					Size = new System.Drawing.Size(20, 20),
+					Location = new Point(0, 0),
+					Size = new Size(20, 20),
 					SizeMode = PictureBoxSizeMode.Zoom
 				}
 			};
@@ -104,7 +104,7 @@ public class SelectHotKeysForm : Form
 
 			item.text = new Label
 			{
-				Location = new System.Drawing.Point(0, 0),
+				Location = new Point(0, 0),
 				Dock = DockStyle.Fill,
 				TextAlign = ContentAlignment.MiddleCenter
 			};
@@ -112,8 +112,8 @@ public class SelectHotKeysForm : Form
 
 			item.ckeck = new CheckBox
 			{
-				Location = new System.Drawing.Point(0, 0),
-				Size = new System.Drawing.Size(20, 20),
+				Location = new Point(0, 0),
+				Size = new Size(20, 20),
 				Dock = DockStyle.Fill,
 				Tag = i
 			};
@@ -122,7 +122,7 @@ public class SelectHotKeysForm : Form
 
 			item.edit = new TextBox
 			{
-				Location = new System.Drawing.Point(0, 0),
+				Location = new Point(0, 0),
 				Dock = DockStyle.Fill,
 				ReadOnly = true,
 				Multiline = false
@@ -144,18 +144,18 @@ public class SelectHotKeysForm : Form
 		mainTableLayoutPanel.Controls.Add(buttonsTableLayoutPanel, 0, 1);
 
 		m_okButton = new Button();
-		m_okButton.Click += new System.EventHandler(OnButtonClick);
+		m_okButton.Click += new EventHandler(OnButtonClick);
 		buttonsTableLayoutPanel.Controls.Add(m_okButton, 1, 0);
 
 		m_cancelButton = new Button();
-		m_cancelButton.Click += new System.EventHandler(OnButtonClick);
+		m_cancelButton.Click += new EventHandler(OnButtonClick);
 		buttonsTableLayoutPanel.Controls.Add(m_cancelButton, 2, 0);
 
 		m_setDefaultButton = new Button
 		{
 			AutoSize = true
 		};
-		m_setDefaultButton.Click += new System.EventHandler(OnButtonClick);
+		m_setDefaultButton.Click += new EventHandler(OnButtonClick);
 		buttonsTableLayoutPanel.Controls.Add(m_setDefaultButton, 3, 0);
 	}
 

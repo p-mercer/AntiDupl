@@ -47,9 +47,9 @@ public class CoreOptions
 		advancedOptions = new CoreAdvancedOptions();
 
 		searchPath = new CorePathWithSubFolder[1];
-		ignorePath = new CorePathWithSubFolder[0];
-		validPath = new CorePathWithSubFolder[0];
-		deletePath = new CorePathWithSubFolder[0];
+		ignorePath = System.Array.Empty<CorePathWithSubFolder>();
+		validPath = System.Array.Empty<CorePathWithSubFolder>();
+		deletePath = System.Array.Empty<CorePathWithSubFolder>();
 	}
 
 	public CoreOptions(CoreLib core, bool onePath)
@@ -124,7 +124,7 @@ public class CoreOptions
 		if (onePath)
 		{
 			var tmpSearch = new CorePathWithSubFolder[1];
-			var tmpOther = new CorePathWithSubFolder[0];
+			var tmpOther = System.Array.Empty<CorePathWithSubFolder>();
 			if (searchPath.Length > 0 && Directory.Exists(searchPath[0].path))
 			{
 				tmpSearch[0] = searchPath[0];
@@ -192,14 +192,14 @@ public class CoreOptions
 
 	public static string[] PathClone(string[] path)
 	{
-		var clone = new string[0];
+		var clone = System.Array.Empty<string>();
 		PathCopy(path, ref clone);
 		return clone;
 	}
 
 	public static CorePathWithSubFolder[] PathClone(CorePathWithSubFolder[] path)
 	{
-		var clone = new CorePathWithSubFolder[0];
+		var clone = System.Array.Empty<CorePathWithSubFolder>();
 		PathCopy(path, ref clone);
 		return clone;
 	}

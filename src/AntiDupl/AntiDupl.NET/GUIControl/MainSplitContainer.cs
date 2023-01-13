@@ -160,7 +160,7 @@ public class MainSplitContainer : SplitContainer
 		}
 	}
 
-	private void OnSizeChanged(object sender, System.EventArgs e)
+	private void OnSizeChanged(object sender, EventArgs e)
 	{
 		if (m_atLeastOneTimeSetOrientation)
 		{
