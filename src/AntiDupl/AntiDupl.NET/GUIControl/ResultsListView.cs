@@ -29,8 +29,8 @@ using System.Drawing;
 using System.ComponentModel;
 using System.IO;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     /// <summary>
     /// Class output result in ListView.
     /// Класс вывода результатов в ListView.
@@ -969,4 +969,3 @@ namespace AntiDupl.NET
             return moveEnable;
         }
     }
-}

@@ -30,8 +30,8 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Threading;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     static public class FolderOpener
     {
         static private bool m_canOpenFolderWithExplorer = CanOpenFolderWithExplorer();
@@ -104,4 +104,3 @@ namespace AntiDupl.NET
             }
         }
     }
-}

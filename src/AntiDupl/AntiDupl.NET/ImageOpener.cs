@@ -2,8 +2,8 @@
 using System.Threading;
 using System.Windows.Forms;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     static public class ImageOpener
     {
         /// <summary>
@@ -25,4 +25,3 @@ namespace AntiDupl.NET
             }
         }
     }
-}

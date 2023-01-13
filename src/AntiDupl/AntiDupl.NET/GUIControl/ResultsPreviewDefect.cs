@@ -28,8 +28,8 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Diagnostics;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     /// <summary>
     /// Панель которая включает в себя панель с просмотра изображеня и панель инструментов для работы с дефектными изображенями.
     /// </summary>
@@ -115,4 +115,3 @@ namespace AntiDupl.NET
             m_toolStrip.Items.Add(m_mistakeButton);
         }
     }
-}

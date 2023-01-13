@@ -25,8 +25,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class CoreStatistic
     {
         public uint scanedFolderNumber;
@@ -58,4 +58,3 @@ namespace AntiDupl.NET
             deletedImageSize = statistic.deletedImageSize;
         }
     }
-}

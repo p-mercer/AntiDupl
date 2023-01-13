@@ -26,8 +26,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class LabeledComboBox : TableLayoutPanel
     {
         private ComboBox m_comboBox;
@@ -103,4 +103,3 @@ namespace AntiDupl.NET
             value.description = description;
         }
     }
-}

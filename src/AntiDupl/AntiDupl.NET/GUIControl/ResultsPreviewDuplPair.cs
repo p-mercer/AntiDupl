@@ -30,8 +30,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     /// <summary>
     /// Панель которая включает в себя две панели с просмотра изображений и панель инструментов для работы с дубликатами изображений.
     /// </summary>
@@ -366,4 +366,3 @@ namespace AntiDupl.NET
         }
     
     }
-}

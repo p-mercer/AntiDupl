@@ -32,8 +32,8 @@ using System.Threading;
 using System.Diagnostics;
 using System.IO;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class SearchExecuterForm : Form
     {
         private enum State
@@ -448,4 +448,3 @@ namespace AntiDupl.NET
                 return string.Format("{0} B", size);
         }
     }
-}

@@ -27,8 +27,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     /// <summary>
     /// Форма отображает прогресс длительных операций.
     /// </summary>
@@ -456,4 +456,3 @@ namespace AntiDupl.NET
             }
         }
     }
-}

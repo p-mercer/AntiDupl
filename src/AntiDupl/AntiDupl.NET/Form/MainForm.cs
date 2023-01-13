@@ -33,8 +33,8 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class MainForm : Form
     {
         public const int MIN_HEIGHT = 520;
@@ -155,4 +155,3 @@ namespace AntiDupl.NET
             Text = string.Format("{0} - {1}", Application.ProductName, Path.GetFileNameWithoutExtension(m_options.coreOptionsFileName));
         }
     }
-}

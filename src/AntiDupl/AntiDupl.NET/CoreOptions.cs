@@ -29,8 +29,8 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class CoreOptions
     {
         public CoreSearchOptions searchOptions;
@@ -280,4 +280,3 @@ namespace AntiDupl.NET
             return directory;
         }
     }
-}

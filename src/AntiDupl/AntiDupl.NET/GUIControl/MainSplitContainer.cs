@@ -27,8 +27,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     /// <summary>
     /// Две панели, разделенные подвижной строкой: таблицы и превью.
     /// </summary>
@@ -278,4 +278,3 @@ namespace AntiDupl.NET
                 OnSelectedResultsChanged();
         }
     }
-}

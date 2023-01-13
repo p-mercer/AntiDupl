@@ -29,8 +29,8 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class ComplexProgressBar : ProgressBar
     {
         private int m_firstValue = 0;
@@ -93,4 +93,3 @@ namespace AntiDupl.NET
             e.Graphics.FillRectangle(firstBrush, 1, 1, (Width - 2) * m_firstValue / (Maximum - Minimum), Height - 2);
         }
     }
-}

@@ -25,8 +25,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     static public class StringsDefaultRussian
     {
         static public void CopyTo(Strings s)
@@ -338,4 +338,3 @@ namespace AntiDupl.NET
 
         static private Strings m_strings = Create();
     }
-}

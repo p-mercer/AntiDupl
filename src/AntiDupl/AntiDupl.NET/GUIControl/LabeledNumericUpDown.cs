@@ -26,8 +26,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     /// <summary>
     /// NumericUpDown с подписью.
     /// </summary>
@@ -150,4 +150,3 @@ namespace AntiDupl.NET
             m_numericUpDown.Value = new decimal(m_value);
         }
     }
-}

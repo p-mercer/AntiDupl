@@ -33,8 +33,8 @@ using System.IO;
 using System.Diagnostics;
 using System.ComponentModel;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     static public class Resources
     {
         static private string GetPath(string path, string name, string extension)
@@ -430,5 +430,4 @@ namespace AntiDupl.NET
             static public string Performance { get { return string.Format("{0}\\performance.txt", Resources.UserPath); } }
         }
     }
-}
 

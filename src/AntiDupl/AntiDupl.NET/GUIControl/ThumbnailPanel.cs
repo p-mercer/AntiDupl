@@ -28,8 +28,8 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     /// <summary>
     /// Панель одного изображения и информации о нем, checkbox.
     /// </summary>
@@ -215,4 +215,3 @@ namespace AntiDupl.NET
             m_thumbnailGroupPanel.Table.ChangeCurrentThumbnail(m_group, m_index);
         }
     }
-}

@@ -25,8 +25,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class Strings
     {
         public Strings()
@@ -326,4 +326,3 @@ namespace AntiDupl.NET
         public string ImagePreviewPanel_EXIF_Tooltip_Artist;
         public string ImagePreviewPanel_EXIF_Tooltip_UserComment;
     }
-}

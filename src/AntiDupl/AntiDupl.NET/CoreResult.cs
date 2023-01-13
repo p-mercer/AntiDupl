@@ -25,8 +25,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class CoreResult
     {
         public CoreDll.ResultType type;
@@ -52,4 +52,3 @@ namespace AntiDupl.NET
             hint = result.hint;
         }
     }
-}

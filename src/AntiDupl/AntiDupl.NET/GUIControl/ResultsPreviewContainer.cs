@@ -27,8 +27,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     /// <summary>
     /// Панель содеражшая или превью дефекта или дубликатов.
     /// </summary>
@@ -121,4 +121,3 @@ namespace AntiDupl.NET
             m_resultsPreviewDuplPair.SetViewMode(viewMode);
         }
     }
-}

@@ -28,8 +28,8 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class DataGridViewCustomRow : DataGridViewRow
     {
         public bool current = false;
@@ -70,4 +70,3 @@ namespace AntiDupl.NET
             }
         }
     }
-}

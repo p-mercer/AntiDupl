@@ -28,8 +28,8 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     /// <summary>
     /// Контекстное меню для списка дубликатов.
     /// </summary>
@@ -204,4 +204,3 @@ namespace AntiDupl.NET
             }
         }
     }
-}

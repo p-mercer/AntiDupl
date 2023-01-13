@@ -30,8 +30,8 @@ using System.IO;
 using System.Collections.Specialized;
 
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class CorePathsForm : Form
     {
         static public int FORM_WIDTH = 450;
@@ -701,4 +701,3 @@ namespace AntiDupl.NET
             }
         }
     }
-}

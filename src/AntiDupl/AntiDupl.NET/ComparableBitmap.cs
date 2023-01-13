@@ -25,8 +25,8 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class ComparableBitmap
     {
         public Rectangle Rect { get; set; }
@@ -53,16 +53,16 @@ namespace AntiDupl.NET
         {
             Rect = section;
 
-			// Create the new bitmap and associated graphics object
-			using var sectionBmp = new Bitmap(section.Width, section.Height);
-			using (var g = Graphics.FromImage(sectionBmp))
-			{
-				// Draw the specified section of the source bitmap to the new one
-				g.DrawImage(bitmapSource, 0, 0, section, GraphicsUnit.Pixel);
-			}
-
-			_grayScaleData = GetBmpBytes(ToGrayScale(sectionBmp));
+		// Create the new bitmap and associated graphics object
+		using var sectionBmp = new Bitmap(section.Width, section.Height);
+		using (var g = Graphics.FromImage(sectionBmp))
+		{
+			// Draw the specified section of the source bitmap to the new one
+			g.DrawImage(bitmapSource, 0, 0, section, GraphicsUnit.Pixel);
 		}
+
+		_grayScaleData = GetBmpBytes(ToGrayScale(sectionBmp));
+	}
 
         /// <summary>
         /// During this process, we chuck the RGBA channels.  The RGB channels are all equal, and the A channels is completely
@@ -117,4 +117,3 @@ namespace AntiDupl.NET
         }
 
     }
-}

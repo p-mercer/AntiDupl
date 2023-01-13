@@ -29,8 +29,8 @@ using System.Windows.Forms;
 using TypeVertical = AntiDupl.NET.ResultsListView.ColumnsTypeVertical;
 using TypeHorizontal = AntiDupl.NET.ResultsListView.ColumnsTypeHorizontal;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class ClipboardContentBuilder
     {
         private StringBuilder m_builder;
@@ -143,4 +143,3 @@ namespace AntiDupl.NET
             m_insertTab = true;
         }
     }
-}

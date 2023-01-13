@@ -27,8 +27,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     /// <summary>
     /// Фабрика создает элементы GUI
     /// </summary>
@@ -219,4 +219,3 @@ namespace AntiDupl.NET
             }
         };
     };
-}

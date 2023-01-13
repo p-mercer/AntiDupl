@@ -28,8 +28,8 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     /// <summary>
     /// Set table of out defect and dublicate pair.
     /// Установка таблицы вывода дефектов и дубликатов.
@@ -566,4 +566,3 @@ namespace AntiDupl.NET
             }
         }
     }
-}

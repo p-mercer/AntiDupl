@@ -27,8 +27,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class CoreOptionsForm : Form
     {
         static public int THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM = 15;
@@ -554,7 +554,7 @@ namespace AntiDupl.NET
             m_checkOnDefectCheckBox.Checked = m_newCoreOptions.defectOptions.checkOnDefect;
             m_checkOnBlockinessCheckBox.Checked = m_newCoreOptions.defectOptions.checkOnBlockiness;
             m_blockinessThresholdLabeledComboBox.SelectedValue = m_newCoreOptions.defectOptions.blockinessThreshold;
-			m_checkOnBlockinessOnlyNotJpegCheckBox.Checked = m_newCoreOptions.defectOptions.checkOnBlockinessOnlyNotJpeg;
+		m_checkOnBlockinessOnlyNotJpegCheckBox.Checked = m_newCoreOptions.defectOptions.checkOnBlockinessOnlyNotJpeg;
             m_checkOnBlurringCheckBox.Checked = m_newCoreOptions.defectOptions.checkOnBlurring;
             m_blurringThresholdLabeledComboBox.SelectedValue = m_newCoreOptions.defectOptions.blurringThreshold;
 
@@ -608,7 +608,7 @@ namespace AntiDupl.NET
             m_newCoreOptions.defectOptions.checkOnDefect = m_checkOnDefectCheckBox.Checked;
             m_newCoreOptions.defectOptions.checkOnBlockiness = m_checkOnBlockinessCheckBox.Checked;
             m_newCoreOptions.defectOptions.blockinessThreshold = m_blockinessThresholdLabeledComboBox.SelectedValue;
-			m_newCoreOptions.defectOptions.checkOnBlockinessOnlyNotJpeg = m_checkOnBlockinessOnlyNotJpegCheckBox.Checked;
+		m_newCoreOptions.defectOptions.checkOnBlockinessOnlyNotJpeg = m_checkOnBlockinessOnlyNotJpegCheckBox.Checked;
             m_newCoreOptions.defectOptions.checkOnBlurring = m_checkOnBlurringCheckBox.Checked;
             m_newCoreOptions.defectOptions.blurringThreshold = m_blurringThresholdLabeledComboBox.SelectedValue;
 
@@ -774,7 +774,7 @@ namespace AntiDupl.NET
             m_ignoreFrameWidthLabeledComboBox.Enabled = m_newCoreOptions.compareOptions.checkOnEquality;
 
             m_blockinessThresholdLabeledComboBox.Enabled = m_newCoreOptions.defectOptions.checkOnBlockiness;
-			m_checkOnBlockinessOnlyNotJpegCheckBox.Enabled = m_newCoreOptions.defectOptions.checkOnBlockiness;
+		m_checkOnBlockinessOnlyNotJpegCheckBox.Enabled = m_newCoreOptions.defectOptions.checkOnBlockiness;
 
             m_blurringThresholdLabeledComboBox.Enabled = m_newCoreOptions.defectOptions.checkOnBlurring;
 
@@ -838,4 +838,3 @@ namespace AntiDupl.NET
             UpdateItemsEnabling();
         }
     }
-}

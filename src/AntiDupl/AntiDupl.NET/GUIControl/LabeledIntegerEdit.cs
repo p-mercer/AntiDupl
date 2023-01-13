@@ -26,8 +26,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class LabeledIntegerEdit : TableLayoutPanel
     {
         private TextBox m_textBox;
@@ -142,4 +142,3 @@ namespace AntiDupl.NET
             m_textBox.Text = m_value.ToString();
         }
     }
-}

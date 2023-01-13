@@ -23,8 +23,8 @@
 */
 using System;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     class Comparator
     {
         public static float Similarity(byte[] first, byte[] second)
@@ -52,4 +52,3 @@ namespace AntiDupl.NET
             return sum / length;
         }
     }
-}

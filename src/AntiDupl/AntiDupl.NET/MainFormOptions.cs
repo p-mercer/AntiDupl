@@ -27,8 +27,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class MainFormOptions
     {
         public event Options.VisibleChangeHandler OnToolStripVisibleChange;
@@ -129,4 +129,3 @@ namespace AntiDupl.NET
             return new Point(left, top);
         }
     }
-}

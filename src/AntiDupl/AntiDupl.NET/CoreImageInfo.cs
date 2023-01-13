@@ -25,8 +25,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class CoreImageInfo
     {
         public ulong id;
@@ -196,4 +196,3 @@ namespace AntiDupl.NET
             return System.IO.Path.GetFileNameWithoutExtension(path);
         }
     }
-}

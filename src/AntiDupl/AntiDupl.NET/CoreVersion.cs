@@ -25,8 +25,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class CoreVersion
     {
         public Int32 major;
@@ -87,4 +87,3 @@ namespace AntiDupl.NET
             return builder.ToString();
         }
     }
-}

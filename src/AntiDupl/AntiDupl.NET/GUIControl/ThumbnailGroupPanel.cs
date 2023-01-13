@@ -27,8 +27,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     /// <summary>
     /// Панель содержит панели изображений одной группы.
     /// </summary>
@@ -75,4 +75,3 @@ namespace AntiDupl.NET
             Controls.AddRange(m_thumbnailPanels);
         }
     }
-}

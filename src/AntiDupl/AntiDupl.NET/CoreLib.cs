@@ -27,8 +27,8 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class CoreLib : IDisposable
     {
         private const uint VERSION_SIZE = 40;
@@ -746,4 +746,3 @@ namespace AntiDupl.NET
 
 #endregion
     };
-}

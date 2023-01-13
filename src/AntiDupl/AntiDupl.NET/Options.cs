@@ -29,8 +29,8 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Windows.Forms;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class Options
     {
         public delegate void VisibleChangeHandler(bool visible);
@@ -238,4 +238,3 @@ namespace AntiDupl.NET
             return true;
         }
     }
-}

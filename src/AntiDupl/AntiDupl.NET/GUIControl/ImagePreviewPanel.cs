@@ -30,8 +30,8 @@ using System.Drawing;
 using System.ComponentModel;
 using System.IO;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class ImagePreviewPanel : TableLayoutPanel
     {
         private const int MAX_PATH = 260;
@@ -582,4 +582,3 @@ namespace AntiDupl.NET
         }
 
     }
-}

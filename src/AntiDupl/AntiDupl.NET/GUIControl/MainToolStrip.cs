@@ -27,8 +27,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     /// <summary>
     /// Главная панель инструментов.
     /// </summary>
@@ -299,4 +299,3 @@ namespace AntiDupl.NET
             }
         }
     }
-}

@@ -26,8 +26,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     class MainStatusStrip : StatusStrip
     {
         private MainSplitContainer m_mainSplitContainer;
@@ -148,4 +148,3 @@ namespace AntiDupl.NET
             m_currentLabel.Text = builder.ToString();
         }
     }
-}

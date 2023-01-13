@@ -27,8 +27,8 @@ using System.Text;
 using System.Drawing;
 using System.Threading;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     /// <summary>
     /// Хранилище эскизов изображений.
     /// </summary>
@@ -109,4 +109,3 @@ namespace AntiDupl.NET
             }
         } 
     }
-}

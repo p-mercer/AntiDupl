@@ -28,8 +28,8 @@ using System.Runtime.InteropServices;
 using System.Reflection;
 using System.Diagnostics;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class DynamicModule : IDisposable
     {
         public class DynamicModuleApiAttribute : Attribute
@@ -116,4 +116,3 @@ namespace AntiDupl.NET
             EntryPoint = "GetProcAddress")]
         private static extern IntPtr GetProcAddress(IntPtr module, string functionName);
     }
-}

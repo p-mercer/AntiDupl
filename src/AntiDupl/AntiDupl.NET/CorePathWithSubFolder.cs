@@ -25,8 +25,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class CorePathWithSubFolder
     {
         public bool enableSubFolder;
@@ -72,4 +72,3 @@ namespace AntiDupl.NET
                 path == pathWithSubFolder.path;
         }
     }
-}

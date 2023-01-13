@@ -29,8 +29,8 @@ using System.Drawing;
 using System.IO;
 using System.Diagnostics;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class MainMenu : MenuStrip
     {
         private CoreLib m_core;
@@ -477,4 +477,3 @@ namespace AntiDupl.NET
             m_edit_selectAllMenuItem.Enabled = hasResults;
         }
     }
-}

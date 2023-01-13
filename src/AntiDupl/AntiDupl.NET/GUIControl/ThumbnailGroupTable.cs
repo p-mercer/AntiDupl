@@ -28,8 +28,8 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Threading;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     /// <summary>
     /// Таблица групп.
     /// </summary>
@@ -439,4 +439,3 @@ namespace AntiDupl.NET
             return false;
         }
     }
-}

@@ -25,8 +25,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class CoreStatus
     {
         public CoreDll.StateType state;
@@ -42,4 +42,3 @@ namespace AntiDupl.NET
             total = (int)status.total.ToUInt32();
         }
     }
-}

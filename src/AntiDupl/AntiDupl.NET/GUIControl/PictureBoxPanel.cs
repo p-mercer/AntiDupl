@@ -29,8 +29,8 @@ using System.Drawing;
 using System.Diagnostics;
 using System.IO;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class PictureBoxPanel : Panel
     {
         private const int MAX_PATH = 260;
@@ -593,4 +593,3 @@ namespace AntiDupl.NET
             }
         }
     }
-}

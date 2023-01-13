@@ -29,8 +29,8 @@ using System.IO;
 using System.Drawing;
 using System.Threading;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class StartFinishForm : Form
     {
         static private TimeSpan VIEW_START_TIME_MIN = TimeSpan.FromSeconds(3.0);
@@ -221,4 +221,3 @@ namespace AntiDupl.NET
             m_timer.Stop();
         }
     }
-}

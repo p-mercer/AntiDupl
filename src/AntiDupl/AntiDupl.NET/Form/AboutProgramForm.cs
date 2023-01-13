@@ -26,8 +26,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class AboutProgramForm : Form
     {
         private CoreLib m_core;
@@ -85,4 +85,3 @@ namespace AntiDupl.NET
             Close();
         }
     }
-}

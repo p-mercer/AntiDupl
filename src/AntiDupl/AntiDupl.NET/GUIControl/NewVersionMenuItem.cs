@@ -30,8 +30,8 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class NewVersionMenuItem : ToolStripMenuItem
     {
         bool m_downloadingFinished = false;
@@ -126,4 +126,3 @@ namespace AntiDupl.NET
             m_downloadingFinished = true;
         }
     }
-}

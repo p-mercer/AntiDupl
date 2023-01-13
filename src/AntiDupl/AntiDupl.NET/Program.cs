@@ -26,8 +26,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     static class Program
     {
         [STAThread]
@@ -86,4 +86,3 @@ namespace AntiDupl.NET
         }
 
     }
-}

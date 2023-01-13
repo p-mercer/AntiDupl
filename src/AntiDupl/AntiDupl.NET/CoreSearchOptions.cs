@@ -26,8 +26,8 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Text;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class CoreSearchOptions
     {
         private static string[] s_jpegExtensions = {"JPEG", "JFIF", "JPG", "JPE", "JIFF", "JIF", "J", "JNG", "JFF"};
@@ -193,4 +193,3 @@ namespace AntiDupl.NET
             return (string[])extensions.ToArray(typeof(string));
         }
     }
-}

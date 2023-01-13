@@ -28,8 +28,8 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class ProgressPanel : Panel
     {
         private Label m_totalLabel;
@@ -126,4 +126,3 @@ namespace AntiDupl.NET
             }
         }
     }
-}

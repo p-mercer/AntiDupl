@@ -26,8 +26,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class CoreDll : DynamicModule
     {
         public CoreDll()
@@ -302,10 +302,10 @@ namespace AntiDupl.NET
         }
 
         public enum AlgorithmComparing : int
-	    {
-		    SquaredSum = 0,
-		    SSIM = 1,
-	    };
+    {
+	    SquaredSum = 0,
+	    SSIM = 1,
+    };
         
         //-----------API structures--------------------------------------------
 
@@ -409,17 +409,17 @@ namespace AntiDupl.NET
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MAX_EXIF_SIZE)]
             public string imageDescription;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MAX_EXIF_SIZE)]
-		    public string equipMake;
+	    public string equipMake;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MAX_EXIF_SIZE)]
-		    public string equipModel;
+	    public string equipModel;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MAX_EXIF_SIZE)]
-		    public string softwareUsed;
+	    public string softwareUsed;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MAX_EXIF_SIZE)]
-		    public string dateTime;
+	    public string dateTime;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MAX_EXIF_SIZE)]
-		    public string artist;
+	    public string artist;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MAX_EXIF_SIZE)]
-		    public string userComment;
+	    public string userComment;
         }
 
         // Она же структура TImageInfo в dll.
@@ -647,4 +647,3 @@ namespace AntiDupl.NET
         [DynamicModuleApi]
         public adLoadBitmapW_fn adLoadBitmapW = null;
     }
-}

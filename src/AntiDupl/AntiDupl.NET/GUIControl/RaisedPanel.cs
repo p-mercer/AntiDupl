@@ -27,8 +27,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class RaisedPanel : Panel
     {
         /// <summary>
@@ -57,4 +57,3 @@ namespace AntiDupl.NET
             }
         }  
     }
-}

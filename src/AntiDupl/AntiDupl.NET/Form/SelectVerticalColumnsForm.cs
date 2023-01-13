@@ -28,8 +28,8 @@ using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class SelectVerticalColumnsForm : Form
     {
         private ResultsListView m_resultsListView;
@@ -190,4 +190,3 @@ namespace AntiDupl.NET
             m_okButton.Enabled = !m_newResultOptions.Equals(m_options.resultsOptions);
         }
     }
-}

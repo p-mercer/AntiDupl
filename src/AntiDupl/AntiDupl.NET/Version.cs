@@ -28,8 +28,8 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class Version
     {
         public int major;
@@ -106,4 +106,3 @@ namespace AntiDupl.NET
                 version.release == coreVersion.release;
         }
     }
-}

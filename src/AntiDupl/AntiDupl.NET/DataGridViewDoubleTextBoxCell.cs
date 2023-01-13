@@ -28,8 +28,8 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
     {
         const int PADDING = 3;
@@ -209,4 +209,3 @@ namespace AntiDupl.NET
             return preferedSize;
         }
     }
-}

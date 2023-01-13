@@ -25,8 +25,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class CoreAdvancedOptions
     {
         public bool deleteToRecycleBin;
@@ -106,4 +106,3 @@ namespace AntiDupl.NET
                 useLibJpegTurbo == advancedOptions.useLibJpegTurbo;
         }
     }
-}

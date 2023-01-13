@@ -31,8 +31,8 @@ using System.Runtime.InteropServices.ComTypes;
 //using System.Windows; // for WPF support
 //using System.Windows.Interop;  // for WPF support
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class FolderPicker
     {
         public virtual string ResultPath { get; protected set; }
@@ -232,4 +232,3 @@ namespace AntiDupl.NET
         }
 #pragma warning restore CA1712 // Do not prefix enum values with type name
     }
-}

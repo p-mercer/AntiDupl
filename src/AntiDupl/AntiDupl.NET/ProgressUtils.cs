@@ -25,8 +25,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public static class ProgressUtils
     {
         public static string GetProgressString(double progress, DateTime startDateTime)
@@ -67,4 +67,3 @@ namespace AntiDupl.NET
             return builder.ToString();
         }
     }
-}

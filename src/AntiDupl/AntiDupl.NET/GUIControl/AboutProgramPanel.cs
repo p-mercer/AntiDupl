@@ -27,8 +27,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class AboutProgramPanel : Panel
     {
         private const int LOGO_SIZE = 32;
@@ -173,4 +173,3 @@ namespace AntiDupl.NET
             System.Diagnostics.Process.Start(link.LinkData.ToString());
         }
     }
-}

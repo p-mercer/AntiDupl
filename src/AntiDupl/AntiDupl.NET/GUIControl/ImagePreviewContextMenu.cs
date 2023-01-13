@@ -30,8 +30,8 @@ using System.IO;
 using Microsoft.Win32;
 using System.ComponentModel;
 
-namespace AntiDupl.NET
-{
+namespace AntiDupl.NET;
+
     public class ImagePreviewContextMenu : ContextMenuStrip
     {
         private CoreLib m_core;
@@ -254,4 +254,3 @@ namespace AntiDupl.NET
             m_resultsListView.RenameCurrentGroupAs(m_imagePreviewPanel.NeighbourImageInfo.GetFileNameWithoutExtensionString());
         }
     }
-}
