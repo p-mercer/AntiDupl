@@ -105,7 +105,7 @@ public static class InitFactory
             public static System.Drawing.Font Create(float size)
             {
                 var font = new System.Drawing.Font("Microsoft Sans Serif", size,
-                  System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                  System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
                 return font;
             }
         };

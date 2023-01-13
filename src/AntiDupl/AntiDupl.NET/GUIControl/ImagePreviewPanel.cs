@@ -632,7 +632,7 @@ public class ImagePreviewPanel : TableLayoutPanel
             try
             {
                 var b = new Bitmap(size.Width, size.Height);
-                using (var g = Graphics.FromImage((Image)b))
+                using (var g = Graphics.FromImage(b))
                 {
                     g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                     g.DrawImage(imgToResize, new Rectangle(0, 0, size.Width, size.Height),

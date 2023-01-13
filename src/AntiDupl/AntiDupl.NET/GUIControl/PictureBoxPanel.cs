@@ -278,8 +278,8 @@ public class PictureBoxPanel : Panel
                 {
                     if (m_options.resultsOptions.ProportionalImageSize)
                     {
-                        var neighbourWidth = (int)m_neighbourSizeMax.Width;
-                        var neighbourHeight = (int)m_neighbourSizeMax.Height;
+                        var neighbourWidth = m_neighbourSizeMax.Width;
+                        var neighbourHeight = m_neighbourSizeMax.Height;
                         var maxWidth = Math.Max(currentWidth, neighbourWidth);
                         var maxHeight = Math.Max(currentHeight, neighbourHeight);
                         if (m_options.resultsOptions.StretchSmallImages || maxWidth >= clientWidth || maxHeight >= clientHeight)
@@ -556,8 +556,8 @@ public class PictureBoxPanel : Panel
             const float PERCENT_OF_NEIGHBOUR = 0.30F;
             var clientWidth = ClientSize.Width;
             var clientHeight = ClientSize.Height;
-            var neighbourMaxWidth = (int)((float)clientWidth * PERCENT_OF_NEIGHBOUR);
-            var neighbourMaxHeight = (int)((float)clientHeight * PERCENT_OF_NEIGHBOUR);
+            var neighbourMaxWidth = (int)(clientWidth * PERCENT_OF_NEIGHBOUR);
+            var neighbourMaxHeight = (int)(clientHeight * PERCENT_OF_NEIGHBOUR);
             var currentWidth = bitmap.Width;
             var currentHeight = bitmap.Height;
             int horizontalPosition = 0, verticalPosition = 0;

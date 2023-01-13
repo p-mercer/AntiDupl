@@ -758,7 +758,7 @@ public class CorePathsForm : Form
                     }
                 }
             }
-            return (CorePathWithSubFolder[])actualPath.ToArray();
+            return actualPath.ToArray();
         }
 
         private void AddPath(string[] additional)
@@ -773,7 +773,7 @@ public class CorePathsForm : Form
                 {
                     path.AddRange(current);
                     path.AddRange(actual);
-                    SetCurrentPath((CorePathWithSubFolder[])path.ToArray());
+                    SetCurrentPath(path.ToArray());
                     m_newCoreOptions.Validate(m_core, m_options.onePath);
                     UpdatePath();
                     UpdateButtonEnabling();

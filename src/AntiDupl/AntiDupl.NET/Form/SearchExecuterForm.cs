@@ -395,7 +395,7 @@ public class SearchExecuterForm : Form
 
             if(total > 0)
             {
-                progress = (double)currentFirst/(double)total;
+                progress = currentFirst / (double)total;
             }
 
             return progress;
