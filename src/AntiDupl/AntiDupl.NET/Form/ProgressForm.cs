@@ -169,7 +169,7 @@ public class ProgressForm : Form
             m_cancelButton.AutoSize = true;
             buttonsTableLayoutPanel.Controls.Add(m_cancelButton, 1, 0);
 
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             StartPosition = FormStartPosition.CenterScreen;
             ShowInTaskbar = false;
             ControlBox = false;

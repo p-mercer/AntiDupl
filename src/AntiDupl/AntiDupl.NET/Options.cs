@@ -79,14 +79,14 @@ public class Options
 
         static public Options Load()
         {
-            var fileInfo = new FileInfo(Options.GetOptionsFileName());
+            var fileInfo = new FileInfo(GetOptionsFileName());
             if (fileInfo.Exists)
             {
                 FileStream fileStream = null;
                 try
                 {
                     var xmlSerializer = new XmlSerializer(typeof(Options));
-                    fileStream = new FileStream(Options.GetOptionsFileName(), FileMode.Open, FileAccess.Read);
+                    fileStream = new FileStream(GetOptionsFileName(), FileMode.Open, FileAccess.Read);
                     var options = (Options)xmlSerializer.Deserialize(fileStream);
                     options.resultsOptions.Check();
                     fileStream.Close();
@@ -134,7 +134,7 @@ public class Options
             TextWriter writer = null;
             try
             {
-                writer = new StreamWriter(Options.GetOptionsFileName());
+                writer = new StreamWriter(GetOptionsFileName());
                 var xmlSerializer = new XmlSerializer(typeof(Options));
                 xmlSerializer.Serialize(writer, this);
             }

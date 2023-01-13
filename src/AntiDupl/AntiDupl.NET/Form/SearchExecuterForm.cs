@@ -117,7 +117,7 @@ public class SearchExecuterForm : Form
 		};
 		m_notifyIcon.DoubleClick += new EventHandler(OnNotifyIconDoubleClick);
 
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             StartPosition = FormStartPosition.CenterScreen;
             ShowInTaskbar = false;
             ControlBox = false;

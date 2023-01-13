@@ -106,7 +106,7 @@ public class SelectHotKeysForm : Form
 			{
 				Location = new System.Drawing.Point(0, 0),
 				Dock = DockStyle.Fill,
-				TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+				TextAlign = ContentAlignment.MiddleCenter
 			};
 			hotKeysTableLayoutPanel.Controls.Add(item.text, 1, i);
 
@@ -277,14 +277,14 @@ public class SelectHotKeysForm : Form
                 if (m_newHotKeyOptions.Valid((HotKeyOptions.Action)i))
                 {
                     m_toolTip.SetToolTip(m_hotKeyItems[i].edit, "");
-                    m_hotKeyItems[i].edit.ForeColor = TextBox.DefaultForeColor;
-                    m_hotKeyItems[i].edit.BackColor = TextBox.DefaultBackColor;
+                    m_hotKeyItems[i].edit.ForeColor = DefaultForeColor;
+                    m_hotKeyItems[i].edit.BackColor = DefaultBackColor;
                 }
                 else
                 {
                     m_toolTip.SetToolTip(m_hotKeyItems[i].edit, m_invalidHotKeyToolTipText);
                     m_hotKeyItems[i].edit.ForeColor = Color.Red;
-                    m_hotKeyItems[i].edit.BackColor = TextBox.DefaultBackColor;
+                    m_hotKeyItems[i].edit.BackColor = DefaultBackColor;
                 }
             }
         }

@@ -420,7 +420,7 @@ static public class Resources
 
                 private void OnHelpButtonClicked(object sender, CancelEventArgs e)
                 {
-                    Help.Show(m_url);
+				Show(m_url);
                 }
             }
 
@@ -461,7 +461,7 @@ static public class Resources
 
         static public class Logs
         {
-            static public string Performance { get { return string.Format("{0}\\performance.txt", Resources.UserPath); } }
+            static public string Performance { get { return string.Format("{0}\\performance.txt", UserPath); } }
         }
     }
 

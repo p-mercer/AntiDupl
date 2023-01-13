@@ -392,7 +392,7 @@ public class CoreDll : DynamicModule
         public struct adStatusW
         {
             public StateType state;
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = CoreDll.MAX_PATH_EX)]
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MAX_PATH_EX)]
             public string path;
             public UIntPtr current;
             public UIntPtr total;
@@ -425,7 +425,7 @@ public class CoreDll : DynamicModule
         public struct adImageInfoW
         {
             public IntPtr id;
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = CoreDll.MAX_PATH_EX)]
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MAX_PATH_EX)]
             public string path;
             public ulong size;
             public ulong time;
@@ -473,7 +473,7 @@ public class CoreDll : DynamicModule
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
         public struct adPathWithSubFolderW
         {
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = CoreDll.MAX_PATH_EX)]
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MAX_PATH_EX)]
             public string path;
             public int enableSubFolder;
         }
