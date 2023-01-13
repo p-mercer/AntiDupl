@@ -43,7 +43,7 @@ public class CoreDll : DynamicModule
 
 	//-----------API enumerations------------------------------------------
 
-	public enum Error : int
+	public enum Error 
 	{
 		Ok = 0,
 		Unknown = 1,
@@ -80,7 +80,7 @@ public class CoreDll : DynamicModule
 		InvalidSelectionType = 32,
 	}
 
-	public enum PathType : int
+	public enum PathType 
 	{
 		Search = 0,
 		Ignore = 1,
@@ -88,7 +88,7 @@ public class CoreDll : DynamicModule
 		Delete = 3,
 	}
 
-	public enum OptionsType : int
+	public enum OptionsType 
 	{
 		SetDefault = -1,
 		Search = 0,
@@ -97,7 +97,7 @@ public class CoreDll : DynamicModule
 		Advanced = 3,
 	}
 
-	public enum FileType : int
+	public enum FileType 
 	{
 		Options = 0,
 		Result = 1,
@@ -106,7 +106,7 @@ public class CoreDll : DynamicModule
 		Temporary = 4,
 	}
 
-	public enum SortType : int
+	public enum SortType 
 	{
 		ByType = 0,
 		BySortedPath = 1,
@@ -153,7 +153,7 @@ public class CoreDll : DynamicModule
 		ByHint = 42,
 	}
 
-	public enum GlobalActionType : int
+	public enum GlobalActionType 
 	{
 		SetHint = 0,
 		SetGroup = 1,
@@ -162,7 +162,7 @@ public class CoreDll : DynamicModule
 		Redo = 4,
 	}
 
-	public enum LocalActionType : int //то же что и  enum adLocalActionType : adInt32, также еще в class HotKeyOptions enum Action
+	public enum LocalActionType  //то же что и  enum adLocalActionType : adInt32, также еще в class HotKeyOptions enum Action
 	{
 		DeleteDefect = 0,
 		DeleteFirst = 1,
@@ -180,7 +180,7 @@ public class CoreDll : DynamicModule
 		Mistake = 13,
 	}
 
-	public enum ActionEnableType : int
+	public enum ActionEnableType 
 	{
 		Any = 0,
 		Defect = 1,
@@ -190,19 +190,19 @@ public class CoreDll : DynamicModule
 		Redo = 5,
 	}
 
-	public enum TargetType : int
+	public enum TargetType 
 	{
 		Current = 0,
 		Selected = 1,
 	}
 
-	public enum RenameCurrentType : int
+	public enum RenameCurrentType 
 	{
 		First = 0,
 		Second = 1,
 	}
 
-	public enum StateType : int
+	public enum StateType 
 	{
 		None = 0,
 		Work = 1,
@@ -210,14 +210,14 @@ public class CoreDll : DynamicModule
 		Stop = 3,
 	}
 
-	public enum ResultType : int
+	public enum ResultType 
 	{
 		None = 0,
 		DefectImage = 1,
 		DuplImagePair = 2,
 	}
 
-	public enum ImageType : int
+	public enum ImageType 
 	{
 		None = 0,
 		Bmp = 1,
@@ -237,7 +237,7 @@ public class CoreDll : DynamicModule
 		Heif = 15,
 	}
 
-	public enum DefectType : int
+	public enum DefectType 
 	{
 		None = 0,
 		Unknown = 1,
@@ -246,7 +246,7 @@ public class CoreDll : DynamicModule
 		Blurring = 4,
 	}
 
-	public enum TransformType : int
+	public enum TransformType 
 	{
 		Turn_0 = 0,
 		Turn_90 = 1,
@@ -258,7 +258,7 @@ public class CoreDll : DynamicModule
 		MirrorTurn_270 = 7,
 	}
 
-	public enum HintType : int
+	public enum HintType 
 	{
 		None = 0,
 		DeleteFirst = 1,
@@ -267,20 +267,20 @@ public class CoreDll : DynamicModule
 		RenameSecondToFirst = 4,
 	}
 
-	public enum PixelFormatType : int
+	public enum PixelFormatType 
 	{
 		None = 0,
 		Argb32 = 1,
 	}
 
-	public enum ThreadType : int
+	public enum ThreadType 
 	{
 		Main = 0,
 		Collect = 1,
 		Compare = 2,
 	}
 
-	public enum VersionType : int
+	public enum VersionType 
 	{
 		AntiDupl = 0,
 		Simd = 1,
@@ -290,7 +290,7 @@ public class CoreDll : DynamicModule
 		Heif = 5,
 	}
 
-	public enum SelectionType : int
+	public enum SelectionType 
 	{
 		SelectCurrent = 0,
 		UnselectCurrent = 1,
@@ -299,7 +299,7 @@ public class CoreDll : DynamicModule
 		SelectAllButThis = 4,
 	}
 
-	public enum AlgorithmComparing : int
+	public enum AlgorithmComparing 
 	{
 		SquaredSum = 0,
 		SSIM = 1,

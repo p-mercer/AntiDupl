@@ -26,12 +26,12 @@ namespace AntiDupl.NET;
 
 public class CoreDefectOptions
 {
-	public bool checkOnDefect;
-	public bool checkOnBlockiness;
-	public int blockinessThreshold;
-	public bool checkOnBlockinessOnlyNotJpeg;
-	public bool checkOnBlurring;
-	public int blurringThreshold;
+	public bool CheckOnDefect { get; set; }
+	public bool CheckOnBlockiness { get; set; }
+	public int BlockinessThreshold { get; set; }
+	public bool CheckOnBlockinessOnlyNotJpeg { get; set; }
+	public bool CheckOnBlurring { get; set; }
+	public int BlurringThreshold { get; set; }
 
 	public CoreDefectOptions()
 	{
@@ -39,32 +39,32 @@ public class CoreDefectOptions
 
 	public CoreDefectOptions(CoreDefectOptions defectOptions)
 	{
-		checkOnDefect = defectOptions.checkOnDefect;
-		checkOnBlockiness = defectOptions.checkOnBlockiness;
-		blockinessThreshold = defectOptions.blockinessThreshold;
-		checkOnBlockinessOnlyNotJpeg = defectOptions.checkOnBlockinessOnlyNotJpeg;
-		checkOnBlurring = defectOptions.checkOnBlurring;
-		blurringThreshold = defectOptions.blurringThreshold;
+		CheckOnDefect = defectOptions.CheckOnDefect;
+		CheckOnBlockiness = defectOptions.CheckOnBlockiness;
+		BlockinessThreshold = defectOptions.BlockinessThreshold;
+		CheckOnBlockinessOnlyNotJpeg = defectOptions.CheckOnBlockinessOnlyNotJpeg;
+		CheckOnBlurring = defectOptions.CheckOnBlurring;
+		BlurringThreshold = defectOptions.BlurringThreshold;
 	}
 
 	public CoreDefectOptions(ref CoreDll.adDefectOptions defectOptions)
 	{
-		checkOnDefect = defectOptions.checkOnDefect != CoreDll.FALSE;
-		checkOnBlockiness = defectOptions.checkOnBlockiness != CoreDll.FALSE;
-		blockinessThreshold = defectOptions.blockinessThreshold;
-		checkOnBlockinessOnlyNotJpeg = defectOptions.checkOnBlockinessOnlyNotJpeg != CoreDll.FALSE;
-		checkOnBlurring = defectOptions.checkOnBlurring != CoreDll.FALSE;
-		blurringThreshold = defectOptions.blurringThreshold;
+		CheckOnDefect = defectOptions.checkOnDefect != CoreDll.FALSE;
+		CheckOnBlockiness = defectOptions.checkOnBlockiness != CoreDll.FALSE;
+		BlockinessThreshold = defectOptions.blockinessThreshold;
+		CheckOnBlockinessOnlyNotJpeg = defectOptions.checkOnBlockinessOnlyNotJpeg != CoreDll.FALSE;
+		CheckOnBlurring = defectOptions.checkOnBlurring != CoreDll.FALSE;
+		BlurringThreshold = defectOptions.blurringThreshold;
 	}
 
 	public void ConvertTo(ref CoreDll.adDefectOptions defectOptions)
 	{
-		defectOptions.checkOnDefect = checkOnDefect ? CoreDll.TRUE : CoreDll.FALSE;
-		defectOptions.checkOnBlockiness = checkOnBlockiness ? CoreDll.TRUE : CoreDll.FALSE;
-		defectOptions.blockinessThreshold = blockinessThreshold;
-		defectOptions.checkOnBlockinessOnlyNotJpeg = checkOnBlockinessOnlyNotJpeg ? CoreDll.TRUE : CoreDll.FALSE;
-		defectOptions.checkOnBlurring = checkOnBlurring ? CoreDll.TRUE : CoreDll.FALSE;
-		defectOptions.blurringThreshold = blurringThreshold;
+		defectOptions.checkOnDefect = CheckOnDefect ? CoreDll.TRUE : CoreDll.FALSE;
+		defectOptions.checkOnBlockiness = CheckOnBlockiness ? CoreDll.TRUE : CoreDll.FALSE;
+		defectOptions.blockinessThreshold = BlockinessThreshold;
+		defectOptions.checkOnBlockinessOnlyNotJpeg = CheckOnBlockinessOnlyNotJpeg ? CoreDll.TRUE : CoreDll.FALSE;
+		defectOptions.checkOnBlurring = CheckOnBlurring ? CoreDll.TRUE : CoreDll.FALSE;
+		defectOptions.blurringThreshold = BlurringThreshold;
 	}
 
 	public CoreDefectOptions Clone()
@@ -75,11 +75,11 @@ public class CoreDefectOptions
 	public bool Equals(CoreDefectOptions defectOptions)
 	{
 		return
-			checkOnDefect == defectOptions.checkOnDefect &&
-			checkOnBlockiness == defectOptions.checkOnBlockiness &&
-			blockinessThreshold == defectOptions.blockinessThreshold &&
-			 checkOnBlockinessOnlyNotJpeg == defectOptions.checkOnBlockinessOnlyNotJpeg &&
-			checkOnBlurring == defectOptions.checkOnBlurring &&
-			blurringThreshold == defectOptions.blurringThreshold;
+			CheckOnDefect == defectOptions.CheckOnDefect &&
+			CheckOnBlockiness == defectOptions.CheckOnBlockiness &&
+			BlockinessThreshold == defectOptions.BlockinessThreshold &&
+			 CheckOnBlockinessOnlyNotJpeg == defectOptions.CheckOnBlockinessOnlyNotJpeg &&
+			CheckOnBlurring == defectOptions.CheckOnBlurring &&
+			BlurringThreshold == defectOptions.BlurringThreshold;
 	}
 }

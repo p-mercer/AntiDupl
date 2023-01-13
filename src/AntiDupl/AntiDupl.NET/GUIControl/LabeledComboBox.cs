@@ -55,7 +55,7 @@ public class LabeledComboBox : TableLayoutPanel
 		Controls.Add(m_label, 1, 0);
 	}
 
-	public class Value : object
+	public class Value 
 	{
 		public int value;
 		public string description;
