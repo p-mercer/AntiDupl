@@ -369,7 +369,7 @@ public class CorePathsForm : Form
 			builder.Append("PSD; ");
 		}
 
-		builder.Append("|");
+		builder.Append('|');
             if (m_newCoreOptions.searchOptions.JPEG)
 		{
 			builder.Append("*.jpeg;*.jfif;*.jpg;*.jpe;*.jiff;*.jif;*.j;*.jng;*.jff;");

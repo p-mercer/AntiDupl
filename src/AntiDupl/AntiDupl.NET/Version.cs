@@ -73,9 +73,9 @@ public class Version
         {
             var builder = new StringBuilder();
             builder.Append(major.ToString());
-            builder.Append(".");
+            builder.Append('.');
             builder.Append(minor.ToString());
-            builder.Append(".");
+            builder.Append('.');
             builder.Append(release.ToString());
             return builder.ToString();
         }

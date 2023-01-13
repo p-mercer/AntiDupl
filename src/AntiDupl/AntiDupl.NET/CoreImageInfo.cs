@@ -139,12 +139,12 @@ public class CoreImageInfo
                     break;
                 case 1:
                     builder.Append(str[0]);
-                    builder.Append(" ");
+                    builder.Append(' ');
                     break;
                 case 2:
                     builder.Append(str[0]);
                     builder.Append(str[1]);
-                    builder.Append(" ");
+                    builder.Append(' ');
                     break;
             }
             for (var i = start; i < str.Length; i += 3)
@@ -152,7 +152,7 @@ public class CoreImageInfo
                 builder.Append(str[i + 0]);
                 builder.Append(str[i + 1]);
                 builder.Append(str[i + 2]);
-                builder.Append(" ");
+                builder.Append(' ');
             }
             builder.Append("KB");
             return builder.ToString();

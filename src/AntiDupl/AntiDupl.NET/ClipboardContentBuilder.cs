@@ -209,7 +209,7 @@ public class ClipboardContentBuilder
         {
             if (m_insertTab)
 		{
-			m_builder.Append("\t");
+			m_builder.Append('\t');
 		}
 
 		m_builder.Append(value.ToString());

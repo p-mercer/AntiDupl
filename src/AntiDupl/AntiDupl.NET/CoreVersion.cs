@@ -55,7 +55,7 @@ public class CoreVersion
             {
                 if(already)
 			{
-				builder.Append(".");
+				builder.Append('.');
 			}
 
 			builder.Append(minor.ToString());
@@ -65,7 +65,7 @@ public class CoreVersion
             {
                 if (already)
 			{
-				builder.Append(".");
+				builder.Append('.');
 			}
 
 			builder.Append(release.ToString());
@@ -75,7 +75,7 @@ public class CoreVersion
             {
                 if (already)
 			{
-				builder.Append(".");
+				builder.Append('.');
 			}
 
 			builder.Append(revision.ToString());
