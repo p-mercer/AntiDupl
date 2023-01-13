@@ -423,7 +423,7 @@ public class CoreOptionsForm : Form
 		m_undoQueueSizeLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged)
 		{
 			Min = 0,
-			Default = m_defaultCoreOptions.advancedOptions.undoQueueSize,
+			Default = m_defaultCoreOptions.advancedOptions.UndoQueueSize,
 			Max = 16
 		};
 		advancedTableLayoutPanel.Controls.Add(m_undoQueueSizeLabeledIntegerEdit, 0, 7);
@@ -431,7 +431,7 @@ public class CoreOptionsForm : Form
 		m_resultCountMaxLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged)
 		{
 			Min = 1,
-			Default = m_defaultCoreOptions.advancedOptions.resultCountMax
+			Default = m_defaultCoreOptions.advancedOptions.ResultCountMax
 		};
 		advancedTableLayoutPanel.Controls.Add(m_resultCountMaxLabeledIntegerEdit, 0, 8);
 
@@ -621,15 +621,15 @@ public class CoreOptionsForm : Form
 		m_searchHiddenCheckBox.Checked = m_newCoreOptions.searchOptions.hidden;
 
 		m_deleteToRecycleBinCheckBox.Checked = m_newCoreOptions.advancedOptions.DeleteToRecycleBin;
-		m_mistakeDataBaseCheckBox.Checked = m_newCoreOptions.advancedOptions.mistakeDataBase;
-		m_ratioResolutionLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.ratioResolution;
-		m_compareThreadCountLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.compareThreadCount;
-		m_collectThreadCountLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.collectThreadCount;
-		m_reducedImageSizeLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.reducedImageSize;
-		m_undoQueueSizeLabeledIntegerEdit.Value = m_newCoreOptions.advancedOptions.undoQueueSize;
-		m_resultCountMaxLabeledIntegerEdit.Value = m_newCoreOptions.advancedOptions.resultCountMax;
-		m_ignoreFrameWidthLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.ignoreFrameWidth;
-		m_useLibJpegTurboCheckBox.Checked = m_newCoreOptions.advancedOptions.useLibJpegTurbo;
+		m_mistakeDataBaseCheckBox.Checked = m_newCoreOptions.advancedOptions.MistakeDataBase;
+		m_ratioResolutionLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.RatioResolution;
+		m_compareThreadCountLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.CompareThreadCount;
+		m_collectThreadCountLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.CollectThreadCount;
+		m_reducedImageSizeLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.ReducedImageSize;
+		m_undoQueueSizeLabeledIntegerEdit.Value = m_newCoreOptions.advancedOptions.UndoQueueSize;
+		m_resultCountMaxLabeledIntegerEdit.Value = m_newCoreOptions.advancedOptions.ResultCountMax;
+		m_ignoreFrameWidthLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.IgnoreFrameWidth;
+		m_useLibJpegTurboCheckBox.Checked = m_newCoreOptions.advancedOptions.UseLibJpegTurbo;
 	}
 
 	/// <summary>
@@ -675,15 +675,15 @@ public class CoreOptionsForm : Form
 		m_newCoreOptions.searchOptions.hidden = m_searchHiddenCheckBox.Checked;
 
 		m_newCoreOptions.advancedOptions.DeleteToRecycleBin = m_deleteToRecycleBinCheckBox.Checked;
-		m_newCoreOptions.advancedOptions.mistakeDataBase = m_mistakeDataBaseCheckBox.Checked;
-		m_newCoreOptions.advancedOptions.ratioResolution = m_ratioResolutionLabeledComboBox.SelectedValue;
-		m_newCoreOptions.advancedOptions.compareThreadCount = m_compareThreadCountLabeledComboBox.SelectedValue;
-		m_newCoreOptions.advancedOptions.collectThreadCount = m_collectThreadCountLabeledComboBox.SelectedValue;
-		m_newCoreOptions.advancedOptions.reducedImageSize = m_reducedImageSizeLabeledComboBox.SelectedValue;
-		m_newCoreOptions.advancedOptions.undoQueueSize = m_undoQueueSizeLabeledIntegerEdit.Value;
-		m_newCoreOptions.advancedOptions.resultCountMax = m_resultCountMaxLabeledIntegerEdit.Value;
-		m_newCoreOptions.advancedOptions.ignoreFrameWidth = m_ignoreFrameWidthLabeledComboBox.SelectedValue;
-		m_newCoreOptions.advancedOptions.useLibJpegTurbo = m_useLibJpegTurboCheckBox.Checked;
+		m_newCoreOptions.advancedOptions.MistakeDataBase = m_mistakeDataBaseCheckBox.Checked;
+		m_newCoreOptions.advancedOptions.RatioResolution = m_ratioResolutionLabeledComboBox.SelectedValue;
+		m_newCoreOptions.advancedOptions.CompareThreadCount = m_compareThreadCountLabeledComboBox.SelectedValue;
+		m_newCoreOptions.advancedOptions.CollectThreadCount = m_collectThreadCountLabeledComboBox.SelectedValue;
+		m_newCoreOptions.advancedOptions.ReducedImageSize = m_reducedImageSizeLabeledComboBox.SelectedValue;
+		m_newCoreOptions.advancedOptions.UndoQueueSize = m_undoQueueSizeLabeledIntegerEdit.Value;
+		m_newCoreOptions.advancedOptions.ResultCountMax = m_resultCountMaxLabeledIntegerEdit.Value;
+		m_newCoreOptions.advancedOptions.IgnoreFrameWidth = m_ignoreFrameWidthLabeledComboBox.SelectedValue;
+		m_newCoreOptions.advancedOptions.UseLibJpegTurbo = m_useLibJpegTurboCheckBox.Checked;
 	}
 
 	private void UpdateStrings()
@@ -822,7 +822,7 @@ public class CoreOptionsForm : Form
 
 		m_blurringThresholdLabeledComboBox.Enabled = m_newCoreOptions.defectOptions.checkOnBlurring;
 
-		var step = Math.Max(1, 64 / m_newCoreOptions.advancedOptions.reducedImageSize) * IGNORE_FRAME_WIDTH_STEP;
+		var step = Math.Max(1, 64 / m_newCoreOptions.advancedOptions.ReducedImageSize) * IGNORE_FRAME_WIDTH_STEP;
 		if (m_ignoreFrameWidthLabeledComboBox.comboBox.Items.Count != IGNORE_FRAME_WIDTH_MAX / step + 1)
 		{
 			m_ignoreFrameWidthLabeledComboBox.comboBox.Items.Clear();
@@ -831,7 +831,7 @@ public class CoreOptionsForm : Form
 				m_ignoreFrameWidthLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
 			}
 
-			m_ignoreFrameWidthLabeledComboBox.SelectedValue = (m_newCoreOptions.advancedOptions.ignoreFrameWidth + step - 1) / step * step;
+			m_ignoreFrameWidthLabeledComboBox.SelectedValue = (m_newCoreOptions.advancedOptions.IgnoreFrameWidth + step - 1) / step * step;
 		}
 
 		if (m_algorithmComparingLabeledComboBox.SelectedValue == (int)CoreDll.AlgorithmComparing.SquaredSum &&

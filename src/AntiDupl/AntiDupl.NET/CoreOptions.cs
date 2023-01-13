@@ -312,7 +312,7 @@ public class CoreOptions
 
 	public string GetImageDataBasePath()
 	{
-		var directory = string.Format("{0}\\images\\{1}x{1}", Resources.UserPath, advancedOptions.reducedImageSize);
+		var directory = string.Format("{0}\\images\\{1}x{1}", Resources.UserPath, advancedOptions.ReducedImageSize);
 		var directoryInfo = new DirectoryInfo(directory);
 		if (!directoryInfo.Exists)
 		{

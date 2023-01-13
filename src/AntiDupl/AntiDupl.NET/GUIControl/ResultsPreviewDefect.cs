@@ -76,7 +76,7 @@ public class ResultsPreviewDefect : ResultsPreviewBase
 
 	private void OnOptionsChanged()
 	{
-		m_mistakeButton.Enabled = m_coreOptions.advancedOptions.mistakeDataBase;
+		m_mistakeButton.Enabled = m_coreOptions.advancedOptions.MistakeDataBase;
 	}
 
 	protected override void AddItems(ResultsOptions.ViewMode viewMode)
