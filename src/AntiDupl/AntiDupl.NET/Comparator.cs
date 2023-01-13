@@ -1,4 +1,4 @@
-﻿/*
+/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar, 2013-2018 Borisov Dmitry.
@@ -46,7 +46,7 @@ internal class Comparator
             var length = first.Length > second.Length ? second.Length : first.Length;
             for (var x = 0; x < length; x++)
             {
-                sum = sum + (int)Math.Pow((first[x] - second[x]), 2);
+                sum += (int)Math.Pow((first[x] - second[x]), 2);
             }
 
             return sum / length;

@@ -37,7 +37,7 @@ public class RaisedPanel : Panel
             get
             {
                 var p = base.CreateParams;
-                p.ExStyle = p.ExStyle | WS_EX_DLGMODALFRAME;
+                p.ExStyle |= WS_EX_DLGMODALFRAME;
                 return p;
             }
         }

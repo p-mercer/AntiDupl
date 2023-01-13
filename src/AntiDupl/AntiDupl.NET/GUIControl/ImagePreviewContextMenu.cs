@@ -243,14 +243,7 @@ public class ImagePreviewContextMenu : ContextMenuStrip
         /// <returns></returns>
         private bool MoveGroupEnable()
         {
-            if (m_core.GetImageInfoSize(m_imagePreviewPanel.Group) > 2)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return m_core.GetImageInfoSize(m_imagePreviewPanel.Group) > 2;
 	}
 
         /// <summary>

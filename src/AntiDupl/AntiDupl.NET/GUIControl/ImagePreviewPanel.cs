@@ -23,17 +23,15 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Drawing;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
 public class ImagePreviewPanel : TableLayoutPanel
     {
-        private const int MAX_PATH = 260;
-
         public enum Position
         {
             Left,
@@ -520,10 +518,10 @@ public class ImagePreviewPanel : TableLayoutPanel
             {
                 for (var i = 0; i < exifList.Count - 1; i++)
                 {
-                    exifSting = exifSting + exifList[i];
-                    exifSting = exifSting + Environment.NewLine;
+                    exifSting += exifList[i];
+                    exifSting += Environment.NewLine;
                 }
-                exifSting = exifSting + exifList[^1];
+                exifSting += exifList[^1];
 
                 m_toolTip.SetToolTip(m_imageExifLabel, exifSting);
             }
@@ -606,7 +604,7 @@ public class ImagePreviewPanel : TableLayoutPanel
                         if (x >= bitmap.Width)
                         {
                             x = 0;
-                            y = y + heightOfFragment;
+                            y += heightOfFragment;
                         }
                     }
 
