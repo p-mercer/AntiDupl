@@ -142,7 +142,7 @@ public abstract class ResultsPreviewBase : Panel
             m_previousButton.ToolTipText = GetToolTip(s.ResultsPreviewBase_PreviousButton_ToolTip_Text, Keys.Up);
         }
         
-        protected string GetToolTip(string toolTip, Keys hotKey)
+        protected static string GetToolTip(string toolTip, Keys hotKey)
         {
             return string.Concat(toolTip, string.Format(" ({0})", hotKey));
         }

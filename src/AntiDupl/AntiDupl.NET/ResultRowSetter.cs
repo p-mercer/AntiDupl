@@ -248,10 +248,10 @@ public class ResultRowSetter
             switch (m_options.resultsOptions.viewMode)
             {
                 case ResultsOptions.ViewMode.VerticalPairTable:
-                    SetDefectToRowVertical(cells, result);
+				SetDefectToRowVertical(cells, result);
                     break;
                 case ResultsOptions.ViewMode.HorizontalPairTable:
-                    SetDefectToRowHorizontal(cells, result);
+				SetDefectToRowHorizontal(cells, result);
                     break;
             }
         }
@@ -260,7 +260,7 @@ public class ResultRowSetter
         /// Set cell defect in vertical mode.
         /// Установка яйчейки дефектов в вертикальном режиме.
         /// </summary>
-        private void SetDefectToRowVertical(DataGridViewCellCollection cells, CoreResult result)
+        private static void SetDefectToRowVertical(DataGridViewCellCollection cells, CoreResult result)
         {
             for (var col = (int)ResultsListView.ColumnsTypeVertical.FileName; col < (int)ResultsListView.ColumnsTypeVertical.Size; col++)
 		{
@@ -288,7 +288,7 @@ public class ResultRowSetter
         /// Set cell defect in horizontal mode.
         /// Установка яйчейки дефектов в горизонтальном режиме.
         /// </summary>
-        private void SetDefectToRowHorizontal(DataGridViewCellCollection cells, CoreResult result)
+        private static void SetDefectToRowHorizontal(DataGridViewCellCollection cells, CoreResult result)
         {
             for (var col = (int)ResultsListView.ColumnsTypeHorizontal.FirstFileName; col < (int)ResultsListView.ColumnsTypeHorizontal.Size; col++)
 		{

@@ -448,7 +448,7 @@ public class SearchExecuterForm : Form
             writer.Close();
         }
 
-        private string MemoryString(ulong size)
+        private static string MemoryString(ulong size)
         {
             const ulong KB = 1024;
             const ulong MB = 1024 * 1024;

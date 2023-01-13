@@ -465,7 +465,7 @@ public class ImagePreviewPanel : TableLayoutPanel
             }
         }
 
-        private List<string> GetExifList(CoreImageInfo currentImageInfo, Strings s)
+        private static List<string> GetExifList(CoreImageInfo currentImageInfo, Strings s)
         {
             var exifList = new List<string>();
             if (!string.IsNullOrEmpty(currentImageInfo.exifInfo.imageDescription))
@@ -564,7 +564,7 @@ public class ImagePreviewPanel : TableLayoutPanel
         /// <summary>
         /// Проверка равны ли Exif.
         /// </summary>
-        private bool ExifEqual(CoreDll.adImageExifW imageExif1, CoreDll.adImageExifW imageExif2)
+        private static bool ExifEqual(CoreDll.adImageExifW imageExif1, CoreDll.adImageExifW imageExif2)
         {
             if (imageExif1.isEmpty == imageExif2.isEmpty &&
                 imageExif1.artist.CompareTo(imageExif2.artist) == 0 &&

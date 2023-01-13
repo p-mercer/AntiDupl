@@ -83,7 +83,7 @@ public class CoreVersion
             return builder.ToString();
         }
 
-        private string Parse(sbyte[] buffer)
+        private static string Parse(sbyte[] buffer)
         {
             var builder = new StringBuilder();
             for (var i = 0; i < buffer.Length; ++i)

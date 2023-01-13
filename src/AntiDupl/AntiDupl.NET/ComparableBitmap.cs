@@ -91,7 +91,7 @@ namespace AntiDupl.NET;
             return bmpBytes;
         }
 
-        public Bitmap ToGrayScale(System.Drawing.Bitmap b)
+        public static Bitmap ToGrayScale(System.Drawing.Bitmap b)
         {
             //create a blank bitmap the same size as original
             var newBitmap = new Bitmap(b.Width, b.Height);

@@ -154,7 +154,7 @@ public class PictureBoxPanel : Panel
 		}
         }
 
-        private bool LoadFileToMemoryStream(ref MemoryStream memoryStream, string path)
+        private static bool LoadFileToMemoryStream(ref MemoryStream memoryStream, string path)
         {
             if (memoryStream != null)
             {
@@ -500,7 +500,7 @@ public class PictureBoxPanel : Panel
                 if (forceLoad)
                 {
                     CleanNeighbours();
-                    GetNeighboursFileNames(m_currentImageInfo.path, ref m_prevFile, ref m_nextFile);
+				GetNeighboursFileNames(m_currentImageInfo.path, ref m_prevFile, ref m_nextFile);
                 }
                 if (m_prevFile != null)
 			{
@@ -619,7 +619,7 @@ public class PictureBoxPanel : Panel
             return null;
         }
 
-        private void GetNeighboursFileNames(string filePreview, ref string m_prevFile, ref string m_nextFile)
+        private static void GetNeighboursFileNames(string filePreview, ref string m_prevFile, ref string m_nextFile)
         {
             if (m_prevFile == null && m_nextFile == null)
             {

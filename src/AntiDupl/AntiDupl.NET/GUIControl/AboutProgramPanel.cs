@@ -131,7 +131,7 @@ public class AboutProgramPanel : Panel
             return table;
         }
 
-        private Label CreateLabel(string text, Font font)
+        private static Label CreateLabel(string text, Font font)
         {
 		var label = new System.Windows.Forms.Label
 		{

@@ -121,14 +121,14 @@ public class MainForm : Form
 
             loc = new Point(Restrict(loc.X, locMin.X, locMax.X), Restrict(loc.Y, locMin.Y, locMax.Y));
             size = new Size(Restrict(size.Width, sizeMin.Width, sizeMax.Width - loc.X),
-                Restrict(size.Height, sizeMin.Height, sizeMax.Height - loc.Y));
+				Restrict(size.Height, sizeMin.Height, sizeMax.Height - loc.Y));
 
             Location = loc;
             Size = size;
             WindowState = (m_options.mainFormOptions.maximized ? FormWindowState.Maximized : FormWindowState.Normal);
         }
 
-        private int Restrict(int value, int min, int max)
+        private static int Restrict(int value, int min, int max)
         {
             return Math.Min(Math.Max(value, min), max);
         }
