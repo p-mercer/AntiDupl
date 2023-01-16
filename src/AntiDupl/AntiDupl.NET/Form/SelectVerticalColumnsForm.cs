@@ -31,7 +31,7 @@ public class SelectVerticalColumnsForm : Form
 	private readonly ResultsListView m_resultsListView;
 	private readonly Options m_options;
 	private readonly ResultsOptions m_newResultOptions;
-	private readonly bool m_inited = false;
+	private readonly bool m_inited;
 
 	private CheckBox[] m_checkBoxes;
 	private Button m_okButton;
@@ -171,7 +171,7 @@ public class SelectVerticalColumnsForm : Form
 	{
 		for (var i = 0; i < (int)ResultsListView.ColumnsTypeVertical.Size; i++)
 		{
-			m_checkBoxes[i].Checked = m_newResultOptions.columnOptionsVertical[i].visible;
+			m_checkBoxes[i].Checked = m_newResultOptions.ColumnOptionsVertical[i].Visible;
 		}
 	}
 
@@ -179,7 +179,7 @@ public class SelectVerticalColumnsForm : Form
 	{
 		for (var i = 0; i < (int)ResultsListView.ColumnsTypeVertical.Size; i++)
 		{
-			m_newResultOptions.columnOptionsVertical[i].visible = m_checkBoxes[i].Checked;
+			m_newResultOptions.ColumnOptionsVertical[i].Visible = m_checkBoxes[i].Checked;
 		}
 	}
 

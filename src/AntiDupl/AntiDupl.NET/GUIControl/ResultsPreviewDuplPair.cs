@@ -262,7 +262,7 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 	private delegate void HighlightCompleteDelegate(List<Rectangle> rectangles);
 	private event HighlightCompleteDelegate HighlightCompleteEvent;
 	private Thread _thread;
-	private bool _highlightStop = false;
+	private bool _highlightStop;
 
 	private void SetDifference()
 	{

@@ -122,7 +122,7 @@ public class CoreOptionsForm : Form
 	/// <summary>
 	/// Все компоненты иницализированы.
 	/// </summary>
-	private bool m_inited = false;
+	private bool m_inited;
 
 	public CoreOptionsForm(CoreLib core, Options options, CoreOptions coreOptions)
 	{

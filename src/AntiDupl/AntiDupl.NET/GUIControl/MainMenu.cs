@@ -101,8 +101,8 @@ public class MainMenu : MenuStrip
 		m_file_exitMenuItem = InitFactory.MenuItem.Create(null, null, ExitAction);
 		m_file_profileOpenMenuItem = InitFactory.MenuItem.Create("ProfileOpenMenu", null, ProfileOpenAction);
 		m_file_profileSaveAsMenuItem = InitFactory.MenuItem.Create("ProfileSaveAsMenu", null, ProfileSaveAsAction);
-		m_file_loadProfileOnLoading = InitFactory.MenuItem.Create(null, null, LoadProfileOnLoadingAction, m_options.loadProfileOnLoading);
-		m_file_saveProfileOnClosing = InitFactory.MenuItem.Create(null, null, SaveProfileOnClosingAction, m_options.saveProfileOnClosing);
+		m_file_loadProfileOnLoading = InitFactory.MenuItem.Create(null, null, LoadProfileOnLoadingAction, m_options.LoadProfileOnLoading);
+		m_file_saveProfileOnClosing = InitFactory.MenuItem.Create(null, null, SaveProfileOnClosingAction, m_options.SaveProfileOnClosing);
 
 		m_fileMenuItem = new ToolStripMenuItem();
 		m_fileMenuItem.DropDownItems.Add(m_file_profileOpenMenuItem);
@@ -153,9 +153,9 @@ public class MainMenu : MenuStrip
 		m_search_pathsMenuItem = InitFactory.MenuItem.Create("PathsMenu", null, PathsAction);
 		m_search_optionsMenuItem = InitFactory.MenuItem.Create("OptionsMenu", null, OptionsAction);
 		m_search_onePathMenuItem = InitFactory.MenuItem.Create(null, null, UseOnePathAction, m_options.onePath);
-		m_search_useImageDataBaseMenuItem = InitFactory.MenuItem.Create(null, null, UseImageDataBaseAction, m_options.useImageDataBase);
-		m_search_checkResultsAtLoadingMenuItem = InitFactory.MenuItem.Create(null, null, CheckResultsAtLoadingAction, m_options.checkResultsAtLoading);
-		m_search_checkMistakesAtLoadingMenuItem = InitFactory.MenuItem.Create(null, null, CheckMistakesAtLoadingAction, m_options.checkMistakesAtLoading);
+		m_search_useImageDataBaseMenuItem = InitFactory.MenuItem.Create(null, null, UseImageDataBaseAction, m_options.UseImageDataBase);
+		m_search_checkResultsAtLoadingMenuItem = InitFactory.MenuItem.Create(null, null, CheckResultsAtLoadingAction, m_options.CheckResultsAtLoading);
+		m_search_checkMistakesAtLoadingMenuItem = InitFactory.MenuItem.Create(null, null, CheckMistakesAtLoadingAction, m_options.CheckMistakesAtLoading);
 
 		m_searchMenuItem = new ToolStripMenuItem();
 		m_searchMenuItem.DropDownItems.Add(m_search_startMenuItem);
@@ -172,7 +172,7 @@ public class MainMenu : MenuStrip
 
 		m_help_helpMenuItem = InitFactory.MenuItem.Create("HelpMenu", null, HelpAction);
 		m_help_aboutProgramMenuItem = InitFactory.MenuItem.Create(null, null, AboutProgramAction);
-		m_help_checkingForUpdatesMenuItem = InitFactory.MenuItem.Create(null, null, OnCheckingForUpdatesClick, m_options.checkingForUpdates);
+		m_help_checkingForUpdatesMenuItem = InitFactory.MenuItem.Create(null, null, OnCheckingForUpdatesClick, m_options.CheckingForUpdates);
 
 		m_helpMenuItem = new ToolStripMenuItem();
 		m_helpMenuItem.DropDownItems.Add(m_help_helpMenuItem);
@@ -326,10 +326,10 @@ public class MainMenu : MenuStrip
 	public void ProfileSaveAsAction(object sender, EventArgs e)
 	{
 		var dialog = new SaveFileDialog();
-		var fileInfo = new FileInfo(m_options.coreOptionsFileName);
+		var fileInfo = new FileInfo(m_options.CoreOptionsFileName);
 		if (fileInfo.Exists)
 		{
-			dialog.FileName = m_options.coreOptionsFileName;
+			dialog.FileName = m_options.CoreOptionsFileName;
 			dialog.InitialDirectory = fileInfo.Directory.ToString();
 		}
 		else
@@ -349,8 +349,8 @@ public class MainMenu : MenuStrip
 				saveProgressForm.Execute();
 				m_options.coreOptionsFileName = dialog.FileName;
 			}*/
-			m_options.coreOptionsFileName = dialog.FileName;
-			m_coreOptions.Save(m_options.coreOptionsFileName);
+			m_options.CoreOptionsFileName = dialog.FileName;
+			m_coreOptions.Save(m_options.CoreOptionsFileName);
 			var progressForm = new ProgressForm(ProgressForm.Type.SaveResults, m_core, m_options, m_coreOptions, m_mainSplitContainer);
 			progressForm.Execute();
 			m_mainForm.UpdateCaption();
@@ -360,10 +360,10 @@ public class MainMenu : MenuStrip
 	public void ProfileOpenAction(object sender, EventArgs e)
 	{
 		var dialog = new OpenFileDialog();
-		var fileInfo = new FileInfo(m_options.coreOptionsFileName);
+		var fileInfo = new FileInfo(m_options.CoreOptionsFileName);
 		if (fileInfo.Exists)
 		{
-			dialog.FileName = m_options.coreOptionsFileName;
+			dialog.FileName = m_options.CoreOptionsFileName;
 			dialog.InitialDirectory = fileInfo.Directory.ToString();
 		}
 		else
@@ -375,15 +375,15 @@ public class MainMenu : MenuStrip
 		dialog.Filter = "Antidupl profile files (*.xml)|*.xml";
 		if (dialog.ShowDialog() == DialogResult.OK)
 		{
-			if (string.Compare(dialog.FileName, m_options.coreOptionsFileName) != 0)
+			if (string.Compare(dialog.FileName, m_options.CoreOptionsFileName) != 0)
 			{
-				m_coreOptions.Save(m_options.coreOptionsFileName);
+				m_coreOptions.Save(m_options.CoreOptionsFileName);
 				var saveProgressForm = new ProgressForm(ProgressForm.Type.SaveResults, m_core, m_options, m_coreOptions, m_mainSplitContainer);
 				saveProgressForm.Execute();
-				m_options.coreOptionsFileName = dialog.FileName;
+				m_options.CoreOptionsFileName = dialog.FileName;
 			}
 
-			var coreOptions = CoreOptions.Load(m_options.coreOptionsFileName, m_core, m_options.onePath);
+			var coreOptions = CoreOptions.Load(m_options.CoreOptionsFileName, m_core, m_options.onePath);
 			coreOptions.CopyTo(ref m_coreOptions);
 			var loadProgressForm = new ProgressForm(ProgressForm.Type.LoadResults, m_core, m_options, m_coreOptions, m_mainSplitContainer);
 			loadProgressForm.Execute();
@@ -438,27 +438,27 @@ public class MainMenu : MenuStrip
 
 	private void UseImageDataBaseAction(object sender, EventArgs e)
 	{
-		m_options.useImageDataBase = m_search_useImageDataBaseMenuItem.Checked;
+		m_options.UseImageDataBase = m_search_useImageDataBaseMenuItem.Checked;
 	}
 
 	private void CheckResultsAtLoadingAction(object sender, EventArgs e)
 	{
-		m_options.checkResultsAtLoading = m_search_checkResultsAtLoadingMenuItem.Checked;
+		m_options.CheckResultsAtLoading = m_search_checkResultsAtLoadingMenuItem.Checked;
 	}
 
 	private void CheckMistakesAtLoadingAction(object sender, EventArgs e)
 	{
-		m_options.checkMistakesAtLoading = m_search_checkMistakesAtLoadingMenuItem.Checked;
+		m_options.CheckMistakesAtLoading = m_search_checkMistakesAtLoadingMenuItem.Checked;
 	}
 
 	private void LoadProfileOnLoadingAction(object sender, EventArgs e)
 	{
-		m_options.loadProfileOnLoading = m_file_loadProfileOnLoading.Checked;
+		m_options.LoadProfileOnLoading = m_file_loadProfileOnLoading.Checked;
 	}
 
 	private void SaveProfileOnClosingAction(object sender, EventArgs e)
 	{
-		m_options.saveProfileOnClosing = m_file_saveProfileOnClosing.Checked;
+		m_options.SaveProfileOnClosing = m_file_saveProfileOnClosing.Checked;
 	}
 
 	public void HelpAction(object sender, EventArgs e)
@@ -474,8 +474,8 @@ public class MainMenu : MenuStrip
 
 	private void OnCheckingForUpdatesClick(object sender, EventArgs e)
 	{
-		m_options.checkingForUpdates = m_help_checkingForUpdatesMenuItem.Checked;
-		if (m_options.checkingForUpdates)
+		m_options.CheckingForUpdates = m_help_checkingForUpdatesMenuItem.Checked;
+		if (m_options.CheckingForUpdates)
 		{
 			m_newVersionMenuItem = new NewVersionMenuItem(m_options);
 		}

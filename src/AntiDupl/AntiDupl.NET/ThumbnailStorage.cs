@@ -59,9 +59,9 @@ public class ThumbnailStorage
 	{
 		var result = false;
 		m_mutex.WaitOne();
-		if (m_storage.ContainsKey(imageInfo.Id))
+		if (m_storage.TryGetValue(imageInfo.Id, out var value))
 		{
-			var bitmap = m_storage[imageInfo.Id];
+			var bitmap = value;
 			if (bitmap != null)
 			{
 				var size = GetThumbnailSize(imageInfo);
@@ -79,10 +79,9 @@ public class ThumbnailStorage
 	/// <returns></returns>
 	public Bitmap Get(CoreImageInfo imageInfo)
 	{
-		Bitmap bitmap = null;
 		var size = GetThumbnailSize(imageInfo);
 		m_mutex.WaitOne();
-		m_storage.TryGetValue(imageInfo.Id, out bitmap);
+		m_storage.TryGetValue(imageInfo.Id, out var bitmap);
 		if (bitmap == null || bitmap.Height != size.Height || bitmap.Width != size.Width)
 		{
 			m_mutex.ReleaseMutex(); // поток может работать дальше
@@ -96,14 +95,9 @@ public class ThumbnailStorage
 
 	private Size GetThumbnailSize(CoreImageInfo imageInfo)
 	{
-		var sizeMax = m_options.resultsOptions.thumbnailSizeMax;
-		if (sizeMax.Width * imageInfo.Height > sizeMax.Height * imageInfo.Width)
-		{
-			return new Size(sizeMax.Width, (int)(sizeMax.Height * imageInfo.Height / imageInfo.Width));
-		}
-		else
-		{
-			return new Size((int)(sizeMax.Width * imageInfo.Width / imageInfo.Height), sizeMax.Height);
-		}
+		var sizeMax = m_options.resultsOptions.ThumbnailSizeMax;
+		return sizeMax.Width * imageInfo.Height > sizeMax.Height * imageInfo.Width
+			? new Size(sizeMax.Width, (int)(sizeMax.Height * imageInfo.Height / imageInfo.Width))
+			: new Size((int)(sizeMax.Width * imageInfo.Width / imageInfo.Height), sizeMax.Height);
 	}
 }

@@ -225,47 +225,35 @@ public class CorePathsForm : Form
 	/// </summary>
 	private CorePathWithSubFolder[] GetCurrentPath()
 	{
-		switch ((CoreDll.PathType)m_tabControl.SelectedTab.Tag)
+		return (CoreDll.PathType)m_tabControl.SelectedTab.Tag switch
 		{
-			case CoreDll.PathType.Search:
-				return m_newCoreOptions.searchPath;
-			case CoreDll.PathType.Ignore:
-				return m_newCoreOptions.ignorePath;
-			case CoreDll.PathType.Valid:
-				return m_newCoreOptions.validPath;
-			case CoreDll.PathType.Delete:
-				return m_newCoreOptions.deletePath;
-			default:
-				return null;
-		}
+			CoreDll.PathType.Search => m_newCoreOptions.searchPath,
+			CoreDll.PathType.Ignore => m_newCoreOptions.ignorePath,
+			CoreDll.PathType.Valid => m_newCoreOptions.validPath,
+			CoreDll.PathType.Delete => m_newCoreOptions.deletePath,
+			_ => null,
+		};
 	}
 
 	private ListBox GetCurrentListBox()
 	{
-		switch ((CoreDll.PathType)m_tabControl.SelectedTab.Tag)
+		return (CoreDll.PathType)m_tabControl.SelectedTab.Tag switch
 		{
-			case CoreDll.PathType.Search:
-				return m_searchCheckedList;
-			case CoreDll.PathType.Ignore:
-				return m_ignoreListBox;
-			case CoreDll.PathType.Valid:
-				return m_validListBox;
-			case CoreDll.PathType.Delete:
-				return m_deleteListBox;
-			default:
-				return null;
-		}
+			CoreDll.PathType.Search => m_searchCheckedList,
+			CoreDll.PathType.Ignore => m_ignoreListBox,
+			CoreDll.PathType.Valid => m_validListBox,
+			CoreDll.PathType.Delete => m_deleteListBox,
+			_ => null,
+		};
 	}
 
 	private CheckedListBox GetCurrentCheckedListBox()
 	{
-		switch ((CoreDll.PathType)m_tabControl.SelectedTab.Tag)
+		return (CoreDll.PathType)m_tabControl.SelectedTab.Tag switch
 		{
-			case CoreDll.PathType.Search:
-				return m_searchCheckedList;
-			default:
-				return null;
-		}
+			CoreDll.PathType.Search => m_searchCheckedList,
+			_ => null,
+		};
 	}
 
 	private void SetCurrentPath(CorePathWithSubFolder[] path)
@@ -300,14 +288,7 @@ public class CorePathsForm : Form
 			}
 		}
 
-		if (existedPath != null)
-		{
-			return existedPath;
-		}
-		else
-		{
-			return Application.StartupPath;
-		}
+		return existedPath ?? Application.StartupPath;
 	}
 
 	private string GetFilter()
@@ -579,25 +560,18 @@ public class CorePathsForm : Form
 			m_tabControl.SelectedIndex = 0;
 		}
 
-		var pathType = (CoreDll.PathType)m_tabControl.SelectedTab.Tag;
 		var checkedListBox = GetCurrentCheckedListBox();
 		var path = GetCurrentPath();
 
-		if (checkedListBox != null)
+		if (checkedListBox != null && checkedListBox.SelectedIndex != -1 && checkedListBox == m_searchCheckedList)
 		{
-			if (checkedListBox.SelectedIndex != -1)
+			if (e.NewValue == CheckState.Unchecked)
 			{
-				if (checkedListBox == m_searchCheckedList)
-				{
-					if (e.NewValue == CheckState.Unchecked)
-					{
-						path[checkedListBox.SelectedIndex].EnableSubFolder = false;
-					}
-					else
-					{
-						path[checkedListBox.SelectedIndex].EnableSubFolder = true;
-					}
-				}
+				path[checkedListBox.SelectedIndex].EnableSubFolder = false;
+			}
+			else
+			{
+				path[checkedListBox.SelectedIndex].EnableSubFolder = true;
 			}
 		}
 	}
@@ -676,7 +650,6 @@ public class CorePathsForm : Form
 			m_tabControl.SelectedIndex = 0;
 		}
 
-		var pathType = (CoreDll.PathType)m_tabControl.SelectedTab.Tag;
 		var listBox = GetCurrentListBox();
 		var path = GetCurrentPath();
 

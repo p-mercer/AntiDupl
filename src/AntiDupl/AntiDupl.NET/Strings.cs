@@ -31,295 +31,295 @@ public class Strings
 		StringsDefaultEnglish.CopyTo(this);
 	}
 
-	public string Name;
-	public string OriginalLanguageName;
+	public string Name { get; set; }
+	public string OriginalLanguageName { get; set; }
 
-	public string OkButton_Text;
-	public string CancelButton_Text;
-	public string StopButton_Text;
-	public string SetDefaultButton_Text;
+	public string OkButton_Text { get; set; }
+	public string CancelButton_Text { get; set; }
+	public string StopButton_Text { get; set; }
+	public string SetDefaultButton_Text { get; set; }
 
-	public string ErrorMessage_FileAlreadyExists;
+	public string ErrorMessage_FileAlreadyExists { get; set; }
 
-	public string WarningMessage_ChangeFileExtension;
+	public string WarningMessage_ChangeFileExtension { get; set; }
 
-	public string AboutProgramPanel_CopyrightLabel0_Text;
-	public string AboutProgramPanel_CopyrightLabel1_Text;
-	public string AboutProgramPanel_ComponentLabel_Text;
-	public string AboutProgramPanel_VersionLabel_Text;
+	public string AboutProgramPanel_CopyrightLabel0_Text { get; set; }
+	public string AboutProgramPanel_CopyrightLabel1_Text { get; set; }
+	public string AboutProgramPanel_ComponentLabel_Text { get; set; }
+	public string AboutProgramPanel_VersionLabel_Text { get; set; }
 
-	public string AboutProgramForm_Text;
+	public string AboutProgramForm_Text { get; set; }
 
-	public string StartFinishForm_LoadImages_Text;
-	public string StartFinishForm_LoadMistakes_Text;
-	public string StartFinishForm_LoadResults_Text;
-	public string StartFinishForm_SaveImages_Text;
-	public string StartFinishForm_SaveMistakes_Text;
-	public string StartFinishForm_SaveResults_Text;
-	public string StartFinishForm_ClearTemporary_Text;
+	public string StartFinishForm_LoadImages_Text { get; set; }
+	public string StartFinishForm_LoadMistakes_Text { get; set; }
+	public string StartFinishForm_LoadResults_Text { get; set; }
+	public string StartFinishForm_SaveImages_Text { get; set; }
+	public string StartFinishForm_SaveMistakes_Text { get; set; }
+	public string StartFinishForm_SaveResults_Text { get; set; }
+	public string StartFinishForm_ClearTemporary_Text { get; set; }
 
-	public string CoreOptionsForm_Text;
+	public string CoreOptionsForm_Text { get; set; }
 
-	public string CoreOptionsForm_SearchTabPage_Text;
-	public string CoreOptionsForm_SearchFileTypeGroupBox_Text;
-	public string CoreOptionsForm_BmpCheckBox_Text;
-	public string CoreOptionsForm_GifCheckBox_Text;
-	public string CoreOptionsForm_JpegCheckBox_Text;
-	public string CoreOptionsForm_PngCheckBox_Text;
-	public string CoreOptionsForm_TiffCheckBox_Text;
-	public string CoreOptionsForm_EmfCheckBox_Text;
-	public string CoreOptionsForm_WmfCheckBox_Text;
-	public string CoreOptionsForm_ExifCheckBox_Text;
-	public string CoreOptionsForm_IconCheckBox_Text;
-	public string CoreOptionsForm_Jp2CheckBox_Text;
-	public string CoreOptionsForm_PsdCheckBox_Text;
-	public string CoreOptionsForm_DdsCheckBox_Text;
-	public string CoreOptionsForm_TgaCheckBox_Text;
-	public string CoreOptionsForm_WebpCheckBox_Text;
-	public string CoreOptionsForm_HeifCheckBox_Text;
-	public string CoreOptionsForm_SearchSystemCheckBox_Text;
-	public string CoreOptionsForm_SearchHiddenCheckBox_Text;
+	public string CoreOptionsForm_SearchTabPage_Text { get; set; }
+	public string CoreOptionsForm_SearchFileTypeGroupBox_Text { get; set; }
+	public string CoreOptionsForm_BmpCheckBox_Text { get; set; }
+	public string CoreOptionsForm_GifCheckBox_Text { get; set; }
+	public string CoreOptionsForm_JpegCheckBox_Text { get; set; }
+	public string CoreOptionsForm_PngCheckBox_Text { get; set; }
+	public string CoreOptionsForm_TiffCheckBox_Text { get; set; }
+	public string CoreOptionsForm_EmfCheckBox_Text { get; set; }
+	public string CoreOptionsForm_WmfCheckBox_Text { get; set; }
+	public string CoreOptionsForm_ExifCheckBox_Text { get; set; }
+	public string CoreOptionsForm_IconCheckBox_Text { get; set; }
+	public string CoreOptionsForm_Jp2CheckBox_Text { get; set; }
+	public string CoreOptionsForm_PsdCheckBox_Text { get; set; }
+	public string CoreOptionsForm_DdsCheckBox_Text { get; set; }
+	public string CoreOptionsForm_TgaCheckBox_Text { get; set; }
+	public string CoreOptionsForm_WebpCheckBox_Text { get; set; }
+	public string CoreOptionsForm_HeifCheckBox_Text { get; set; }
+	public string CoreOptionsForm_SearchSystemCheckBox_Text { get; set; }
+	public string CoreOptionsForm_SearchHiddenCheckBox_Text { get; set; }
 
-	public string CoreOptionsForm_CompareTabPage_Text;
-	public string CoreOptionsForm_CheckOnEqualityCheckBox_Text;
-	public string CoreOptionsForm_TransformedImageCheckBox_Text;
-	public string CoreOptionsForm_SizeControlCheckBox_Text;
-	public string CoreOptionsForm_TypeControlCheckBox_Text;
-	public string CoreOptionsForm_RatioControlCheckBox_Text;
-	public string CoreOptionsForm_AlgorithmComparingLabeledComboBox_Text;
-	public string CoreOptionsForm_AlgorithmComparingLabeledComboBox_SquaredSum;
-	public string CoreOptionsForm_ThresholdDifferenceLabeledComboBox_Text;
-	public string CoreOptionsForm_MinimalImageSizeLabeledIntegerEdit_Text;
-	public string CoreOptionsForm_MaximalImageSizeLabeledIntegerEdit_Text;
-	public string CoreOptionsForm_CompareInsideOneFolderCheckBox_Text;
-	public string CoreOptionsForm_CompareInsideOneSearchPathCheckBox_Text;
+	public string CoreOptionsForm_CompareTabPage_Text { get; set; }
+	public string CoreOptionsForm_CheckOnEqualityCheckBox_Text { get; set; }
+	public string CoreOptionsForm_TransformedImageCheckBox_Text { get; set; }
+	public string CoreOptionsForm_SizeControlCheckBox_Text { get; set; }
+	public string CoreOptionsForm_TypeControlCheckBox_Text { get; set; }
+	public string CoreOptionsForm_RatioControlCheckBox_Text { get; set; }
+	public string CoreOptionsForm_AlgorithmComparingLabeledComboBox_Text { get; set; }
+	public string CoreOptionsForm_AlgorithmComparingLabeledComboBox_SquaredSum { get; set; }
+	public string CoreOptionsForm_ThresholdDifferenceLabeledComboBox_Text { get; set; }
+	public string CoreOptionsForm_MinimalImageSizeLabeledIntegerEdit_Text { get; set; }
+	public string CoreOptionsForm_MaximalImageSizeLabeledIntegerEdit_Text { get; set; }
+	public string CoreOptionsForm_CompareInsideOneFolderCheckBox_Text { get; set; }
+	public string CoreOptionsForm_CompareInsideOneSearchPathCheckBox_Text { get; set; }
 
-	public string CoreOptionsForm_DefectTabPage_Text;
-	public string CoreOptionsForm_CheckOnDefectCheckBox_Text;
-	public string CoreOptionsForm_CheckOnBlockinessCheckBox_Text;
-	public string CoreOptionsForm_BlockinessThresholdLabeledComboBox_Text;
-	public string CoreOptionsForm_CheckOnBlockinessOnlyNotJpegCheckBox_Text;
-	public string CoreOptionsForm_CheckOnBlurringCheckBox_Text;
-	public string CoreOptionsForm_BlurringThresholdLabeledComboBox_Text;
+	public string CoreOptionsForm_DefectTabPage_Text { get; set; }
+	public string CoreOptionsForm_CheckOnDefectCheckBox_Text { get; set; }
+	public string CoreOptionsForm_CheckOnBlockinessCheckBox_Text { get; set; }
+	public string CoreOptionsForm_BlockinessThresholdLabeledComboBox_Text { get; set; }
+	public string CoreOptionsForm_CheckOnBlockinessOnlyNotJpegCheckBox_Text { get; set; }
+	public string CoreOptionsForm_CheckOnBlurringCheckBox_Text { get; set; }
+	public string CoreOptionsForm_BlurringThresholdLabeledComboBox_Text { get; set; }
 
-	public string CoreOptionsForm_AdvancedTabPage_Text;
-	public string CoreOptionsForm_DeleteToRecycleBinCheckBox_Text;
-	public string CoreOptionsForm_MistakeDataBaseCheckBox_Text;
-	public string CoreOptionsForm_RatioResolutionLabeledComboBox_Text;
-	public string CoreOptionsForm_CompareThreadCountLabeledComboBox_Text;
-	public string CoreOptionsForm_CompareThreadCountLabeledComboBox_Description_0;
-	public string CoreOptionsForm_CollectThreadCountLabeledComboBox_Text;
-	public string CoreOptionsForm_CollectThreadCountLabeledComboBox_Description_0;
-	public string CoreOptionsForm_ReducedImageSizeLabeledComboBox_Text;
-	public string CoreOptionsForm_UndoQueueSizeLabeledIntegerEdit_Text;
-	public string CoreOptionsForm_ResultCountMaxLabeledIntegerEdit_Text;
-	public string CoreOptionsForm_IgnoreFrameWidthLabeledComboBox_Text;
-	public string CoreOptionsForm_UseLibJpegTurboCheckBox_Text;
+	public string CoreOptionsForm_AdvancedTabPage_Text { get; set; }
+	public string CoreOptionsForm_DeleteToRecycleBinCheckBox_Text { get; set; }
+	public string CoreOptionsForm_MistakeDataBaseCheckBox_Text { get; set; }
+	public string CoreOptionsForm_RatioResolutionLabeledComboBox_Text { get; set; }
+	public string CoreOptionsForm_CompareThreadCountLabeledComboBox_Text { get; set; }
+	public string CoreOptionsForm_CompareThreadCountLabeledComboBox_Description_0 { get; set; }
+	public string CoreOptionsForm_CollectThreadCountLabeledComboBox_Text { get; set; }
+	public string CoreOptionsForm_CollectThreadCountLabeledComboBox_Description_0 { get; set; }
+	public string CoreOptionsForm_ReducedImageSizeLabeledComboBox_Text { get; set; }
+	public string CoreOptionsForm_UndoQueueSizeLabeledIntegerEdit_Text { get; set; }
+	public string CoreOptionsForm_ResultCountMaxLabeledIntegerEdit_Text { get; set; }
+	public string CoreOptionsForm_IgnoreFrameWidthLabeledComboBox_Text { get; set; }
+	public string CoreOptionsForm_UseLibJpegTurboCheckBox_Text { get; set; }
 
-	public string CoreOptionsForm_HighlightTabPage_Text;
-	public string CoreOptionsForm_HighlightDifferenceCheckBox_Text;
-	public string CoreOptionsForm_DifrentValue_Text;
-	public string CoreOptionsForm_NotHighlightIfFragmentsMoreThemCheckBox_Text;
-	public string CoreOptionsForm_MaxFragmentsForDisableHighlightLabeledIntegerEdit_Text;
-	public string CoreOptionsForm_HighlightAllDifferencesCheckBox_Text;
-	public string CoreOptionsForm_MaxFragmentsForHighlightLabeledIntegerEdit_Text;
-	public string CoreOptionsForm_AmountOfFragmentsOnXLabeledIntegerEdit_Text;
-	public string CoreOptionsForm_AmountOfFragmentsOnYLabeledIntegerEdit_Text;
-	public string CoreOptionsForm_NormalizedSizeOfImageLabeledIntegerEdit_Text;
-	public string CoreOptionsForm_PenThicknessLabeledIntegerEdit_Text;
+	public string CoreOptionsForm_HighlightTabPage_Text { get; set; }
+	public string CoreOptionsForm_HighlightDifferenceCheckBox_Text { get; set; }
+	public string CoreOptionsForm_DifrentValue_Text { get; set; }
+	public string CoreOptionsForm_NotHighlightIfFragmentsMoreThemCheckBox_Text { get; set; }
+	public string CoreOptionsForm_MaxFragmentsForDisableHighlightLabeledIntegerEdit_Text { get; set; }
+	public string CoreOptionsForm_HighlightAllDifferencesCheckBox_Text { get; set; }
+	public string CoreOptionsForm_MaxFragmentsForHighlightLabeledIntegerEdit_Text { get; set; }
+	public string CoreOptionsForm_AmountOfFragmentsOnXLabeledIntegerEdit_Text { get; set; }
+	public string CoreOptionsForm_AmountOfFragmentsOnYLabeledIntegerEdit_Text { get; set; }
+	public string CoreOptionsForm_NormalizedSizeOfImageLabeledIntegerEdit_Text { get; set; }
+	public string CoreOptionsForm_PenThicknessLabeledIntegerEdit_Text { get; set; }
 
-	public string CorePathsForm_Text;
-	public string CorePathsForm_SearchTabPage_Text;
-	public string CorePathsForm_IgnoreTabPage_Text;
-	public string CorePathsForm_ValidTabPage_Text;
-	public string CorePathsForm_DeleteTabPage_Text;
-	public string CorePathsForm_AddFolderButton_Text;
-	public string CorePathsForm_AddFilesButton_Text;
-	public string CorePathsForm_ChangeButton_Text;
-	public string CorePathsForm_RemoveButton_Text;
-	public string CorePathsForm_SearchCheckedListBox_ToolTip_Text;
+	public string CorePathsForm_Text { get; set; }
+	public string CorePathsForm_SearchTabPage_Text { get; set; }
+	public string CorePathsForm_IgnoreTabPage_Text { get; set; }
+	public string CorePathsForm_ValidTabPage_Text { get; set; }
+	public string CorePathsForm_DeleteTabPage_Text { get; set; }
+	public string CorePathsForm_AddFolderButton_Text { get; set; }
+	public string CorePathsForm_AddFilesButton_Text { get; set; }
+	public string CorePathsForm_ChangeButton_Text { get; set; }
+	public string CorePathsForm_RemoveButton_Text { get; set; }
+	public string CorePathsForm_SearchCheckedListBox_ToolTip_Text { get; set; }
 
-	public string ProgressUtils_Completed;
-	public string ProgressUtils_5HoursRemaining;
-	public string ProgressUtils_2HoursRemaining;
-	public string ProgressUtils_5MinutesRemaining;
-	public string ProgressUtils_2MinutesRemaining;
-	public string ProgressUtils_5SecondsRemaining;
+	public string ProgressUtils_Completed { get; set; }
+	public string ProgressUtils_5HoursRemaining { get; set; }
+	public string ProgressUtils_2HoursRemaining { get; set; }
+	public string ProgressUtils_5MinutesRemaining { get; set; }
+	public string ProgressUtils_2MinutesRemaining { get; set; }
+	public string ProgressUtils_5SecondsRemaining { get; set; }
 
-	public string ProgressForm_DeleteDefect;
-	public string ProgressForm_DeleteFirst;
-	public string ProgressForm_DeleteSecond;
-	public string ProgressForm_DeleteBoth;
-	public string ProgressForm_PerformHint;
-	public string ProgressForm_Mistake;
-	public string ProgressForm_RenameCurrent;
-	public string ProgressForm_RefreshResults;
-	public string ProgressForm_Undo;
-	public string ProgressForm_Redo;
+	public string ProgressForm_DeleteDefect { get; set; }
+	public string ProgressForm_DeleteFirst { get; set; }
+	public string ProgressForm_DeleteSecond { get; set; }
+	public string ProgressForm_DeleteBoth { get; set; }
+	public string ProgressForm_PerformHint { get; set; }
+	public string ProgressForm_Mistake { get; set; }
+	public string ProgressForm_RenameCurrent { get; set; }
+	public string ProgressForm_RefreshResults { get; set; }
+	public string ProgressForm_Undo { get; set; }
+	public string ProgressForm_Redo { get; set; }
 
-	public string SearchExecuterForm_Result;
-	public string SearchExecuterForm_Search;
-	public string SearchExecuterForm_Stopped;
-	public string SearchExecuterForm_MinimizeToTaskbarButton_Text;
-	public string SearchExecuterForm_MinimizeToSystrayButton_Text;
+	public string SearchExecuterForm_Result { get; set; }
+	public string SearchExecuterForm_Search { get; set; }
+	public string SearchExecuterForm_Stopped { get; set; }
+	public string SearchExecuterForm_MinimizeToTaskbarButton_Text { get; set; }
+	public string SearchExecuterForm_MinimizeToSystrayButton_Text { get; set; }
 
-	public string ResultsPreviewBase_NextButton_ToolTip_Text;
-	public string ResultsPreviewBase_PreviousButton_ToolTip_Text;
+	public string ResultsPreviewBase_NextButton_ToolTip_Text { get; set; }
+	public string ResultsPreviewBase_PreviousButton_ToolTip_Text { get; set; }
 
-	public string ResultsPreviewDuplPair_DeleteFirstButton_ToolTip_Text;
-	public string ResultsPreviewDuplPair_DeleteSecondButton_ToolTip_Text;
-	public string ResultsPreviewDuplPair_DeleteBothButton_ToolTip_Text;
-	public string ResultsPreviewDuplPair_RenameFirstToSecondButton_ToolTip_Text;
-	public string ResultsPreviewDuplPair_RenameSecondToFirstButton_ToolTip_Text;
-	public string ResultsPreviewDuplPair_MistakeButton_ToolTip_Text;
-	public string ResultsPreviewDuplPair_OpenBothFoldersButton_ToolTip_Text;
-	public string ResultsPreviewDuplPair_OpenBothImagesButton_ToolTip_Text;
+	public string ResultsPreviewDuplPair_DeleteFirstButton_ToolTip_Text { get; set; }
+	public string ResultsPreviewDuplPair_DeleteSecondButton_ToolTip_Text { get; set; }
+	public string ResultsPreviewDuplPair_DeleteBothButton_ToolTip_Text { get; set; }
+	public string ResultsPreviewDuplPair_RenameFirstToSecondButton_ToolTip_Text { get; set; }
+	public string ResultsPreviewDuplPair_RenameSecondToFirstButton_ToolTip_Text { get; set; }
+	public string ResultsPreviewDuplPair_MistakeButton_ToolTip_Text { get; set; }
+	public string ResultsPreviewDuplPair_OpenBothFoldersButton_ToolTip_Text { get; set; }
+	public string ResultsPreviewDuplPair_OpenBothImagesButton_ToolTip_Text { get; set; }
 
-	public string ResultsPreviewDefect_DeleteButton_ToolTip_Text;
-	public string ResultsPreviewDefect_MistakeButton_ToolTip_Text;
+	public string ResultsPreviewDefect_DeleteButton_ToolTip_Text { get; set; }
+	public string ResultsPreviewDefect_MistakeButton_ToolTip_Text { get; set; }
 
-	public string ResultRowSetter_DefectIcon_ToolTip_Text;
-	public string ResultRowSetter_DuplPairIcon_ToolTip_Text;
+	public string ResultRowSetter_DefectIcon_ToolTip_Text { get; set; }
+	public string ResultRowSetter_DuplPairIcon_ToolTip_Text { get; set; }
 
-	public string ResultRowSetter_UnknownDefectIcon_ToolTip_Text;
-	public string ResultRowSetter_JpegEndMarkerIsAbsentIcon_ToolTip_Text;
-	public string ResultRowSetter_blockinessIcon_ToolTip_Text;
-	public string ResultRowSetter_blurringIcon_ToolTip_Text;
+	public string ResultRowSetter_UnknownDefectIcon_ToolTip_Text { get; set; }
+	public string ResultRowSetter_JpegEndMarkerIsAbsentIcon_ToolTip_Text { get; set; }
+	public string ResultRowSetter_blockinessIcon_ToolTip_Text { get; set; }
+	public string ResultRowSetter_blurringIcon_ToolTip_Text { get; set; }
 
-	public string ResultRowSetter_DeleteDefectIcon_ToolTip_Text;
-	public string ResultRowSetter_DeleteFirstIcon_ToolTip_Text;
-	public string ResultRowSetter_DeleteSecondIcon_ToolTip_Text;
-	public string ResultRowSetter_RenameFirstToSecondIcon_ToolTip_Text;
-	public string ResultRowSetter_RenameSecondToFirstIcon_ToolTip_Text;
+	public string ResultRowSetter_DeleteDefectIcon_ToolTip_Text { get; set; }
+	public string ResultRowSetter_DeleteFirstIcon_ToolTip_Text { get; set; }
+	public string ResultRowSetter_DeleteSecondIcon_ToolTip_Text { get; set; }
+	public string ResultRowSetter_RenameFirstToSecondIcon_ToolTip_Text { get; set; }
+	public string ResultRowSetter_RenameSecondToFirstIcon_ToolTip_Text { get; set; }
 
-	public string ResultRowSetter_Turn_0_Icon_ToolTip_Text;
-	public string ResultRowSetter_Turn_90_Icon_ToolTip_Text;
-	public string ResultRowSetter_Turn_180_Icon_ToolTip_Text;
-	public string ResultRowSetter_Turn_270_Icon_ToolTip_Text;
-	public string ResultRowSetter_MirrorTurn_0_Icon_ToolTip_Text;
-	public string ResultRowSetter_MirrorTurn_90_Icon_ToolTip_Text;
-	public string ResultRowSetter_MirrorTurn_180_Icon_ToolTip_Text;
-	public string ResultRowSetter_MirrorTurn_270_Icon_ToolTip_Text;
+	public string ResultRowSetter_Turn_0_Icon_ToolTip_Text { get; set; }
+	public string ResultRowSetter_Turn_90_Icon_ToolTip_Text { get; set; }
+	public string ResultRowSetter_Turn_180_Icon_ToolTip_Text { get; set; }
+	public string ResultRowSetter_Turn_270_Icon_ToolTip_Text { get; set; }
+	public string ResultRowSetter_MirrorTurn_0_Icon_ToolTip_Text { get; set; }
+	public string ResultRowSetter_MirrorTurn_90_Icon_ToolTip_Text { get; set; }
+	public string ResultRowSetter_MirrorTurn_180_Icon_ToolTip_Text { get; set; }
+	public string ResultRowSetter_MirrorTurn_270_Icon_ToolTip_Text { get; set; }
 
-	public string ResultsListView_Type_Column_Text;
-	public string ResultsListView_Group_Column_Text;
-	public string ResultsListView_GroupSize_Column_Text;
-	public string ResultsListView_Difference_Column_Text;
-	public string ResultsListView_Defect_Column_Text;
-	public string ResultsListView_Transform_Column_Text;
-	public string ResultsListView_Hint_Column_Text;
+	public string ResultsListView_Type_Column_Text { get; set; }
+	public string ResultsListView_Group_Column_Text { get; set; }
+	public string ResultsListView_GroupSize_Column_Text { get; set; }
+	public string ResultsListView_Difference_Column_Text { get; set; }
+	public string ResultsListView_Defect_Column_Text { get; set; }
+	public string ResultsListView_Transform_Column_Text { get; set; }
+	public string ResultsListView_Hint_Column_Text { get; set; }
 
-	public string ResultsListView_FileName_Column_Text;
-	public string ResultsListView_FileDirectory_Column_Text;
-	public string ResultsListView_ImageSize_Column_Text;
-	public string ResultsListView_ImageType_Column_Text;
-	public string ResultsListView_Blockiness_Column_Text;
-	public string ResultsListView_Blurring_Column_Text;
-	public string ResultsListView_FileSize_Column_Text;
-	public string ResultsListView_FileTime_Column_Text;
+	public string ResultsListView_FileName_Column_Text { get; set; }
+	public string ResultsListView_FileDirectory_Column_Text { get; set; }
+	public string ResultsListView_ImageSize_Column_Text { get; set; }
+	public string ResultsListView_ImageType_Column_Text { get; set; }
+	public string ResultsListView_Blockiness_Column_Text { get; set; }
+	public string ResultsListView_Blurring_Column_Text { get; set; }
+	public string ResultsListView_FileSize_Column_Text { get; set; }
+	public string ResultsListView_FileTime_Column_Text { get; set; }
 
-	public string ResultsListView_FirstFileName_Column_Text;
-	public string ResultsListView_FirstFileDirectory_Column_Text;
-	public string ResultsListView_FirstImageSize_Column_Text;
-	public string ResultsListView_FirstImageType_Column_Text;
-	public string ResultsListView_FirstBlockiness_Column_Text;
-	public string ResultsListView_FirstBlurring_Column_Text;
-	public string ResultsListView_FirstFileSize_Column_Text;
-	public string ResultsListView_FirstFileTime_Column_Text;
-	public string ResultsListView_SecondFileName_Column_Text;
-	public string ResultsListView_SecondFileDirectory_Column_Text;
-	public string ResultsListView_SecondImageSize_Column_Text;
-	public string ResultsListView_SecondImageType_Column_Text;
-	public string ResultsListView_SecondBlockiness_Column_Text;
-	public string ResultsListView_SecondBlurring_Column_Text;
-	public string ResultsListView_SecondFileSize_Column_Text;
-	public string ResultsListView_SecondFileTime_Column_Text;
+	public string ResultsListView_FirstFileName_Column_Text { get; set; }
+	public string ResultsListView_FirstFileDirectory_Column_Text { get; set; }
+	public string ResultsListView_FirstImageSize_Column_Text { get; set; }
+	public string ResultsListView_FirstImageType_Column_Text { get; set; }
+	public string ResultsListView_FirstBlockiness_Column_Text { get; set; }
+	public string ResultsListView_FirstBlurring_Column_Text { get; set; }
+	public string ResultsListView_FirstFileSize_Column_Text { get; set; }
+	public string ResultsListView_FirstFileTime_Column_Text { get; set; }
+	public string ResultsListView_SecondFileName_Column_Text { get; set; }
+	public string ResultsListView_SecondFileDirectory_Column_Text { get; set; }
+	public string ResultsListView_SecondImageSize_Column_Text { get; set; }
+	public string ResultsListView_SecondImageType_Column_Text { get; set; }
+	public string ResultsListView_SecondBlockiness_Column_Text { get; set; }
+	public string ResultsListView_SecondBlurring_Column_Text { get; set; }
+	public string ResultsListView_SecondFileSize_Column_Text { get; set; }
+	public string ResultsListView_SecondFileTime_Column_Text { get; set; }
 
-	public string ResultsListViewContextMenu_DeleteDefectItem_Text;
-	public string ResultsListViewContextMenu_DeleteFirstItem_Text;
-	public string ResultsListViewContextMenu_DeleteSecondItem_Text;
-	public string ResultsListViewContextMenu_DeleteBothItem_Text;
-	public string ResultsListViewContextMenu_RenameFirstToSecondIcon_ToolTip_Text;
-	public string ResultsListViewContextMenu_RenameSecondToFirstIcon_ToolTip_Text;
-	public string ResultsListViewContextMenu_RenameFirstLikeSecondButton_ToolTip_Text;
-	public string ResultsListViewContextMenu_RenameSecondLikeFirstButton_ToolTipText;
-	public string ResultsListViewContextMenu_MoveFirstToSecondButton_ToolTipText;
-	public string ResultsListViewContextMenu_MoveSecondToFirstButton_ToolTipText;
-	public string ResultsListViewContextMenu_MistakeItem_Text;
-	public string ResultsListViewContextMenu_PerformHintItem_Text;
+	public string ResultsListViewContextMenu_DeleteDefectItem_Text { get; set; }
+	public string ResultsListViewContextMenu_DeleteFirstItem_Text { get; set; }
+	public string ResultsListViewContextMenu_DeleteSecondItem_Text { get; set; }
+	public string ResultsListViewContextMenu_DeleteBothItem_Text { get; set; }
+	public string ResultsListViewContextMenu_RenameFirstToSecondIcon_ToolTip_Text { get; set; }
+	public string ResultsListViewContextMenu_RenameSecondToFirstIcon_ToolTip_Text { get; set; }
+	public string ResultsListViewContextMenu_RenameFirstLikeSecondButton_ToolTip_Text { get; set; }
+	public string ResultsListViewContextMenu_RenameSecondLikeFirstButton_ToolTipText { get; set; }
+	public string ResultsListViewContextMenu_MoveFirstToSecondButton_ToolTipText { get; set; }
+	public string ResultsListViewContextMenu_MoveSecondToFirstButton_ToolTipText { get; set; }
+	public string ResultsListViewContextMenu_MistakeItem_Text { get; set; }
+	public string ResultsListViewContextMenu_PerformHintItem_Text { get; set; }
 
-	public string MainStatusStrip_TotalLabel_Text;
-	public string MainStatusStrip_CurrentLabel_Text;
-	public string MainStatusStrip_SelectedLabel_Text;
+	public string MainStatusStrip_TotalLabel_Text { get; set; }
+	public string MainStatusStrip_CurrentLabel_Text { get; set; }
+	public string MainStatusStrip_SelectedLabel_Text { get; set; }
 
-	public string MainMenu_FileMenuItem_Text;
-	public string MainMenu_File_OpenProfileMenuItem_Text;
-	public string MainMenu_File_SaveProfileAsMenuItem_Text;
-	public string MainMenu_File_LoadProfileOnLoadingMenuItem_Text;
-	public string MainMenu_File_SaveProfileOnClosingMenuItem_Text;
-	public string MainMenu_File_ExitMenuItem_Text;
+	public string MainMenu_FileMenuItem_Text { get; set; }
+	public string MainMenu_File_OpenProfileMenuItem_Text { get; set; }
+	public string MainMenu_File_SaveProfileAsMenuItem_Text { get; set; }
+	public string MainMenu_File_LoadProfileOnLoadingMenuItem_Text { get; set; }
+	public string MainMenu_File_SaveProfileOnClosingMenuItem_Text { get; set; }
+	public string MainMenu_File_ExitMenuItem_Text { get; set; }
 
-	public string MainMenu_EditMenuItem_Text;
-	public string MainMenu_Edit_UndoMenuItem_Text;
-	public string MainMenu_Edit_RedoMenuItem_Text;
-	public string MainMenu_Edit_SelectAllMenuItem_Text;
+	public string MainMenu_EditMenuItem_Text { get; set; }
+	public string MainMenu_Edit_UndoMenuItem_Text { get; set; }
+	public string MainMenu_Edit_RedoMenuItem_Text { get; set; }
+	public string MainMenu_Edit_SelectAllMenuItem_Text { get; set; }
 
-	public string MainMenu_ViewMenuItem_Text;
-	public string MainMenu_View_ToolMenuItem_Text;
-	public string MainMenu_View_StatusMenuItem_Text;
-	public string MainMenu_View_SelectColumnsMenuItem_Text;
-	public string MainMenu_View_HotKeysMenuItem_Text;
-	public string MainMenu_View_StretchSmallImagesMenuItem_Text;
-	public string MainMenu_View_ProportionalImageSizeMenuItem_Text;
-	public string MainMenu_View_ShowNeighbourImageMenuItem_Text;
+	public string MainMenu_ViewMenuItem_Text { get; set; }
+	public string MainMenu_View_ToolMenuItem_Text { get; set; }
+	public string MainMenu_View_StatusMenuItem_Text { get; set; }
+	public string MainMenu_View_SelectColumnsMenuItem_Text { get; set; }
+	public string MainMenu_View_HotKeysMenuItem_Text { get; set; }
+	public string MainMenu_View_StretchSmallImagesMenuItem_Text { get; set; }
+	public string MainMenu_View_ProportionalImageSizeMenuItem_Text { get; set; }
+	public string MainMenu_View_ShowNeighbourImageMenuItem_Text { get; set; }
 
-	public string MainMenu_SearchMenuItem_Text;
-	public string MainMenu_Search_StartMenuItem_Text;
-	public string MainMenu_Search_RefreshResultsMenuItem_Text;
-	public string MainMenu_Search_RefreshImagesMenuItem_Text;
-	public string MainMenu_Search_PathsMenuItem_Text;
-	public string MainMenu_Search_OptionsMenuItem_Text;
-	public string MainMenu_Search_OnePathMenuItem_Text;
-	public string MainMenu_Search_UseImageDataBaseMenuItem_Text;
-	public string MainMenu_Search_CheckResultsAtLoadingMenuItem_Text;
-	public string MainMenu_Search_CheckMistakesAtLoadingMenuItem_Text;
+	public string MainMenu_SearchMenuItem_Text { get; set; }
+	public string MainMenu_Search_StartMenuItem_Text { get; set; }
+	public string MainMenu_Search_RefreshResultsMenuItem_Text { get; set; }
+	public string MainMenu_Search_RefreshImagesMenuItem_Text { get; set; }
+	public string MainMenu_Search_PathsMenuItem_Text { get; set; }
+	public string MainMenu_Search_OptionsMenuItem_Text { get; set; }
+	public string MainMenu_Search_OnePathMenuItem_Text { get; set; }
+	public string MainMenu_Search_UseImageDataBaseMenuItem_Text { get; set; }
+	public string MainMenu_Search_CheckResultsAtLoadingMenuItem_Text { get; set; }
+	public string MainMenu_Search_CheckMistakesAtLoadingMenuItem_Text { get; set; }
 
-	public string MainMenu_HelpMenuItem_Text;
-	public string MainMenu_Help_HelpMenuItem_Text;
-	public string MainMenu_Help_AboutProgramMenuItem_Text;
-	public string MainMenu_Help_CheckingForUpdatesMenuItem_Text;
+	public string MainMenu_HelpMenuItem_Text { get; set; }
+	public string MainMenu_Help_HelpMenuItem_Text { get; set; }
+	public string MainMenu_Help_AboutProgramMenuItem_Text { get; set; }
+	public string MainMenu_Help_CheckingForUpdatesMenuItem_Text { get; set; }
 
-	public string MainMenu_NewVersionMenuItem_Text;
-	public string MainMenu_NewVersionMenuItem_Tooltip;
+	public string MainMenu_NewVersionMenuItem_Text { get; set; }
+	public string MainMenu_NewVersionMenuItem_Tooltip { get; set; }
 
-	public string SelectHotKeysForm_InvalidHotKeyToolTipText;
+	public string SelectHotKeysForm_InvalidHotKeyToolTipText { get; set; }
 
-	public string LanguageMenuItem_Text;
+	public string LanguageMenuItem_Text { get; set; }
 
-	public string ViewModeMenuItem_Text;
-	public string ViewModeMenuItem_VerticalPairTableMenuItem_Text;
-	public string ViewModeMenuItem_HorizontalPairTableMenuItem_Text;
-	public string ViewModeMenuItem_GroupedThumbnailsMenuItem_Text;
+	public string ViewModeMenuItem_Text { get; set; }
+	public string ViewModeMenuItem_VerticalPairTableMenuItem_Text { get; set; }
+	public string ViewModeMenuItem_HorizontalPairTableMenuItem_Text { get; set; }
+	public string ViewModeMenuItem_GroupedThumbnailsMenuItem_Text { get; set; }
 
-	public string ImagePreviewContextMenu_CopyPathItem_Text;
-	public string ImagePreviewContextMenu_CopyFileNameItem_Text;
-	public string ImagePreviewContextMenu_OpenImageItem_Text;
-	public string ImagePreviewContextMenu_OpenFolderItem_Text;
-	public string ImagePreviewContextMenu_AddToIgnore_Text;
-	public string ImagePreviewContextMenu_AddToIgnoreDirectory_Text;
-	public string ImagePreviewContextMenu_RenameImageItem_Text;
-	public string ImagePreviewContextMenu_RenameImageLikeNeighbour_Text;
-	public string ImagePreviewContextMenu_MoveImageToNeighbourItem_Text;
-	public string ImagePreviewContextMenu_MoveAndRenameImageToNeighbourItem_Text;
-	public string ImagePreviewContextMenu_MoveGroupToNeighbourItem_Text;
-	public string ImagePreviewContextMenu_RenameGroupAsNeighbourItem_Text;
+	public string ImagePreviewContextMenu_CopyPathItem_Text { get; set; }
+	public string ImagePreviewContextMenu_CopyFileNameItem_Text { get; set; }
+	public string ImagePreviewContextMenu_OpenImageItem_Text { get; set; }
+	public string ImagePreviewContextMenu_OpenFolderItem_Text { get; set; }
+	public string ImagePreviewContextMenu_AddToIgnore_Text { get; set; }
+	public string ImagePreviewContextMenu_AddToIgnoreDirectory_Text { get; set; }
+	public string ImagePreviewContextMenu_RenameImageItem_Text { get; set; }
+	public string ImagePreviewContextMenu_RenameImageLikeNeighbour_Text { get; set; }
+	public string ImagePreviewContextMenu_MoveImageToNeighbourItem_Text { get; set; }
+	public string ImagePreviewContextMenu_MoveAndRenameImageToNeighbourItem_Text { get; set; }
+	public string ImagePreviewContextMenu_MoveGroupToNeighbourItem_Text { get; set; }
+	public string ImagePreviewContextMenu_RenameGroupAsNeighbourItem_Text { get; set; }
 
-	public string ImagePreviewPanel_EXIF_Text;
-	public string ImagePreviewPanel_EXIF_Tooltip_ImageDescription;
-	public string ImagePreviewPanel_EXIF_Tooltip_EquipMake;
-	public string ImagePreviewPanel_EXIF_Tooltip_EquipModel;
-	public string ImagePreviewPanel_EXIF_Tooltip_SoftwareUsed;
-	public string ImagePreviewPanel_EXIF_Tooltip_DateTime;
-	public string ImagePreviewPanel_EXIF_Tooltip_Artist;
-	public string ImagePreviewPanel_EXIF_Tooltip_UserComment;
+	public string ImagePreviewPanel_EXIF_Text { get; set; }
+	public string ImagePreviewPanel_EXIF_Tooltip_ImageDescription { get; set; }
+	public string ImagePreviewPanel_EXIF_Tooltip_EquipMake { get; set; }
+	public string ImagePreviewPanel_EXIF_Tooltip_EquipModel { get; set; }
+	public string ImagePreviewPanel_EXIF_Tooltip_SoftwareUsed { get; set; }
+	public string ImagePreviewPanel_EXIF_Tooltip_DateTime { get; set; }
+	public string ImagePreviewPanel_EXIF_Tooltip_Artist { get; set; }
+	public string ImagePreviewPanel_EXIF_Tooltip_UserComment { get; set; }
 }

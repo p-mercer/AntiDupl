@@ -31,7 +31,7 @@ public class SelectHorizontalColumnsForm : Form
 	private readonly ResultsListView m_resultsListView;
 	private readonly Options m_options;
 	private readonly ResultsOptions m_newResultOptions;
-	private readonly bool m_inited = false;
+	private readonly bool m_inited;
 
 	private CheckBox[] m_checkBoxes;
 	private Button m_okButton;
@@ -196,7 +196,7 @@ public class SelectHorizontalColumnsForm : Form
 	{
 		for (var i = 0; i < (int)ResultsListView.ColumnsTypeHorizontal.Size; i++)
 		{
-			m_checkBoxes[i].Checked = m_newResultOptions.columnOptionsHorizontal[i].visible;
+			m_checkBoxes[i].Checked = m_newResultOptions.ColumnOptionsHorizontal[i].Visible;
 		}
 	}
 
@@ -204,7 +204,7 @@ public class SelectHorizontalColumnsForm : Form
 	{
 		for (var i = 0; i < (int)ResultsListView.ColumnsTypeHorizontal.Size; i++)
 		{
-			m_newResultOptions.columnOptionsHorizontal[i].visible = m_checkBoxes[i].Checked;
+			m_newResultOptions.ColumnOptionsHorizontal[i].Visible = m_checkBoxes[i].Checked;
 		}
 	}
 

@@ -111,10 +111,10 @@ public class StartFinishForm : Form
 		var startTime = DateTime.Now;
 
 		m_state = State.LoadMistakes;
-		m_core.Load(CoreDll.FileType.MistakeDataBase, Options.GetMistakeDataBaseFileName(), m_options.checkMistakesAtLoading);
+		m_core.Load(CoreDll.FileType.MistakeDataBase, Options.GetMistakeDataBaseFileName(), m_options.CheckMistakesAtLoading);
 
 		m_state = State.LoadResults;
-		m_core.Load(CoreDll.FileType.Result, m_options.GetResultsFileName(), m_options.checkResultsAtLoading);
+		m_core.Load(CoreDll.FileType.Result, m_options.GetResultsFileName(), m_options.CheckResultsAtLoading);
 
 		var viewTime = DateTime.Now - startTime;
 		if (viewTime < VIEW_START_TIME_MIN)

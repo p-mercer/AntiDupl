@@ -32,7 +32,7 @@ namespace AntiDupl.NET;
 
 public class NewVersionMenuItem : ToolStripMenuItem
 {
-	private bool m_downloadingFinished = false;
+	private bool m_downloadingFinished;
 
 	private Version m_localVersion;
 	private Version m_onlineVersion;
@@ -45,7 +45,7 @@ public class NewVersionMenuItem : ToolStripMenuItem
 	{
 		m_options = options;
 		InitializeComponents();
-		if (m_options.checkingForUpdates)
+		if (m_options.CheckingForUpdates)
 		{
 			InitializeVersions();
 		}

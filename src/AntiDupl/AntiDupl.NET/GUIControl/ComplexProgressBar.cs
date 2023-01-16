@@ -28,7 +28,7 @@ namespace AntiDupl.NET;
 
 public class ComplexProgressBar : ProgressBar
 {
-	private int m_firstValue = 0;
+	private int m_firstValue;
 	public int FirstValue
 	{
 		get { return m_firstValue; }
@@ -42,7 +42,7 @@ public class ComplexProgressBar : ProgressBar
 		}
 	}
 
-	private int m_secondValue = 0;
+	private int m_secondValue;
 	public int SecondValue
 	{
 		get { return m_secondValue; }
@@ -62,7 +62,7 @@ public class ComplexProgressBar : ProgressBar
 		set { ForeColor = value; }
 	}
 
-	private Color m_secondForeColor = new();
+	private Color m_secondForeColor;
 	public Color SecondForeColor
 	{
 		get { return m_secondForeColor; }

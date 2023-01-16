@@ -55,23 +55,23 @@ public class Options
 		}
 	}
 
-	public bool onePath = false;
-	public bool checkingForUpdates = true;
-	public bool useImageDataBase = true;
-	public bool checkResultsAtLoading = true;
-	public bool checkMistakesAtLoading = true;
-	public bool loadProfileOnLoading = true;
-	public bool saveProfileOnClosing = true;
+	public bool onePath { get; set; }
+	public bool CheckingForUpdates { get; set; } = true;
+	public bool UseImageDataBase { get; set; } = true;
+	public bool CheckResultsAtLoading { get; set; } = true;
+	public bool CheckMistakesAtLoading { get; set; } = true;
+	public bool LoadProfileOnLoading { get; set; } = true;
+	public bool SaveProfileOnClosing { get; set; } = true;
 
 	public MainFormOptions mainFormOptions = new();
 	public ResultsOptions resultsOptions = new();
 	public HotKeyOptions hotKeyOptions = new();
 
-	public string coreOptionsFileName = GetDefaultCoreOptionsFileName();
+	public string CoreOptionsFileName { get; set; } = GetDefaultCoreOptionsFileName();
 
 	public string GetResultsFileName()
 	{
-		return Path.ChangeExtension(coreOptionsFileName, ".adr");
+		return Path.ChangeExtension(CoreOptionsFileName, ".adr");
 	}
 
 	static public Options Load()
@@ -111,16 +111,16 @@ public class Options
 		resultsOptions = new ResultsOptions(options.resultsOptions);
 		mainFormOptions = new MainFormOptions(options.mainFormOptions);
 		hotKeyOptions = new HotKeyOptions(options.hotKeyOptions);
-		coreOptionsFileName = (string)options.coreOptionsFileName.Clone();
+		CoreOptionsFileName = (string)options.CoreOptionsFileName.Clone();
 
 		Language = options.Language;
 		onePath = options.onePath;
-		checkingForUpdates = options.checkingForUpdates;
-		useImageDataBase = options.useImageDataBase;
-		checkResultsAtLoading = options.checkResultsAtLoading;
-		checkMistakesAtLoading = options.checkMistakesAtLoading;
-		loadProfileOnLoading = options.loadProfileOnLoading;
-		saveProfileOnClosing = options.saveProfileOnClosing;
+		CheckingForUpdates = options.CheckingForUpdates;
+		UseImageDataBase = options.UseImageDataBase;
+		CheckResultsAtLoading = options.CheckResultsAtLoading;
+		CheckMistakesAtLoading = options.CheckMistakesAtLoading;
+		LoadProfileOnLoading = options.LoadProfileOnLoading;
+		SaveProfileOnClosing = options.SaveProfileOnClosing;
 	}
 
 	public void Save()
@@ -148,16 +148,16 @@ public class Options
 		resultsOptions.CopyTo(ref options.resultsOptions);
 		mainFormOptions.CopyTo(ref options.mainFormOptions);
 		hotKeyOptions.CopyTo(ref options.hotKeyOptions);
-		options.coreOptionsFileName = (string)coreOptionsFileName.Clone();
+		options.CoreOptionsFileName = (string)CoreOptionsFileName.Clone();
 
 		options.Language = Language;
 		options.onePath = onePath;
-		options.checkingForUpdates = checkingForUpdates;
-		options.useImageDataBase = useImageDataBase;
-		options.checkResultsAtLoading = checkResultsAtLoading;
-		options.checkMistakesAtLoading = checkMistakesAtLoading;
-		options.loadProfileOnLoading = loadProfileOnLoading;
-		options.saveProfileOnClosing = saveProfileOnClosing;
+		options.CheckingForUpdates = CheckingForUpdates;
+		options.UseImageDataBase = UseImageDataBase;
+		options.CheckResultsAtLoading = CheckResultsAtLoading;
+		options.CheckMistakesAtLoading = CheckMistakesAtLoading;
+		options.LoadProfileOnLoading = LoadProfileOnLoading;
+		options.SaveProfileOnClosing = SaveProfileOnClosing;
 	}
 
 	public static void PathCopy(string[] source, ref string[] destination)
@@ -217,7 +217,7 @@ public class Options
 
 	public bool Equals(Options options)
 	{
-		if (checkingForUpdates != options.checkingForUpdates)
+		if (CheckingForUpdates != options.CheckingForUpdates)
 		{
 			return false;
 		}
@@ -227,27 +227,27 @@ public class Options
 			return false;
 		}
 
-		if (useImageDataBase != options.useImageDataBase)
+		if (UseImageDataBase != options.UseImageDataBase)
 		{
 			return false;
 		}
 
-		if (checkResultsAtLoading != options.checkResultsAtLoading)
+		if (CheckResultsAtLoading != options.CheckResultsAtLoading)
 		{
 			return false;
 		}
 
-		if (checkMistakesAtLoading != options.checkMistakesAtLoading)
+		if (CheckMistakesAtLoading != options.CheckMistakesAtLoading)
 		{
 			return false;
 		}
 
-		if (loadProfileOnLoading != options.loadProfileOnLoading)
+		if (LoadProfileOnLoading != options.LoadProfileOnLoading)
 		{
 			return false;
 		}
 
-		if (saveProfileOnClosing != options.saveProfileOnClosing)
+		if (SaveProfileOnClosing != options.SaveProfileOnClosing)
 		{
 			return false;
 		}
@@ -272,7 +272,7 @@ public class Options
 			return false;
 		}
 
-		if (!coreOptionsFileName.Equals(options.coreOptionsFileName))
+		if (!CoreOptionsFileName.Equals(options.CoreOptionsFileName))
 		{
 			return false;
 		}

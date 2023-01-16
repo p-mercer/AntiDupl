@@ -40,9 +40,9 @@ public class ThumbnailGroupTable : Panel
 	private int m_maxGroupIndex = -1;
 	private readonly MainSplitContainer m_mainSplitContainer;
 
-	private readonly ThumbnailStorage m_thumbnailStorage = null;
-	private volatile bool m_abortUpdateThumbnailsThread = false;
-	private Thread m_updateThumbnailsThread = null;
+	private readonly ThumbnailStorage m_thumbnailStorage;
+	private volatile bool m_abortUpdateThumbnailsThread;
+	private Thread m_updateThumbnailsThread;
 
 	private ThumbnailGroupPanel[] m_thumbnailGroupPanels;
 	private bool m_changeControls = true;

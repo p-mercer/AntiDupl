@@ -94,11 +94,11 @@ public class ResultsListView : DataGridView
 	private int m_firstSelectedRowIndex = -1;
 	private int m_currentRowIndex = -1;
 	private int m_rowCountOnPage = 1;
-	private bool m_isShiftDown = false;
-	private bool m_isControlDown = false;
-	private bool m_updateColumnOrder = false;
-	private bool m_makeAction = false;
-	private bool m_isMouseDragSelecting = false;
+	private bool m_isShiftDown;
+	private bool m_isControlDown;
+	private bool m_updateColumnOrder;
+	private bool m_makeAction;
+	private bool m_isMouseDragSelecting;
 	private int m_firstDragSelectedRowIndex = -1;
 	private int m_lastDragSelectedRowIndex = -1;
 	private int m_lowestDragSelectedIndex = -1;
@@ -223,14 +223,14 @@ public class ResultsListView : DataGridView
 		{
 			for (var i = 0; i < (int)ColumnsTypeVertical.Size; i++)
 			{
-				Columns[i].Visible = m_options.resultsOptions.columnOptionsVertical[i].visible;
+				Columns[i].Visible = m_options.resultsOptions.ColumnOptionsVertical[i].Visible;
 			}
 		}
 		if (m_options.resultsOptions.viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
 		{
 			for (var i = 0; i < (int)ColumnsTypeHorizontal.Size; i++)
 			{
-				Columns[i].Visible = m_options.resultsOptions.columnOptionsHorizontal[i].visible;
+				Columns[i].Visible = m_options.resultsOptions.ColumnOptionsHorizontal[i].Visible;
 			}
 		}
 		m_updateColumnOrder = true;
@@ -610,8 +610,8 @@ public class ResultsListView : DataGridView
 			}
 		}
 
-		m_options.resultsOptions.sortTypeDefault = (int)sortType;
-		m_options.resultsOptions.increasingDefault = direction == ListSortDirection.Ascending;
+		m_options.resultsOptions.SortTypeDefault = (int)sortType;
+		m_options.resultsOptions.IncreasingDefault = direction == ListSortDirection.Ascending;
 		m_core.SortResult(sortType, direction == ListSortDirection.Ascending);
 
 		m_mainSplitContainer.UpdateResults();
@@ -622,11 +622,11 @@ public class ResultsListView : DataGridView
 		base.OnColumnWidthChanged(e);
 		if (m_options.resultsOptions.viewMode == ResultsOptions.ViewMode.VerticalPairTable)
 		{
-			m_options.resultsOptions.columnOptionsVertical[e.Column.Index].width = Columns[e.Column.Index].Width;
+			m_options.resultsOptions.ColumnOptionsVertical[e.Column.Index].Width = Columns[e.Column.Index].Width;
 		}
 		if (m_options.resultsOptions.viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
 		{
-			m_options.resultsOptions.columnOptionsHorizontal[e.Column.Index].width = Columns[e.Column.Index].Width;
+			m_options.resultsOptions.ColumnOptionsHorizontal[e.Column.Index].Width = Columns[e.Column.Index].Width;
 		}
 	}
 
@@ -637,11 +637,11 @@ public class ResultsListView : DataGridView
 		{
 			if (m_options.resultsOptions.viewMode == ResultsOptions.ViewMode.VerticalPairTable)
 			{
-				m_options.resultsOptions.columnOptionsVertical[e.Column.Index].order = Columns[e.Column.Index].DisplayIndex;
+				m_options.resultsOptions.ColumnOptionsVertical[e.Column.Index].Order = Columns[e.Column.Index].DisplayIndex;
 			}
 			if (m_options.resultsOptions.viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
 			{
-				m_options.resultsOptions.columnOptionsHorizontal[e.Column.Index].order = Columns[e.Column.Index].DisplayIndex;
+				m_options.resultsOptions.ColumnOptionsHorizontal[e.Column.Index].Order = Columns[e.Column.Index].DisplayIndex;
 			}
 		}
 	}
@@ -925,8 +925,8 @@ public class ResultsListView : DataGridView
 			{
 				Columns[i].Name = ((ColumnsTypeVertical)i).ToString();
 				Columns[i].SortMode = DataGridViewColumnSortMode.Programmatic;
-				Columns[i].Width = m_options.resultsOptions.columnOptionsVertical[i].width;
-				Columns[i].DisplayIndex = m_options.resultsOptions.columnOptionsVertical[i].order;
+				Columns[i].Width = m_options.resultsOptions.ColumnOptionsVertical[i].Width;
+				Columns[i].DisplayIndex = m_options.resultsOptions.ColumnOptionsVertical[i].Order;
 			}
 			Rows[0].Cells[0] = new DataGridViewDoubleTextBoxCell("0", "0");
 		}
@@ -937,8 +937,8 @@ public class ResultsListView : DataGridView
 			{
 				Columns[i].Name = ((ColumnsTypeHorizontal)i).ToString();
 				Columns[i].SortMode = DataGridViewColumnSortMode.Programmatic;
-				Columns[i].Width = m_options.resultsOptions.columnOptionsHorizontal[i].width;
-				Columns[i].DisplayIndex = m_options.resultsOptions.columnOptionsHorizontal[i].order;
+				Columns[i].Width = m_options.resultsOptions.ColumnOptionsHorizontal[i].Width;
+				Columns[i].DisplayIndex = m_options.resultsOptions.ColumnOptionsHorizontal[i].Order;
 			}
 			Rows[0].Cells[0] = new DataGridViewTextBoxCell
 			{

@@ -64,9 +64,10 @@ public class MainFormOptions
 		}
 	}
 
-	public Point location = DefaultLocation();
-	public Size size = new(MainForm.MIN_WIDTH, MainForm.MIN_HEIGHT);
-	public bool maximized = false;
+	public bool Maximized { get; set; }
+
+	public Point Location = DefaultLocation();
+	public Size Size = new(MainForm.MIN_WIDTH, MainForm.MIN_HEIGHT);
 
 	public MainFormOptions()
 	{
@@ -75,35 +76,35 @@ public class MainFormOptions
 
 	public MainFormOptions(MainFormOptions options)
 	{
-		location = options.location;
-		size = options.size;
-		maximized = options.maximized;
+		Location = options.Location;
+		Size = options.Size;
+		Maximized = options.Maximized;
 		m_toolStripView = options.m_toolStripView;
 		m_statusStripView = options.m_statusStripView;
 	}
 
 	public void CopyTo(ref MainFormOptions options)
 	{
-		options.location = location;
-		options.size = size;
-		options.maximized = maximized;
+		options.Location = Location;
+		options.Size = Size;
+		options.Maximized = Maximized;
 		options.m_toolStripView = m_toolStripView;
 		options.m_statusStripView = m_statusStripView;
 	}
 
 	public bool Equals(MainFormOptions options)
 	{
-		if (location != options.location)
+		if (Location != options.Location)
 		{
 			return false;
 		}
 
-		if (size != options.size)
+		if (Size != options.Size)
 		{
 			return false;
 		}
 
-		if (maximized != options.maximized)
+		if (Maximized != options.Maximized)
 		{
 			return false;
 		}
@@ -123,9 +124,9 @@ public class MainFormOptions
 
 	public void SetDefault()
 	{
-		location = DefaultLocation();
-		size = new Size(MainForm.MIN_WIDTH, MainForm.MIN_HEIGHT);
-		maximized = false;
+		Location = DefaultLocation();
+		Size = new Size(MainForm.MIN_WIDTH, MainForm.MIN_HEIGHT);
+		Maximized = false;
 		m_toolStripView = true;
 		m_statusStripView = true;
 	}

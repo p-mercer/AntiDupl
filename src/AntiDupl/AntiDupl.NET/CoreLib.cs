@@ -33,7 +33,7 @@ public class CoreLib : IDisposable
 	private const uint PAGE_SIZE = 16;
 
 	private readonly IntPtr m_handle = IntPtr.Zero;
-	private CoreDll m_dll = null;
+	private CoreDll m_dll;
 
 	//-----------Public functions----------------------------------------------
 

@@ -35,9 +35,9 @@ public class ThumbnailPreview : Panel
 	private readonly Options m_options;
 	private readonly MainSplitContainer m_mainSplitContainer;
 
-	public CoreGroup Group { get; private set; } = null;
+	public CoreGroup Group { get; private set; }
 
-	public int Index { get; private set; } = 0;
+	public int Index { get; private set; }
 	public CoreImageInfo ImageInfo { get { return Group.Images[Index]; } }
 
 	private PictureBoxPanel m_pictureBoxPanel;

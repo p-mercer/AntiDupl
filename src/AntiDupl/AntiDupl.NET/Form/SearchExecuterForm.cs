@@ -150,7 +150,7 @@ public class SearchExecuterForm : Form
 		m_core.Clear(CoreDll.FileType.Result);
 		m_state = State.ClearTemporary;
 		m_core.Clear(CoreDll.FileType.Temporary);
-		if (m_options.useImageDataBase)
+		if (m_options.UseImageDataBase)
 		{
 			m_state = State.LoadImages;
 			m_core.Load(CoreDll.FileType.ImageDataBase, m_coreOptions.GetImageDataBasePath(), false);
@@ -161,13 +161,13 @@ public class SearchExecuterForm : Form
 		m_core.ApplyToResult(CoreDll.GlobalActionType.SetGroup);
 		m_state = State.SetHint;
 		m_core.ApplyToResult(CoreDll.GlobalActionType.SetHint);
-		if (m_options.useImageDataBase)
+		if (m_options.UseImageDataBase)
 		{
 			m_state = State.SaveImages;
 			m_core.Save(CoreDll.FileType.ImageDataBase, m_coreOptions.GetImageDataBasePath());
 		}
 		m_core.Clear(CoreDll.FileType.ImageDataBase);
-		m_core.SortResult((CoreDll.SortType)m_options.resultsOptions.sortTypeDefault, m_options.resultsOptions.increasingDefault);
+		m_core.SortResult((CoreDll.SortType)m_options.resultsOptions.SortTypeDefault, m_options.resultsOptions.IncreasingDefault);
 		m_state = State.Finish;
 		LogPerformance(DateTime.Now - m_startDateTime, m_core.GetStatistic());
 	}
@@ -442,7 +442,7 @@ public class SearchExecuterForm : Form
 		writer.WriteLine(string.Format("Processed {0} images.", statistic.ComparedImageNumber));
 		writer.WriteLine(string.Format("Found {0} defects and {1} duples.", statistic.DefectImageNumber, statistic.DuplImagePairNumber));
 		writer.WriteLine(string.Format("Used {0} load and {1} compare threads.", statistic.CollectThreadCount, statistic.CompareThreadCount));
-		writer.WriteLine(string.Format("Use image database: {0}.", m_options.useImageDataBase));
+		writer.WriteLine(string.Format("Use image database: {0}.", m_options.UseImageDataBase));
 		writer.WriteLine(string.Format("Use libjpeg-turbo: {0}.", m_coreOptions.AdvancedOptions.UseLibJpegTurbo));
 
 		writer.Close();

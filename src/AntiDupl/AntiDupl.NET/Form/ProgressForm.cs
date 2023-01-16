@@ -286,7 +286,7 @@ public class ProgressForm : Form
 					m_type = Type.ClearTemporary;
 					m_core.Clear(CoreDll.FileType.Temporary);
 					m_type = Type.LoadResults;
-					m_core.Load(CoreDll.FileType.Result, m_options.GetResultsFileName(), m_options.checkResultsAtLoading);
+					m_core.Load(CoreDll.FileType.Result, m_options.GetResultsFileName(), m_options.CheckResultsAtLoading);
 					m_updateResults = true;
 					break;
 				}

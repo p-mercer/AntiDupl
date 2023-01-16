@@ -46,13 +46,13 @@ public class MainForm : Form
 	{
 		m_core = new CoreLib(Resources.UserPath);
 		m_options = Options.Load();
-		if (m_options.loadProfileOnLoading)
+		if (m_options.LoadProfileOnLoading)
 		{
-			m_coreOptions = CoreOptions.Load(m_options.coreOptionsFileName, m_core, m_options.onePath);
+			m_coreOptions = CoreOptions.Load(m_options.CoreOptionsFileName, m_core, m_options.onePath);
 		}
 		else
 		{
-			m_options.coreOptionsFileName = Options.GetDefaultCoreOptionsFileName();
+			m_options.CoreOptionsFileName = Options.GetDefaultCoreOptionsFileName();
 			m_coreOptions = new CoreOptions(m_core);
 		}
 		Resources.Strings.SetCurrent(m_options.Language);
@@ -94,9 +94,9 @@ public class MainForm : Form
 
 	private void OnFormClosed(object sender, FormClosedEventArgs e)
 	{
-		if (m_options.saveProfileOnClosing)
+		if (m_options.SaveProfileOnClosing)
 		{
-			m_coreOptions.Save(m_options.coreOptionsFileName);
+			m_coreOptions.Save(m_options.CoreOptionsFileName);
 		}
 
 		m_mainSplitContainer.ClearResults();
@@ -110,8 +110,8 @@ public class MainForm : Form
 
 	private void SetLoadedViewOptions()
 	{
-		var loc = m_options.mainFormOptions.location;
-		var size = m_options.mainFormOptions.size;
+		var loc = m_options.mainFormOptions.Location;
+		var size = m_options.mainFormOptions.Size;
 
 		var sizeMin = new Size(MIN_WIDTH, MIN_HEIGHT);
 		var sizeMax = Screen.PrimaryScreen.WorkingArea.Size;
@@ -125,7 +125,7 @@ public class MainForm : Form
 
 		Location = loc;
 		Size = size;
-		WindowState = (m_options.mainFormOptions.maximized ? FormWindowState.Maximized : FormWindowState.Normal);
+		WindowState = (m_options.mainFormOptions.Maximized ? FormWindowState.Maximized : FormWindowState.Normal);
 	}
 
 	private static int Restrict(int value, int min, int max)
@@ -135,11 +135,11 @@ public class MainForm : Form
 
 	private void GetSavedViewOptions()
 	{
-		m_options.mainFormOptions.maximized = (WindowState == FormWindowState.Maximized);
+		m_options.mainFormOptions.Maximized = (WindowState == FormWindowState.Maximized);
 		if (WindowState == FormWindowState.Normal)
 		{
-			m_options.mainFormOptions.size = Size;
-			m_options.mainFormOptions.location = Location;
+			m_options.mainFormOptions.Size = Size;
+			m_options.mainFormOptions.Location = Location;
 		}
 	}
 
@@ -151,6 +151,6 @@ public class MainForm : Form
 
 	public void UpdateCaption()
 	{
-		Text = string.Format("{0} - {1}", Application.ProductName, Path.GetFileNameWithoutExtension(m_options.coreOptionsFileName));
+		Text = string.Format("{0} - {1}", Application.ProductName, Path.GetFileNameWithoutExtension(m_options.CoreOptionsFileName));
 	}
 }

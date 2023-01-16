@@ -56,7 +56,7 @@ static public class Resources
 		return CreateIfNotExists(string.Format("{0}\\user", Application.StartupPath));
 	}
 
-	static public string UserPath { get; set; } = null;
+	static public string UserPath { get; set; }
 
 	static public string ProfilesPath { get { return CreateIfNotExists(string.Format("{0}\\profiles", UserPath)); } }
 
@@ -252,33 +252,19 @@ static public class Resources
 			}
 		}
 
-		public static int CurrentIndex { get; private set; } = 0;
+		public static int CurrentIndex { get; private set; }
 
 		public static NET.Strings Current
 		{
 			get
 			{
-				if (CurrentIndex < Count && CurrentIndex >= 0)
-				{
-					return (NET.Strings)m_strings[CurrentIndex];
-				}
-				else
-				{
-					return null;
-				}
+				return CurrentIndex < Count && CurrentIndex >= 0 ? (NET.Strings)m_strings[CurrentIndex] : null;
 			}
 		}
 
 		public static NET.Strings Get(int index)
 		{
-			if (index < Count && index >= 0)
-			{
-				return (NET.Strings)m_strings[index];
-			}
-			else
-			{
-				return null;
-			}
+			return index < Count && index >= 0 ? (NET.Strings)m_strings[index] : null;
 		}
 
 		public static bool SetCurrent(int index)
@@ -357,14 +343,7 @@ static public class Resources
 		{
 			get
 			{
-				if (Strings.IsCurrentRussianFamily())
-				{
-					return GithubComAntiduplRussian;
-				}
-				else
-				{
-					return GithubComAntiduplEnglish;
-				}
+				return Strings.IsCurrentRussianFamily() ? GithubComAntiduplRussian : GithubComAntiduplEnglish;
 			}
 		}
 	}

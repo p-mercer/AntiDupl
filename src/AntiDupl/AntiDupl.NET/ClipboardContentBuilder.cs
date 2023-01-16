@@ -45,12 +45,12 @@ public class ClipboardContentBuilder
 		switch (m_options.viewMode)
 		{
 			case ResultsOptions.ViewMode.VerticalPairTable:
-				AddCommon(result, m_options.columnOptionsVertical);
-				AddVertical(result, m_options.columnOptionsVertical);
+				AddCommon(result, m_options.ColumnOptionsVertical);
+				AddVertical(result, m_options.ColumnOptionsVertical);
 				break;
 			case ResultsOptions.ViewMode.HorizontalPairTable:
-				AddCommon(result, m_options.columnOptionsHorizontal);
-				AddHorizontal(result, m_options.columnOptionsHorizontal);
+				AddCommon(result, m_options.ColumnOptionsHorizontal);
+				AddHorizontal(result, m_options.ColumnOptionsHorizontal);
 				break;
 		}
 		m_builder.AppendLine("");
@@ -63,32 +63,32 @@ public class ClipboardContentBuilder
 
 	private void AddCommon(CoreResult result, ResultsOptions.ColumnOptions[] options)
 	{
-		if (options[(int)TypeVertical.Type].visible)
+		if (options[(int)TypeVertical.Type].Visible)
 		{
 			Append(result.Type);
 		}
 
-		if (options[(int)TypeVertical.Group].visible)
+		if (options[(int)TypeVertical.Group].Visible)
 		{
 			Append(result.Group);
 		}
 
-		if (options[(int)TypeVertical.Difference].visible)
+		if (options[(int)TypeVertical.Difference].Visible)
 		{
 			Append(result.Difference.ToString("F2"));
 		}
 
-		if (options[(int)TypeVertical.Defect].visible)
+		if (options[(int)TypeVertical.Defect].Visible)
 		{
 			Append(result.Defect);
 		}
 
-		if (options[(int)TypeVertical.Transform].visible)
+		if (options[(int)TypeVertical.Transform].Visible)
 		{
 			Append(result.Transform);
 		}
 
-		if (options[(int)TypeVertical.Hint].visible)
+		if (options[(int)TypeVertical.Hint].Visible)
 		{
 			Append(result.Hint);
 		}
@@ -96,54 +96,54 @@ public class ClipboardContentBuilder
 
 	private void AddVertical(CoreResult result, ResultsOptions.ColumnOptions[] options)
 	{
-		if (options[(int)TypeVertical.FileName].visible ||
-			options[(int)TypeVertical.FileDirectory].visible)
+		if (options[(int)TypeVertical.FileName].Visible ||
+			options[(int)TypeVertical.FileDirectory].Visible)
 		{
 			Append(result.First.Path);
 		}
 
-		if (options[(int)TypeVertical.ImageSize].visible)
+		if (options[(int)TypeVertical.ImageSize].Visible)
 		{
 			Append(result.First.GetImageSizeString());
 		}
 
-		if (options[(int)TypeVertical.ImageType].visible)
+		if (options[(int)TypeVertical.ImageType].Visible)
 		{
 			Append(result.First.GetImageTypeString());
 		}
 
-		if (options[(int)TypeVertical.FileSize].visible)
+		if (options[(int)TypeVertical.FileSize].Visible)
 		{
 			Append(result.First.GetFileSizeString());
 		}
 
-		if (options[(int)TypeVertical.FileTime].visible)
+		if (options[(int)TypeVertical.FileTime].Visible)
 		{
 			Append(result.First.GetFileTimeString());
 		}
 
-		if (options[(int)TypeVertical.FileName].visible ||
-				options[(int)TypeVertical.FileDirectory].visible)
+		if (options[(int)TypeVertical.FileName].Visible ||
+				options[(int)TypeVertical.FileDirectory].Visible)
 		{
 			Append(result.Second.Path);
 		}
 
-		if (options[(int)TypeVertical.ImageSize].visible)
+		if (options[(int)TypeVertical.ImageSize].Visible)
 		{
 			Append(result.Second.GetImageSizeString());
 		}
 
-		if (options[(int)TypeVertical.ImageType].visible)
+		if (options[(int)TypeVertical.ImageType].Visible)
 		{
 			Append(result.Second.GetImageTypeString());
 		}
 
-		if (options[(int)TypeVertical.FileSize].visible)
+		if (options[(int)TypeVertical.FileSize].Visible)
 		{
 			Append(result.Second.GetFileSizeString());
 		}
 
-		if (options[(int)TypeVertical.FileTime].visible)
+		if (options[(int)TypeVertical.FileTime].Visible)
 		{
 			Append(result.Second.GetFileTimeString());
 		}
@@ -151,54 +151,54 @@ public class ClipboardContentBuilder
 
 	private void AddHorizontal(CoreResult result, ResultsOptions.ColumnOptions[] options)
 	{
-		if (options[(int)TypeHorizontal.FirstFileName].visible ||
-			options[(int)TypeHorizontal.FirstFileDirectory].visible)
+		if (options[(int)TypeHorizontal.FirstFileName].Visible ||
+			options[(int)TypeHorizontal.FirstFileDirectory].Visible)
 		{
 			Append(result.First.Path);
 		}
 
-		if (options[(int)TypeHorizontal.FirstImageSize].visible)
+		if (options[(int)TypeHorizontal.FirstImageSize].Visible)
 		{
 			Append(result.First.GetImageSizeString());
 		}
 
-		if (options[(int)TypeHorizontal.FirstImageType].visible)
+		if (options[(int)TypeHorizontal.FirstImageType].Visible)
 		{
 			Append(result.First.GetImageTypeString());
 		}
 
-		if (options[(int)TypeHorizontal.FirstFileSize].visible)
+		if (options[(int)TypeHorizontal.FirstFileSize].Visible)
 		{
 			Append(result.First.GetFileSizeString());
 		}
 
-		if (options[(int)TypeHorizontal.FirstFileTime].visible)
+		if (options[(int)TypeHorizontal.FirstFileTime].Visible)
 		{
 			Append(result.First.GetFileTimeString());
 		}
 
-		if (options[(int)TypeHorizontal.SecondFileName].visible ||
-				options[(int)TypeHorizontal.SecondFileDirectory].visible)
+		if (options[(int)TypeHorizontal.SecondFileName].Visible ||
+				options[(int)TypeHorizontal.SecondFileDirectory].Visible)
 		{
 			Append(result.Second.Path);
 		}
 
-		if (options[(int)TypeHorizontal.SecondImageSize].visible)
+		if (options[(int)TypeHorizontal.SecondImageSize].Visible)
 		{
 			Append(result.Second.GetImageSizeString());
 		}
 
-		if (options[(int)TypeHorizontal.SecondImageType].visible)
+		if (options[(int)TypeHorizontal.SecondImageType].Visible)
 		{
 			Append(result.Second.GetImageTypeString());
 		}
 
-		if (options[(int)TypeHorizontal.SecondFileSize].visible)
+		if (options[(int)TypeHorizontal.SecondFileSize].Visible)
 		{
 			Append(result.Second.GetFileSizeString());
 		}
 
-		if (options[(int)TypeHorizontal.SecondFileTime].visible)
+		if (options[(int)TypeHorizontal.SecondFileTime].Visible)
 		{
 			Append(result.Second.GetFileTimeString());
 		}

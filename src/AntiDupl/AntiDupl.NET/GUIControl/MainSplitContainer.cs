@@ -45,8 +45,8 @@ public class MainSplitContainer : SplitContainer
 
 	private readonly ThumbnailGroupTable m_thumbnailGroupTable;
 	private readonly ThumbnailPreview m_thumbnailPreview;
-	private bool m_setOrientationNow = false;
-	private bool m_atLeastOneTimeSetOrientation = false;
+	private bool m_setOrientationNow;
+	private bool m_atLeastOneTimeSetOrientation;
 
 	public ResultsListView resultsListView { get; }
 
@@ -173,22 +173,22 @@ public class MainSplitContainer : SplitContainer
 		{
 			if (m_mainForm.WindowState == FormWindowState.Maximized)
 			{
-				SplitterDistance = Math.Min(Math.Max(options.splitterDistanceVerticalMaximized, VIEW_MIN_WIDTH), Width - LIST_MIN_WIDTH - SplitterWidth);
+				SplitterDistance = Math.Min(Math.Max(options.SplitterDistanceVerticalMaximized, VIEW_MIN_WIDTH), Width - LIST_MIN_WIDTH - SplitterWidth);
 			}
 			if (m_mainForm.WindowState == FormWindowState.Normal)
 			{
-				SplitterDistance = Math.Min(Math.Max(options.splitterDistanceVerticalNormal, VIEW_MIN_WIDTH), Width - LIST_MIN_WIDTH - SplitterWidth);
+				SplitterDistance = Math.Min(Math.Max(options.SplitterDistanceVerticalNormal, VIEW_MIN_WIDTH), Width - LIST_MIN_WIDTH - SplitterWidth);
 			}
 		}
 		if (options.viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
 		{
 			if (m_mainForm.WindowState == FormWindowState.Maximized)
 			{
-				SplitterDistance = Math.Min(Math.Max(options.splitterDistanceHorizontalMaximized, VIEW_MIN_HEIGHT), Height - LIST_MIN_HEIGHT - SplitterWidth);
+				SplitterDistance = Math.Min(Math.Max(options.SplitterDistanceHorizontalMaximized, VIEW_MIN_HEIGHT), Height - LIST_MIN_HEIGHT - SplitterWidth);
 			}
 			if (m_mainForm.WindowState == FormWindowState.Normal)
 			{
-				SplitterDistance = Math.Min(Math.Max(options.splitterDistanceHorizontalNormal, VIEW_MIN_HEIGHT), Height - LIST_MIN_HEIGHT - SplitterWidth);
+				SplitterDistance = Math.Min(Math.Max(options.SplitterDistanceHorizontalNormal, VIEW_MIN_HEIGHT), Height - LIST_MIN_HEIGHT - SplitterWidth);
 			}
 		}
 	}
@@ -200,22 +200,22 @@ public class MainSplitContainer : SplitContainer
 		{
 			if (m_mainForm.WindowState == FormWindowState.Maximized)
 			{
-				options.splitterDistanceVerticalMaximized = SplitterDistance;
+				options.SplitterDistanceVerticalMaximized = SplitterDistance;
 			}
 			if (m_mainForm.WindowState == FormWindowState.Normal)
 			{
-				options.splitterDistanceVerticalNormal = SplitterDistance;
+				options.SplitterDistanceVerticalNormal = SplitterDistance;
 			}
 		}
 		if (options.viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
 		{
 			if (m_mainForm.WindowState == FormWindowState.Maximized)
 			{
-				options.splitterDistanceHorizontalMaximized = SplitterDistance;
+				options.SplitterDistanceHorizontalMaximized = SplitterDistance;
 			}
 			if (m_mainForm.WindowState == FormWindowState.Normal)
 			{
-				options.splitterDistanceHorizontalNormal = SplitterDistance;
+				options.SplitterDistanceHorizontalNormal = SplitterDistance;
 			}
 		}
 	}

@@ -33,10 +33,10 @@ internal class LabeledNumericUpDown : TableLayoutPanel
 {
 	private readonly NumericUpDown m_numericUpDown;
 	private readonly Label m_label;
-	private float m_value = 0;
+	private float m_value;
 	private float m_min = int.MinValue;
 	private float m_max = int.MaxValue;
-	private float m_default = 0;
+	private float m_default;
 	private readonly EventHandler m_valueChangedHandler;
 
 	public override string Text { get { return m_label.Text; } set { m_label.Text = value; } }

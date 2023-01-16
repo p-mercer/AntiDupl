@@ -28,9 +28,9 @@ namespace AntiDupl.NET;
 
 public class DataGridViewCustomRow : DataGridViewRow
 {
-	public bool Current { get; set; } = false;
-	public bool Selected { get; set; } = false;
-	public bool Updated { get; set; } = false;
+	public bool Current { get; set; }
+	public bool Selected { get; set; }
+	public bool Updated { get; set; }
 
 	protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle rowBounds, int rowIndex, DataGridViewElementStates rowState, bool isFirstDisplayedRow, bool isLastVisibleRow)
 	{

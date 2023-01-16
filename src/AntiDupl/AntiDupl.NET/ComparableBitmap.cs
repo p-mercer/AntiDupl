@@ -30,7 +30,7 @@ namespace AntiDupl.NET;
 public class ComparableBitmap
 {
 	public Rectangle Rect { get; set; }
-	public byte[] GrayscaleData { get; } = null;
+	public byte[] GrayscaleData { get; }
 
 	/// <summary>
 	/// A colormatric we use to convert the image to grayscale.

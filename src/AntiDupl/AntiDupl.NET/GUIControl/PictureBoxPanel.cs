@@ -51,8 +51,8 @@ public class PictureBoxPanel : Panel
 			return m_bitmap != m_originalBitmap && m_originalBitmap != null ? m_originalBitmap : m_bitmap;
 		}
 	}
-	private bool m_animationEnable = false;
-	private bool m_currentlyAnimating = false;
+	private bool m_animationEnable;
+	private bool m_currentlyAnimating;
 
 	private Bitmap m_originalBitmap;
 	private Rectangle[] m_rectanglesOfDifferences;

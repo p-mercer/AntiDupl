@@ -114,7 +114,7 @@ public class ThumbnailPanel : RaisedPanel
 		m_pictureBox = new PictureBox
 		{
 			Location = new Point(0, 0),
-			ClientSize = m_options.resultsOptions.thumbnailSizeMax,
+			ClientSize = m_options.resultsOptions.ThumbnailSizeMax,
 			SizeMode = PictureBoxSizeMode.Zoom,
 			BorderStyle = BorderStyle.Fixed3D,
 			Image = null,
