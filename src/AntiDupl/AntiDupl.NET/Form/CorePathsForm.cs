@@ -491,21 +491,22 @@ public class CorePathsForm : Form
 			return;
 		}
 
-		var dialog = new FolderPicker
+		var dialog = new FolderBrowserDialog()
 		{
-			InputPath = GetInitialPath(path)
+			InitialDirectory = GetInitialPath(path)
 		};
-		if (dialog.ShowDialog(IntPtr.Zero) == true)
+
+		if (dialog.ShowDialog() == DialogResult.OK)
 		{
 			Array.Resize(ref path, path.Length + 1);
 			path[^1] = new CorePathWithSubFolder();
-			if (dialog.ResultPath[^1] == Path.DirectorySeparatorChar)
+			if (dialog.SelectedPath[^1] == Path.DirectorySeparatorChar)
 			{
-				path[^1].Path = dialog.ResultPath.Remove(dialog.ResultPath.Length - 1);
+				path[^1].Path = dialog.SelectedPath.Remove(dialog.SelectedPath.Length - 1);
 			}
 			else
 			{
-				path[^1].Path = dialog.ResultPath;
+				path[^1].Path = dialog.SelectedPath;
 			}
 
 			path[^1].EnableSubFolder = true;
