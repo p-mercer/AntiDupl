@@ -227,7 +227,7 @@ public class CoreOptionsForm : Form
 		checkTableLayoutPanel.Controls.Add(m_algorithmComparingLabeledComboBox, 0, 5);
 
 		m_thresholdDifferenceLabeledComboBox = new LabeledComboBox(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged);
-		if (m_newCoreOptions.compareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum)
+		if (m_newCoreOptions.CompareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum)
 		{
 			for (var i = 0; i <= THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM; i++)
 			{
@@ -247,14 +247,14 @@ public class CoreOptionsForm : Form
 		m_minimalImageSizeLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged)
 		{
 			Min = 0,
-			Default = m_defaultCoreOptions.compareOptions.minimalImageSize
+			Default = m_defaultCoreOptions.CompareOptions.minimalImageSize
 		};
 		checkTableLayoutPanel.Controls.Add(m_minimalImageSizeLabeledIntegerEdit, 0, 7);
 
 		m_maximalImageSizeLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged)
 		{
 			Min = 0,
-			Default = m_defaultCoreOptions.compareOptions.maximalImageSize
+			Default = m_defaultCoreOptions.CompareOptions.maximalImageSize
 		};
 		checkTableLayoutPanel.Controls.Add(m_maximalImageSizeLabeledIntegerEdit, 0, 8);
 
@@ -423,7 +423,7 @@ public class CoreOptionsForm : Form
 		m_undoQueueSizeLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged)
 		{
 			Min = 0,
-			Default = m_defaultCoreOptions.advancedOptions.UndoQueueSize,
+			Default = m_defaultCoreOptions.AdvancedOptions.UndoQueueSize,
 			Max = 16
 		};
 		advancedTableLayoutPanel.Controls.Add(m_undoQueueSizeLabeledIntegerEdit, 0, 7);
@@ -431,7 +431,7 @@ public class CoreOptionsForm : Form
 		m_resultCountMaxLabeledIntegerEdit = new LabeledIntegerEdit(COMBO_BOX_WIDTH, COMBO_BOX_HEIGHT, OnOptionChanged)
 		{
 			Min = 1,
-			Default = m_defaultCoreOptions.advancedOptions.ResultCountMax
+			Default = m_defaultCoreOptions.AdvancedOptions.ResultCountMax
 		};
 		advancedTableLayoutPanel.Controls.Add(m_resultCountMaxLabeledIntegerEdit, 0, 8);
 
@@ -583,53 +583,53 @@ public class CoreOptionsForm : Form
 	/// </summary>
 	private void GetOptions()
 	{
-		m_checkOnEqualityCheckBox.Checked = m_newCoreOptions.compareOptions.checkOnEquality;
-		m_transformedImageCheckBox.Checked = m_newCoreOptions.compareOptions.transformedImage;
-		m_sizeControlCheckBox.Checked = m_newCoreOptions.compareOptions.sizeControl;
-		m_typeControlCheckBox.Checked = m_newCoreOptions.compareOptions.typeControl;
-		m_ratioControlCheckBox.Checked = m_newCoreOptions.compareOptions.ratioControl;
-		m_algorithmComparingLabeledComboBox.SelectedValue = (int)m_newCoreOptions.compareOptions.algorithmComparing;
-		m_thresholdDifferenceLabeledComboBox.SelectedValue = m_newCoreOptions.compareOptions.thresholdDifference;
-		m_minimalImageSizeLabeledIntegerEdit.Value = m_newCoreOptions.compareOptions.minimalImageSize;
-		m_maximalImageSizeLabeledIntegerEdit.Value = m_newCoreOptions.compareOptions.maximalImageSize;
-		m_compareInsideOneFolderCheckBox.Checked = m_newCoreOptions.compareOptions.compareInsideOneFolder;
-		m_compareInsideOneSearchPathCheckBox.Checked = m_newCoreOptions.compareOptions.compareInsideOneSearchPath;
+		m_checkOnEqualityCheckBox.Checked = m_newCoreOptions.CompareOptions.checkOnEquality;
+		m_transformedImageCheckBox.Checked = m_newCoreOptions.CompareOptions.transformedImage;
+		m_sizeControlCheckBox.Checked = m_newCoreOptions.CompareOptions.sizeControl;
+		m_typeControlCheckBox.Checked = m_newCoreOptions.CompareOptions.typeControl;
+		m_ratioControlCheckBox.Checked = m_newCoreOptions.CompareOptions.ratioControl;
+		m_algorithmComparingLabeledComboBox.SelectedValue = (int)m_newCoreOptions.CompareOptions.algorithmComparing;
+		m_thresholdDifferenceLabeledComboBox.SelectedValue = m_newCoreOptions.CompareOptions.thresholdDifference;
+		m_minimalImageSizeLabeledIntegerEdit.Value = m_newCoreOptions.CompareOptions.minimalImageSize;
+		m_maximalImageSizeLabeledIntegerEdit.Value = m_newCoreOptions.CompareOptions.maximalImageSize;
+		m_compareInsideOneFolderCheckBox.Checked = m_newCoreOptions.CompareOptions.compareInsideOneFolder;
+		m_compareInsideOneSearchPathCheckBox.Checked = m_newCoreOptions.CompareOptions.compareInsideOneSearchPath;
 
-		m_checkOnDefectCheckBox.Checked = m_newCoreOptions.defectOptions.CheckOnDefect;
-		m_checkOnBlockinessCheckBox.Checked = m_newCoreOptions.defectOptions.CheckOnBlockiness;
-		m_blockinessThresholdLabeledComboBox.SelectedValue = m_newCoreOptions.defectOptions.BlockinessThreshold;
-		m_checkOnBlockinessOnlyNotJpegCheckBox.Checked = m_newCoreOptions.defectOptions.CheckOnBlockinessOnlyNotJpeg;
-		m_checkOnBlurringCheckBox.Checked = m_newCoreOptions.defectOptions.CheckOnBlurring;
-		m_blurringThresholdLabeledComboBox.SelectedValue = m_newCoreOptions.defectOptions.BlurringThreshold;
+		m_checkOnDefectCheckBox.Checked = m_newCoreOptions.DefectOptions.CheckOnDefect;
+		m_checkOnBlockinessCheckBox.Checked = m_newCoreOptions.DefectOptions.CheckOnBlockiness;
+		m_blockinessThresholdLabeledComboBox.SelectedValue = m_newCoreOptions.DefectOptions.BlockinessThreshold;
+		m_checkOnBlockinessOnlyNotJpegCheckBox.Checked = m_newCoreOptions.DefectOptions.CheckOnBlockinessOnlyNotJpeg;
+		m_checkOnBlurringCheckBox.Checked = m_newCoreOptions.DefectOptions.CheckOnBlurring;
+		m_blurringThresholdLabeledComboBox.SelectedValue = m_newCoreOptions.DefectOptions.BlurringThreshold;
 
-		m_bmpCheckBox.Checked = m_newCoreOptions.searchOptions.BMP;
-		m_gifCheckBox.Checked = m_newCoreOptions.searchOptions.GIF;
-		m_jpegCheckBox.Checked = m_newCoreOptions.searchOptions.JPEG;
-		m_pngCheckBox.Checked = m_newCoreOptions.searchOptions.PNG;
-		m_tiffCheckBox.Checked = m_newCoreOptions.searchOptions.TIFF;
-		m_emfCheckBox.Checked = m_newCoreOptions.searchOptions.EMF;
-		m_wmfCheckBox.Checked = m_newCoreOptions.searchOptions.WMF;
-		m_exifCheckBox.Checked = m_newCoreOptions.searchOptions.EXIF;
-		m_iconCheckBox.Checked = m_newCoreOptions.searchOptions.ICON;
-		m_jp2CheckBox.Checked = m_newCoreOptions.searchOptions.JP2;
-		m_psdCheckBox.Checked = m_newCoreOptions.searchOptions.PSD;
-		m_ddsCheckBox.Checked = m_newCoreOptions.searchOptions.DDS;
-		m_tgaCheckBox.Checked = m_newCoreOptions.searchOptions.TGA;
-		m_webpCheckBox.Checked = m_newCoreOptions.searchOptions.WEBP;
-		m_heifCheckBox.Checked = m_newCoreOptions.searchOptions.HEIF;
-		m_searchSystemCheckBox.Checked = m_newCoreOptions.searchOptions.system;
-		m_searchHiddenCheckBox.Checked = m_newCoreOptions.searchOptions.hidden;
+		m_bmpCheckBox.Checked = m_newCoreOptions.SearchOptions.BMP;
+		m_gifCheckBox.Checked = m_newCoreOptions.SearchOptions.GIF;
+		m_jpegCheckBox.Checked = m_newCoreOptions.SearchOptions.JPEG;
+		m_pngCheckBox.Checked = m_newCoreOptions.SearchOptions.PNG;
+		m_tiffCheckBox.Checked = m_newCoreOptions.SearchOptions.TIFF;
+		m_emfCheckBox.Checked = m_newCoreOptions.SearchOptions.EMF;
+		m_wmfCheckBox.Checked = m_newCoreOptions.SearchOptions.WMF;
+		m_exifCheckBox.Checked = m_newCoreOptions.SearchOptions.EXIF;
+		m_iconCheckBox.Checked = m_newCoreOptions.SearchOptions.ICON;
+		m_jp2CheckBox.Checked = m_newCoreOptions.SearchOptions.JP2;
+		m_psdCheckBox.Checked = m_newCoreOptions.SearchOptions.PSD;
+		m_ddsCheckBox.Checked = m_newCoreOptions.SearchOptions.DDS;
+		m_tgaCheckBox.Checked = m_newCoreOptions.SearchOptions.TGA;
+		m_webpCheckBox.Checked = m_newCoreOptions.SearchOptions.WEBP;
+		m_heifCheckBox.Checked = m_newCoreOptions.SearchOptions.HEIF;
+		m_searchSystemCheckBox.Checked = m_newCoreOptions.SearchOptions.system;
+		m_searchHiddenCheckBox.Checked = m_newCoreOptions.SearchOptions.hidden;
 
-		m_deleteToRecycleBinCheckBox.Checked = m_newCoreOptions.advancedOptions.DeleteToRecycleBin;
-		m_mistakeDataBaseCheckBox.Checked = m_newCoreOptions.advancedOptions.MistakeDataBase;
-		m_ratioResolutionLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.RatioResolution;
-		m_compareThreadCountLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.CompareThreadCount;
-		m_collectThreadCountLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.CollectThreadCount;
-		m_reducedImageSizeLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.ReducedImageSize;
-		m_undoQueueSizeLabeledIntegerEdit.Value = m_newCoreOptions.advancedOptions.UndoQueueSize;
-		m_resultCountMaxLabeledIntegerEdit.Value = m_newCoreOptions.advancedOptions.ResultCountMax;
-		m_ignoreFrameWidthLabeledComboBox.SelectedValue = m_newCoreOptions.advancedOptions.IgnoreFrameWidth;
-		m_useLibJpegTurboCheckBox.Checked = m_newCoreOptions.advancedOptions.UseLibJpegTurbo;
+		m_deleteToRecycleBinCheckBox.Checked = m_newCoreOptions.AdvancedOptions.DeleteToRecycleBin;
+		m_mistakeDataBaseCheckBox.Checked = m_newCoreOptions.AdvancedOptions.MistakeDataBase;
+		m_ratioResolutionLabeledComboBox.SelectedValue = m_newCoreOptions.AdvancedOptions.RatioResolution;
+		m_compareThreadCountLabeledComboBox.SelectedValue = m_newCoreOptions.AdvancedOptions.CompareThreadCount;
+		m_collectThreadCountLabeledComboBox.SelectedValue = m_newCoreOptions.AdvancedOptions.CollectThreadCount;
+		m_reducedImageSizeLabeledComboBox.SelectedValue = m_newCoreOptions.AdvancedOptions.ReducedImageSize;
+		m_undoQueueSizeLabeledIntegerEdit.Value = m_newCoreOptions.AdvancedOptions.UndoQueueSize;
+		m_resultCountMaxLabeledIntegerEdit.Value = m_newCoreOptions.AdvancedOptions.ResultCountMax;
+		m_ignoreFrameWidthLabeledComboBox.SelectedValue = m_newCoreOptions.AdvancedOptions.IgnoreFrameWidth;
+		m_useLibJpegTurboCheckBox.Checked = m_newCoreOptions.AdvancedOptions.UseLibJpegTurbo;
 	}
 
 	/// <summary>
@@ -637,53 +637,53 @@ public class CoreOptionsForm : Form
 	/// </summary>
 	private void SetOptions()
 	{
-		m_newCoreOptions.compareOptions.checkOnEquality = m_checkOnEqualityCheckBox.Checked;
-		m_newCoreOptions.compareOptions.transformedImage = m_transformedImageCheckBox.Checked;
-		m_newCoreOptions.compareOptions.sizeControl = m_sizeControlCheckBox.Checked;
-		m_newCoreOptions.compareOptions.typeControl = m_typeControlCheckBox.Checked;
-		m_newCoreOptions.compareOptions.ratioControl = m_ratioControlCheckBox.Checked;
-		m_newCoreOptions.compareOptions.algorithmComparing = (CoreDll.AlgorithmComparing)m_algorithmComparingLabeledComboBox.SelectedValue;
-		m_newCoreOptions.compareOptions.thresholdDifference = m_thresholdDifferenceLabeledComboBox.SelectedValue;
-		m_newCoreOptions.compareOptions.minimalImageSize = m_minimalImageSizeLabeledIntegerEdit.Value;
-		m_newCoreOptions.compareOptions.maximalImageSize = m_maximalImageSizeLabeledIntegerEdit.Value;
-		m_newCoreOptions.compareOptions.compareInsideOneFolder = m_compareInsideOneFolderCheckBox.Checked;
-		m_newCoreOptions.compareOptions.compareInsideOneSearchPath = m_compareInsideOneSearchPathCheckBox.Checked;
+		m_newCoreOptions.CompareOptions.checkOnEquality = m_checkOnEqualityCheckBox.Checked;
+		m_newCoreOptions.CompareOptions.transformedImage = m_transformedImageCheckBox.Checked;
+		m_newCoreOptions.CompareOptions.sizeControl = m_sizeControlCheckBox.Checked;
+		m_newCoreOptions.CompareOptions.typeControl = m_typeControlCheckBox.Checked;
+		m_newCoreOptions.CompareOptions.ratioControl = m_ratioControlCheckBox.Checked;
+		m_newCoreOptions.CompareOptions.algorithmComparing = (CoreDll.AlgorithmComparing)m_algorithmComparingLabeledComboBox.SelectedValue;
+		m_newCoreOptions.CompareOptions.thresholdDifference = m_thresholdDifferenceLabeledComboBox.SelectedValue;
+		m_newCoreOptions.CompareOptions.minimalImageSize = m_minimalImageSizeLabeledIntegerEdit.Value;
+		m_newCoreOptions.CompareOptions.maximalImageSize = m_maximalImageSizeLabeledIntegerEdit.Value;
+		m_newCoreOptions.CompareOptions.compareInsideOneFolder = m_compareInsideOneFolderCheckBox.Checked;
+		m_newCoreOptions.CompareOptions.compareInsideOneSearchPath = m_compareInsideOneSearchPathCheckBox.Checked;
 
-		m_newCoreOptions.defectOptions.CheckOnDefect = m_checkOnDefectCheckBox.Checked;
-		m_newCoreOptions.defectOptions.CheckOnBlockiness = m_checkOnBlockinessCheckBox.Checked;
-		m_newCoreOptions.defectOptions.BlockinessThreshold = m_blockinessThresholdLabeledComboBox.SelectedValue;
-		m_newCoreOptions.defectOptions.CheckOnBlockinessOnlyNotJpeg = m_checkOnBlockinessOnlyNotJpegCheckBox.Checked;
-		m_newCoreOptions.defectOptions.CheckOnBlurring = m_checkOnBlurringCheckBox.Checked;
-		m_newCoreOptions.defectOptions.BlurringThreshold = m_blurringThresholdLabeledComboBox.SelectedValue;
+		m_newCoreOptions.DefectOptions.CheckOnDefect = m_checkOnDefectCheckBox.Checked;
+		m_newCoreOptions.DefectOptions.CheckOnBlockiness = m_checkOnBlockinessCheckBox.Checked;
+		m_newCoreOptions.DefectOptions.BlockinessThreshold = m_blockinessThresholdLabeledComboBox.SelectedValue;
+		m_newCoreOptions.DefectOptions.CheckOnBlockinessOnlyNotJpeg = m_checkOnBlockinessOnlyNotJpegCheckBox.Checked;
+		m_newCoreOptions.DefectOptions.CheckOnBlurring = m_checkOnBlurringCheckBox.Checked;
+		m_newCoreOptions.DefectOptions.BlurringThreshold = m_blurringThresholdLabeledComboBox.SelectedValue;
 
-		m_newCoreOptions.searchOptions.BMP = m_bmpCheckBox.Checked;
-		m_newCoreOptions.searchOptions.GIF = m_gifCheckBox.Checked;
-		m_newCoreOptions.searchOptions.JPEG = m_jpegCheckBox.Checked;
-		m_newCoreOptions.searchOptions.PNG = m_pngCheckBox.Checked;
-		m_newCoreOptions.searchOptions.TIFF = m_tiffCheckBox.Checked;
-		m_newCoreOptions.searchOptions.EMF = m_emfCheckBox.Checked;
-		m_newCoreOptions.searchOptions.WMF = m_wmfCheckBox.Checked;
-		m_newCoreOptions.searchOptions.EXIF = m_exifCheckBox.Checked;
-		m_newCoreOptions.searchOptions.ICON = m_iconCheckBox.Checked;
-		m_newCoreOptions.searchOptions.JP2 = m_jp2CheckBox.Checked;
-		m_newCoreOptions.searchOptions.PSD = m_psdCheckBox.Checked;
-		m_newCoreOptions.searchOptions.DDS = m_ddsCheckBox.Checked;
-		m_newCoreOptions.searchOptions.TGA = m_tgaCheckBox.Checked;
-		m_newCoreOptions.searchOptions.WEBP = m_webpCheckBox.Checked;
-		m_newCoreOptions.searchOptions.HEIF = m_heifCheckBox.Checked;
-		m_newCoreOptions.searchOptions.system = m_searchSystemCheckBox.Checked;
-		m_newCoreOptions.searchOptions.hidden = m_searchHiddenCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.BMP = m_bmpCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.GIF = m_gifCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.JPEG = m_jpegCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.PNG = m_pngCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.TIFF = m_tiffCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.EMF = m_emfCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.WMF = m_wmfCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.EXIF = m_exifCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.ICON = m_iconCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.JP2 = m_jp2CheckBox.Checked;
+		m_newCoreOptions.SearchOptions.PSD = m_psdCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.DDS = m_ddsCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.TGA = m_tgaCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.WEBP = m_webpCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.HEIF = m_heifCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.system = m_searchSystemCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.hidden = m_searchHiddenCheckBox.Checked;
 
-		m_newCoreOptions.advancedOptions.DeleteToRecycleBin = m_deleteToRecycleBinCheckBox.Checked;
-		m_newCoreOptions.advancedOptions.MistakeDataBase = m_mistakeDataBaseCheckBox.Checked;
-		m_newCoreOptions.advancedOptions.RatioResolution = m_ratioResolutionLabeledComboBox.SelectedValue;
-		m_newCoreOptions.advancedOptions.CompareThreadCount = m_compareThreadCountLabeledComboBox.SelectedValue;
-		m_newCoreOptions.advancedOptions.CollectThreadCount = m_collectThreadCountLabeledComboBox.SelectedValue;
-		m_newCoreOptions.advancedOptions.ReducedImageSize = m_reducedImageSizeLabeledComboBox.SelectedValue;
-		m_newCoreOptions.advancedOptions.UndoQueueSize = m_undoQueueSizeLabeledIntegerEdit.Value;
-		m_newCoreOptions.advancedOptions.ResultCountMax = m_resultCountMaxLabeledIntegerEdit.Value;
-		m_newCoreOptions.advancedOptions.IgnoreFrameWidth = m_ignoreFrameWidthLabeledComboBox.SelectedValue;
-		m_newCoreOptions.advancedOptions.UseLibJpegTurbo = m_useLibJpegTurboCheckBox.Checked;
+		m_newCoreOptions.AdvancedOptions.DeleteToRecycleBin = m_deleteToRecycleBinCheckBox.Checked;
+		m_newCoreOptions.AdvancedOptions.MistakeDataBase = m_mistakeDataBaseCheckBox.Checked;
+		m_newCoreOptions.AdvancedOptions.RatioResolution = m_ratioResolutionLabeledComboBox.SelectedValue;
+		m_newCoreOptions.AdvancedOptions.CompareThreadCount = m_compareThreadCountLabeledComboBox.SelectedValue;
+		m_newCoreOptions.AdvancedOptions.CollectThreadCount = m_collectThreadCountLabeledComboBox.SelectedValue;
+		m_newCoreOptions.AdvancedOptions.ReducedImageSize = m_reducedImageSizeLabeledComboBox.SelectedValue;
+		m_newCoreOptions.AdvancedOptions.UndoQueueSize = m_undoQueueSizeLabeledIntegerEdit.Value;
+		m_newCoreOptions.AdvancedOptions.ResultCountMax = m_resultCountMaxLabeledIntegerEdit.Value;
+		m_newCoreOptions.AdvancedOptions.IgnoreFrameWidth = m_ignoreFrameWidthLabeledComboBox.SelectedValue;
+		m_newCoreOptions.AdvancedOptions.UseLibJpegTurbo = m_useLibJpegTurboCheckBox.Checked;
 	}
 
 	private void UpdateStrings()
@@ -769,32 +769,32 @@ public class CoreOptionsForm : Form
 	private void UpdateItemsEnabling()
 	{
 		// Если не проставлены галочки поиска дубликатов и дефектов, то проставляем сами
-		if (!(m_newCoreOptions.defectOptions.CheckOnDefect || m_newCoreOptions.compareOptions.checkOnEquality ||
-			m_newCoreOptions.defectOptions.CheckOnBlockiness || m_newCoreOptions.defectOptions.CheckOnBlurring))
+		if (!(m_newCoreOptions.DefectOptions.CheckOnDefect || m_newCoreOptions.CompareOptions.checkOnEquality ||
+			m_newCoreOptions.DefectOptions.CheckOnBlockiness || m_newCoreOptions.DefectOptions.CheckOnBlurring))
 		{
 			m_inited = false;
-			m_newCoreOptions.compareOptions.checkOnEquality = true;
+			m_newCoreOptions.CompareOptions.checkOnEquality = true;
 			GetOptions();
 			m_inited = true;
 		}
 
-		if (!(m_newCoreOptions.searchOptions.BMP ||
-		  m_newCoreOptions.searchOptions.GIF ||
-		  m_newCoreOptions.searchOptions.JPEG ||
-		  m_newCoreOptions.searchOptions.PNG ||
-		  m_newCoreOptions.searchOptions.TIFF ||
-		  m_newCoreOptions.searchOptions.EMF ||
-		  m_newCoreOptions.searchOptions.WMF ||
-		  m_newCoreOptions.searchOptions.EXIF ||
-		  m_newCoreOptions.searchOptions.ICON ||
-		  m_newCoreOptions.searchOptions.JP2 ||
-		  m_newCoreOptions.searchOptions.PSD ||
-		  m_newCoreOptions.searchOptions.DDS ||
-		  m_newCoreOptions.searchOptions.TGA ||
-		  m_newCoreOptions.searchOptions.WEBP))
+		if (!(m_newCoreOptions.SearchOptions.BMP ||
+		  m_newCoreOptions.SearchOptions.GIF ||
+		  m_newCoreOptions.SearchOptions.JPEG ||
+		  m_newCoreOptions.SearchOptions.PNG ||
+		  m_newCoreOptions.SearchOptions.TIFF ||
+		  m_newCoreOptions.SearchOptions.EMF ||
+		  m_newCoreOptions.SearchOptions.WMF ||
+		  m_newCoreOptions.SearchOptions.EXIF ||
+		  m_newCoreOptions.SearchOptions.ICON ||
+		  m_newCoreOptions.SearchOptions.JP2 ||
+		  m_newCoreOptions.SearchOptions.PSD ||
+		  m_newCoreOptions.SearchOptions.DDS ||
+		  m_newCoreOptions.SearchOptions.TGA ||
+		  m_newCoreOptions.SearchOptions.WEBP))
 		{
 			m_inited = false;
-			m_newCoreOptions.searchOptions.JPEG = true;
+			m_newCoreOptions.SearchOptions.JPEG = true;
 			GetOptions();
 			m_inited = true;
 		}
@@ -802,27 +802,27 @@ public class CoreOptionsForm : Form
 		m_okButton.Enabled = !m_oldCoreOptions.Equals(m_newCoreOptions);
 		m_setDefaultButton.Enabled = !m_defaultCoreOptions.Equals(m_newCoreOptions);
 
-		m_transformedImageCheckBox.Enabled = m_newCoreOptions.compareOptions.checkOnEquality;
-		m_sizeControlCheckBox.Enabled = m_newCoreOptions.compareOptions.checkOnEquality;
-		m_typeControlCheckBox.Enabled = m_newCoreOptions.compareOptions.checkOnEquality;
-		m_ratioControlCheckBox.Enabled = m_newCoreOptions.compareOptions.checkOnEquality &&
-		  !m_newCoreOptions.compareOptions.sizeControl;
-		m_thresholdDifferenceLabeledComboBox.Enabled = m_newCoreOptions.compareOptions.checkOnEquality;
-		m_compareInsideOneFolderCheckBox.Enabled = m_newCoreOptions.compareOptions.checkOnEquality;
-		m_compareInsideOneSearchPathCheckBox.Enabled = m_newCoreOptions.compareOptions.checkOnEquality;
+		m_transformedImageCheckBox.Enabled = m_newCoreOptions.CompareOptions.checkOnEquality;
+		m_sizeControlCheckBox.Enabled = m_newCoreOptions.CompareOptions.checkOnEquality;
+		m_typeControlCheckBox.Enabled = m_newCoreOptions.CompareOptions.checkOnEquality;
+		m_ratioControlCheckBox.Enabled = m_newCoreOptions.CompareOptions.checkOnEquality &&
+		  !m_newCoreOptions.CompareOptions.sizeControl;
+		m_thresholdDifferenceLabeledComboBox.Enabled = m_newCoreOptions.CompareOptions.checkOnEquality;
+		m_compareInsideOneFolderCheckBox.Enabled = m_newCoreOptions.CompareOptions.checkOnEquality;
+		m_compareInsideOneSearchPathCheckBox.Enabled = m_newCoreOptions.CompareOptions.checkOnEquality;
 
-		m_ratioResolutionLabeledComboBox.Enabled = m_newCoreOptions.compareOptions.checkOnEquality &&
-		  !m_newCoreOptions.compareOptions.sizeControl && m_newCoreOptions.compareOptions.ratioControl;
-		m_compareThreadCountLabeledComboBox.Enabled = m_newCoreOptions.compareOptions.checkOnEquality;
-		m_reducedImageSizeLabeledComboBox.Enabled = m_newCoreOptions.compareOptions.checkOnEquality;
-		m_ignoreFrameWidthLabeledComboBox.Enabled = m_newCoreOptions.compareOptions.checkOnEquality;
+		m_ratioResolutionLabeledComboBox.Enabled = m_newCoreOptions.CompareOptions.checkOnEquality &&
+		  !m_newCoreOptions.CompareOptions.sizeControl && m_newCoreOptions.CompareOptions.ratioControl;
+		m_compareThreadCountLabeledComboBox.Enabled = m_newCoreOptions.CompareOptions.checkOnEquality;
+		m_reducedImageSizeLabeledComboBox.Enabled = m_newCoreOptions.CompareOptions.checkOnEquality;
+		m_ignoreFrameWidthLabeledComboBox.Enabled = m_newCoreOptions.CompareOptions.checkOnEquality;
 
-		m_blockinessThresholdLabeledComboBox.Enabled = m_newCoreOptions.defectOptions.CheckOnBlockiness;
-		m_checkOnBlockinessOnlyNotJpegCheckBox.Enabled = m_newCoreOptions.defectOptions.CheckOnBlockiness;
+		m_blockinessThresholdLabeledComboBox.Enabled = m_newCoreOptions.DefectOptions.CheckOnBlockiness;
+		m_checkOnBlockinessOnlyNotJpegCheckBox.Enabled = m_newCoreOptions.DefectOptions.CheckOnBlockiness;
 
-		m_blurringThresholdLabeledComboBox.Enabled = m_newCoreOptions.defectOptions.CheckOnBlurring;
+		m_blurringThresholdLabeledComboBox.Enabled = m_newCoreOptions.DefectOptions.CheckOnBlurring;
 
-		var step = Math.Max(1, 64 / m_newCoreOptions.advancedOptions.ReducedImageSize) * IGNORE_FRAME_WIDTH_STEP;
+		var step = Math.Max(1, 64 / m_newCoreOptions.AdvancedOptions.ReducedImageSize) * IGNORE_FRAME_WIDTH_STEP;
 		if (m_ignoreFrameWidthLabeledComboBox.comboBox.Items.Count != IGNORE_FRAME_WIDTH_MAX / step + 1)
 		{
 			m_ignoreFrameWidthLabeledComboBox.comboBox.Items.Clear();
@@ -831,7 +831,7 @@ public class CoreOptionsForm : Form
 				m_ignoreFrameWidthLabeledComboBox.comboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
 			}
 
-			m_ignoreFrameWidthLabeledComboBox.SelectedValue = (m_newCoreOptions.advancedOptions.IgnoreFrameWidth + step - 1) / step * step;
+			m_ignoreFrameWidthLabeledComboBox.SelectedValue = (m_newCoreOptions.AdvancedOptions.IgnoreFrameWidth + step - 1) / step * step;
 		}
 
 		if (m_algorithmComparingLabeledComboBox.SelectedValue == (int)CoreDll.AlgorithmComparing.SquaredSum &&

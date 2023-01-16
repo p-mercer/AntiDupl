@@ -344,10 +344,10 @@ public class SearchExecuterForm : Form
 		var mainThreadStatus = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
 		if (mainThreadStatus != null)
 		{
-			total = mainThreadStatus.total;
-			if (mainThreadStatus.current > 0)
+			total = mainThreadStatus.Total;
+			if (mainThreadStatus.Current > 0)
 			{
-				if (m_coreOptions.compareOptions.checkOnEquality)
+				if (m_coreOptions.CompareOptions.checkOnEquality)
 				{
 					for (var i = 0; ; i++)
 					{
@@ -359,15 +359,15 @@ public class SearchExecuterForm : Form
 
 						if (i == 0)
 						{
-							path = compareThreadStatus.path;
+							path = compareThreadStatus.Path;
 						}
-						currentFirst += compareThreadStatus.current;
-						currentSecond += compareThreadStatus.total;
+						currentFirst += compareThreadStatus.Current;
+						currentSecond += compareThreadStatus.Total;
 					}
 				}
 				else
 				{
-					currentFirst = mainThreadStatus.current;
+					currentFirst = mainThreadStatus.Current;
 					for (var i = 0; ; i++)
 					{
 						var collectThreadStatus = m_core.StatusGet(CoreDll.ThreadType.Collect, i);
@@ -378,16 +378,16 @@ public class SearchExecuterForm : Form
 
 						if (i == 0)
 						{
-							path = collectThreadStatus.path;
+							path = collectThreadStatus.Path;
 						}
-						currentFirst += collectThreadStatus.current;
-						currentFirst -= collectThreadStatus.total;
+						currentFirst += collectThreadStatus.Current;
+						currentFirst -= collectThreadStatus.Total;
 					}
 				}
 			}
 			else
 			{
-				path = mainThreadStatus.path;
+				path = mainThreadStatus.Path;
 			}
 		}
 
@@ -406,7 +406,7 @@ public class SearchExecuterForm : Form
 		var status = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
 		if (status != null)
 		{
-			m_progressPanel.UpdateStatus(status.total, status.current, status.current, "");
+			m_progressPanel.UpdateStatus(status.Total, status.Current, status.Current, "");
 		}
 		else
 		{
@@ -438,12 +438,12 @@ public class SearchExecuterForm : Form
 		writer.WriteLine("---------------------------------------------------------------");
 		writer.WriteLine(string.Format("Search start time: {0}", m_startDateTime.ToString()));
 		writer.WriteLine(string.Format("Elapsed time: {0}", time.ToString()));
-		writer.WriteLine(string.Format("Found {0} of {1} images in {2} folders.", MemoryString(statistic.searchedImageSize), statistic.searchedImageNumber, statistic.scanedFolderNumber));
-		writer.WriteLine(string.Format("Processed {0} images.", statistic.comparedImageNumber));
-		writer.WriteLine(string.Format("Found {0} defects and {1} duples.", statistic.defectImageNumber, statistic.duplImagePairNumber));
-		writer.WriteLine(string.Format("Used {0} load and {1} compare threads.", statistic.collectThreadCount, statistic.compareThreadCount));
+		writer.WriteLine(string.Format("Found {0} of {1} images in {2} folders.", MemoryString(statistic.SearchedImageSize), statistic.SearchedImageNumber, statistic.ScanedFolderNumber));
+		writer.WriteLine(string.Format("Processed {0} images.", statistic.ComparedImageNumber));
+		writer.WriteLine(string.Format("Found {0} defects and {1} duples.", statistic.DefectImageNumber, statistic.DuplImagePairNumber));
+		writer.WriteLine(string.Format("Used {0} load and {1} compare threads.", statistic.CollectThreadCount, statistic.CompareThreadCount));
 		writer.WriteLine(string.Format("Use image database: {0}.", m_options.useImageDataBase));
-		writer.WriteLine(string.Format("Use libjpeg-turbo: {0}.", m_coreOptions.advancedOptions.UseLibJpegTurbo));
+		writer.WriteLine(string.Format("Use libjpeg-turbo: {0}.", m_coreOptions.AdvancedOptions.UseLibJpegTurbo));
 
 		writer.Close();
 	}

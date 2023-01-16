@@ -26,8 +26,8 @@ namespace AntiDupl.NET;
 
 public class CorePathWithSubFolder
 {
-	public bool enableSubFolder;
-	public string path;
+	public bool EnableSubFolder { get; set; }
+	public string Path { get; set; }
 
 	public CorePathWithSubFolder()
 	{
@@ -35,26 +35,26 @@ public class CorePathWithSubFolder
 
 	public CorePathWithSubFolder(string path, bool enableSubFolder)
 	{
-		this.path = path;
-		this.enableSubFolder = enableSubFolder;
+		Path = path;
+		EnableSubFolder = enableSubFolder;
 	}
 
 	public CorePathWithSubFolder(CorePathWithSubFolder pathWithSubFolder)
 	{
-		enableSubFolder = pathWithSubFolder.enableSubFolder;
-		path = pathWithSubFolder.path;
+		EnableSubFolder = pathWithSubFolder.EnableSubFolder;
+		Path = pathWithSubFolder.Path;
 	}
 
 	public CorePathWithSubFolder(ref CoreDll.adPathWithSubFolderW pathWithSubFolder)
 	{
-		enableSubFolder = pathWithSubFolder.enableSubFolder != CoreDll.FALSE;
-		path = pathWithSubFolder.path;
+		EnableSubFolder = pathWithSubFolder.enableSubFolder != CoreDll.FALSE;
+		Path = pathWithSubFolder.path;
 	}
 
 	public void ConvertTo(ref CoreDll.adPathWithSubFolderW pathWithSubFolder)
 	{
-		pathWithSubFolder.enableSubFolder = enableSubFolder ? CoreDll.TRUE : CoreDll.FALSE;
-		pathWithSubFolder.path = path;
+		pathWithSubFolder.enableSubFolder = EnableSubFolder ? CoreDll.TRUE : CoreDll.FALSE;
+		pathWithSubFolder.path = Path;
 	}
 
 	public CorePathWithSubFolder Clone()
@@ -65,7 +65,7 @@ public class CorePathWithSubFolder
 	public bool Equals(CorePathWithSubFolder pathWithSubFolder)
 	{
 		return
-			enableSubFolder == pathWithSubFolder.enableSubFolder &&
-			path == pathWithSubFolder.path;
+			EnableSubFolder == pathWithSubFolder.EnableSubFolder &&
+			Path == pathWithSubFolder.Path;
 	}
 }

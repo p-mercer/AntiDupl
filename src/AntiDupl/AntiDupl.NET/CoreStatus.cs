@@ -26,16 +26,16 @@ namespace AntiDupl.NET;
 
 public class CoreStatus
 {
-	public CoreDll.StateType state;
-	public string path;
-	public int current;
-	public int total;
+	public CoreDll.StateType State { get; set; }
+	public string Path { get; set; }
+	public int Current { get; set; }
+	public int Total { get; set; }
 
 	public CoreStatus(ref CoreDll.adStatusW status)
 	{
-		state = status.state;
-		path = status.path;
-		current = (int)status.current.ToUInt32();
-		total = (int)status.total.ToUInt32();
+		State = status.state;
+		Path = status.path;
+		Current = (int)status.current.ToUInt32();
+		Total = (int)status.total.ToUInt32();
 	}
 }

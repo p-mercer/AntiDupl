@@ -252,7 +252,7 @@ public class ResultsListView : DataGridView
 		for (var i = 0; i < Rows.Count; i++)
 		{
 			var row = (DataGridViewCustomRow)Rows[i];
-			if (row.selected && i >= 0 && i < m_results.Length)
+			if (row.Selected && i >= 0 && i < m_results.Length)
 			{
 				selectedResultsCount++;
 			}
@@ -329,7 +329,7 @@ public class ResultsListView : DataGridView
 
 		if (m_currentRowIndex >= 0 && m_currentRowIndex < m_results.Length)
 		{
-			if (m_results[m_currentRowIndex].type == CoreDll.ResultType.DefectImage)
+			if (m_results[m_currentRowIndex].Type == CoreDll.ResultType.DefectImage)
 			{
 				if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentDefectDelete])
 				{
@@ -342,7 +342,7 @@ public class ResultsListView : DataGridView
 
 				return;
 			}
-			if (m_results[m_currentRowIndex].type == CoreDll.ResultType.DuplImagePair)
+			if (m_results[m_currentRowIndex].Type == CoreDll.ResultType.DuplImagePair)
 			{
 				if (hotKey == m_options.hotKeyOptions.keys[(int)HotKeyOptions.Action.CurrentDuplPairDeleteFirst])
 				{
@@ -424,10 +424,10 @@ public class ResultsListView : DataGridView
 			for (var i = 0; i < Rows.Count; i++)
 			{
 				var row = (DataGridViewCustomRow)Rows[i];
-				row.updated = false;
+				row.Updated = false;
 				if (selection != null)
 				{
-					row.selected = selection[i];
+					row.Selected = selection[i];
 				}
 			}
 			var current = m_core.GetCurrent();
@@ -447,12 +447,12 @@ public class ResultsListView : DataGridView
 	{
 		var index = e.RowIndex;
 		var row = (DataGridViewCustomRow)Rows[index];
-		if (!row.updated && index >= 0 && index < m_results.Length)
+		if (!row.Updated && index >= 0 && index < m_results.Length)
 		{
 			m_resultRowSetter.Set(m_results[index], row);
-			row.updated = true;
+			row.Updated = true;
 		}
-		row.current = (index == m_currentRowIndex);
+		row.Current = (index == m_currentRowIndex);
 		base.OnRowPrePaint(e);
 	}
 
@@ -707,7 +707,7 @@ public class ResultsListView : DataGridView
 			else if (e.Button == MouseButtons.Right)
 			{
 				var row = (DataGridViewCustomRow)Rows[e.RowIndex];
-				if (!m_isControlDown && !row.selected)
+				if (!m_isControlDown && !row.Selected)
 				{
 					SetCurrentRow(e.RowIndex);
 					SetRowSelection(false);
@@ -809,12 +809,12 @@ public class ResultsListView : DataGridView
 		{
 			if (m_currentRowIndex >= 0 && m_currentRowIndex < Rows.Count)
 			{
-				((DataGridViewCustomRow)Rows[m_currentRowIndex]).current = false;
+				((DataGridViewCustomRow)Rows[m_currentRowIndex]).Current = false;
 			}
 
 			if (m_results.Length > 0)
 			{
-				((DataGridViewCustomRow)Rows[index]).current = true;
+				((DataGridViewCustomRow)Rows[index]).Current = true;
 				m_core.SetCurrent(index);
 			}
 			else
@@ -873,7 +873,7 @@ public class ResultsListView : DataGridView
 					{
 						SetRowSelection(0, Rows.Count, false);
 					}
-					var value = !((DataGridViewCustomRow)Rows[m_currentRowIndex]).selected;
+					var value = !((DataGridViewCustomRow)Rows[m_currentRowIndex]).Selected;
 					SetRowSelection(m_currentRowIndex, m_currentRowIndex + 1, value);
 				}
 			}
@@ -886,7 +886,7 @@ public class ResultsListView : DataGridView
 		for (var i = beginRowIndex; i < endRowIndex; i++)
 		{
 			var row = (DataGridViewCustomRow)Rows[i];
-			row.selected = value;
+			row.Selected = value;
 		}
 		m_core.SetSelection((uint)beginRowIndex, (uint)(endRowIndex - beginRowIndex), value);
 	}
@@ -962,7 +962,7 @@ public class ResultsListView : DataGridView
 			for (var i = 0; i < Rows.Count; i++)
 			{
 				var row = (DataGridViewCustomRow)Rows[i];
-				if (row.selected)
+				if (row.Selected)
 				{
 					builder.Add(m_results[i]);
 				}
@@ -985,14 +985,14 @@ public class ResultsListView : DataGridView
 			for (var i = 0; i < Rows.Count; i++)
 			{
 				var row = (DataGridViewCustomRow)Rows[i];
-				if (row.selected)
+				if (row.Selected)
 				{
-					if (string.IsNullOrEmpty(m_results[i].second.Path))
+					if (string.IsNullOrEmpty(m_results[i].Second.Path))
 					{
 						return false;
 					}
 
-					if (!Path.GetDirectoryName(m_results[i].first.Path).Equals(Path.GetDirectoryName(m_results[i].second.Path)))
+					if (!Path.GetDirectoryName(m_results[i].First.Path).Equals(Path.GetDirectoryName(m_results[i].Second.Path)))
 					{
 						moveEnable = true;
 						break;

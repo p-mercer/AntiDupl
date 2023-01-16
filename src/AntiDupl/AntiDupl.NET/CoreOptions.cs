@@ -29,10 +29,10 @@ namespace AntiDupl.NET;
 
 public class CoreOptions
 {
-	public CoreSearchOptions searchOptions;
-	public CoreCompareOptions compareOptions;
-	public CoreDefectOptions defectOptions;
-	public CoreAdvancedOptions advancedOptions;
+	public CoreSearchOptions SearchOptions { get; set; }
+	public CoreCompareOptions CompareOptions { get; set; }
+	public CoreDefectOptions DefectOptions { get; set; }
+	public CoreAdvancedOptions AdvancedOptions { get; set; }
 
 	public CorePathWithSubFolder[] searchPath;
 	public CorePathWithSubFolder[] ignorePath;
@@ -41,10 +41,10 @@ public class CoreOptions
 
 	public CoreOptions()
 	{
-		searchOptions = new CoreSearchOptions();
-		compareOptions = new CoreCompareOptions();
-		defectOptions = new CoreDefectOptions();
-		advancedOptions = new CoreAdvancedOptions();
+		SearchOptions = new CoreSearchOptions();
+		CompareOptions = new CoreCompareOptions();
+		DefectOptions = new CoreDefectOptions();
+		AdvancedOptions = new CoreAdvancedOptions();
 
 		searchPath = new CorePathWithSubFolder[1];
 		ignorePath = System.Array.Empty<CorePathWithSubFolder>();
@@ -65,10 +65,10 @@ public class CoreOptions
 
 	public CoreOptions(CoreOptions options)
 	{
-		searchOptions = options.searchOptions.Clone();
-		compareOptions = options.compareOptions.Clone();
-		defectOptions = options.defectOptions.Clone();
-		advancedOptions = options.advancedOptions.Clone();
+		SearchOptions = options.SearchOptions.Clone();
+		CompareOptions = options.CompareOptions.Clone();
+		DefectOptions = options.DefectOptions.Clone();
+		AdvancedOptions = options.AdvancedOptions.Clone();
 
 		searchPath = PathClone(options.searchPath);
 		ignorePath = PathClone(options.ignorePath);
@@ -87,16 +87,16 @@ public class CoreOptions
 		ignorePath = new CorePathWithSubFolder[1];
 		ignorePath[0] = new CorePathWithSubFolder
 		{
-			path = Resources.DataPath
+			Path = Resources.DataPath
 		};
 	}
 
 	public void Get(CoreLib core, bool onePath)
 	{
-		searchOptions = core.SearchOptions.Clone();
-		compareOptions = core.CompareOptions.Clone();
-		defectOptions = core.DefectOptions.Clone();
-		advancedOptions = core.AdvancedOptions.Clone();
+		SearchOptions = core.SearchOptions.Clone();
+		CompareOptions = core.CompareOptions.Clone();
+		DefectOptions = core.DefectOptions.Clone();
+		AdvancedOptions = core.AdvancedOptions.Clone();
 		if (onePath)
 		{
 			searchPath[0] = core.SearchPath[0];
@@ -117,21 +117,21 @@ public class CoreOptions
 	/// <param name="onePath"></param>
 	public void Set(CoreLib core, bool onePath)
 	{
-		core.SearchOptions = searchOptions.Clone();
-		core.CompareOptions = compareOptions.Clone();
-		core.DefectOptions = defectOptions.Clone();
-		core.AdvancedOptions = advancedOptions.Clone();
+		core.SearchOptions = SearchOptions.Clone();
+		core.CompareOptions = CompareOptions.Clone();
+		core.DefectOptions = DefectOptions.Clone();
+		core.AdvancedOptions = AdvancedOptions.Clone();
 		if (onePath)
 		{
 			var tmpSearch = new CorePathWithSubFolder[1];
 			var tmpOther = System.Array.Empty<CorePathWithSubFolder>();
-			if (searchPath.Length > 0 && Directory.Exists(searchPath[0].path))
+			if (searchPath.Length > 0 && Directory.Exists(searchPath[0].Path))
 			{
 				tmpSearch[0] = searchPath[0];
 			}
 			else
 			{
-				tmpSearch[0].path = Application.StartupPath;
+				tmpSearch[0].Path = Application.StartupPath;
 			}
 
 			core.SearchPath = tmpSearch;
@@ -161,10 +161,10 @@ public class CoreOptions
 
 	public void CopyTo(ref CoreOptions options)
 	{
-		options.searchOptions = searchOptions.Clone();
-		options.compareOptions = compareOptions.Clone();
-		options.defectOptions = defectOptions.Clone();
-		options.advancedOptions = advancedOptions.Clone();
+		options.SearchOptions = SearchOptions.Clone();
+		options.CompareOptions = CompareOptions.Clone();
+		options.DefectOptions = DefectOptions.Clone();
+		options.AdvancedOptions = AdvancedOptions.Clone();
 
 		PathCopy(searchPath, ref options.searchPath);
 		PathCopy(ignorePath, ref options.ignorePath);
@@ -224,47 +224,42 @@ public class CoreOptions
 
 	public bool Equals(CoreOptions options)
 	{
-		if (!searchOptions.Equals(options.searchOptions))
+		if (!SearchOptions.Equals(options.SearchOptions))
 		{
 			return false;
 		}
-
-		if (!compareOptions.Equals(options.compareOptions))
+		else if (!CompareOptions.Equals(options.CompareOptions))
 		{
 			return false;
 		}
-
-		if (!defectOptions.Equals(options.defectOptions))
+		else if (!DefectOptions.Equals(options.DefectOptions))
 		{
 			return false;
 		}
-
-		if (!advancedOptions.Equals(options.advancedOptions))
+		else if (!AdvancedOptions.Equals(options.AdvancedOptions))
 		{
 			return false;
 		}
-
-		if (!Equals(searchPath, options.searchPath))
+		else if (!Equals(searchPath, options.searchPath))
 		{
 			return false;
 		}
-
-		if (!Equals(ignorePath, options.ignorePath))
+		else if (!Equals(ignorePath, options.ignorePath))
 		{
 			return false;
 		}
-
-		if (!Equals(validPath, options.validPath))
+		else if (!Equals(validPath, options.validPath))
 		{
 			return false;
 		}
-
-		if (!Equals(deletePath, options.deletePath))
+		else if (!Equals(deletePath, options.deletePath))
 		{
 			return false;
 		}
-
-		return true;
+		else
+		{
+			return true;
+		}
 	}
 
 	static public CoreOptions Load(string fileName, CoreLib core, bool onePath)
@@ -312,7 +307,7 @@ public class CoreOptions
 
 	public string GetImageDataBasePath()
 	{
-		var directory = string.Format("{0}\\images\\{1}x{1}", Resources.UserPath, advancedOptions.ReducedImageSize);
+		var directory = string.Format("{0}\\images\\{1}x{1}", Resources.UserPath, AdvancedOptions.ReducedImageSize);
 		var directoryInfo = new DirectoryInfo(directory);
 		if (!directoryInfo.Exists)
 		{

@@ -30,16 +30,16 @@ namespace AntiDupl.NET;
 
 public class Version
 {
-	public int major;
-	public int minor;
-	public int release;
+	public int Major { get; set; }
+	public int Minor { get; set; }
+	public int Release { get; set; }
 
 	public Version()
 	{
 		var versions = External.Version.Split('.');
-		major = Convert.ToInt32(versions[0]);
-		minor = Convert.ToInt32(versions[1]);
-		release = Convert.ToInt32(versions[2]);
+		Major = Convert.ToInt32(versions[0]);
+		Minor = Convert.ToInt32(versions[1]);
+		Release = Convert.ToInt32(versions[2]);
 	}
 
 	static public Version LoadXml(Stream stream)
@@ -72,30 +72,30 @@ public class Version
 	public override string ToString()
 	{
 		var builder = new StringBuilder();
-		builder.Append(major.ToString());
+		builder.Append(Major);
 		builder.Append('.');
-		builder.Append(minor.ToString());
+		builder.Append(Minor);
 		builder.Append('.');
-		builder.Append(release.ToString());
+		builder.Append(Release);
 		return builder.ToString();
 	}
 
 	static public int Compare(Version v1, Version v2)
 	{
-		if (v1.major == v2.major)
+		if (v1.Major == v2.Major)
 		{
-			if (v1.minor == v2.minor)
+			if (v1.Minor == v2.Minor)
 			{
-				return v1.release - v2.release;
+				return v1.Release - v2.Release;
 			}
 			else
 			{
-				return v1.minor - v2.minor;
+				return v1.Minor - v2.Minor;
 			}
 		}
 		else
 		{
-			return v1.major - v2.major;
+			return v1.Major - v2.Major;
 		}
 	}
 
@@ -103,8 +103,8 @@ public class Version
 	{
 		var version = new Version();
 		return
-			version.major == coreVersion.major &&
-			version.minor == coreVersion.minor &&
-			version.release == coreVersion.release;
+			version.Major == coreVersion.Major &&
+			version.Minor == coreVersion.Minor &&
+			version.Release == coreVersion.Release;
 	}
 }

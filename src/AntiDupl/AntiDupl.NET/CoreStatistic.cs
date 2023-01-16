@@ -26,32 +26,32 @@ namespace AntiDupl.NET;
 
 public class CoreStatistic
 {
-	public uint scanedFolderNumber;
-	public uint searchedImageNumber;
-	public ulong searchedImageSize;
-	public uint collectedImageNumber;
-	public uint comparedImageNumber;
-	public uint collectThreadCount;
-	public uint compareThreadCount;
-	public uint defectImageNumber;
-	public uint duplImagePairNumber;
-	public uint renamedImageNumber;
-	public uint deletedImageNumber;
-	public ulong deletedImageSize;
+	public uint ScanedFolderNumber { get; set; }
+	public uint SearchedImageNumber { get; set; }
+	public ulong SearchedImageSize { get; set; }
+	public uint CollectedImageNumber { get; set; }
+	public uint ComparedImageNumber { get; set; }
+	public uint CollectThreadCount { get; set; }
+	public uint CompareThreadCount { get; set; }
+	public uint DefectImageNumber { get; set; }
+	public uint DuplImagePairNumber { get; set; }
+	public uint RenamedImageNumber { get; set; }
+	public uint DeletedImageNumber { get; set; }
+	public ulong DeletedImageSize { get; set; }
 
 	public CoreStatistic(ref CoreDll.adStatistic statistic)
 	{
-		scanedFolderNumber = statistic.scanedFolderNumber.ToUInt32();
-		searchedImageNumber = statistic.searchedImageNumber.ToUInt32();
-		searchedImageSize = statistic.searchedImageSize;
-		collectedImageNumber = statistic.collectedImageNumber.ToUInt32();
-		comparedImageNumber = statistic.comparedImageNumber.ToUInt32();
-		collectThreadCount = statistic.collectThreadCount.ToUInt32();
-		compareThreadCount = statistic.compareThreadCount.ToUInt32();
-		defectImageNumber = statistic.defectImageNumber.ToUInt32();
-		duplImagePairNumber = statistic.duplImagePairNumber.ToUInt32();
-		renamedImageNumber = statistic.renamedImageNumber.ToUInt32();
-		deletedImageNumber = statistic.deletedImageNumber.ToUInt32();
-		deletedImageSize = statistic.deletedImageSize;
+		ScanedFolderNumber = statistic.scanedFolderNumber.ToUInt32();
+		SearchedImageNumber = statistic.searchedImageNumber.ToUInt32();
+		SearchedImageSize = statistic.searchedImageSize;
+		CollectedImageNumber = statistic.collectedImageNumber.ToUInt32();
+		ComparedImageNumber = statistic.comparedImageNumber.ToUInt32();
+		CollectThreadCount = statistic.collectThreadCount.ToUInt32();
+		CompareThreadCount = statistic.compareThreadCount.ToUInt32();
+		DefectImageNumber = statistic.defectImageNumber.ToUInt32();
+		DuplImagePairNumber = statistic.duplImagePairNumber.ToUInt32();
+		RenamedImageNumber = statistic.renamedImageNumber.ToUInt32();
+		DeletedImageNumber = statistic.deletedImageNumber.ToUInt32();
+		DeletedImageSize = statistic.deletedImageSize;
 	}
 }

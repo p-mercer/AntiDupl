@@ -429,9 +429,9 @@ public class ProgressForm : Form
 						var status = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
 						if (status != null)
 						{
-							var progress = status.total > 0 ? ((double)status.current) / status.total : 0;
+							var progress = status.Total > 0 ? ((double)status.Current) / status.Total : 0;
 							builder.AppendFormat(" ({0})...", ProgressUtils.GetProgressString(progress, m_startDateTime));
-							m_progressPanel.UpdateStatus(status.total, status.current, status.current, status.path);
+							m_progressPanel.UpdateStatus(status.Total, status.Current, status.Current, status.Path);
 						}
 						else
 						{

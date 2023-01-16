@@ -110,7 +110,7 @@ public class CoreLib : IDisposable
 		catch (Exception)
 		{
 		}
-		return null;
+		return new CoreVersion { Major = 0, Minor = 0, Release = 0, Revision = 0 };
 	}
 
 	public bool IsInited()
@@ -121,14 +121,7 @@ public class CoreLib : IDisposable
 	public bool IsWork()
 	{
 		var status = StatusGet(CoreDll.ThreadType.Main, 0);
-		if (status != null)
-		{
-			return status.state != CoreDll.StateType.None;
-		}
-		else
-		{
-			return false;
-		}
+		return status != null && status.State != CoreDll.StateType.None;
 	}
 
 	public bool Stop()
@@ -304,7 +297,7 @@ public class CoreLib : IDisposable
 			}
 			return results;
 		}
-		return null;
+		return Array.Empty<CoreResult>();
 	}
 
 	public uint GetResultSize()
@@ -362,7 +355,7 @@ public class CoreLib : IDisposable
 
 			return selection;
 		}
-		return null;
+		return Array.Empty<bool>();
 	}
 
 	public bool SetCurrent(int index)
@@ -408,7 +401,7 @@ public class CoreLib : IDisposable
 			}
 			return groups;
 		}
-		return null;
+		return Array.Empty<CoreGroup>();
 	}
 
 	/// <summary>
@@ -468,7 +461,7 @@ public class CoreLib : IDisposable
 			}
 			return imageInfos;
 		}
-		return null;
+		return Array.Empty<CoreImageInfo>();
 	}
 
 	/// <summary>
@@ -512,7 +505,7 @@ public class CoreLib : IDisposable
 
 			return selection;
 		}
-		return null;
+		return Array.Empty<bool>();
 	}
 
 	public bool Rename(int groupId, int index, string newFileName)
@@ -720,7 +713,7 @@ public class CoreLib : IDisposable
 	{
 		var pathWSF = Array.Empty<CorePathWithSubFolder>();
 		var size = new IntPtr[1];
-		var path = Array.Empty<string>();
+
 		if (m_dll.adPathGetW(m_handle, pathType, new IntPtr(1), Marshal.UnsafeAddrOfPinnedArrayElement(size, 0)) ==
 						CoreDll.Error.OutputBufferIsTooSmall)
 		{
@@ -733,15 +726,15 @@ public class CoreLib : IDisposable
 				{
 					pathWSF[i] = new CorePathWithSubFolder
 					{
-						path = BufferToString(buffer, i * (CoreDll.MAX_PATH_EX + 1), CoreDll.MAX_PATH_EX)
+						Path = BufferToString(buffer, i * (CoreDll.MAX_PATH_EX + 1), CoreDll.MAX_PATH_EX)
 					};
 					if (buffer[(CoreDll.MAX_PATH_EX + 1) * i + CoreDll.MAX_PATH_EX] == (char)1)
 					{
-						pathWSF[i].enableSubFolder = true;
+						pathWSF[i].EnableSubFolder = true;
 					}
 					else
 					{
-						pathWSF[i].enableSubFolder = false;
+						pathWSF[i].EnableSubFolder = false;
 					}
 				}
 			}
@@ -754,8 +747,8 @@ public class CoreLib : IDisposable
 		var buffer = new char[path.Length * (CoreDll.MAX_PATH_EX + 1)];
 		for (var i = 0; i < path.Length; i++)
 		{
-			path[i].path.CopyTo(0, buffer, i * (CoreDll.MAX_PATH_EX + 1), path[i].path.Length);
-			buffer[(CoreDll.MAX_PATH_EX + 1) * i + CoreDll.MAX_PATH_EX] = path[i].enableSubFolder ? (char)1 : (char)0;
+			path[i].Path.CopyTo(0, buffer, i * (CoreDll.MAX_PATH_EX + 1), path[i].Path.Length);
+			buffer[(CoreDll.MAX_PATH_EX + 1) * i + CoreDll.MAX_PATH_EX] = path[i].EnableSubFolder ? (char)1 : (char)0;
 		}
 
 		return m_dll.adPathWithSubFolderSetW(m_handle,

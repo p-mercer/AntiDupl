@@ -28,57 +28,59 @@ namespace AntiDupl.NET;
 
 public class CoreVersion
 {
-	public int major;
-	public int minor;
-	public int release;
-	public int revision;
+	public int Major { get; set; }
+	public int Minor { get; set; }
+	public int Release { get; set; }
+	public int Revision { get; set; }
+
+	public CoreVersion() { }
 
 	public CoreVersion(sbyte[] buffer)
 	{
 		var versions = Parse(buffer).Split('.');
-		major = versions.Length > 0 ? Convert.ToInt32(versions[0]) : -1;
-		minor = versions.Length > 1 ? Convert.ToInt32(versions[1]) : -1;
-		release = versions.Length > 2 ? Convert.ToInt32(versions[2]) : -1;
-		revision = versions.Length > 3 ? Convert.ToInt32(versions[3]) : -1;
+		Major = versions.Length > 0 ? Convert.ToInt32(versions[0]) : -1;
+		Minor = versions.Length > 1 ? Convert.ToInt32(versions[1]) : -1;
+		Release = versions.Length > 2 ? Convert.ToInt32(versions[2]) : -1;
+		Revision = versions.Length > 3 ? Convert.ToInt32(versions[3]) : -1;
 	}
 
 	public override string ToString()
 	{
 		var builder = new StringBuilder();
 		var already = false;
-		if (major >= 0)
+		if (Major >= 0)
 		{
-			builder.Append(major.ToString());
+			builder.Append(Major);
 			already = true;
 		}
-		if (minor >= 0)
+		if (Minor >= 0)
 		{
 			if (already)
 			{
 				builder.Append('.');
 			}
 
-			builder.Append(minor.ToString());
+			builder.Append(Minor);
 			already = true;
 		}
-		if (release >= 0)
+		if (Release >= 0)
 		{
 			if (already)
 			{
 				builder.Append('.');
 			}
 
-			builder.Append(release.ToString());
+			builder.Append(Release);
 			already = true;
 		}
-		if (revision >= 0)
+		if (Revision >= 0)
 		{
 			if (already)
 			{
 				builder.Append('.');
 			}
 
-			builder.Append(revision.ToString());
+			builder.Append(Revision);
 		}
 		return builder.ToString();
 	}

@@ -139,7 +139,7 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 		m_firstImagePreviewPanel.SetResult(m_currentSearchResult);
 		m_secondImagePreviewPanel.SetResult(m_currentSearchResult);
 		SetDifference();
-		SetHint(m_currentSearchResult.hint);
+		SetHint(m_currentSearchResult.Hint);
 		UpdateNextAndPreviousButtonEnabling();
 	}
 
@@ -202,7 +202,7 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 
 	private void OnOptionsChanged()
 	{
-		m_mistakeButton.Enabled = m_coreOptions.advancedOptions.MistakeDataBase;
+		m_mistakeButton.Enabled = m_coreOptions.AdvancedOptions.MistakeDataBase;
 	}
 
 	protected override void AddItems(ResultsOptions.ViewMode viewMode)

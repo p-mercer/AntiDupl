@@ -406,9 +406,9 @@ public class MainMenu : MenuStrip
 			{
 				ShowNewFolderButton = false
 			};
-			if (Directory.Exists(m_coreOptions.searchPath[0].path))
+			if (Directory.Exists(m_coreOptions.searchPath[0].Path))
 			{
-				dialog.SelectedPath = m_coreOptions.searchPath[0].path;
+				dialog.SelectedPath = m_coreOptions.searchPath[0].Path;
 			}
 			else
 			{
@@ -416,7 +416,7 @@ public class MainMenu : MenuStrip
 			}
 
 			dialog.ShowDialog();
-			m_coreOptions.searchPath[0].path = dialog.SelectedPath;
+			m_coreOptions.searchPath[0].Path = dialog.SelectedPath;
 		}
 		else
 		{

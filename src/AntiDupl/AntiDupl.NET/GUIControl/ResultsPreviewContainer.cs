@@ -71,7 +71,7 @@ public class ResultsPreviewContainer : Panel
 		var state = State.Empty;
 		if (result != null)
 		{
-			switch (result.type)
+			switch (result.Type)
 			{
 				case CoreDll.ResultType.DefectImage:
 					state = State.Defect;

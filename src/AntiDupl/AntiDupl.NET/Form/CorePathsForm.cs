@@ -294,9 +294,9 @@ public class CorePathsForm : Form
 		string existedPath = null;
 		for (var i = 0; i < paths.Length; ++i)
 		{
-			if (Directory.Exists(paths[i].path))
+			if (Directory.Exists(paths[i].Path))
 			{
-				existedPath = paths[i].path;
+				existedPath = paths[i].Path;
 			}
 		}
 
@@ -314,118 +314,118 @@ public class CorePathsForm : Form
 	{
 		var builder = new StringBuilder();
 		builder.Append("Image files: ");
-		if (m_newCoreOptions.searchOptions.JPEG)
+		if (m_newCoreOptions.SearchOptions.JPEG)
 		{
 			builder.Append("JPEG; ");
 		}
 
-		if (m_newCoreOptions.searchOptions.GIF)
+		if (m_newCoreOptions.SearchOptions.GIF)
 		{
 			builder.Append("GIF; ");
 		}
 
-		if (m_newCoreOptions.searchOptions.PNG)
+		if (m_newCoreOptions.SearchOptions.PNG)
 		{
 			builder.Append("PNG; ");
 		}
 
-		if (m_newCoreOptions.searchOptions.BMP)
+		if (m_newCoreOptions.SearchOptions.BMP)
 		{
 			builder.Append("BMP; ");
 		}
 
-		if (m_newCoreOptions.searchOptions.TIFF)
+		if (m_newCoreOptions.SearchOptions.TIFF)
 		{
 			builder.Append("TIFF; ");
 		}
 
-		if (m_newCoreOptions.searchOptions.EMF)
+		if (m_newCoreOptions.SearchOptions.EMF)
 		{
 			builder.Append("EMF; ");
 		}
 
-		if (m_newCoreOptions.searchOptions.WMF)
+		if (m_newCoreOptions.SearchOptions.WMF)
 		{
 			builder.Append("WMF; ");
 		}
 
-		if (m_newCoreOptions.searchOptions.EXIF)
+		if (m_newCoreOptions.SearchOptions.EXIF)
 		{
 			builder.Append("EXIF; ");
 		}
 
-		if (m_newCoreOptions.searchOptions.ICON)
+		if (m_newCoreOptions.SearchOptions.ICON)
 		{
 			builder.Append("ICON; ");
 		}
 
-		if (m_newCoreOptions.searchOptions.JP2)
+		if (m_newCoreOptions.SearchOptions.JP2)
 		{
 			builder.Append("JP2; ");
 		}
 
-		if (m_newCoreOptions.searchOptions.PSD)
+		if (m_newCoreOptions.SearchOptions.PSD)
 		{
 			builder.Append("PSD; ");
 		}
 
 		builder.Append('|');
-		if (m_newCoreOptions.searchOptions.JPEG)
+		if (m_newCoreOptions.SearchOptions.JPEG)
 		{
 			builder.Append("*.jpeg;*.jfif;*.jpg;*.jpe;*.jiff;*.jif;*.j;*.jng;*.jff;");
 		}
 
-		if (m_newCoreOptions.searchOptions.GIF)
+		if (m_newCoreOptions.SearchOptions.GIF)
 		{
 			builder.Append("*.gif;");
 		}
 
-		if (m_newCoreOptions.searchOptions.PNG)
+		if (m_newCoreOptions.SearchOptions.PNG)
 		{
 			builder.Append("*.png;");
 		}
 
-		if (m_newCoreOptions.searchOptions.BMP)
+		if (m_newCoreOptions.SearchOptions.BMP)
 		{
 			builder.Append("*.bmp;*.dib;*.rle;");
 		}
 
-		if (m_newCoreOptions.searchOptions.TIFF)
+		if (m_newCoreOptions.SearchOptions.TIFF)
 		{
 			builder.Append("*.tif;*.tiff;");
 		}
 
-		if (m_newCoreOptions.searchOptions.EMF)
+		if (m_newCoreOptions.SearchOptions.EMF)
 		{
 			builder.Append("*.emf;*.emz;");
 		}
 
-		if (m_newCoreOptions.searchOptions.WMF)
+		if (m_newCoreOptions.SearchOptions.WMF)
 		{
 			builder.Append("*.wmf");
 		}
 
-		if (m_newCoreOptions.searchOptions.EXIF)
+		if (m_newCoreOptions.SearchOptions.EXIF)
 		{
 			builder.Append("*.exif;");
 		}
 
-		if (m_newCoreOptions.searchOptions.ICON)
+		if (m_newCoreOptions.SearchOptions.ICON)
 		{
 			builder.Append("*.icon;*.ico;*.icn;");
 		}
 
-		if (m_newCoreOptions.searchOptions.JP2)
+		if (m_newCoreOptions.SearchOptions.JP2)
 		{
 			builder.Append("*.jp2;*.j2k;*.j2c;*.jpc;*.jpf;*.jpx;");
 		}
 
-		if (m_newCoreOptions.searchOptions.PSD)
+		if (m_newCoreOptions.SearchOptions.PSD)
 		{
 			builder.Append("*.psd;");
 		}
 
-		if (m_newCoreOptions.searchOptions.WEBP)
+		if (m_newCoreOptions.SearchOptions.WEBP)
 		{
 			builder.Append("*.webp;");
 		}
@@ -439,7 +439,7 @@ public class CorePathsForm : Form
 		box.Items.Clear();
 		for (var i = 0; i < paths.Length; ++i)
 		{
-			box.Items.Add(paths[i].path, paths[i].enableSubFolder);
+			box.Items.Add(paths[i].Path, paths[i].EnableSubFolder);
 		}
 
 		if (selectedIndex >= 0 && selectedIndex < paths.Length)
@@ -454,7 +454,7 @@ public class CorePathsForm : Form
 		box.Items.Clear();
 		for (var i = 0; i < paths.Length; ++i)
 		{
-			box.Items.Add(paths[i].path);
+			box.Items.Add(paths[i].Path);
 		}
 
 		if (selectedIndex >= 0 && selectedIndex < paths.Length)
@@ -501,14 +501,14 @@ public class CorePathsForm : Form
 			path[^1] = new CorePathWithSubFolder();
 			if (dialog.ResultPath[^1] == Path.DirectorySeparatorChar)
 			{
-				path[^1].path = dialog.ResultPath.Remove(dialog.ResultPath.Length - 1);
+				path[^1].Path = dialog.ResultPath.Remove(dialog.ResultPath.Length - 1);
 			}
 			else
 			{
-				path[^1].path = dialog.ResultPath;
+				path[^1].Path = dialog.ResultPath;
 			}
 
-			path[^1].enableSubFolder = true;
+			path[^1].EnableSubFolder = true;
 			SetCurrentPath(path);
 			m_newCoreOptions.Validate(m_core, m_options.onePath);
 			UpdatePath();
@@ -541,8 +541,8 @@ public class CorePathsForm : Form
 					path[path.Length - 1 - i] = new CorePathWithSubFolder();
 				}
 
-				path[path.Length - 1 - i].path = dialog.FileNames[dialog.FileNames.Length - 1 - i];
-				path[path.Length - 1 - i].enableSubFolder = false;
+				path[path.Length - 1 - i].Path = dialog.FileNames[dialog.FileNames.Length - 1 - i];
+				path[path.Length - 1 - i].EnableSubFolder = false;
 			}
 			SetCurrentPath(path);
 			m_newCoreOptions.Validate(m_core, m_options.onePath);
@@ -590,11 +590,11 @@ public class CorePathsForm : Form
 				{
 					if (e.NewValue == CheckState.Unchecked)
 					{
-						path[checkedListBox.SelectedIndex].enableSubFolder = false;
+						path[checkedListBox.SelectedIndex].EnableSubFolder = false;
 					}
 					else
 					{
-						path[checkedListBox.SelectedIndex].enableSubFolder = true;
+						path[checkedListBox.SelectedIndex].EnableSubFolder = true;
 					}
 				}
 			}
@@ -625,22 +625,22 @@ public class CorePathsForm : Form
 			return;
 		}
 
-		if (Directory.Exists(path[listBox.SelectedIndex].path))
+		if (Directory.Exists(path[listBox.SelectedIndex].Path))
 		{
 			var dialog = new FolderBrowserDialog
 			{
 				ShowNewFolderButton = false,
-				SelectedPath = path[listBox.SelectedIndex].path
+				SelectedPath = path[listBox.SelectedIndex].Path
 			};
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
 				if (dialog.SelectedPath[^1] == Path.DirectorySeparatorChar)
 				{
-					path[listBox.SelectedIndex].path = dialog.SelectedPath.Remove(dialog.SelectedPath.Length - 1);
+					path[listBox.SelectedIndex].Path = dialog.SelectedPath.Remove(dialog.SelectedPath.Length - 1);
 				}
 				else
 				{
-					path[listBox.SelectedIndex].path = dialog.SelectedPath;
+					path[listBox.SelectedIndex].Path = dialog.SelectedPath;
 				}
 
 				SetCurrentPath(path);
@@ -654,12 +654,12 @@ public class CorePathsForm : Form
 			var dialog = new OpenFileDialog
 			{
 				RestoreDirectory = true,
-				FileName = path[listBox.SelectedIndex].path,
+				FileName = path[listBox.SelectedIndex].Path,
 				Filter = GetFilter()
 			};
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				path[listBox.SelectedIndex].path = dialog.FileName;
+				path[listBox.SelectedIndex].Path = dialog.FileName;
 				SetCurrentPath(path);
 				m_newCoreOptions.Validate(m_core, m_options.onePath);
 				UpdatePath();
@@ -704,15 +704,15 @@ public class CorePathsForm : Form
 	private CorePathWithSubFolder[] GetActualPath(string[] path)
 	{
 		var actualPath = new List<CorePathWithSubFolder>();
-		var actualExtensions = m_oldCoreOptions.searchOptions.GetActualExtensions(); //список поддерживаемых расширений
+		var actualExtensions = m_oldCoreOptions.SearchOptions.GetActualExtensions(); //список поддерживаемых расширений
 		for (var i = 0; i < path.Length; ++i)
 		{
 			if (Directory.Exists(path[i]))
 			{
 				var sfPath = new CorePathWithSubFolder
 				{
-					path = path[i],
-					enableSubFolder = true
+					Path = path[i],
+					EnableSubFolder = true
 				};
 				actualPath.Add(sfPath);
 			}
@@ -728,8 +728,8 @@ public class CorePathsForm : Form
 						{
 							var sfPath = new CorePathWithSubFolder
 							{
-								path = path[i],
-								enableSubFolder = false
+								Path = path[i],
+								EnableSubFolder = false
 							};
 							actualPath.Add(sfPath);
 							break;
@@ -785,7 +785,7 @@ public class CorePathsForm : Form
 		{
 			Clipboard.SetDataObject(path[listBox.SelectedIndex]);
 		}
-		path[listBox.SelectedIndex].path = "";
+		path[listBox.SelectedIndex].Path = "";
 		SetCurrentPath(path);
 		m_newCoreOptions.Validate(m_core, m_options.onePath);
 		UpdatePath();

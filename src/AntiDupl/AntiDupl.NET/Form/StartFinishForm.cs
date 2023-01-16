@@ -209,9 +209,9 @@ public class StartFinishForm : Form
 			var status = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
 			if (status != null)
 			{
-				if (status.total > 0)
+				if (status.Total > 0)
 				{
-					m_progressBar.Value = status.current * m_progressBar.Maximum / status.total;
+					m_progressBar.Value = status.Current * m_progressBar.Maximum / status.Total;
 				}
 				else
 				{

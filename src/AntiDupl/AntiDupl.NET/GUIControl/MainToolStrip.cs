@@ -99,7 +99,7 @@ public class MainToolStrip : ToolStrip
 			FlatStyle = FlatStyle.Popup
 		};
 		m_thresholdDifferenceComboBox.SelectedIndexChanged += new EventHandler(OnThresholdDifferenceChanged);
-		if (m_coreOptions.compareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum)
+		if (m_coreOptions.CompareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum)
 		{
 			for (var i = 0; i <= CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM; i++)
 			{
@@ -215,11 +215,11 @@ public class MainToolStrip : ToolStrip
 	/// </summary>
 	private void OnOptionsChanged()
 	{
-		m_mistakeButton.Enabled = m_coreOptions.advancedOptions.MistakeDataBase &&
+		m_mistakeButton.Enabled = m_coreOptions.AdvancedOptions.MistakeDataBase &&
 			 m_core.CanApply(CoreDll.ActionEnableType.Any);
 
-		m_algorithmComparingComboBox.SelectedIndex = (int)m_coreOptions.compareOptions.algorithmComparing;
-		if (m_coreOptions.compareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum &&
+		m_algorithmComparingComboBox.SelectedIndex = (int)m_coreOptions.CompareOptions.algorithmComparing;
+		if (m_coreOptions.CompareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum &&
 			m_thresholdDifferenceComboBox.Items.Count > CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM + 1)
 		{
 			m_thresholdDifferenceComboBox.Items.Clear();
@@ -228,7 +228,7 @@ public class MainToolStrip : ToolStrip
 				m_thresholdDifferenceComboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
 			}
 		}
-		if (m_coreOptions.compareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SSIM &&
+		if (m_coreOptions.CompareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SSIM &&
 			 m_thresholdDifferenceComboBox.Items.Count < CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SSIM + 1)
 		{
 			m_thresholdDifferenceComboBox.Items.Clear();
@@ -237,7 +237,7 @@ public class MainToolStrip : ToolStrip
 				m_thresholdDifferenceComboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
 			}
 		}
-		m_thresholdDifferenceComboBox.SelectedIndex = m_coreOptions.compareOptions.thresholdDifference;
+		m_thresholdDifferenceComboBox.SelectedIndex = m_coreOptions.CompareOptions.thresholdDifference;
 	}
 
 	public void SetViewMode(ResultsOptions.ViewMode viewMode)
@@ -289,13 +289,13 @@ public class MainToolStrip : ToolStrip
 
 	private void OnThresholdDifferenceChanged(object sender, EventArgs e)
 	{
-		m_coreOptions.compareOptions.thresholdDifference = m_thresholdDifferenceComboBox.SelectedIndex;
+		m_coreOptions.CompareOptions.thresholdDifference = m_thresholdDifferenceComboBox.SelectedIndex;
 	}
 
 	private void OnAlgorithmComparingChanged(object sender, EventArgs e)
 	{
-		m_coreOptions.compareOptions.algorithmComparing = (CoreDll.AlgorithmComparing)m_algorithmComparingComboBox.SelectedIndex;
-		if (m_coreOptions.compareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum &&
+		m_coreOptions.CompareOptions.algorithmComparing = (CoreDll.AlgorithmComparing)m_algorithmComparingComboBox.SelectedIndex;
+		if (m_coreOptions.CompareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum &&
 			m_thresholdDifferenceComboBox.Items.Count > CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM + 1)
 		{
 			m_thresholdDifferenceComboBox.Items.Clear();
@@ -306,7 +306,7 @@ public class MainToolStrip : ToolStrip
 
 			m_thresholdDifferenceComboBox.SelectedIndex = CoreOptionsForm.THRESHOLD_DIFFERENCE_DEFAULT_SQUARED_SUM;
 		}
-		if (m_coreOptions.compareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SSIM &&
+		if (m_coreOptions.CompareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SSIM &&
 			 m_thresholdDifferenceComboBox.Items.Count < CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SSIM + 1)
 		{
 			m_thresholdDifferenceComboBox.Items.Clear();

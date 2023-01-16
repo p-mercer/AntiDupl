@@ -293,36 +293,36 @@ public class ImagePreviewPanel : TableLayoutPanel
 
 	public void SetResult(CoreResult result)
 	{
-		if (result.type == CoreDll.ResultType.None)
+		if (result.Type == CoreDll.ResultType.None)
 		{
 			throw new Exception("Bad result type!");
 		}
 
-		Group = result.group;
+		Group = result.Group;
 
 		switch (m_position)
 		{
 			case Position.Left:
 			case Position.Top:
-				if (result.type == CoreDll.ResultType.DuplImagePair)
+				if (result.Type == CoreDll.ResultType.DuplImagePair)
 				{
-					SetImageInfo(result.first, result.second);
+					SetImageInfo(result.First, result.Second);
 				}
 				else
 				{
-					SetImageInfo(result.first, null);
+					SetImageInfo(result.First, null);
 				}
 
 				break;
 			case Position.Right:
 			case Position.Bottom:
-				if (result.type == CoreDll.ResultType.DuplImagePair)
+				if (result.Type == CoreDll.ResultType.DuplImagePair)
 				{
-					SetImageInfo(result.second, result.first);
+					SetImageInfo(result.Second, result.First);
 				}
 				else
 				{
-					SetImageInfo(result.second, null);
+					SetImageInfo(result.Second, null);
 				}
 
 				break;
@@ -531,7 +531,7 @@ public class ImagePreviewPanel : TableLayoutPanel
 	/// <param name="result"></param>
 	public void UpdateExifTooltip(CoreResult result)
 	{
-		if (result.type == CoreDll.ResultType.None)
+		if (result.Type == CoreDll.ResultType.None)
 		{
 			throw new Exception("Bad result type!");
 		}
@@ -540,17 +540,17 @@ public class ImagePreviewPanel : TableLayoutPanel
 		{
 			case Position.Left:
 			case Position.Top:
-				if (result.first.ExifInfo.isEmpty == CoreDll.FALSE)
+				if (result.First.ExifInfo.isEmpty == CoreDll.FALSE)
 				{
-					SetExifTooltip(result.first);
+					SetExifTooltip(result.First);
 				}
 
 				break;
 			case Position.Right:
 			case Position.Bottom:
-				if (result.second.ExifInfo.isEmpty == CoreDll.FALSE)
+				if (result.Second.ExifInfo.isEmpty == CoreDll.FALSE)
 				{
-					SetExifTooltip(result.second);
+					SetExifTooltip(result.Second);
 				}
 
 				break;

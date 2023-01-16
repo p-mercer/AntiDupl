@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 
 namespace AntiDupl.NET;
 
-public class DynamicModule : IDisposable
+public partial class DynamicModule : IDisposable
 {
 	public class DynamicModuleApiAttribute : Attribute
 	{
@@ -98,22 +98,13 @@ public class DynamicModule : IDisposable
 
 	private IntPtr m_module = IntPtr.Zero;
 
-	[DllImport("kernel32.dll",
-		CharSet = CharSet.Ansi,
-		CallingConvention = CallingConvention.Winapi,
-		EntryPoint = "LoadLibraryA")]
-	private static extern IntPtr LoadLibrary(string moduleName);
+	[LibraryImport("kernel32.dll", EntryPoint = "LoadLibraryW", StringMarshalling = StringMarshalling.Utf16)]
+	private static partial IntPtr LoadLibrary(string moduleName);
 
-	[DllImport("kernel32.dll",
-		CharSet = CharSet.Ansi,
-		CallingConvention = CallingConvention.Winapi,
-		EntryPoint = "FreeLibrary")]
-	private static extern int FreeLibrary(IntPtr module);
+	[LibraryImport("kernel32.dll", EntryPoint = "FreeLibrary")]
+	private static partial int FreeLibrary(IntPtr module);
 
 
-	[DllImport("kernel32.dll",
-		CharSet = CharSet.Ansi,
-		CallingConvention = CallingConvention.Winapi,
-		EntryPoint = "GetProcAddress")]
-	private static extern IntPtr GetProcAddress(IntPtr module, string functionName);
+	[LibraryImport("kernel32.dll", EntryPoint = "GetProcAddress", StringMarshalling = StringMarshalling.Utf8)]
+	private static partial IntPtr GetProcAddress(IntPtr module, string functionName);
 }

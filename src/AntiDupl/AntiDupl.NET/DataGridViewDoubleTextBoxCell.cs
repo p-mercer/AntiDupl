@@ -35,8 +35,8 @@ public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
 	private const int TOP_INTEND = 2;
 	private const int RIGHT_INTEND = 1;
 
-	public Color separatorColor { get; set; } = Color.LightGray;
-	public Color markerColor { get; set; } = Color.Red;
+	public Color SeparatorColor { get; set; } = Color.LightGray;
+	public Color MarkerColor { get; set; } = Color.Red;
 
 	public enum MarkType
 	{
@@ -71,20 +71,16 @@ public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
 		if ((cellState & DataGridViewElementStates.Selected) != 0)
 		{
 			ordinaryColor = cellStyle.SelectionForeColor;
-			markColor = markerColor;
+			markColor = MarkerColor;
 		}
 		else
 		{
 			ordinaryColor = cellStyle.ForeColor;
-			markColor = markerColor;
+			markColor = MarkerColor;
 		}
 
 		switch (markType)
 		{
-			case MarkType.None:
-				firstColor = ordinaryColor;
-				secondColor = ordinaryColor;
-				break;
 			case MarkType.First:
 				firstColor = markColor;
 				secondColor = ordinaryColor;
@@ -103,7 +99,7 @@ public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
 				break;
 		}
 
-		var separatorPen = new Pen(separatorColor);
+		var separatorPen = new Pen(SeparatorColor);
 		var separatorX = (cellBounds.Top + cellBounds.Bottom) / 2;
 		var format = new StringFormat
 		{
@@ -126,6 +122,7 @@ public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
 				format.LineAlignment = StringAlignment.Far;
 				break;
 			case DataGridViewContentAlignment.MiddleCenter:
+			case DataGridViewContentAlignment.NotSet:
 				format.Alignment = StringAlignment.Center;
 				format.LineAlignment = StringAlignment.Center;
 				break;
@@ -135,10 +132,6 @@ public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
 				break;
 			case DataGridViewContentAlignment.MiddleRight:
 				format.Alignment = StringAlignment.Far;
-				format.LineAlignment = StringAlignment.Center;
-				break;
-			case DataGridViewContentAlignment.NotSet:
-				format.Alignment = StringAlignment.Center;
 				format.LineAlignment = StringAlignment.Center;
 				break;
 			case DataGridViewContentAlignment.TopCenter:

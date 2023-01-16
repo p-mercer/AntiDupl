@@ -65,32 +65,32 @@ public class ClipboardContentBuilder
 	{
 		if (options[(int)TypeVertical.Type].visible)
 		{
-			Append(result.type);
+			Append(result.Type);
 		}
 
 		if (options[(int)TypeVertical.Group].visible)
 		{
-			Append(result.group);
+			Append(result.Group);
 		}
 
 		if (options[(int)TypeVertical.Difference].visible)
 		{
-			Append(result.difference.ToString("F2"));
+			Append(result.Difference.ToString("F2"));
 		}
 
 		if (options[(int)TypeVertical.Defect].visible)
 		{
-			Append(result.defect);
+			Append(result.Defect);
 		}
 
 		if (options[(int)TypeVertical.Transform].visible)
 		{
-			Append(result.transform);
+			Append(result.Transform);
 		}
 
 		if (options[(int)TypeVertical.Hint].visible)
 		{
-			Append(result.hint);
+			Append(result.Hint);
 		}
 	}
 
@@ -99,53 +99,53 @@ public class ClipboardContentBuilder
 		if (options[(int)TypeVertical.FileName].visible ||
 			options[(int)TypeVertical.FileDirectory].visible)
 		{
-			Append(result.first.Path);
+			Append(result.First.Path);
 		}
 
 		if (options[(int)TypeVertical.ImageSize].visible)
 		{
-			Append(result.first.GetImageSizeString());
+			Append(result.First.GetImageSizeString());
 		}
 
 		if (options[(int)TypeVertical.ImageType].visible)
 		{
-			Append(result.first.GetImageTypeString());
+			Append(result.First.GetImageTypeString());
 		}
 
 		if (options[(int)TypeVertical.FileSize].visible)
 		{
-			Append(result.first.GetFileSizeString());
+			Append(result.First.GetFileSizeString());
 		}
 
 		if (options[(int)TypeVertical.FileTime].visible)
 		{
-			Append(result.first.GetFileTimeString());
+			Append(result.First.GetFileTimeString());
 		}
 
 		if (options[(int)TypeVertical.FileName].visible ||
 				options[(int)TypeVertical.FileDirectory].visible)
 		{
-			Append(result.second.Path);
+			Append(result.Second.Path);
 		}
 
 		if (options[(int)TypeVertical.ImageSize].visible)
 		{
-			Append(result.second.GetImageSizeString());
+			Append(result.Second.GetImageSizeString());
 		}
 
 		if (options[(int)TypeVertical.ImageType].visible)
 		{
-			Append(result.second.GetImageTypeString());
+			Append(result.Second.GetImageTypeString());
 		}
 
 		if (options[(int)TypeVertical.FileSize].visible)
 		{
-			Append(result.second.GetFileSizeString());
+			Append(result.Second.GetFileSizeString());
 		}
 
 		if (options[(int)TypeVertical.FileTime].visible)
 		{
-			Append(result.second.GetFileTimeString());
+			Append(result.Second.GetFileTimeString());
 		}
 	}
 
@@ -154,53 +154,53 @@ public class ClipboardContentBuilder
 		if (options[(int)TypeHorizontal.FirstFileName].visible ||
 			options[(int)TypeHorizontal.FirstFileDirectory].visible)
 		{
-			Append(result.first.Path);
+			Append(result.First.Path);
 		}
 
 		if (options[(int)TypeHorizontal.FirstImageSize].visible)
 		{
-			Append(result.first.GetImageSizeString());
+			Append(result.First.GetImageSizeString());
 		}
 
 		if (options[(int)TypeHorizontal.FirstImageType].visible)
 		{
-			Append(result.first.GetImageTypeString());
+			Append(result.First.GetImageTypeString());
 		}
 
 		if (options[(int)TypeHorizontal.FirstFileSize].visible)
 		{
-			Append(result.first.GetFileSizeString());
+			Append(result.First.GetFileSizeString());
 		}
 
 		if (options[(int)TypeHorizontal.FirstFileTime].visible)
 		{
-			Append(result.first.GetFileTimeString());
+			Append(result.First.GetFileTimeString());
 		}
 
 		if (options[(int)TypeHorizontal.SecondFileName].visible ||
 				options[(int)TypeHorizontal.SecondFileDirectory].visible)
 		{
-			Append(result.second.Path);
+			Append(result.Second.Path);
 		}
 
 		if (options[(int)TypeHorizontal.SecondImageSize].visible)
 		{
-			Append(result.second.GetImageSizeString());
+			Append(result.Second.GetImageSizeString());
 		}
 
 		if (options[(int)TypeHorizontal.SecondImageType].visible)
 		{
-			Append(result.second.GetImageTypeString());
+			Append(result.Second.GetImageTypeString());
 		}
 
 		if (options[(int)TypeHorizontal.SecondFileSize].visible)
 		{
-			Append(result.second.GetFileSizeString());
+			Append(result.Second.GetFileSizeString());
 		}
 
 		if (options[(int)TypeHorizontal.SecondFileTime].visible)
 		{
-			Append(result.second.GetFileTimeString());
+			Append(result.Second.GetFileTimeString());
 		}
 	}
 

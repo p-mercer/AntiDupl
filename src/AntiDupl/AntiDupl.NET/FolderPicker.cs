@@ -33,7 +33,7 @@ using System.Runtime.InteropServices.ComTypes;
 
 namespace AntiDupl.NET;
 
-public class FolderPicker
+public partial class FolderPicker
 {
 	public virtual string ResultPath { get; protected set; }
 	public virtual string ResultName { get; protected set; }
@@ -135,12 +135,9 @@ public class FolderPicker
 
 	private static int CheckHr(int hr, bool throwOnError)
 	{
-		if (hr != 0)
+		if (hr != 0 && throwOnError)
 		{
-			if (throwOnError)
-			{
-				Marshal.ThrowExceptionForHR(hr);
-			}
+			Marshal.ThrowExceptionForHR(hr);
 		}
 		return hr;
 	}
@@ -148,8 +145,8 @@ public class FolderPicker
 	[DllImport("shell32")]
 	private static extern int SHCreateItemFromParsingName([MarshalAs(UnmanagedType.LPWStr)] string pszPath, IBindCtx pbc, [MarshalAs(UnmanagedType.LPStruct)] Guid riid, out IShellItem ppv);
 
-	[DllImport("user32")]
-	private static extern IntPtr GetDesktopWindow();
+	[LibraryImport("user32", EntryPoint = "GetDesktopWindowW")]
+	private static partial IntPtr GetDesktopWindow();
 
 #pragma warning disable IDE1006 // Naming Styles
 	private const int ERROR_CANCELLED = unchecked((int)0x800704C7);
