@@ -28,7 +28,7 @@ namespace AntiDupl.NET;
 
 public class CoreDll : DynamicModule
 {
-	public CoreDll(): base("AntiDupl64.dll")
+	public CoreDll() : base("AntiDupl64.dll")
 	{
 	}
 
@@ -42,7 +42,7 @@ public class CoreDll : DynamicModule
 
 	//-----------API enumerations------------------------------------------
 
-	public enum Error 
+	public enum Error
 	{
 		Ok = 0,
 		Unknown = 1,
@@ -79,7 +79,7 @@ public class CoreDll : DynamicModule
 		InvalidSelectionType = 32,
 	}
 
-	public enum PathType 
+	public enum PathType
 	{
 		Search = 0,
 		Ignore = 1,
@@ -87,7 +87,7 @@ public class CoreDll : DynamicModule
 		Delete = 3,
 	}
 
-	public enum OptionsType 
+	public enum OptionsType
 	{
 		SetDefault = -1,
 		Search = 0,
@@ -96,7 +96,7 @@ public class CoreDll : DynamicModule
 		Advanced = 3,
 	}
 
-	public enum FileType 
+	public enum FileType
 	{
 		Options = 0,
 		Result = 1,
@@ -105,7 +105,7 @@ public class CoreDll : DynamicModule
 		Temporary = 4,
 	}
 
-	public enum SortType 
+	public enum SortType
 	{
 		ByType = 0,
 		BySortedPath = 1,
@@ -152,7 +152,7 @@ public class CoreDll : DynamicModule
 		ByHint = 42,
 	}
 
-	public enum GlobalActionType 
+	public enum GlobalActionType
 	{
 		SetHint = 0,
 		SetGroup = 1,
@@ -179,7 +179,7 @@ public class CoreDll : DynamicModule
 		Mistake = 13,
 	}
 
-	public enum ActionEnableType 
+	public enum ActionEnableType
 	{
 		Any = 0,
 		Defect = 1,
@@ -189,19 +189,19 @@ public class CoreDll : DynamicModule
 		Redo = 5,
 	}
 
-	public enum TargetType 
+	public enum TargetType
 	{
 		Current = 0,
 		Selected = 1,
 	}
 
-	public enum RenameCurrentType 
+	public enum RenameCurrentType
 	{
 		First = 0,
 		Second = 1,
 	}
 
-	public enum StateType 
+	public enum StateType
 	{
 		None = 0,
 		Work = 1,
@@ -209,14 +209,14 @@ public class CoreDll : DynamicModule
 		Stop = 3,
 	}
 
-	public enum ResultType 
+	public enum ResultType
 	{
 		None = 0,
 		DefectImage = 1,
 		DuplImagePair = 2,
 	}
 
-	public enum ImageType 
+	public enum ImageType
 	{
 		None = 0,
 		Bmp = 1,
@@ -236,7 +236,7 @@ public class CoreDll : DynamicModule
 		Heif = 15,
 	}
 
-	public enum DefectType 
+	public enum DefectType
 	{
 		None = 0,
 		Unknown = 1,
@@ -245,7 +245,7 @@ public class CoreDll : DynamicModule
 		Blurring = 4,
 	}
 
-	public enum TransformType 
+	public enum TransformType
 	{
 		Turn_0 = 0,
 		Turn_90 = 1,
@@ -257,7 +257,7 @@ public class CoreDll : DynamicModule
 		MirrorTurn_270 = 7,
 	}
 
-	public enum HintType 
+	public enum HintType
 	{
 		None = 0,
 		DeleteFirst = 1,
@@ -266,20 +266,20 @@ public class CoreDll : DynamicModule
 		RenameSecondToFirst = 4,
 	}
 
-	public enum PixelFormatType 
+	public enum PixelFormatType
 	{
 		None = 0,
 		Argb32 = 1,
 	}
 
-	public enum ThreadType 
+	public enum ThreadType
 	{
 		Main = 0,
 		Collect = 1,
 		Compare = 2,
 	}
 
-	public enum VersionType 
+	public enum VersionType
 	{
 		AntiDupl = 0,
 		Simd = 1,
@@ -289,7 +289,7 @@ public class CoreDll : DynamicModule
 		Heif = 5,
 	}
 
-	public enum SelectionType 
+	public enum SelectionType
 	{
 		SelectCurrent = 0,
 		UnselectCurrent = 1,
@@ -298,7 +298,7 @@ public class CoreDll : DynamicModule
 		SelectAllButThis = 4,
 	}
 
-	public enum AlgorithmComparing 
+	public enum AlgorithmComparing
 	{
 		SquaredSum = 0,
 		SSIM = 1,
@@ -488,153 +488,93 @@ public class CoreDll : DynamicModule
 	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
 	internal static extern Error adRelease(IntPtr handle);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adStop_fn(IntPtr handle);
-	[DynamicModuleApi]
-	public adStop_fn adStop = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adStop(IntPtr handle);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adSearch_fn(IntPtr handle);
-	[DynamicModuleApi]
-	public adSearch_fn adSearch = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adSearch(IntPtr handle);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adLoadW_fn(IntPtr handle, FileType fileType, string fileName, int check);
-	[DynamicModuleApi]
-	public adLoadW_fn adLoadW = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adLoadW(IntPtr handle, FileType fileType, string fileName, int check);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adSaveW_fn(IntPtr handle, FileType fileType, string fileName);
-	[DynamicModuleApi]
-	public adSaveW_fn adSaveW = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adSaveW(IntPtr handle, FileType fileType, string fileName);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adClear_fn(IntPtr handle, FileType fileType);
-	[DynamicModuleApi]
-	public adClear_fn adClear = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adClear(IntPtr handle, FileType fileType);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adOptionsGet_fn(IntPtr handle, OptionsType optionsType, IntPtr pOptions);
-	[DynamicModuleApi]
-	public adOptionsGet_fn adOptionsGet = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adOptionsGet(IntPtr handle, OptionsType optionsType, IntPtr pOptions);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adOptionsSet_fn(IntPtr handle, OptionsType optionsType, IntPtr pOptions);
-	[DynamicModuleApi]
-	public adOptionsSet_fn adOptionsSet = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adOptionsSet(IntPtr handle, OptionsType optionsType, IntPtr pOptions);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adPathWithSubFolderSetW_fn(IntPtr handle, PathType pathType, IntPtr pPaths, IntPtr pathSize);
-	[DynamicModuleApi]
-	public adPathWithSubFolderSetW_fn adPathWithSubFolderSetW = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adPathWithSubFolderSetW(IntPtr handle, PathType pathType, IntPtr pPaths, IntPtr pathSize);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adPathGetW_fn(IntPtr handle, PathType pathType, IntPtr pPath, IntPtr pPathSize);
-	[DynamicModuleApi]
-	public adPathGetW_fn adPathGetW = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adPathGetW(IntPtr handle, PathType pathType, IntPtr pPath, IntPtr pPathSize);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adPathSetW_fn(IntPtr handle, PathType pathType, IntPtr pPath, IntPtr pathSize);
-	[DynamicModuleApi]
-	public adPathSetW_fn adPathSetW = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adPathSetW(IntPtr handle, PathType pathType, IntPtr pPath, IntPtr pathSize);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adStatisticGet_fn(IntPtr handle, IntPtr pStatistic);
-	[DynamicModuleApi]
-	public adStatisticGet_fn adStatisticGet = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adStatisticGet(IntPtr handle, IntPtr pStatistic);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adStatusGetW_fn(IntPtr handle, ThreadType threadType, IntPtr threadId, IntPtr pStatusW);
-	[DynamicModuleApi]
-	public adStatusGetW_fn adStatusGetW = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adStatusGetW(IntPtr handle, ThreadType threadType, IntPtr threadId, IntPtr pStatusW);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adResultSort_fn(IntPtr handle, SortType sortType, int increasing);
-	[DynamicModuleApi]
-	public adResultSort_fn adResultSort = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adResultSort(IntPtr handle, SortType sortType, int increasing);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adResultApply_fn(IntPtr handle, GlobalActionType globalActionType);
-	[DynamicModuleApi]
-	public adResultApply_fn adResultApply = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adResultApply(IntPtr handle, GlobalActionType globalActionType);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adResultApplyTo_fn(IntPtr handle, LocalActionType localActionType, TargetType targetType);
-	[DynamicModuleApi]
-	public adResultApplyTo_fn adResultApplyTo = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adResultApplyTo(IntPtr handle, LocalActionType localActionType, TargetType targetType);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adCanApply_fn(IntPtr handle, ActionEnableType actionEnableType, IntPtr pEnable);
-	[DynamicModuleApi]
-	public adCanApply_fn adCanApply = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adCanApply(IntPtr handle, ActionEnableType actionEnableType, IntPtr pEnable);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adRenameCurrentW_fn(IntPtr handle, RenameCurrentType renameCurrentType, string newFileName);
-	[DynamicModuleApi]
-	public adRenameCurrentW_fn adRenameCurrentW = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adRenameCurrentW(IntPtr handle, RenameCurrentType renameCurrentType, string newFileName);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adMoveCurrentGroupW_fn(IntPtr handle, string directory);
-	[DynamicModuleApi]
-	public adMoveCurrentGroupW_fn adMoveCurrentGroupW = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adMoveCurrentGroupW(IntPtr handle, string directory);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adRenameCurrentGroupAsW_fn(IntPtr handle, string fileName);
-	[DynamicModuleApi]
-	public adRenameCurrentGroupAsW_fn adRenameCurrentGroupAsW = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adRenameCurrentGroupAsW(IntPtr handle, string fileName);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adResultGetW_fn(IntPtr handle, IntPtr pStartFrom, IntPtr pResult, IntPtr pResultSize);
-	[DynamicModuleApi]
-	public adResultGetW_fn adResultGetW = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adResultGetW(IntPtr handle, IntPtr pStartFrom, IntPtr pResult, IntPtr pResultSize);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adSelectionSet_fn(IntPtr handle, IntPtr pStartFrom, UIntPtr size, int value);
-	[DynamicModuleApi]
-	public adSelectionSet_fn adSelectionSet = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adSelectionSet(IntPtr handle, IntPtr pStartFrom, UIntPtr size, int value);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adSelectionGet_fn(IntPtr handle, IntPtr pStartFrom, IntPtr pSelection, IntPtr pSelectionSize);
-	[DynamicModuleApi]
-	public adSelectionGet_fn adSelectionGet = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adSelectionGet(IntPtr handle, IntPtr pStartFrom, IntPtr pSelection, IntPtr pSelectionSize);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adCurrentSet_fn(IntPtr handle, IntPtr index);
-	[DynamicModuleApi]
-	public adCurrentSet_fn adCurrentSet = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adCurrentSet(IntPtr handle, IntPtr index);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adCurrentGet_fn(IntPtr handle, IntPtr pIndex);
-	[DynamicModuleApi]
-	public adCurrentGet_fn adCurrentGet = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adCurrentGet(IntPtr handle, IntPtr pIndex);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adGroupGet_fn(IntPtr handle, IntPtr pStartFrom, IntPtr pGroup, IntPtr pGroupSize);
-	[DynamicModuleApi]
-	public adGroupGet_fn adGroupGet = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adGroupGet(IntPtr handle, IntPtr pStartFrom, IntPtr pGroup, IntPtr pGroupSize);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adImageInfoGetW_fn(IntPtr handle, IntPtr groupId, IntPtr pStartFrom, IntPtr pImageInfo, IntPtr pImageInfoSize);
-	[DynamicModuleApi]
-	public adImageInfoGetW_fn adImageInfoGetW = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adImageInfoGetW(IntPtr handle, IntPtr groupId, IntPtr pStartFrom, IntPtr pImageInfo, IntPtr pImageInfoSize);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adImageInfoSelectionSet_fn(IntPtr handle, IntPtr groupId, IntPtr index, SelectionType selectionType);
-	[DynamicModuleApi]
-	public adImageInfoSelectionSet_fn adImageInfoSelectionSet = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adImageInfoSelectionSet(IntPtr handle, IntPtr groupId, IntPtr index, SelectionType selectionType);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adImageInfoSelectionGet_fn(IntPtr handle, IntPtr groupId, IntPtr pStartFrom, IntPtr pSelection, IntPtr pSelectionSize);
-	[DynamicModuleApi]
-	public adImageInfoSelectionGet_fn adImageInfoSelectionGet = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adImageInfoSelectionGet(IntPtr handle, IntPtr groupId, IntPtr pStartFrom, IntPtr pSelection, IntPtr pSelectionSize);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adImageInfoRenameW_fn(IntPtr handle, IntPtr groupId, IntPtr index, string newFileName);
-	[DynamicModuleApi]
-	public adImageInfoRenameW_fn adImageInfoRenameW = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adImageInfoRenameW(IntPtr handle, IntPtr groupId, IntPtr index, string newFileName);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adLoadBitmapW_fn(IntPtr handle, string fileName, IntPtr pBitmap);
-	[DynamicModuleApi]
-	public adLoadBitmapW_fn adLoadBitmapW = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adLoadBitmapW(IntPtr handle, string fileName, IntPtr pBitmap);
 }
