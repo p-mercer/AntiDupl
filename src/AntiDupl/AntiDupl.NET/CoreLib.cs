@@ -23,11 +23,10 @@
 */
 using System;
 using System.Runtime.InteropServices;
-using System.Threading;
 
 namespace AntiDupl.NET;
 
-public class CoreLib 
+public class CoreLib
 {
 	private const uint VERSION_SIZE = 40;
 	private const uint PAGE_SIZE = 16;
@@ -721,6 +720,5 @@ public class CoreLib
 			Marshal.UnsafeAddrOfPinnedArrayElement(buffer, 0),
 			new IntPtr(path.Length)) == CoreDll.Error.Ok;
 	}
-
 	#endregion
 };
