@@ -26,12 +26,8 @@ using System.Runtime.InteropServices;
 
 namespace AntiDupl.NET;
 
-public class CoreDll : DynamicModule
+public class CoreDll
 {
-	public CoreDll() : base("AntiDupl64.dll")
-	{
-	}
-
 	//-----------API constants:--------------------------------------------
 
 	public const int FALSE = 0;

@@ -105,7 +105,6 @@ public class MainForm : Form
 
 		var startFinishForm = new StartFinishForm(m_core, m_options);
 		startFinishForm.ExecuteFinish();
-		m_core.Dispose();
 	}
 
 	private void SetLoadedViewOptions()

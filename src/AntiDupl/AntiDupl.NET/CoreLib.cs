@@ -27,26 +27,17 @@ using System.Threading;
 
 namespace AntiDupl.NET;
 
-public class CoreLib : IDisposable
+public class CoreLib 
 {
 	private const uint VERSION_SIZE = 40;
 	private const uint PAGE_SIZE = 16;
 
 	private readonly IntPtr m_handle = IntPtr.Zero;
-	private CoreDll m_dll;
 
 	//-----------Public functions----------------------------------------------
 
 	public CoreLib(string userPath)
 	{
-		try
-		{
-			m_dll = new CoreDll();
-		}
-		catch
-		{
-			throw new Exception("Can't load core library!");
-		}
 		if (Version.Compatible(GetVersion(CoreDll.VersionType.AntiDupl)))
 		{
 			m_handle = CoreDll.adCreateW(userPath);
@@ -55,32 +46,6 @@ public class CoreLib : IDisposable
 		{
 			throw new Exception("Incompatible core library version!");
 		}
-	}
-
-	~CoreLib()
-	{
-		Dispose();
-	}
-
-	public void Release()
-	{
-		if (m_dll != null && m_handle != IntPtr.Zero && CoreDll.adRelease(m_handle) == CoreDll.Error.AccessDenied)
-		{
-			Stop();
-			Thread.Sleep(10);
-			CoreDll.adRelease(m_handle);
-		}
-	}
-
-	public void Dispose()
-	{
-		Release();
-		if (m_dll != null)
-		{
-			m_dll.Dispose();
-			m_dll = null;
-		}
-		GC.SuppressFinalize(this);
 	}
 
 	public CoreVersion GetVersion(CoreDll.VersionType versionType)
