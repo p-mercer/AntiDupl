@@ -49,7 +49,7 @@ public class CoreLib : IDisposable
 		}
 		if (Version.Compatible(GetVersion(CoreDll.VersionType.AntiDupl)))
 		{
-			m_handle = m_dll.adCreateW(userPath);
+			m_handle = CoreDll.adCreateW(userPath);
 		}
 		else
 		{
@@ -64,11 +64,11 @@ public class CoreLib : IDisposable
 
 	public void Release()
 	{
-		if (m_dll != null && m_handle != IntPtr.Zero && m_dll.adRelease(m_handle) == CoreDll.Error.AccessDenied)
+		if (m_dll != null && m_handle != IntPtr.Zero && CoreDll.adRelease(m_handle) == CoreDll.Error.AccessDenied)
 		{
 			Stop();
 			Thread.Sleep(10);
-			m_dll.adRelease(m_handle);
+			CoreDll.adRelease(m_handle);
 		}
 	}
 
@@ -96,7 +96,7 @@ public class CoreLib : IDisposable
 			{
 				var versionP = versionH.AddrOfPinnedObject();
 				var sizeP = sizeH.AddrOfPinnedObject();
-				if (m_dll.adVersionGet(versionType, versionP, sizeP) == CoreDll.Error.Ok)
+				if (CoreDll.adVersionGet(versionType, versionP, sizeP) == CoreDll.Error.Ok)
 				{
 					return new CoreVersion(versionB);
 				}

@@ -479,20 +479,14 @@ public class CoreDll : DynamicModule
 
 	//-------------------API functions:------------------------------------
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adVersionGet_fn(VersionType versionType, IntPtr pVersion, IntPtr pVersionSize);
-	[DynamicModuleApi]
-	public adVersionGet_fn adVersionGet = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adVersionGet(VersionType versionType, IntPtr pVersion, IntPtr pVersionSize);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate IntPtr adCreate_fn(string userPath);
-	[DynamicModuleApi]
-	public adCreate_fn adCreateW = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern IntPtr adCreateW(string userPath);
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-	public delegate Error adRelease_fn(IntPtr handle);
-	[DynamicModuleApi]
-	public adRelease_fn adRelease = null;
+	[DllImport("AntiDupl64.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+	internal static extern Error adRelease(IntPtr handle);
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
 	public delegate Error adStop_fn(IntPtr handle);
