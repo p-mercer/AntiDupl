@@ -178,7 +178,7 @@ public class ProgressForm : Form
 		KeyPreview = true;
 
 		var width = 800;
-		var height = (m_progressPanel.Height + mainTableLayoutPanel.Margin.Vertical) +
+		var height = m_progressPanel.Height + mainTableLayoutPanel.Margin.Vertical +
 		  m_cancelButton.Height + m_cancelButton.Padding.Vertical + mainTableLayoutPanel.Margin.Vertical +
 		  mainTableLayoutPanel.Padding.Vertical;
 		ClientSize = new System.Drawing.Size(width, height);

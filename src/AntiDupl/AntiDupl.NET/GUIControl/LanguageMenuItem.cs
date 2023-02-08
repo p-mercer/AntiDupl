@@ -77,7 +77,7 @@ public class LanguageMenuItem : ToolStripMenuItem
 	{
 		for (var i = 0; i < m_items.Length; i++)
 		{
-			m_items[i].Image = (i == Resources.Strings.CurrentIndex ? m_trueIcon : m_falseIcon);
+			m_items[i].Image = i == Resources.Strings.CurrentIndex ? m_trueIcon : m_falseIcon;
 		}
 	}
 }

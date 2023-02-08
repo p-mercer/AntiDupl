@@ -65,7 +65,7 @@ public class ThumbnailStorage
 			if (bitmap != null)
 			{
 				var size = GetThumbnailSize(imageInfo);
-				result = (bitmap.Height == size.Height && bitmap.Width == size.Width);
+				result = bitmap.Height == size.Height && bitmap.Width == size.Width;
 			}
 		}
 		m_mutex.ReleaseMutex();

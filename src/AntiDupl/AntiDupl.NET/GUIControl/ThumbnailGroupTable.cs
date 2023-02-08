@@ -160,7 +160,7 @@ public class ThumbnailGroupTable : Panel
 	/// <returns></returns>
 	private bool IsSpecial(int index)
 	{
-		return (index == 0 || index == m_groups.Length - 1 || index == m_maxGroupIndex);
+		return index == 0 || index == m_groups.Length - 1 || index == m_maxGroupIndex;
 	}
 
 	private int GetVisibleGroupIndexMin()

@@ -121,7 +121,7 @@ public class ThumbnailPreviewContextMenu : ContextMenuStrip
 			OverwritePrompt = false,
 			AddExtension = true,
 			CheckPathExists = true,
-			DefaultExt = (new FileInfo(m_thumbnailPreview.ImageInfo.Path)).Extension
+			DefaultExt = new FileInfo(m_thumbnailPreview.ImageInfo.Path).Extension
 		};
 		dialog.FileOk += new CancelEventHandler(OnRenameImageDialogFileOk);
 		dialog.Title = Resources.Strings.Current.ImagePreviewContextMenu_RenameImageItem_Text;

@@ -83,8 +83,8 @@ public class ViewModeMenuItem : ToolStripMenuItem
 
 	private void UpdateIcons(ResultsOptions.ViewMode viewMode)
 	{
-		m_verticalPairTableMenuItem.Image = (viewMode == ResultsOptions.ViewMode.VerticalPairTable ? m_trueIcon : m_falseIcon);
-		m_horizontalPairTableMenuItem.Image = (viewMode == ResultsOptions.ViewMode.HorizontalPairTable ? m_trueIcon : m_falseIcon);
-		m_groupedThumbnailsMenuItem.Image = (viewMode == ResultsOptions.ViewMode.GroupedThumbnails ? m_trueIcon : m_falseIcon);
+		m_verticalPairTableMenuItem.Image = viewMode == ResultsOptions.ViewMode.VerticalPairTable ? m_trueIcon : m_falseIcon;
+		m_horizontalPairTableMenuItem.Image = viewMode == ResultsOptions.ViewMode.HorizontalPairTable ? m_trueIcon : m_falseIcon;
+		m_groupedThumbnailsMenuItem.Image = viewMode == ResultsOptions.ViewMode.GroupedThumbnails ? m_trueIcon : m_falseIcon;
 	}
 }

@@ -192,7 +192,7 @@ public class ThumbnailPanel : RaisedPanel
 
 		m_fileSizeLabel.Text = info.GetFileSizeString();
 		m_imageSizeLabel.Text = string.Format("{0}×{1}", info.Width, info.Height);
-		m_imageTypeLabel.Text = (info.Type == CoreDll.ImageType.None ? "   " : info.GetImageTypeString());
+		m_imageTypeLabel.Text = info.Type == CoreDll.ImageType.None ? "   " : info.GetImageTypeString();
 		m_fileNameLabel.Text = Path.GetFileNameWithoutExtension(info.Path);
 
 		var selected = m_core.GetSelection(m_group.Id, (uint)m_index, 1);

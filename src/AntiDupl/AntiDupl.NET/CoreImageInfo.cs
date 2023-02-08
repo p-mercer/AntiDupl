@@ -131,7 +131,7 @@ public class CoreImageInfo
 	public string GetFileSizeString()
 	{
 		var builder = new StringBuilder();
-		var str = (Math.Ceiling(Size / 1024.0)).ToString();
+		var str = Math.Ceiling(Size / 1024.0).ToString();
 		var start = str.Length % 3;
 		switch (start)
 		{

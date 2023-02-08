@@ -67,7 +67,7 @@ public class AboutProgramPanel : Panel
 			case 1: text = Resources.Strings.Current.AboutProgramPanel_CopyrightLabel1_Text; break;
 		}
 		var label = CreateLabel(text, new Font(Font.FontFamily, Font.Size * 1.2f));
-		label.Margin = new Padding(0, (index == 0 ? 10 : 0), 0, (index == 1 ? 10 : 0));
+		label.Margin = new Padding(0, index == 0 ? 10 : 0, 0, index == 1 ? 10 : 0);
 		return label;
 	}
 

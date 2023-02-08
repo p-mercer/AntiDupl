@@ -61,7 +61,7 @@ public class ResultsOptions
 
 	public bool IsPairTableView()
 	{
-		return (m_viewMode == ViewMode.VerticalPairTable || m_viewMode == ViewMode.HorizontalPairTable);
+		return m_viewMode == ViewMode.VerticalPairTable || m_viewMode == ViewMode.HorizontalPairTable;
 	}
 
 	public delegate void ImageViewChangeHandler();

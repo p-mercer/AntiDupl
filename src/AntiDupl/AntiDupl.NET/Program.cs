@@ -80,7 +80,7 @@ internal static class Program
 		{
 			try
 			{
-				return (Convert.ToInt32(Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5").GetValue("Install")) == 1);
+				return Convert.ToInt32(Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5").GetValue("Install")) == 1;
 			}
 			catch
 			{

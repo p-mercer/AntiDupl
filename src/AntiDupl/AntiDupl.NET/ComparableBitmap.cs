@@ -69,8 +69,8 @@ public class ComparableBitmap
 	private byte[] GetBmpBytes(Bitmap bmp)
 	{
 		var bData = bmp.LockBits(new Rectangle(new Point(), bmp.Size), ImageLockMode.ReadOnly, bmp.PixelFormat);
-		var byteCount = (bData.Stride * bmp.Height) / 4;
-		var bytesPerPixel = (bData.Stride * bmp.Height) / (bmp.Height * bmp.Width);
+		var byteCount = bData.Stride * bmp.Height / 4;
+		var bytesPerPixel = bData.Stride * bmp.Height / (bmp.Height * bmp.Width);
 		var bmpBytes = new byte[byteCount];
 
 		unsafe

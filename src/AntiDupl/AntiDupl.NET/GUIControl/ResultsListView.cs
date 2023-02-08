@@ -452,7 +452,7 @@ public class ResultsListView : DataGridView
 			m_resultRowSetter.Set(m_results[index], row);
 			row.Updated = true;
 		}
-		row.Current = (index == m_currentRowIndex);
+		row.Current = index == m_currentRowIndex;
 		base.OnRowPrePaint(e);
 	}
 

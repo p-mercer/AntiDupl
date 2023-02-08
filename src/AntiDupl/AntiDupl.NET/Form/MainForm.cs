@@ -124,7 +124,7 @@ public class MainForm : Form
 
 		Location = loc;
 		Size = size;
-		WindowState = (m_options.mainFormOptions.Maximized ? FormWindowState.Maximized : FormWindowState.Normal);
+		WindowState = m_options.mainFormOptions.Maximized ? FormWindowState.Maximized : FormWindowState.Normal;
 	}
 
 	private static int Restrict(int value, int min, int max)
@@ -134,7 +134,7 @@ public class MainForm : Form
 
 	private void GetSavedViewOptions()
 	{
-		m_options.mainFormOptions.Maximized = (WindowState == FormWindowState.Maximized);
+		m_options.mainFormOptions.Maximized = WindowState == FormWindowState.Maximized;
 		if (WindowState == FormWindowState.Normal)
 		{
 			m_options.mainFormOptions.Size = Size;

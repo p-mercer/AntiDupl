@@ -126,7 +126,7 @@ public class SearchExecuterForm : Form
 		KeyPreview = true;
 
 		var width = 800;
-		var height = (m_progressPanel.Height + mainTableLayoutPanel.Margin.Vertical) +
+		var height = m_progressPanel.Height + mainTableLayoutPanel.Margin.Vertical +
 		  m_stopButton.Height + m_stopButton.Padding.Vertical + mainTableLayoutPanel.Margin.Vertical +
 		  mainTableLayoutPanel.Padding.Vertical;
 		ClientSize = new Size(width, height);
@@ -455,15 +455,15 @@ public class SearchExecuterForm : Form
 		const ulong GB = 1024 * 1024 * 1024;
 		if (size > GB * 0.977)
 		{
-			return string.Format("{0:F1} GB", (double)(size) / GB);
+			return string.Format("{0:F1} GB", (double)size / GB);
 		}
 		else if (size > MB * 0.977)
 		{
-			return string.Format("{0:F1} MB", (double)(size) / MB);
+			return string.Format("{0:F1} MB", (double)size / MB);
 		}
 		else if (size > KB * 0.977)
 		{
-			return string.Format("{0:F1} KB", (double)(size) / KB);
+			return string.Format("{0:F1} KB", (double)size / KB);
 		}
 		else
 		{

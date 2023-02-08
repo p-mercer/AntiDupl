@@ -190,13 +190,13 @@ public class ResultRowSetter
 
 		cells[(int)ResultsListView.ColumnsTypeHorizontal.Group] = new DataGridViewTextBoxCell
 		{
-			Value = (result.Group == -1 ? "" : result.Group.ToString())
+			Value = result.Group == -1 ? "" : result.Group.ToString()
 		};
 		cells[(int)ResultsListView.ColumnsTypeHorizontal.Group].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
 		cells[(int)ResultsListView.ColumnsTypeHorizontal.GroupSize] = new DataGridViewTextBoxCell
 		{
-			Value = (result.GroupSize == -1 ? "" : result.GroupSize.ToString())
+			Value = result.GroupSize == -1 ? "" : result.GroupSize.ToString()
 		};
 		cells[(int)ResultsListView.ColumnsTypeHorizontal.GroupSize].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -328,13 +328,13 @@ public class ResultRowSetter
 
 		cells[(int)ResultsListView.ColumnsTypeHorizontal.Group] = new DataGridViewTextBoxCell
 		{
-			Value = (result.Group == -1 ? "" : result.Group.ToString())
+			Value = result.Group == -1 ? "" : result.Group.ToString()
 		};
 		cells[(int)ResultsListView.ColumnsTypeHorizontal.Group].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
 		cells[(int)ResultsListView.ColumnsTypeHorizontal.GroupSize] = new DataGridViewTextBoxCell
 		{
-			Value = (result.GroupSize == -1 ? "" : result.GroupSize.ToString())
+			Value = result.GroupSize == -1 ? "" : result.GroupSize.ToString()
 		};
 		cells[(int)ResultsListView.ColumnsTypeHorizontal.GroupSize].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
