@@ -47,7 +47,7 @@ public class CoreLib
 		}
 	}
 
-	public CoreVersion GetVersion(CoreDll.VersionType versionType)
+	public static CoreVersion GetVersion(CoreDll.VersionType versionType)
 	{
 		try
 		{
@@ -292,36 +292,6 @@ public class CoreLib
 		return 0;
 	}
 
-	public bool SetSelection(uint startFrom, uint size, bool value)
-	{
-		var pStartFrom = new UIntPtr[1];
-		pStartFrom[0] = new UIntPtr(startFrom);
-		return CoreDll.adSelectionSet(m_handle, Marshal.UnsafeAddrOfPinnedArrayElement(pStartFrom, 0), new UIntPtr(size),
-			value ? CoreDll.TRUE : CoreDll.FALSE) == CoreDll.Error.Ok;
-	}
-
-	public bool[] GetSelection(uint startFrom, uint size)
-	{
-		var pSelection = new int[size];
-		var pStartFrom = new UIntPtr[1];
-		pStartFrom[0] = new UIntPtr(startFrom);
-		var pSelectionSize = new UIntPtr[1];
-		pSelectionSize[0] = new UIntPtr(size);
-		if (CoreDll.adSelectionGet(m_handle, Marshal.UnsafeAddrOfPinnedArrayElement(pStartFrom, 0),
-			Marshal.UnsafeAddrOfPinnedArrayElement(pSelection, 0),
-			Marshal.UnsafeAddrOfPinnedArrayElement(pSelectionSize, 0)) == CoreDll.Error.Ok)
-		{
-			var selection = new bool[pSelectionSize[0].ToUInt32()];
-			for (var i = 0; i < selection.Length; ++i)
-			{
-				selection[i] = pSelection[i] != CoreDll.FALSE;
-			}
-
-			return selection;
-		}
-		return Array.Empty<bool>();
-	}
-
 	public bool SetCurrent(int index)
 	{
 		return CoreDll.adCurrentSet(m_handle, new IntPtr(index)) == CoreDll.Error.Ok;
@@ -444,10 +414,37 @@ public class CoreLib
 		}
 		return 0;
 	}
-
+	public bool SetSelection(uint startFrom, uint size, bool value)
+	{
+		var pStartFrom = new UIntPtr[1];
+		pStartFrom[0] = new UIntPtr(startFrom);
+		return CoreDll.adSelectionSet(m_handle, Marshal.UnsafeAddrOfPinnedArrayElement(pStartFrom, 0), new UIntPtr(size),
+			value ? CoreDll.TRUE : CoreDll.FALSE) == CoreDll.Error.Ok;
+	}
 	public bool SetSelection(int groupId, int index, CoreDll.SelectionType selectionType)
 	{
 		return CoreDll.adImageInfoSelectionSet(m_handle, new IntPtr(groupId), new IntPtr(index), selectionType) == CoreDll.Error.Ok;
+	}
+	public bool[] GetSelection(uint startFrom, uint size)
+	{
+		var pSelection = new int[size];
+		var pStartFrom = new UIntPtr[1];
+		pStartFrom[0] = new UIntPtr(startFrom);
+		var pSelectionSize = new UIntPtr[1];
+		pSelectionSize[0] = new UIntPtr(size);
+		if (CoreDll.adSelectionGet(m_handle, Marshal.UnsafeAddrOfPinnedArrayElement(pStartFrom, 0),
+			Marshal.UnsafeAddrOfPinnedArrayElement(pSelection, 0),
+			Marshal.UnsafeAddrOfPinnedArrayElement(pSelectionSize, 0)) == CoreDll.Error.Ok)
+		{
+			var selection = new bool[pSelectionSize[0].ToUInt32()];
+			for (var i = 0; i < selection.Length; ++i)
+			{
+				selection[i] = pSelection[i] != CoreDll.FALSE;
+			}
+
+			return selection;
+		}
+		return Array.Empty<bool>();
 	}
 
 	public bool[] GetSelection(int groupId, uint startFrom, uint size)
@@ -655,7 +652,7 @@ public class CoreLib
 	//-----------Private functions:--------------------------------------------
 	#region private
 
-	static private string BufferToString(char[] buffer, int startIndex, int maxSize)
+	private static string BufferToString(char[] buffer, int startIndex, int maxSize)
 	{
 		if (startIndex >= buffer.Length)
 		{

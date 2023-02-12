@@ -30,8 +30,18 @@ public class LabeledComboBox : TableLayoutPanel
 {
 	private readonly Label m_label;
 
-	public ComboBox comboBox { get; }
-	public override string Text { get { return m_label.Text; } set { m_label.Text = value; } }
+	public ComboBox ComboBox { get; }
+	public override string Text
+	{
+		get
+		{
+			return m_label.Text;
+		}
+		set
+		{
+			m_label.Text = value;
+		}
+	}
 
 	public LabeledComboBox(int comboBoxWidth, int comboBoxHeight, EventHandler selectedIndexChanged)
 	{
@@ -40,35 +50,35 @@ public class LabeledComboBox : TableLayoutPanel
 		ColumnCount = 2;
 		RowCount = 1;
 
-		comboBox = new ComboBox
+		ComboBox = new ComboBox
 		{
 			Size = new System.Drawing.Size(comboBoxWidth, comboBoxHeight),
 			Padding = new Padding(0, 0, 0, 0),
 			Margin = new Padding(0, 0, 0, 0),
 			DropDownStyle = ComboBoxStyle.DropDownList
 		};
-		comboBox.SelectedIndexChanged += new EventHandler(selectedIndexChanged);
-		Controls.Add(comboBox, 0, 0);
+		ComboBox.SelectedIndexChanged += new EventHandler(selectedIndexChanged);
+		Controls.Add(ComboBox, 0, 0);
 
 		m_label = InitFactory.Label.Create();
 		m_label.Padding = new Padding(0, 5, 5, 5);
 		Controls.Add(m_label, 1, 0);
 	}
 
-	public class Value 
+	public class Value
 	{
-		public int value;
-		public string description;
+		public int value { get; set; }
+		public string Description { get; set; }
 
 		public Value(int val, string desc)
 		{
 			value = val;
-			description = desc;
+			Description = desc;
 		}
 
 		public override string ToString()
 		{
-			return description;
+			return Description;
 		}
 	}
 
@@ -76,29 +86,29 @@ public class LabeledComboBox : TableLayoutPanel
 	{
 		get
 		{
-			var val = (Value)comboBox.SelectedItem;
+			var val = (Value)ComboBox.SelectedItem;
 			return val.value;
 		}
 		set
 		{
 			var index = -1;
 			var difference = int.MaxValue;
-			for (var i = 0; i < comboBox.Items.Count; i++)
+			for (var i = 0; i < ComboBox.Items.Count; i++)
 			{
-				var current = (Value)comboBox.Items[i];
+				var current = (Value)ComboBox.Items[i];
 				if (Math.Abs(current.value - value) < difference)
 				{
 					difference = Math.Abs(current.value - value);
 					index = i;
 				}
 			}
-			comboBox.SelectedIndex = index;
+			ComboBox.SelectedIndex = index;
 		}
 	}
 
 	public void SetDescription(int index, string description)
 	{
-		var value = (Value)comboBox.Items[index];
-		value.description = description;
+		var value = (Value)ComboBox.Items[index];
+		value.Description = description;
 	}
 }

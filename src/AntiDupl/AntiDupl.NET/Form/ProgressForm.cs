@@ -231,7 +231,7 @@ public class ProgressForm : Form
 	{
 		m_startDateTime = DateTime.Now;
 		m_state = State.Work;
-		m_coreOptions.Set(m_core, m_options.onePath);
+		m_coreOptions.Set(m_core, m_options.OnePath);
 		switch (m_type)
 		{
 			case Type.ApplyAction:

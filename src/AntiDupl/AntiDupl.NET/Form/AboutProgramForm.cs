@@ -28,14 +28,10 @@ namespace AntiDupl.NET;
 
 public class AboutProgramForm : Form
 {
-	private readonly CoreLib m_core;
-
-	private AboutProgramPanel m_aboutProgramPanel;
 	private Button m_okButton;
 
-	public AboutProgramForm(CoreLib core)
+	public AboutProgramForm()
 	{
-		m_core = core;
 		InitializeComponent();
 		UpdateStrings();
 	}
@@ -54,7 +50,7 @@ public class AboutProgramForm : Form
 		mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
 		Controls.Add(mainTableLayoutPanel);
 
-		m_aboutProgramPanel = new AboutProgramPanel(m_core)
+		var m_aboutProgramPanel = new AboutProgramPanel()
 		{
 			Location = new System.Drawing.Point(0, 0),
 			Dock = DockStyle.Fill

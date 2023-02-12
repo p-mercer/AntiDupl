@@ -262,7 +262,7 @@ public class CoreOptions
 		}
 	}
 
-	static public CoreOptions Load(string fileName, CoreLib core, bool onePath)
+	public static CoreOptions Load(string fileName, CoreLib core, bool onePath)
 	{
 		var fileInfo = new FileInfo(fileName);
 		if (fileInfo.Exists)
@@ -292,22 +292,18 @@ public class CoreOptions
 
 	public void Save(string fileName)
 	{
-		TextWriter writer = null;
 		try
 		{
-			writer = new StreamWriter(fileName);
+			using TextWriter writer = new StreamWriter(fileName);
 			var xmlSerializer = new XmlSerializer(typeof(CoreOptions));
 			xmlSerializer.Serialize(writer, this);
 		}
-		catch
-		{
-		}
-		writer?.Close();
+		catch { }
 	}
 
 	public string GetImageDataBasePath()
 	{
-		var directory = string.Format("{0}\\images\\{1}x{1}", Resources.UserPath, AdvancedOptions.ReducedImageSize);
+		var directory = $@"{Resources.UserPath}\images\{AdvancedOptions.ReducedImageSize}x{AdvancedOptions.ReducedImageSize}";
 		var directoryInfo = new DirectoryInfo(directory);
 		if (!directoryInfo.Exists)
 		{

@@ -38,7 +38,10 @@ public class ThumbnailPreview : Panel
 	public CoreGroup Group { get; private set; }
 
 	public int Index { get; private set; }
-	public CoreImageInfo ImageInfo { get { return Group.Images[Index]; } }
+	public CoreImageInfo ImageInfo
+	{
+		get { return Group.Images[Index]; }
+	}
 
 	private PictureBoxPanel m_pictureBoxPanel;
 
@@ -48,7 +51,6 @@ public class ThumbnailPreview : Panel
 		m_options = options;
 		m_mainSplitContainer = mainSplitContainer;
 		InnitializeComponents();
-		//InnitializeTestButton();
 	}
 
 	private void InnitializeComponents()

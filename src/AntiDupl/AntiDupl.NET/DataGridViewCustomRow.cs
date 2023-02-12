@@ -29,14 +29,14 @@ namespace AntiDupl.NET;
 public class DataGridViewCustomRow : DataGridViewRow
 {
 	public bool Current { get; set; }
-	public bool Selected { get; set; }
+	public bool selected { get; set; }
 	public bool Updated { get; set; }
 
 	protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle rowBounds, int rowIndex, DataGridViewElementStates rowState, bool isFirstDisplayedRow, bool isLastVisibleRow)
 	{
 		var state =
 		  (DataGridViewElementStates)((int)rowState & ~(int)DataGridViewElementStates.Selected) |
-		  (Selected ? DataGridViewElementStates.Selected : 0);
+		  (selected ? DataGridViewElementStates.Selected : 0);
 		base.Paint(graphics, clipBounds, rowBounds, rowIndex, state, isFirstDisplayedRow, isLastVisibleRow);
 		if (Current)
 		{

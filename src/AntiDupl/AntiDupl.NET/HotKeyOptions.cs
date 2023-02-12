@@ -106,12 +106,6 @@ public class HotKeyOptions
 		{
 			keys[(int)Action.ShowNeighbours] = Keys.Control | Keys.Q;
 		}
-		/*for(Keys key = Keys.NumPad1; key < Keys.NumPad7; key++)
-{
-   keys[(int)action] = key;
-   if(Valid(action)) 
-	   break;
-}*/
 	}
 
 	public void CopyTo(ref HotKeyOptions options)

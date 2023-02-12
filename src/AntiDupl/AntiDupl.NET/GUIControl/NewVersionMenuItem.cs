@@ -25,6 +25,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -36,14 +37,11 @@ public class NewVersionMenuItem : ToolStripMenuItem
 
 	private Version m_localVersion;
 	private Version m_onlineVersion;
-
-	private readonly Options m_options;
-
 	private System.Windows.Forms.Timer m_timer;
 
 	public NewVersionMenuItem(Options options)
 	{
-		m_options = options;
+		var m_options = options;
 		InitializeComponents();
 		if (m_options.CheckingForUpdates)
 		{
@@ -90,13 +88,10 @@ public class NewVersionMenuItem : ToolStripMenuItem
 	{
 		if (m_downloadingFinished)
 		{
-			if (m_onlineVersion != null)
+			if (m_onlineVersion != null && Version.Compare(m_localVersion, m_onlineVersion) < 0)
 			{
-				if (Version.Compare(m_localVersion, m_onlineVersion) < 0)
-				{
-					Visible = true;
-					UpdateStrings();
-				}
+				Visible = true;
+				UpdateStrings();
 			}
 			m_timer.Stop();
 		}
@@ -105,8 +100,6 @@ public class NewVersionMenuItem : ToolStripMenuItem
 	private void InitializeVersions()
 	{
 		m_localVersion = new Version();
-		//m_localVersion.Save("version.xml");
-
 		var thread = new Thread(OnlineVersionDownloadThreadTask);
 		thread.Start();
 	}
@@ -115,8 +108,8 @@ public class NewVersionMenuItem : ToolStripMenuItem
 	{
 		try
 		{
-			var webClient = new WebClient();
-			var buffer = webClient.DownloadData(Resources.WebLinks.Version);
+			var http = new HttpClient();
+			var buffer = http.GetByteArrayAsync(Resources.WebLinks.Version).Result;
 			m_onlineVersion = Version.LoadXml(new MemoryStream(buffer));
 		}
 		catch

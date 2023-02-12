@@ -58,7 +58,7 @@ public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
 		m_second = second;
 	}
 
-	override protected void Paint(Graphics graphics, Rectangle clipBounds, Rectangle cellBounds,
+	protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle cellBounds,
 	  int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue,
 	  string errorText, DataGridViewCellStyle cellStyle,
 	  DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
@@ -175,7 +175,7 @@ public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
 		}
 	}
 
-	override protected Size GetPreferredSize(Graphics graphics, DataGridViewCellStyle cellStyle,
+	protected override Size GetPreferredSize(Graphics graphics, DataGridViewCellStyle cellStyle,
 		int rowIndex, Size constraintSize)
 	{
 		Size preferedSize = new(0, 0), firstSize = new(0, 0), secondSize = new(0, 0);

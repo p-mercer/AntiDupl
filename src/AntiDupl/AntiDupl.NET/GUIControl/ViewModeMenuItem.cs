@@ -57,12 +57,8 @@ public class ViewModeMenuItem : ToolStripMenuItem
 		m_horizontalPairTableMenuItem = InitFactory.MenuItem.Create(null, ResultsOptions.ViewMode.HorizontalPairTable, OnClick);
 		m_groupedThumbnailsMenuItem = InitFactory.MenuItem.Create(null, ResultsOptions.ViewMode.GroupedThumbnails, OnClick);
 
-		//m_groupedThumbnailsMenuItem.Enabled = false;
-
 		DropDownItems.Add(m_verticalPairTableMenuItem);
 		DropDownItems.Add(m_horizontalPairTableMenuItem);
-		//DropDownItems.Add(new ToolStripSeparator());
-		//DropDownItems.Add(m_groupedThumbnailsMenuItem);
 	}
 
 	private void OnClick(object sender, EventArgs e)

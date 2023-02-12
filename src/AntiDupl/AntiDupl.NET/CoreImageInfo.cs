@@ -55,62 +55,29 @@ public class CoreImageInfo
 
 	public string GetImageSizeString()
 	{
-		var builder = new StringBuilder();
-		builder.Append(Width);
-		builder.Append(" x ");
-		builder.Append(Height);
-		return builder.ToString();
+		return $"{Width} x {Height}";
 	}
 
 	public string GetImageTypeString()
 	{
-		var builder = new StringBuilder();
-		switch (Type)
+		return Type switch
 		{
-			case CoreDll.ImageType.None:
-				builder.Append("");
-				break;
-			case CoreDll.ImageType.Bmp:
-				builder.Append("BMP");
-				break;
-			case CoreDll.ImageType.Gif:
-				builder.Append("GIF");
-				break;
-			case CoreDll.ImageType.Jpeg:
-				builder.Append("JPG");
-				break;
-			case CoreDll.ImageType.Png:
-				builder.Append("PNG");
-				break;
-			case CoreDll.ImageType.Tiff:
-				builder.Append("TIFF");
-				break;
-			case CoreDll.ImageType.Emf:
-				builder.Append("EMF");
-				break;
-			case CoreDll.ImageType.Wmf:
-				builder.Append("WMF");
-				break;
-			case CoreDll.ImageType.Exif:
-				builder.Append("EXIF");
-				break;
-			case CoreDll.ImageType.Icon:
-				builder.Append("ICON");
-				break;
-			case CoreDll.ImageType.Jp2:
-				builder.Append("JP2");
-				break;
-			case CoreDll.ImageType.Psd:
-				builder.Append("PSD");
-				break;
-			case CoreDll.ImageType.Dds:
-				builder.Append("DDS");
-				break;
-			case CoreDll.ImageType.Heif:
-				builder.Append("HEIF");
-				break;
-		}
-		return builder.ToString();
+			CoreDll.ImageType.None => "",
+			CoreDll.ImageType.Bmp => "BMP",
+			CoreDll.ImageType.Gif => "GIF",
+			CoreDll.ImageType.Jpeg => "JPG",
+			CoreDll.ImageType.Png => "PNG",
+			CoreDll.ImageType.Tiff => "TIFF",
+			CoreDll.ImageType.Emf => "EMF",
+			CoreDll.ImageType.Wmf => "WMF",
+			CoreDll.ImageType.Exif => "EXIF",
+			CoreDll.ImageType.Icon => "ICON",
+			CoreDll.ImageType.Jp2 => "JP2",
+			CoreDll.ImageType.Psd => "PSD",
+			CoreDll.ImageType.Dds => "DDS",
+			CoreDll.ImageType.Heif => "HEIF",
+			_ => ""
+		};
 	}
 
 	public string GetBlockinessString()

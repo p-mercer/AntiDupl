@@ -252,7 +252,7 @@ public class ResultsListView : DataGridView
 		for (var i = 0; i < Rows.Count; i++)
 		{
 			var row = (DataGridViewCustomRow)Rows[i];
-			if (row.Selected && i >= 0 && i < m_results.Length)
+			if (row.selected && i >= 0 && i < m_results.Length)
 			{
 				selectedResultsCount++;
 			}
@@ -427,7 +427,7 @@ public class ResultsListView : DataGridView
 				row.Updated = false;
 				if (selection != null)
 				{
-					row.Selected = selection[i];
+					row.selected = selection[i];
 				}
 			}
 			var current = m_core.GetCurrent();
@@ -707,7 +707,7 @@ public class ResultsListView : DataGridView
 			else if (e.Button == MouseButtons.Right)
 			{
 				var row = (DataGridViewCustomRow)Rows[e.RowIndex];
-				if (!m_isControlDown && !row.Selected)
+				if (!m_isControlDown && !row.selected)
 				{
 					SetCurrentRow(e.RowIndex);
 					SetRowSelection(false);
@@ -873,7 +873,7 @@ public class ResultsListView : DataGridView
 					{
 						SetRowSelection(0, Rows.Count, false);
 					}
-					var value = !((DataGridViewCustomRow)Rows[m_currentRowIndex]).Selected;
+					var value = !((DataGridViewCustomRow)Rows[m_currentRowIndex]).selected;
 					SetRowSelection(m_currentRowIndex, m_currentRowIndex + 1, value);
 				}
 			}
@@ -886,7 +886,7 @@ public class ResultsListView : DataGridView
 		for (var i = beginRowIndex; i < endRowIndex; i++)
 		{
 			var row = (DataGridViewCustomRow)Rows[i];
-			row.Selected = value;
+			row.selected = value;
 		}
 		m_core.SetSelection((uint)beginRowIndex, (uint)(endRowIndex - beginRowIndex), value);
 	}
@@ -962,7 +962,7 @@ public class ResultsListView : DataGridView
 			for (var i = 0; i < Rows.Count; i++)
 			{
 				var row = (DataGridViewCustomRow)Rows[i];
-				if (row.Selected)
+				if (row.selected)
 				{
 					builder.Add(m_results[i]);
 				}
@@ -985,7 +985,7 @@ public class ResultsListView : DataGridView
 			for (var i = 0; i < Rows.Count; i++)
 			{
 				var row = (DataGridViewCustomRow)Rows[i];
-				if (row.Selected)
+				if (row.selected)
 				{
 					if (string.IsNullOrEmpty(m_results[i].Second.Path))
 					{

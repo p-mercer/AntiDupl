@@ -33,14 +33,14 @@ using System.Xml.Serialization;
 
 namespace AntiDupl.NET;
 
-static public class Resources
+public static class Resources
 {
-	static private string GetPath(string path, string name, string extension)
+	private static string GetPath(string path, string name, string extension)
 	{
-		return string.Format("{0}\\{1}{2}", path, name, extension);
+		return $"{path}\\{name}{extension}";
 	}
 
-	static private string CreateIfNotExists(string path)
+	private static string CreateIfNotExists(string path)
 	{
 		var directoryInfo = new DirectoryInfo(path);
 		if (!directoryInfo.Exists)
@@ -51,29 +51,29 @@ static public class Resources
 		return path;
 	}
 
-	static public string GetDefaultUserPath()
+	public static string GetDefaultUserPath()
 	{
-		return CreateIfNotExists(string.Format("{0}\\user", Application.StartupPath));
+		return CreateIfNotExists($"{Application.StartupPath}\\user");
 	}
 
-	static public string UserPath { get; set; }
+	public static string UserPath { get; set; }
 
-	static public string ProfilesPath { get { return CreateIfNotExists(string.Format("{0}\\profiles", UserPath)); } }
+	public static string ProfilesPath { get { return CreateIfNotExists($"{UserPath}\\profiles"); } }
 
-	static public string DataPath { get { return string.Format("{0}\\data", Application.StartupPath); } }
+	public static string DataPath { get { return $"{Application.StartupPath}\\data"; } }
 
-	static public string Path { get { return string.Format("{0}\\resources", DataPath); } }
+	public static string Path { get { return $"{DataPath}\\resources"; } }
 
-	static public class Images
+	public static class Images
 	{
-		static public Image GetNullImage()
+		public static Image GetNullImage()
 		{
 			var bitmap = new Bitmap(1, 1);
 			bitmap.SetPixel(0, 0, Color.FromArgb(0, 0, 0, 0));
 			return bitmap;
 		}
 
-		static public Image GetImageWithBlackCircle(int width, int height, double radius)
+		public static Image GetImageWithBlackCircle(int width, int height, double radius)
 		{
 			var bitmap = new Bitmap(width, height);
 			for (var x = 0; x < width; x++)
@@ -95,7 +95,7 @@ static public class Resources
 			return bitmap;
 		}
 
-		static public Image Get(string name)
+		public static Image Get(string name)
 		{
 			Image image;
 			try
@@ -115,20 +115,20 @@ static public class Resources
 			return image;
 		}
 
-		static private string Path { get { return string.Format("{0}\\images", Resources.Path); } }
+		private static string Path { get { return $"{Resources.Path}\\images"; } }
 
-		static private string Extension { get { return ".img"; } }
+		private static string Extension { get { return ".img"; } }
 	}
 
-	static public class Icons
+	public static class Icons
 	{
-		static public Icon Get(Size size)
+		public static Icon Get(Size size)
 		{
 			var icon = Get();
 			return new Icon(icon, size);
 		}
 
-		static public Icon Get()
+		public static Icon Get()
 		{
 			Icon icon = null;
 			try
@@ -148,12 +148,12 @@ static public class Resources
 			return icon;
 		}
 
-		static private string Path { get { return string.Format("{0}\\icons", Resources.Path); } }
+		private static string Path { get { return $"{Resources.Path}\\icons"; } }
 
-		static private string Extension { get { return ".ico"; } }
+		private static string Extension { get { return ".ico"; } }
 	}
 
-	static public class Strings
+	public static class Strings
 	{
 		public delegate void CurrentChangeHandler();
 		/// <summary>
@@ -161,7 +161,7 @@ static public class Resources
 		/// </summary>
 		public static event CurrentChangeHandler OnCurrentChange;
 
-		static public void Initialize()
+		public static void Initialize()
 		{
 			m_strings.Clear();
 
@@ -199,7 +199,7 @@ static public class Resources
 			}
 		}
 
-		static private NET.Strings Load(string path)
+		private static NET.Strings Load(string path)
 		{
 			var fileInfo = new FileInfo(path);
 			if (fileInfo.Exists)
@@ -223,11 +223,10 @@ static public class Resources
 			}
 		}
 
-		static private void Save(NET.Strings strings)
+		private static void Save(NET.Strings strings)
 		{
 			try
 			{
-
 				TextWriter writer = new StreamWriter(GetPath(Path, strings.Name, Extension));
 				var xmlSerializer = new XmlSerializer(typeof(NET.Strings));
 				xmlSerializer.Serialize(writer, strings);
@@ -238,11 +237,11 @@ static public class Resources
 			}
 		}
 
-		static private string Path { get { return string.Format("{0}\\strings", Resources.Path); } }
+		private static string Path { get { return $"{Resources.Path}\\strings"; } }
 
-		static private string Extension { get { return ".xml"; } }
+		private static string Extension { get { return ".xml"; } }
 
-		static private string Filter { get { return "*.xml"; } }
+		private static string Filter { get { return "*.xml"; } }
 
 		public static int Count
 		{
@@ -326,7 +325,7 @@ static public class Resources
 		}
 	}
 
-	static public class WebLinks
+	public static class WebLinks
 	{
 		public const string GithubComAntidupl = "http://ermig1979.github.io/AntiDupl";
 		public const string GithubComAntiduplEnglish = "http://ermig1979.github.io/AntiDupl/english/index.html";
@@ -348,9 +347,9 @@ static public class Resources
 		}
 	}
 
-	static public class Help
+	public static class Help
 	{
-		static private string GetUrl(string page)
+		private static string GetUrl(string page)
 		{
 			var builder = new StringBuilder(WebLinks.GithubComAntidupl);
 			builder.Append("/data/help");
@@ -389,7 +388,7 @@ static public class Resources
 			}
 		}
 
-		static public void Show(string url)
+		public static void Show(string url)
 		{
 			try
 			{
@@ -413,20 +412,20 @@ static public class Resources
 			}
 		}
 
-		static public void Bind(Form form, string path)
+		public static void Bind(Form form, string path)
 		{
 			form.Tag = new Starter(form, path);
 		}
 
-		static public string Index { get { return GetUrl(null); } }
-		static public string Options { get { return GetUrl("options.html"); } }
-		static public string Paths { get { return GetUrl("paths.html"); } }
-		static public string HotKeys { get { return GetUrl("hotkeys.html"); } }
+		public static string Index { get { return GetUrl(null); } }
+		public static string Options { get { return GetUrl("options.html"); } }
+		public static string Paths { get { return GetUrl("paths.html"); } }
+		public static string HotKeys { get { return GetUrl("hotkeys.html"); } }
 	}
 
-	static public class Logs
+	public static class Logs
 	{
-		static public string Performance { get { return string.Format("{0}\\performance.txt", UserPath); } }
+		public static string Performance { get { return $"{UserPath}\\performance.txt"; } }
 	}
 }
 

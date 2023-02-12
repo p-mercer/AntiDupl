@@ -145,7 +145,7 @@ public class SearchExecuterForm : Form
 	private void CoreThreadTask()
 	{
 		m_startDateTime = DateTime.Now;
-		m_coreOptions.Set(m_core, m_options.onePath);
+		m_coreOptions.Set(m_core, m_options.OnePath);
 		m_state = State.ClearResults;
 		m_core.Clear(CoreDll.FileType.Result);
 		m_state = State.ClearTemporary;
@@ -347,7 +347,7 @@ public class SearchExecuterForm : Form
 			total = mainThreadStatus.Total;
 			if (mainThreadStatus.Current > 0)
 			{
-				if (m_coreOptions.CompareOptions.checkOnEquality)
+				if (m_coreOptions.CompareOptions.CheckOnEquality)
 				{
 					for (var i = 0; ; i++)
 					{
@@ -436,14 +436,14 @@ public class SearchExecuterForm : Form
 		var writer = File.AppendText(Resources.Logs.Performance);
 
 		writer.WriteLine("---------------------------------------------------------------");
-		writer.WriteLine(string.Format("Search start time: {0}", m_startDateTime.ToString()));
-		writer.WriteLine(string.Format("Elapsed time: {0}", time.ToString()));
-		writer.WriteLine(string.Format("Found {0} of {1} images in {2} folders.", MemoryString(statistic.SearchedImageSize), statistic.SearchedImageNumber, statistic.ScanedFolderNumber));
-		writer.WriteLine(string.Format("Processed {0} images.", statistic.ComparedImageNumber));
-		writer.WriteLine(string.Format("Found {0} defects and {1} duples.", statistic.DefectImageNumber, statistic.DuplImagePairNumber));
-		writer.WriteLine(string.Format("Used {0} load and {1} compare threads.", statistic.CollectThreadCount, statistic.CompareThreadCount));
-		writer.WriteLine(string.Format("Use image database: {0}.", m_options.UseImageDataBase));
-		writer.WriteLine(string.Format("Use libjpeg-turbo: {0}.", m_coreOptions.AdvancedOptions.UseLibJpegTurbo));
+		writer.WriteLine($"Search start time: {m_startDateTime}");
+		writer.WriteLine($"Elapsed time: {time}");
+		writer.WriteLine($"Found {MemoryString(statistic.SearchedImageSize)} of {statistic.SearchedImageNumber} images in {statistic.ScanedFolderNumber} folders.");
+		writer.WriteLine($"Processed {statistic.ComparedImageNumber} images.");
+		writer.WriteLine($"Found {statistic.DefectImageNumber} defects and {statistic.DuplImagePairNumber} duples.");
+		writer.WriteLine($"Used {statistic.CollectThreadCount} load and {statistic.CompareThreadCount} compare threads.");
+		writer.WriteLine($"Use image database: {m_options.UseImageDataBase}.");
+		writer.WriteLine($"Use libjpeg-turbo: {m_coreOptions.AdvancedOptions.UseLibJpegTurbo}.");
 
 		writer.Close();
 	}
@@ -455,19 +455,19 @@ public class SearchExecuterForm : Form
 		const ulong GB = 1024 * 1024 * 1024;
 		if (size > GB * 0.977)
 		{
-			return string.Format("{0:F1} GB", (double)size / GB);
+			return $"{(double)size / GB:F1} GB";
 		}
 		else if (size > MB * 0.977)
 		{
-			return string.Format("{0:F1} MB", (double)size / MB);
+			return $"{(double)size / MB:F1} MB";
 		}
 		else if (size > KB * 0.977)
 		{
-			return string.Format("{0:F1} KB", (double)size / KB);
+			return $"{(double)size / KB:F1} KB";
 		}
 		else
 		{
-			return string.Format("{0} B", size);
+			return $"{size} B";
 		}
 	}
 }

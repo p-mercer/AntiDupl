@@ -51,11 +51,10 @@ public class ComparableBitmap
 
 		// Create the new bitmap and associated graphics object
 		using var sectionBmp = new Bitmap(section.Width, section.Height);
-		using (var g = Graphics.FromImage(sectionBmp))
-		{
-			// Draw the specified section of the source bitmap to the new one
-			g.DrawImage(bitmapSource, 0, 0, section, GraphicsUnit.Pixel);
-		}
+		using var g = Graphics.FromImage(sectionBmp);
+
+		// Draw the specified section of the source bitmap to the new one
+		g.DrawImage(bitmapSource, 0, 0, section, GraphicsUnit.Pixel);
 
 		GrayscaleData = GetBmpBytes(ToGrayScale(sectionBmp));
 	}
@@ -93,23 +92,19 @@ public class ComparableBitmap
 		var newBitmap = new Bitmap(b.Width, b.Height);
 
 		//get a graphics object from the new image
-		using (var g = Graphics.FromImage(newBitmap))
-		{
+		using var g = Graphics.FromImage(newBitmap);
 
-			//create some image attributes
-			var attributes = new ImageAttributes();
+		//create some image attributes
+		var attributes = new ImageAttributes();
 
-			//set the color matrix attribute
-			attributes.SetColorMatrix(colorMatrix);
+		//set the color matrix attribute
+		attributes.SetColorMatrix(colorMatrix);
 
-			//draw the original image on the new image
-			//using the grayscale color matrix
-			g.DrawImage(b, new Rectangle(0, 0, b.Width, b.Height),
-			   0, 0, b.Width, b.Height, GraphicsUnit.Pixel, attributes);
-
-		}
+		//draw the original image on the new image
+		//using the grayscale color matrix
+		g.DrawImage(b, new Rectangle(0, 0, b.Width, b.Height),
+		   0, 0, b.Width, b.Height, GraphicsUnit.Pixel, attributes);
 
 		return newBitmap;
 	}
-
 }

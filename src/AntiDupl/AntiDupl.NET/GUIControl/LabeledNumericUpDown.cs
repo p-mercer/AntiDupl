@@ -39,7 +39,11 @@ internal class LabeledNumericUpDown : TableLayoutPanel
 	private float m_default;
 	private readonly EventHandler m_valueChangedHandler;
 
-	public override string Text { get { return m_label.Text; } set { m_label.Text = value; } }
+	public override string Text
+	{
+		get { return m_label.Text; }
+		set { m_label.Text = value; }
+	}
 
 	public float Value
 	{

@@ -49,13 +49,13 @@ public class ResultsPreviewContainer : Panel
 		Dock = DockStyle.Fill;
 
 		m_mainSplitContainer = mainSplitContainer;
-		m_resultsPreviewDefect = new ResultsPreviewDefect(core, options, coreOptions, m_mainSplitContainer.resultsListView)
+		m_resultsPreviewDefect = new ResultsPreviewDefect(core, options, coreOptions, m_mainSplitContainer.ResultsListView)
 		{
 			Location = new Point(0, 0),
 			Dock = DockStyle.Fill
 		};
 
-		m_resultsPreviewDuplPair = new ResultsPreviewDuplPair(core, options, coreOptions, m_mainSplitContainer.resultsListView)
+		m_resultsPreviewDuplPair = new ResultsPreviewDuplPair(core, options, coreOptions, m_mainSplitContainer.ResultsListView)
 		{
 			Location = new Point(0, 0),
 			Dock = DockStyle.Fill
@@ -67,7 +67,7 @@ public class ResultsPreviewContainer : Panel
 
 	private void CurrentResultChanged()
 	{
-		var result = m_mainSplitContainer.resultsListView.GetCurrentResult();
+		var result = m_mainSplitContainer.ResultsListView.GetCurrentResult();
 		var state = State.Empty;
 		if (result != null)
 		{

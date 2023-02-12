@@ -30,11 +30,8 @@ public class AboutProgramPanel : Panel
 {
 	private const int LOGO_SIZE = 32;
 
-	private readonly CoreLib m_core;
-
-	public AboutProgramPanel(CoreLib core)
+	public AboutProgramPanel()
 	{
-		m_core = core;
 		InitializeComponent();
 	}
 
@@ -48,13 +45,9 @@ public class AboutProgramPanel : Panel
 		layout.AutoSize = true;
 
 		layout.Controls.Add(CreateLogotype(new Font(Font.FontFamily, Font.Size * 2.0f)), 0, 0);
-
 		layout.Controls.Add(GetCoopyrightLabel(0), 0, 1);
-
 		layout.Controls.Add(GetCoopyrightLabel(1), 0, 2);
-
 		layout.Controls.Add(CreateInfoTable(Font), 0, 3);
-
 		Controls.Add(layout);
 	}
 
@@ -63,8 +56,12 @@ public class AboutProgramPanel : Panel
 		string text = null;
 		switch (index)
 		{
-			case 0: text = Resources.Strings.Current.AboutProgramPanel_CopyrightLabel0_Text; break;
-			case 1: text = Resources.Strings.Current.AboutProgramPanel_CopyrightLabel1_Text; break;
+			case 0:
+				text = Resources.Strings.Current.AboutProgramPanel_CopyrightLabel0_Text;
+				break;
+			case 1:
+				text = Resources.Strings.Current.AboutProgramPanel_CopyrightLabel1_Text;
+				break;
 		}
 		var label = CreateLabel(text, new Font(Font.FontFamily, Font.Size * 1.2f));
 		label.Margin = new Padding(0, index == 0 ? 10 : 0, 0, index == 1 ? 10 : 0);
@@ -112,22 +109,22 @@ public class AboutProgramPanel : Panel
 			new Font(font, FontStyle.Bold)), 1, 0);
 
 		table.Controls.Add(CreateLinkLabel(Application.ProductName, Resources.WebLinks.GithubComAntidupl, font), 0, 1);
-		table.Controls.Add(CreateLabel(m_core.GetVersion(CoreDll.VersionType.AntiDupl).ToString(), font), 1, 1);
+		table.Controls.Add(CreateLabel(CoreLib.GetVersion(CoreDll.VersionType.AntiDupl).ToString(), font), 1, 1);
 
 		table.Controls.Add(CreateLinkLabel("Simd", Resources.WebLinks.Simd, font), 0, 2);
-		table.Controls.Add(CreateLabel(m_core.GetVersion(CoreDll.VersionType.Simd).ToString(), font), 1, 2);
+		table.Controls.Add(CreateLabel(CoreLib.GetVersion(CoreDll.VersionType.Simd).ToString(), font), 1, 2);
 
 		table.Controls.Add(CreateLinkLabel("OpenJPEG", Resources.WebLinks.OpenJpeg, font), 0, 3);
-		table.Controls.Add(CreateLabel(m_core.GetVersion(CoreDll.VersionType.OpenJpeg).ToString(), font), 1, 3);
+		table.Controls.Add(CreateLabel(CoreLib.GetVersion(CoreDll.VersionType.OpenJpeg).ToString(), font), 1, 3);
 
 		table.Controls.Add(CreateLinkLabel("libwebp", Resources.WebLinks.LibWebp, font), 0, 4);
-		table.Controls.Add(CreateLabel(m_core.GetVersion(CoreDll.VersionType.Webp).ToString(), font), 1, 4);
+		table.Controls.Add(CreateLabel(CoreLib.GetVersion(CoreDll.VersionType.Webp).ToString(), font), 1, 4);
 
 		table.Controls.Add(CreateLinkLabel("libjpeg-turbo", Resources.WebLinks.LibJpegTurbo, font), 0, 5);
-		table.Controls.Add(CreateLabel(m_core.GetVersion(CoreDll.VersionType.TurboJpeg).ToString(), font), 1, 5);
+		table.Controls.Add(CreateLabel(CoreLib.GetVersion(CoreDll.VersionType.TurboJpeg).ToString(), font), 1, 5);
 
 		table.Controls.Add(CreateLinkLabel("libheif", Resources.WebLinks.LibHeif, font), 0, 6);
-		table.Controls.Add(CreateLabel(m_core.GetVersion(CoreDll.VersionType.Heif).ToString(), font), 1, 6);
+		table.Controls.Add(CreateLabel(CoreLib.GetVersion(CoreDll.VersionType.Heif).ToString(), font), 1, 6);
 		return table;
 	}
 

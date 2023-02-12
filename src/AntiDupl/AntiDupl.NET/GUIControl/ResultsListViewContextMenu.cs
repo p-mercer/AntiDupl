@@ -110,7 +110,7 @@ public class ResultsListViewContextMenu : ContextMenuStrip
 	{
 		Items.Clear();
 
-		if (m_mainSplitContainer.resultsListView.GetTotalResultCount() > 0)
+		if (m_mainSplitContainer.ResultsListView.GetTotalResultCount() > 0)
 		{
 			if (m_core.CanApply(CoreDll.ActionEnableType.Defect))
 			{
@@ -127,7 +127,7 @@ public class ResultsListViewContextMenu : ContextMenuStrip
 				Items.Add(new ToolStripSeparator());
 				Items.Add(m_renameFirstLikeSecond);
 				Items.Add(m_renameSecondLikeFirst);
-				if (m_mainSplitContainer.resultsListView.MoveEnable())
+				if (m_mainSplitContainer.ResultsListView.MoveEnable())
 				{
 					Items.Add(m_moveFirstToSecond);
 					Items.Add(m_moveSecondToFirst);
@@ -150,13 +150,13 @@ public class ResultsListViewContextMenu : ContextMenuStrip
 	{
 		var item = (ToolStripItem)sender;
 		var action = (CoreDll.LocalActionType)item.Tag;
-		m_mainSplitContainer.resultsListView.MakeAction(action, CoreDll.TargetType.Selected);
+		m_mainSplitContainer.ResultsListView.MakeAction(action, CoreDll.TargetType.Selected);
 	}
 
 	private void UpdateResults()
 	{
-		if (m_mainSplitContainer.resultsListView != null &&
-			m_mainSplitContainer.resultsListView.GetTotalResultCount() > 0)
+		if (m_mainSplitContainer.ResultsListView != null &&
+			m_mainSplitContainer.ResultsListView.GetTotalResultCount() > 0)
 		{
 			Items.Add(new ToolStripSeparator());
 		}

@@ -54,7 +54,6 @@ public class StartFinishForm : Form
 	private readonly Options m_options;
 	private System.Windows.Forms.Timer m_timer;
 
-	private AboutProgramPanel m_aboutProgramPanel;
 	private ProgressBar m_progressBar;
 
 	public StartFinishForm(CoreLib core, Options options)
@@ -80,7 +79,7 @@ public class StartFinishForm : Form
 		mainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
 		Controls.Add(mainTableLayoutPanel);
 
-		m_aboutProgramPanel = new AboutProgramPanel(m_core)
+		var m_aboutProgramPanel = new AboutProgramPanel()
 		{
 			Location = new Point(0, 0),
 			Dock = DockStyle.Fill

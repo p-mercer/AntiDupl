@@ -39,8 +39,6 @@ public class MainSplitContainer : SplitContainer
 
 	private readonly MainForm m_mainForm;
 	private readonly Options m_options;
-	private readonly CoreLib m_core;
-	private readonly CoreOptions m_coreOptions;
 	private readonly ResultsPreviewContainer m_resultsPreviewContainer;
 
 	private readonly ThumbnailGroupTable m_thumbnailGroupTable;
@@ -48,7 +46,7 @@ public class MainSplitContainer : SplitContainer
 	private bool m_setOrientationNow;
 	private bool m_atLeastOneTimeSetOrientation;
 
-	public ResultsListView resultsListView { get; }
+	public ResultsListView ResultsListView { get; }
 
 	public delegate void UpdateResultsHandler();
 	public event UpdateResultsHandler OnUpdateResults;
@@ -63,20 +61,16 @@ public class MainSplitContainer : SplitContainer
 	{
 		m_mainForm = mainForm;
 		m_options = options;
-		m_core = core;
-		m_coreOptions = coreOptions;
+		var m_core = core;
+		var m_coreOptions = coreOptions;
 
-		resultsListView = new ResultsListView(m_core, m_options, m_coreOptions, this);
+		ResultsListView = new ResultsListView(m_core, m_options, m_coreOptions, this);
 		m_resultsPreviewContainer = new ResultsPreviewContainer(m_core, m_options, m_coreOptions, this);
-
-		//m_resultsListView.UpdateResults();
 
 		m_thumbnailGroupTable = new ThumbnailGroupTable(m_core, m_options, this);
 		m_thumbnailPreview = new ThumbnailPreview(m_core, m_options, this);
 		m_thumbnailPreview.ContextMenuStrip = new ThumbnailPreviewContextMenu(m_core, m_options, m_thumbnailPreview, m_thumbnailGroupTable);
 		m_thumbnailGroupTable.OnCurrentThumbnailChanged += m_thumbnailPreview.SetThumbnail;
-
-		//m_thumbnailGroupTable.UpdateGroups();
 
 		InitializeComponents();
 
@@ -107,7 +101,7 @@ public class MainSplitContainer : SplitContainer
 		Panel1.Controls.Clear();
 		if (viewMode == ResultsOptions.ViewMode.VerticalPairTable || viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
 		{
-			Panel2.Controls.Add(resultsListView);
+			Panel2.Controls.Add(ResultsListView);
 			Panel1.Controls.Add(m_resultsPreviewContainer);
 		}
 		if (viewMode == ResultsOptions.ViewMode.GroupedThumbnails)
@@ -142,7 +136,7 @@ public class MainSplitContainer : SplitContainer
 		if (viewMode == ResultsOptions.ViewMode.VerticalPairTable || viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
 		{
 			m_resultsPreviewContainer.SetViewMode(viewMode);
-			resultsListView.SetViewMode(viewMode);
+			ResultsListView.SetViewMode(viewMode);
 		}
 
 		m_atLeastOneTimeSetOrientation = true;
@@ -224,7 +218,7 @@ public class MainSplitContainer : SplitContainer
 	{
 		if (m_options.resultsOptions.IsPairTableView())
 		{
-			resultsListView.SetKeyDownEvent(e);
+			ResultsListView.SetKeyDownEvent(e);
 		}
 	}
 
@@ -232,7 +226,7 @@ public class MainSplitContainer : SplitContainer
 	{
 		if (m_options.resultsOptions.IsPairTableView())
 		{
-			resultsListView?.UpdateResults();
+			ResultsListView?.UpdateResults();
 		}
 		else
 		{
@@ -245,7 +239,7 @@ public class MainSplitContainer : SplitContainer
 	{
 		if (m_options.resultsOptions.IsPairTableView())
 		{
-			resultsListView?.ClearResults();
+			ResultsListView?.ClearResults();
 		}
 		else
 		{

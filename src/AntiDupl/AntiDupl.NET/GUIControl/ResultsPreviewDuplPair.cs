@@ -47,13 +47,13 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 
 	private struct RectanglesWithSimilarity
 	{
-		public Rectangle rectangle;
-		public float similarity;
+		public Rectangle Rectangle { get; set; }
+		public float Similarity { get; set; }
 
 		public RectanglesWithSimilarity(Rectangle rectangle, float similarity)
 		{
-			this.rectangle = rectangle;
-			this.similarity = similarity;
+			Rectangle = rectangle;
+			Similarity = similarity;
 		}
 	}
 
@@ -81,34 +81,6 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 		m_mistakeButton = InitFactory.ToolButton.Create("MistakeButton", CoreDll.LocalActionType.Mistake, OnButtonClicked);
 		m_openBothFoldersButton = InitFactory.ToolButton.Create("OpenBothFoldersButton.png", null, OnOpenBothFoldersButtonClicked);
 		m_openBothImagesButton = InitFactory.ToolButton.Create("OpenBothImagesButton.png", null, OnOpenBothImagesButtonClicked);
-
-		/* m_difrentNumericUpDown = new System.Windows.Forms.NumericUpDown();
-		m_difrentNumericUpDown.Size = new System.Drawing.Size(62, 17);
-		m_difrentNumericUpDown.Location = new System.Drawing.Point(102, 0);
-		m_difrentNumericUpDown.Margin = new Padding(0);
-		m_difrentNumericUpDown.DecimalPlaces = 2;
-		m_difrentNumericUpDown.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-		m_difrentNumericUpDown.Minimum = new decimal(new int[] { 0, 0, 0, 0 });
-		m_difrentNumericUpDown.Value = new decimal(m_options.resultsOptions.DiffrentThreshold);
-		m_difrentNumericUpDown.ValueChanged += new System.EventHandler(m_difrentNumericUpDown_ValueChanged);
-
-		m_checkBoxDiffrent = new System.Windows.Forms.CheckBox();
-		m_checkBoxDiffrent.AutoSize = true;
-		//this.checkBox1.Location = new System.Drawing.Point(321, 459);
-		//this.checkBox1.Name = "checkBox1";
-		m_checkBoxDiffrent.Size = new System.Drawing.Size(80, 17);
-		//this.checkBox1.TabIndex = 6;
-		m_checkBoxDiffrent.Text = "Highlight";
-		m_checkBoxDiffrent.UseVisualStyleBackColor = true;
-		m_checkBoxDiffrent.Checked = m_options.resultsOptions.HighlightDiffrent; //TODO
-		m_checkBoxDiffrent.CheckedChanged += new System.EventHandler(checkBoxDiffrent_CheckedChanged);
-
-		m_difrentPanel = new System.Windows.Forms.Panel();
-		m_difrentPanel.Controls.Add(m_checkBoxDiffrent);
-		m_difrentPanel.Controls.Add(m_difrentNumericUpDown);
-		//m_difrentPanel.Location = new System.Drawing.Point(225, 459);
-		//m_difrentPanel.AutoSize = true;
-		m_difrentPanel.Size = new System.Drawing.Size(200, 20);*/
 	}
 
 	public void UpdateStrings()
@@ -142,7 +114,7 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 		UpdateNextAndPreviousButtonEnabling();
 	}
 
-	static private Color MixColors(Color firstColor, int firstWeight, Color secondColor, int secondWeight)
+	private static Color MixColors(Color firstColor, int firstWeight, Color secondColor, int secondWeight)
 	{
 		var A = (firstColor.A * firstWeight + secondColor.A * secondWeight) / (firstWeight + secondWeight);
 		var R = (firstColor.R * firstWeight + secondColor.R * secondWeight) / (firstWeight + secondWeight);
@@ -323,13 +295,13 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 		{
 			rectangles.Sort(delegate (RectanglesWithSimilarity a, RectanglesWithSimilarity b)
 			{
-				return a.similarity.CompareTo(b.similarity);
+				return a.Similarity.CompareTo(b.Similarity);
 			});
 			var src = rectangles.ToArray();
 			var dst = new List<Rectangle>();
 			for (int i = 0, n = Math.Min(src.Length, m_options.resultsOptions.MaxFragmentsForHighlight); i < n; ++i)
 			{
-				dst.Add(src[i].rectangle);
+				dst.Add(src[i].Rectangle);
 			}
 
 			HighlightCompleteEvent(dst);
@@ -341,7 +313,7 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 			var dst = new List<Rectangle>();
 			for (var i = 0; i < src.Length; ++i)
 			{
-				dst.Add(src[i].rectangle);
+				dst.Add(src[i].Rectangle);
 			}
 
 			HighlightCompleteEvent(dst);
@@ -365,5 +337,4 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 
 		HighlightCompleteEvent -= new HighlightCompleteDelegate(HighlightCompleteEventHandler);
 	}
-
 }

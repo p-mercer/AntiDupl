@@ -53,10 +53,7 @@ public class PictureBoxPanel : Panel
 	}
 	private bool m_animationEnable;
 	private bool m_currentlyAnimating;
-
 	private Bitmap m_originalBitmap;
-	private Rectangle[] m_rectanglesOfDifferences;
-	private Pen penForDifferences = new(new SolidBrush(Color.Red), 4);
 
 	public ImagePreviewPanel.Position Position { get; set; }
 	private string m_prevFile;
@@ -65,12 +62,12 @@ public class PictureBoxPanel : Panel
 	private Bitmap m_nextBitmap;
 	private Rectangle m_prevBitmapRect;
 	private Rectangle m_nextBitmapRect;
+
 	private enum Neighbour
 	{
 		Previous,
 		Next,
 	}
-
 
 	public PictureBoxPanel(CoreLib core, Options options)
 	{
@@ -147,12 +144,8 @@ public class PictureBoxPanel : Panel
 
 	private static bool LoadFileToMemoryStream(ref MemoryStream memoryStream, string path)
 	{
-		if (memoryStream != null)
-		{
-			memoryStream.Close();
-			memoryStream.Dispose();
-			memoryStream = null;
-		}
+		memoryStream = null;
+
 		var fileInfo = new FileInfo(path);
 		if (fileInfo.Exists)
 		{
@@ -415,7 +408,6 @@ public class PictureBoxPanel : Panel
 			}
 			m_bitmapRect = new Rectangle(horizontalPosition, verticalPosition, targetWidth, targetHeight);
 		}
-		//Refresh();
 	}
 
 	/// <summary>
@@ -434,7 +426,7 @@ public class PictureBoxPanel : Panel
 				m_bitmap = m_originalBitmap.Clone() as Bitmap;
 			}
 
-			m_rectanglesOfDifferences = new Rectangle[rectanglesOfDifferenceIn.Count];
+			var m_rectanglesOfDifferences = new Rectangle[rectanglesOfDifferenceIn.Count];
 			rectanglesOfDifferenceIn.CopyTo(m_rectanglesOfDifferences);
 
 			//преобразуем в соответсвии с размером полного изображения
@@ -450,7 +442,7 @@ public class PictureBoxPanel : Panel
 			}
 
 			var penThickness = Math.Min(m_bitmap.Width, m_bitmap.Height) * m_options.resultsOptions.PenThickness / m_options.resultsOptions.NormalizedSizeOfImage;
-			penForDifferences = new Pen(new SolidBrush(Color.Red), penThickness);
+			var penForDifferences = new Pen(new SolidBrush(Color.Red), penThickness);
 			try
 			{
 				using (var gr = Graphics.FromImage(m_bitmap))
@@ -480,7 +472,6 @@ public class PictureBoxPanel : Panel
 			m_originalBitmap.Dispose();
 			m_originalBitmap = null;
 		}
-		m_rectanglesOfDifferences = null;
 		Invalidate();
 	}
 

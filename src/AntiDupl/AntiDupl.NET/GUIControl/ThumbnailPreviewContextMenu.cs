@@ -121,10 +121,11 @@ public class ThumbnailPreviewContextMenu : ContextMenuStrip
 			OverwritePrompt = false,
 			AddExtension = true,
 			CheckPathExists = true,
-			DefaultExt = new FileInfo(m_thumbnailPreview.ImageInfo.Path).Extension
+			DefaultExt = new FileInfo(m_thumbnailPreview.ImageInfo.Path).Extension,
+			Title = Resources.Strings.Current.ImagePreviewContextMenu_RenameImageItem_Text
 		};
+
 		dialog.FileOk += new CancelEventHandler(OnRenameImageDialogFileOk);
-		dialog.Title = Resources.Strings.Current.ImagePreviewContextMenu_RenameImageItem_Text;
 		if (dialog.ShowDialog() == DialogResult.OK && m_thumbnailGroupTable.Rename(m_thumbnailPreview.Group, m_thumbnailPreview.Index, dialog.FileName))
 		{
 			m_thumbnailPreview.SetThumbnail(m_thumbnailPreview.Group, m_thumbnailPreview.Index);

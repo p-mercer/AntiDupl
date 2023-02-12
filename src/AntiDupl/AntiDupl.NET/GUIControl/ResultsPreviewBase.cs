@@ -44,7 +44,7 @@ public abstract class ResultsPreviewBase : Panel
 	protected ToolStripButton m_nextButton;
 	protected ToolStripButton m_previousButton;
 
-	public ResultsPreviewBase(CoreLib core, Options options, CoreOptions coreOptions, ResultsListView resultsListView)
+	protected ResultsPreviewBase(CoreLib core, Options options, CoreOptions coreOptions, ResultsListView resultsListView)
 	{
 		m_core = core;
 		m_options = options;
@@ -144,7 +144,7 @@ public abstract class ResultsPreviewBase : Panel
 
 	protected static string GetToolTip(string toolTip, Keys hotKey)
 	{
-		return string.Concat(toolTip, string.Format(" ({0})", hotKey));
+		return string.Concat(toolTip, $" ({hotKey})");
 	}
 
 	protected string GetToolTip(string toolTip, HotKeyOptions.Action action)

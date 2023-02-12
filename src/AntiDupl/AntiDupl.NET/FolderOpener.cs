@@ -22,17 +22,18 @@
 * SOFTWARE.
 */
 using Microsoft.Win32;
+using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
-static public class FolderOpener
+public static class FolderOpener
 {
 	private static readonly bool m_canOpenFolderWithExplorer = CanOpenFolderWithExplorer();
 
-	static private bool CanOpenFolderWithExplorer()
+	private static bool CanOpenFolderWithExplorer()
 	{
 		var rkFolder = Registry.ClassesRoot.OpenSubKey("Folder");
 		if (rkFolder != null)
@@ -47,12 +48,9 @@ static public class FolderOpener
 					if (rkCommand != null)
 					{
 						var defaultValue = (string)rkCommand.GetValue("");
-						if (defaultValue != null)
+						if (defaultValue != null && defaultValue.ToLowerInvariant().Contains("explorer.exe"))
 						{
-							if (defaultValue.ToLowerInvariant().Contains("explorer.exe"))
-							{
-								return true;
-							}
+							return true;
 						}
 					}
 				}
@@ -63,12 +61,9 @@ static public class FolderOpener
 					if (rkCommand != null)
 					{
 						var defaultValue = (string)rkCommand.GetValue("");
-						if (defaultValue != null)
+						if (defaultValue != null && defaultValue.ToLowerInvariant().Contains("explorer.exe"))
 						{
-							if (defaultValue.ToLowerInvariant().Contains("explorer.exe"))
-							{
-								return true;
-							}
+							return true;
 						}
 					}
 				}
@@ -77,7 +72,7 @@ static public class FolderOpener
 		return false;
 	}
 
-	static public void OpenContainingFolder(CoreImageInfo imageInfo)
+	public static void OpenContainingFolder(CoreImageInfo imageInfo)
 	{
 		try
 		{
@@ -85,16 +80,16 @@ static public class FolderOpener
 			if (m_canOpenFolderWithExplorer)
 			{
 				startInfo.FileName = "explorer.exe";
-				startInfo.Arguments = string.Format("/e, /select, \"{0}\"", imageInfo.Path);
+				startInfo.Arguments = $"/e, /select, \"{imageInfo.Path}\"";
 			}
 			else
 			{
 				startInfo.FileName = imageInfo.GetDirectoryString();
 			}
-			var process = Process.Start(startInfo);
+			_ = Process.Start(startInfo);
 			Thread.Sleep(System.TimeSpan.FromMilliseconds(100));
 		}
-		catch (System.Exception exeption)
+		catch (Exception exeption)
 		{
 			MessageBox.Show(exeption.Message);
 		}

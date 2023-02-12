@@ -37,7 +37,6 @@ public class ThumbnailGroupTable : Panel
 	private readonly Options m_options;
 	private CoreGroup[] m_groups;
 	private int m_maxGroupIndex = -1;
-	private readonly MainSplitContainer m_mainSplitContainer;
 
 	private readonly ThumbnailStorage m_thumbnailStorage;
 	private volatile bool m_abortUpdateThumbnailsThread;
@@ -54,7 +53,6 @@ public class ThumbnailGroupTable : Panel
 	{
 		m_core = core;
 		m_options = options;
-		m_mainSplitContainer = mainSplitContainer;
 		m_thumbnailStorage = new ThumbnailStorage(m_core, m_options);
 		InitializeComponents();
 	}
@@ -76,8 +74,6 @@ public class ThumbnailGroupTable : Panel
 		GetGroups();
 		UpdateControls();
 		UpdateThumbnailsStart();
-		//if (OnUpdateResults != null)
-		//    OnUpdateResults();
 		Invalidate();
 	}
 
@@ -229,7 +225,7 @@ public class ThumbnailGroupTable : Panel
 			var maxIndex = GetVisibleGroupIndexMax();
 
 			SuspendLayout();
-			//Visible = false;
+
 			for (var i = 0; i < minIndex; ++i)
 			{
 				RemoveGroupPanel(i);
@@ -237,14 +233,12 @@ public class ThumbnailGroupTable : Panel
 			for (var i = minIndex; i < maxIndex; ++i)
 			{
 				AddGroupPanel(i);
-				//Application.DoEvents();
 			}
 			for (var i = maxIndex; i < m_thumbnailGroupPanels.Length; ++i)
 			{
 				RemoveGroupPanel(i);
 			}
 			PerformLayout();
-			//Visible = true;
 		}
 	}
 
@@ -256,32 +250,11 @@ public class ThumbnailGroupTable : Panel
 		}
 		m_lastUpdate = DateTime.Now;
 
-		//for (int i = 0; i < Controls.Count; ++i)
-		//    SuspendDrawing(Controls[i]);
-
 		m_changeControls = false;
 		var t = DateTime.Now;
 		UpdateVisiblePanels();
 		var updateTime = DateTime.Now - t;
-		Console.WriteLine("ut = {0}; at = {1}.", updateTime.TotalMilliseconds.ToString(), t.Millisecond);
-
-		//for (int i = 0; i < Controls.Count; ++i)
-		//{
-		//    ResumeDrawing(Controls[i]);
-		//    Controls[i].Update();
-		//}
-
-		//ControlPaint.
-
-		//base.OnPaint(e);
-		//for (int i = 0; i < Controls.Count; ++i)
-		//{
-		//    //ResumeDrawing(Controls[i]);
-		//    Rectangle rect = new Rectangle(Controls[i].Location, Controls[i].Size);// .RectangleToClient();// .ClientRectangle;
-		//    rect.Offset(AutoScrollPosition.X, AutoScrollPosition.Y);
-		//    ControlPaint.DrawBorder3D(e.Graphics, rect, Border3DStyle.Raised, Border3DSide.All);
-		//}
-
+		Console.WriteLine($"ut = {updateTime.TotalMilliseconds.ToString()}; at = {t.Millisecond}.");
 
 		if (m_changeControls)
 		{
@@ -293,21 +266,13 @@ public class ThumbnailGroupTable : Panel
 		}
 	}
 
-	protected override void OnScroll(ScrollEventArgs se)
-	{
-		//UpdateVisiblePanels();
-		base.OnScroll(se);
-	}
-
 	protected override void OnResize(EventArgs eventargs)
 	{
-		//UpdateVisiblePanels();
 		base.OnResize(eventargs);
 	}
 
 	protected override void OnMouseWheel(MouseEventArgs e)
 	{
-		//UpdateVisiblePanels();
 		base.OnMouseWheel(e);
 	}
 

@@ -79,7 +79,7 @@ public class ComplexProgressBar : ProgressBar
 		m_secondForeColor = Color.FromArgb((ForeColor.R + BackColor.R) / 2, (ForeColor.G + BackColor.G) / 2, (ForeColor.B + BackColor.B) / 2);
 	}
 
-	override protected void OnPaint(PaintEventArgs e)
+	protected override void OnPaint(PaintEventArgs e)
 	{
 		base.OnPaint(e);
 		Brush secondBrush = new SolidBrush(SecondForeColor);

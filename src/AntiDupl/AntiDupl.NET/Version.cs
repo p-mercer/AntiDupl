@@ -42,7 +42,7 @@ public class Version
 		Release = Convert.ToInt32(versions[2]);
 	}
 
-	static public Version LoadXml(Stream stream)
+	public static Version LoadXml(Stream stream)
 	{
 		try
 		{
@@ -60,7 +60,7 @@ public class Version
 	{
 		try
 		{
-			TextWriter writer = new StreamWriter(fileName);
+			using TextWriter writer = new StreamWriter(fileName);
 			var xmlSerializer = new XmlSerializer(typeof(Version));
 			xmlSerializer.Serialize(writer, this);
 		}
@@ -71,16 +71,10 @@ public class Version
 
 	public override string ToString()
 	{
-		var builder = new StringBuilder();
-		builder.Append(Major);
-		builder.Append('.');
-		builder.Append(Minor);
-		builder.Append('.');
-		builder.Append(Release);
-		return builder.ToString();
+		return $"{Major}.{Minor}.{Release}";		
 	}
 
-	static public int Compare(Version v1, Version v2)
+	public static int Compare(Version v1, Version v2)
 	{
 		if (v1.Major == v2.Major)
 		{
@@ -99,7 +93,7 @@ public class Version
 		}
 	}
 
-	static public bool Compatible(CoreVersion coreVersion)
+	public static bool Compatible(CoreVersion coreVersion)
 	{
 		var version = new Version();
 		return

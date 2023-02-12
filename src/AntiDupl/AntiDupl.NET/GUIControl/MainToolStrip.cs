@@ -78,7 +78,7 @@ public class MainToolStrip : ToolStrip
 
 	private void InitializeComponents()
 	{
-		Visible = m_options.mainFormOptions.toolStripView;
+		Visible = m_options.mainFormOptions.ToolStripView;
 		RenderMode = ToolStripRenderMode.System;
 		BackColor = SystemColors.Control;
 		GripStyle = ToolStripGripStyle.Hidden;
@@ -99,7 +99,7 @@ public class MainToolStrip : ToolStrip
 			FlatStyle = FlatStyle.Popup
 		};
 		m_thresholdDifferenceComboBox.SelectedIndexChanged += new EventHandler(OnThresholdDifferenceChanged);
-		if (m_coreOptions.CompareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum)
+		if (m_coreOptions.CompareOptions.AlgorithmComparing == CoreDll.AlgorithmComparing.SquaredSum)
 		{
 			for (var i = 0; i <= CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM; i++)
 			{
@@ -189,7 +189,7 @@ public class MainToolStrip : ToolStrip
 	{
 		var item = (ToolStripItem)sender;
 		var action = (CoreDll.LocalActionType)item.Tag;
-		m_mainSplitContainer.resultsListView.MakeAction(action, CoreDll.TargetType.Selected);
+		m_mainSplitContainer.ResultsListView.MakeAction(action, CoreDll.TargetType.Selected);
 	}
 
 	private void OnSelectedResultsChanged()
@@ -218,8 +218,8 @@ public class MainToolStrip : ToolStrip
 		m_mistakeButton.Enabled = m_coreOptions.AdvancedOptions.MistakeDataBase &&
 			 m_core.CanApply(CoreDll.ActionEnableType.Any);
 
-		m_algorithmComparingComboBox.SelectedIndex = (int)m_coreOptions.CompareOptions.algorithmComparing;
-		if (m_coreOptions.CompareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum &&
+		m_algorithmComparingComboBox.SelectedIndex = (int)m_coreOptions.CompareOptions.AlgorithmComparing;
+		if (m_coreOptions.CompareOptions.AlgorithmComparing == CoreDll.AlgorithmComparing.SquaredSum &&
 			m_thresholdDifferenceComboBox.Items.Count > CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM + 1)
 		{
 			m_thresholdDifferenceComboBox.Items.Clear();
@@ -228,7 +228,7 @@ public class MainToolStrip : ToolStrip
 				m_thresholdDifferenceComboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
 			}
 		}
-		if (m_coreOptions.CompareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SSIM &&
+		if (m_coreOptions.CompareOptions.AlgorithmComparing == CoreDll.AlgorithmComparing.SSIM &&
 			 m_thresholdDifferenceComboBox.Items.Count < CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SSIM + 1)
 		{
 			m_thresholdDifferenceComboBox.Items.Clear();
@@ -237,7 +237,7 @@ public class MainToolStrip : ToolStrip
 				m_thresholdDifferenceComboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
 			}
 		}
-		m_thresholdDifferenceComboBox.SelectedIndex = m_coreOptions.CompareOptions.thresholdDifference;
+		m_thresholdDifferenceComboBox.SelectedIndex = m_coreOptions.CompareOptions.ThresholdDifference;
 	}
 
 	public void SetViewMode(ResultsOptions.ViewMode viewMode)
@@ -289,13 +289,13 @@ public class MainToolStrip : ToolStrip
 
 	private void OnThresholdDifferenceChanged(object sender, EventArgs e)
 	{
-		m_coreOptions.CompareOptions.thresholdDifference = m_thresholdDifferenceComboBox.SelectedIndex;
+		m_coreOptions.CompareOptions.ThresholdDifference = m_thresholdDifferenceComboBox.SelectedIndex;
 	}
 
 	private void OnAlgorithmComparingChanged(object sender, EventArgs e)
 	{
-		m_coreOptions.CompareOptions.algorithmComparing = (CoreDll.AlgorithmComparing)m_algorithmComparingComboBox.SelectedIndex;
-		if (m_coreOptions.CompareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum &&
+		m_coreOptions.CompareOptions.AlgorithmComparing = (CoreDll.AlgorithmComparing)m_algorithmComparingComboBox.SelectedIndex;
+		if (m_coreOptions.CompareOptions.AlgorithmComparing == CoreDll.AlgorithmComparing.SquaredSum &&
 			m_thresholdDifferenceComboBox.Items.Count > CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM + 1)
 		{
 			m_thresholdDifferenceComboBox.Items.Clear();
@@ -306,7 +306,7 @@ public class MainToolStrip : ToolStrip
 
 			m_thresholdDifferenceComboBox.SelectedIndex = CoreOptionsForm.THRESHOLD_DIFFERENCE_DEFAULT_SQUARED_SUM;
 		}
-		if (m_coreOptions.CompareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SSIM &&
+		if (m_coreOptions.CompareOptions.AlgorithmComparing == CoreDll.AlgorithmComparing.SSIM &&
 			 m_thresholdDifferenceComboBox.Items.Count < CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SSIM + 1)
 		{
 			m_thresholdDifferenceComboBox.Items.Clear();

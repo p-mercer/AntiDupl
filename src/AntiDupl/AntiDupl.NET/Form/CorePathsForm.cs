@@ -27,13 +27,12 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
-
 namespace AntiDupl.NET;
 
 public class CorePathsForm : Form
 {
-	static public int FORM_WIDTH = 450;
-	static public int FORM_HEIGHT = 350;
+	public const int FORM_WIDTH = 450;
+	public const int FORM_HEIGHT = 350;
 
 	private readonly CoreLib m_core;
 	private readonly Options m_options;
@@ -414,7 +413,7 @@ public class CorePathsForm : Form
 		return builder.ToString();
 	}
 
-	static private void UpdatePath(CorePathWithSubFolder[] paths, CheckedListBox box)
+	private static void UpdatePath(CorePathWithSubFolder[] paths, CheckedListBox box)
 	{
 		var selectedIndex = box.SelectedIndex;
 		box.Items.Clear();
@@ -429,7 +428,7 @@ public class CorePathsForm : Form
 		}
 	}
 
-	static private void UpdatePath(CorePathWithSubFolder[] paths, ListBox box)
+	private static void UpdatePath(CorePathWithSubFolder[] paths, ListBox box)
 	{
 		var selectedIndex = box.SelectedIndex;
 		box.Items.Clear();
@@ -492,7 +491,7 @@ public class CorePathsForm : Form
 
 			path[^1].EnableSubFolder = true;
 			SetCurrentPath(path);
-			m_newCoreOptions.Validate(m_core, m_options.onePath);
+			m_newCoreOptions.Validate(m_core, m_options.OnePath);
 			UpdatePath();
 			UpdateButtonEnabling();
 		}
@@ -527,7 +526,7 @@ public class CorePathsForm : Form
 				path[path.Length - 1 - i].EnableSubFolder = false;
 			}
 			SetCurrentPath(path);
-			m_newCoreOptions.Validate(m_core, m_options.onePath);
+			m_newCoreOptions.Validate(m_core, m_options.OnePath);
 			UpdatePath();
 			UpdateButtonEnabling();
 		}
@@ -619,7 +618,7 @@ public class CorePathsForm : Form
 				}
 
 				SetCurrentPath(path);
-				m_newCoreOptions.Validate(m_core, m_options.onePath);
+				m_newCoreOptions.Validate(m_core, m_options.OnePath);
 				UpdatePath();
 				UpdateButtonEnabling();
 			}
@@ -636,7 +635,7 @@ public class CorePathsForm : Form
 			{
 				path[listBox.SelectedIndex].Path = dialog.FileName;
 				SetCurrentPath(path);
-				m_newCoreOptions.Validate(m_core, m_options.onePath);
+				m_newCoreOptions.Validate(m_core, m_options.OnePath);
 				UpdatePath();
 				UpdateButtonEnabling();
 			}
@@ -728,7 +727,7 @@ public class CorePathsForm : Form
 				path.AddRange(current);
 				path.AddRange(actual);
 				SetCurrentPath(path.ToArray());
-				m_newCoreOptions.Validate(m_core, m_options.onePath);
+				m_newCoreOptions.Validate(m_core, m_options.OnePath);
 				UpdatePath();
 				UpdateButtonEnabling();
 			}
@@ -761,7 +760,7 @@ public class CorePathsForm : Form
 		}
 		path[listBox.SelectedIndex].Path = "";
 		SetCurrentPath(path);
-		m_newCoreOptions.Validate(m_core, m_options.onePath);
+		m_newCoreOptions.Validate(m_core, m_options.OnePath);
 		UpdatePath();
 		UpdateButtonEnabling();
 	}

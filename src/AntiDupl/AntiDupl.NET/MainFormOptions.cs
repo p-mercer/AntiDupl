@@ -30,12 +30,9 @@ public class MainFormOptions
 {
 	public event Options.VisibleChangeHandler OnToolStripVisibleChange;
 	private bool m_toolStripView = true;
-	public bool toolStripView
+	public bool ToolStripView
 	{
-		get
-		{
-			return m_toolStripView;
-		}
+		get { return m_toolStripView; }
 		set
 		{
 			if (m_toolStripView != value)
@@ -48,12 +45,9 @@ public class MainFormOptions
 
 	public event Options.VisibleChangeHandler OnStatusStripVisibleChange;
 	private bool m_statusStripView = true;
-	public bool statusStripView
+	public bool StatusStripView
 	{
-		get
-		{
-			return m_statusStripView;
-		}
+		get { return m_statusStripView; }
 		set
 		{
 			if (m_statusStripView != value)
@@ -66,8 +60,8 @@ public class MainFormOptions
 
 	public bool Maximized { get; set; }
 
-	public Point Location = DefaultLocation();
-	public Size Size = new(MainForm.MIN_WIDTH, MainForm.MIN_HEIGHT);
+	public Point Location { get; set; } = DefaultLocation();
+	public Size Size { get; set; } = new(MainForm.MIN_WIDTH, MainForm.MIN_HEIGHT);
 
 	public MainFormOptions()
 	{
@@ -131,7 +125,7 @@ public class MainFormOptions
 		m_statusStripView = true;
 	}
 
-	static private Point DefaultLocation()
+	private static Point DefaultLocation()
 	{
 		var rect = Screen.PrimaryScreen.WorkingArea;
 		var left = (rect.Left + rect.Width - MainForm.MIN_WIDTH) / 2;

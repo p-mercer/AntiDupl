@@ -45,10 +45,7 @@ public class ResultsOptions
 	private ViewMode m_viewMode = ViewMode.VerticalPairTable;
 	public ViewMode viewMode
 	{
-		get
-		{
-			return m_viewMode;
-		}
+		get { return m_viewMode; }
 		set
 		{
 			if (m_viewMode != value)
@@ -69,10 +66,7 @@ public class ResultsOptions
 	private bool m_stretchSmallImages;
 	public bool StretchSmallImages
 	{
-		get
-		{
-			return m_stretchSmallImages;
-		}
+		get { return m_stretchSmallImages; }
 		set
 		{
 			if (m_stretchSmallImages != value)
@@ -85,10 +79,7 @@ public class ResultsOptions
 	private bool m_proportionalImageSize = true;
 	public bool ProportionalImageSize
 	{
-		get
-		{
-			return m_proportionalImageSize;
-		}
+		get { return m_proportionalImageSize; }
 		set
 		{
 			if (m_proportionalImageSize != value)
@@ -109,10 +100,7 @@ public class ResultsOptions
 	private bool m_highlightDifference;
 	public bool HighlightDifference
 	{
-		get
-		{
-			return m_highlightDifference;
-		}
+		get { return m_highlightDifference; }
 		set
 		{
 			if (m_highlightDifference != value)
@@ -125,10 +113,7 @@ public class ResultsOptions
 	private float m_differenceThreshold = 99.90F;
 	public float DifferenceThreshold
 	{
-		get
-		{
-			return m_differenceThreshold;
-		}
+		get { return m_differenceThreshold; }
 		set
 		{
 			if (m_differenceThreshold != value)
@@ -142,10 +127,7 @@ public class ResultsOptions
 	private bool m_notHighlightIfFragmentsMoreThan = true;
 	public bool NotHighlightIfFragmentsMoreThan
 	{
-		get
-		{
-			return m_notHighlightIfFragmentsMoreThan;
-		}
+		get { return m_notHighlightIfFragmentsMoreThan; }
 		set
 		{
 			if (m_notHighlightIfFragmentsMoreThan != value)
@@ -158,10 +140,7 @@ public class ResultsOptions
 	private int m_notHighlightMaxFragments = 32;
 	public int NotHighlightMaxFragments
 	{
-		get
-		{
-			return m_notHighlightMaxFragments;
-		}
+		get { return m_notHighlightMaxFragments; }
 		set
 		{
 			if (m_notHighlightMaxFragments != value)
@@ -174,10 +153,7 @@ public class ResultsOptions
 	private bool m_highlightAllDifferences = true;
 	public bool HighlightAllDifferences
 	{
-		get
-		{
-			return m_highlightAllDifferences;
-		}
+		get { return m_highlightAllDifferences; }
 		set
 		{
 			if (m_highlightAllDifferences != value)
@@ -190,10 +166,7 @@ public class ResultsOptions
 	private int m_maxFragmentsForHighlight = 10;
 	public int MaxFragmentsForHighlight
 	{
-		get
-		{
-			return m_maxFragmentsForHighlight;
-		}
+		get { return m_maxFragmentsForHighlight; }
 		set
 		{
 			if (m_maxFragmentsForHighlight != value)
@@ -206,10 +179,7 @@ public class ResultsOptions
 	private int m_amountOfFragmentsOnX = 16;
 	public int AmountOfFragmentsOnX
 	{
-		get
-		{
-			return m_amountOfFragmentsOnX;
-		}
+		get { return m_amountOfFragmentsOnX; }
 		set
 		{
 			if (m_amountOfFragmentsOnX != value)
@@ -222,10 +192,7 @@ public class ResultsOptions
 	private int m_amountOfFragmentsOnY = 16;
 	public int AmountOfFragmentsOnY
 	{
-		get
-		{
-			return m_amountOfFragmentsOnY;
-		}
+		get { return m_amountOfFragmentsOnY; }
 		set
 		{
 			if (m_amountOfFragmentsOnY != value)
@@ -238,10 +205,7 @@ public class ResultsOptions
 	private int m_normalizedSizeOfImage = 512;
 	public int NormalizedSizeOfImage
 	{
-		get
-		{
-			return m_normalizedSizeOfImage;
-		}
+		get { return m_normalizedSizeOfImage; }
 		set
 		{
 			if (m_normalizedSizeOfImage != value)
@@ -254,10 +218,7 @@ public class ResultsOptions
 	private int m_penThickness = 2;
 	public int PenThickness
 	{
-		get
-		{
-			return m_penThickness;
-		}
+		get { return m_penThickness; }
 		set
 		{
 			if (m_penThickness != value)
@@ -271,10 +232,7 @@ public class ResultsOptions
 	private bool m_showNeighboursImages;
 	public bool ShowNeighboursImages
 	{
-		get
-		{
-			return m_showNeighboursImages;
-		}
+		get { return m_showNeighboursImages; }
 		set
 		{
 			if (m_showNeighboursImages != value)
@@ -615,5 +573,4 @@ public class ResultsOptions
 		ColumnOptionsHorizontal[(int)ResultsListView.ColumnsTypeHorizontal.SecondFileTime].Width = 115;
 		ColumnOptionsHorizontal[(int)ResultsListView.ColumnsTypeHorizontal.SecondFileTime].Order = 20;
 	}
-
 }

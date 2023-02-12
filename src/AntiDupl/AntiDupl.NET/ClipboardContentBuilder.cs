@@ -53,7 +53,7 @@ public class ClipboardContentBuilder
 				AddHorizontal(result, m_options.ColumnOptionsHorizontal);
 				break;
 		}
-		m_builder.AppendLine("");
+		m_builder.AppendLine();
 	}
 
 	public override string ToString()
@@ -96,8 +96,7 @@ public class ClipboardContentBuilder
 
 	private void AddVertical(CoreResult result, ResultsOptions.ColumnOptions[] options)
 	{
-		if (options[(int)TypeVertical.FileName].Visible ||
-			options[(int)TypeVertical.FileDirectory].Visible)
+		if (options[(int)TypeVertical.FileName].Visible || options[(int)TypeVertical.FileDirectory].Visible)
 		{
 			Append(result.First.Path);
 		}
@@ -151,8 +150,7 @@ public class ClipboardContentBuilder
 
 	private void AddHorizontal(CoreResult result, ResultsOptions.ColumnOptions[] options)
 	{
-		if (options[(int)TypeHorizontal.FirstFileName].Visible ||
-			options[(int)TypeHorizontal.FirstFileDirectory].Visible)
+		if (options[(int)TypeHorizontal.FirstFileName].Visible || options[(int)TypeHorizontal.FirstFileDirectory].Visible)
 		{
 			Append(result.First.Path);
 		}
@@ -177,8 +175,7 @@ public class ClipboardContentBuilder
 			Append(result.First.GetFileTimeString());
 		}
 
-		if (options[(int)TypeHorizontal.SecondFileName].Visible ||
-				options[(int)TypeHorizontal.SecondFileDirectory].Visible)
+		if (options[(int)TypeHorizontal.SecondFileName].Visible || options[(int)TypeHorizontal.SecondFileDirectory].Visible)
 		{
 			Append(result.Second.Path);
 		}

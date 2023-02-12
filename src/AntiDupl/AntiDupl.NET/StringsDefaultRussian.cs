@@ -24,9 +24,9 @@
 
 namespace AntiDupl.NET;
 
-static public class StringsDefaultRussian
+public static class StringsDefaultRussian
 {
-	static public void CopyTo(Strings s)
+	public static void CopyTo(Strings s)
 	{
 		s.Name = "Russian";
 		s.OriginalLanguageName = "Русский";
@@ -321,14 +321,14 @@ static public class StringsDefaultRussian
 		s.ImagePreviewPanel_EXIF_Tooltip_UserComment = "Комментарий: ";
 	}
 
-	static private Strings Create()
+	private static Strings Create()
 	{
 		var strings = new Strings();
 		CopyTo(strings);
 		return strings;
 	}
 
-	static public Strings Get()
+	public static Strings Get()
 	{
 		return m_strings;
 	}

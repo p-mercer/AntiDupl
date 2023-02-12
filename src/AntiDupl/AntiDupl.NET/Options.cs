@@ -33,6 +33,7 @@ public class Options
 
 	public delegate void ChangeHandler();
 	public event ChangeHandler OnChange;
+
 	public void Change()
 	{
 		OnChange?.Invoke();
@@ -41,10 +42,7 @@ public class Options
 	private string m_language = StringsDefaultEnglish.Get().Name;
 	public string Language
 	{
-		get
-		{
-			return m_language;
-		}
+		get { return m_language; }
 		set
 		{
 			if (m_language != value)
@@ -55,7 +53,7 @@ public class Options
 		}
 	}
 
-	public bool onePath { get; set; }
+	public bool OnePath { get; set; }
 	public bool CheckingForUpdates { get; set; } = true;
 	public bool UseImageDataBase { get; set; } = true;
 	public bool CheckResultsAtLoading { get; set; } = true;
@@ -74,25 +72,22 @@ public class Options
 		return Path.ChangeExtension(CoreOptionsFileName, ".adr");
 	}
 
-	static public Options Load()
+	public static Options Load()
 	{
 		var fileInfo = new FileInfo(GetOptionsFileName());
 		if (fileInfo.Exists)
 		{
-			FileStream fileStream = null;
 			try
 			{
 				var xmlSerializer = new XmlSerializer(typeof(Options));
-				fileStream = new FileStream(GetOptionsFileName(), FileMode.Open, FileAccess.Read);
+				using var fileStream = new FileStream(GetOptionsFileName(), FileMode.Open, FileAccess.Read);
 				var options = (Options)xmlSerializer.Deserialize(fileStream);
 				options.resultsOptions.Check();
-				fileStream.Close();
+
 				return options;
 			}
 			catch
 			{
-				fileStream?.Close();
-
 				return new Options();
 			}
 		}
@@ -114,7 +109,7 @@ public class Options
 		CoreOptionsFileName = (string)options.CoreOptionsFileName.Clone();
 
 		Language = options.Language;
-		onePath = options.onePath;
+		OnePath = options.OnePath;
 		CheckingForUpdates = options.CheckingForUpdates;
 		UseImageDataBase = options.UseImageDataBase;
 		CheckResultsAtLoading = options.CheckResultsAtLoading;
@@ -125,17 +120,15 @@ public class Options
 
 	public void Save()
 	{
-		TextWriter writer = null;
 		try
 		{
-			writer = new StreamWriter(GetOptionsFileName());
+			using TextWriter writer = new StreamWriter(GetOptionsFileName());
 			var xmlSerializer = new XmlSerializer(typeof(Options));
 			xmlSerializer.Serialize(writer, this);
 		}
 		catch
 		{
 		}
-		writer?.Close();
 	}
 
 	public Options Clone()
@@ -151,7 +144,7 @@ public class Options
 		options.CoreOptionsFileName = (string)CoreOptionsFileName.Clone();
 
 		options.Language = Language;
-		options.onePath = onePath;
+		options.OnePath = OnePath;
 		options.CheckingForUpdates = CheckingForUpdates;
 		options.UseImageDataBase = UseImageDataBase;
 		options.CheckResultsAtLoading = CheckResultsAtLoading;
@@ -194,25 +187,25 @@ public class Options
 		return true;
 	}
 
-	static public string GetOptionsFileName()
+	public static string GetOptionsFileName()
 	{
 		var builder = new StringBuilder();
 		builder.Append(Resources.UserPath);
-		builder.Append("\\options.xml");
+		builder.Append(@"\options.xml");
 		return builder.ToString();
 	}
 
-	static public string GetMistakeDataBaseFileName()
+	public static string GetMistakeDataBaseFileName()
 	{
 		var builder = new StringBuilder();
 		builder.Append(Resources.UserPath);
-		builder.Append("\\mistakes.adm");
+		builder.Append(@"\mistakes.adm");
 		return builder.ToString();
 	}
 
-	static public string GetDefaultCoreOptionsFileName()
+	public static string GetDefaultCoreOptionsFileName()
 	{
-		return string.Format("{0}\\default.xml", Resources.ProfilesPath);
+		return $@"{Resources.ProfilesPath}\default.xml";
 	}
 
 	public bool Equals(Options options)
@@ -222,7 +215,7 @@ public class Options
 			return false;
 		}
 
-		if (onePath != options.onePath)
+		if (OnePath != options.OnePath)
 		{
 			return false;
 		}

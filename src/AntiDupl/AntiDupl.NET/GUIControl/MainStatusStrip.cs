@@ -52,7 +52,7 @@ internal class MainStatusStrip : StatusStrip
 	private void InitializeComponents()
 	{
 		SizingGrip = false;
-		Visible = m_options.mainFormOptions.statusStripView;
+		Visible = m_options.mainFormOptions.StatusStripView;
 
 		m_totalLabel = new ToolStripStatusLabel
 		{
@@ -112,7 +112,7 @@ internal class MainStatusStrip : StatusStrip
 		{
 			var builder = new StringBuilder();
 			builder.Append(m_totalText);
-			builder.Append(m_mainSplitContainer.resultsListView.GetTotalResultCount());
+			builder.Append(m_mainSplitContainer.ResultsListView.GetTotalResultCount());
 			m_totalLabel.Text = builder.ToString();
 		}
 
@@ -125,8 +125,8 @@ internal class MainStatusStrip : StatusStrip
 	{
 		var builder = new StringBuilder();
 		builder.Append(m_selectedText);
-		var selectedResultCount = m_mainSplitContainer.resultsListView.GetSelectedResultCount();
-		if (m_mainSplitContainer.resultsListView.GetTotalResultCount() > 0)
+		var selectedResultCount = m_mainSplitContainer.ResultsListView.GetSelectedResultCount();
+		if (m_mainSplitContainer.ResultsListView.GetTotalResultCount() > 0)
 		{
 			builder.Append(selectedResultCount);
 		}
@@ -154,7 +154,7 @@ internal class MainStatusStrip : StatusStrip
 	{
 		var builder = new StringBuilder();
 		builder.Append(m_currentText);
-		builder.Append(m_mainSplitContainer.resultsListView.GetTotalResultCount() > 0 ? m_mainSplitContainer.resultsListView.GetCurrentRowIndex() + 1 : 0);
+		builder.Append(m_mainSplitContainer.ResultsListView.GetTotalResultCount() > 0 ? m_mainSplitContainer.ResultsListView.GetCurrentRowIndex() + 1 : 0);
 		m_currentLabel.Text = builder.ToString();
 	}
 }

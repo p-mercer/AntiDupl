@@ -4,12 +4,12 @@ using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
-static public class ImageOpener
+public static class ImageOpener
 {
 	/// <summary>
 	/// Opens the specified file using its default application.
 	/// </summary>
-	static public void OpenFile(string filePath)
+	public static void OpenFile(string filePath)
 	{
 		var startInfo = new ProcessStartInfo
 		{

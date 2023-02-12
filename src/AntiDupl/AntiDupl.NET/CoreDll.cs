@@ -22,11 +22,12 @@
 * SOFTWARE.
 */
 using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace AntiDupl.NET;
 
-public partial class CoreDll
+public static partial class CoreDll
 {
 	//-----------API constants:--------------------------------------------
 
@@ -476,134 +477,134 @@ public partial class CoreDll
 	//-------------------API functions:------------------------------------
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adVersionGet(VersionType versionType, IntPtr pVersion, IntPtr pVersionSize);
 
 	[LibraryImport("AntiDupl64.dll", StringMarshalling = StringMarshalling.Utf16)]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial IntPtr adCreateW(string userPath);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adRelease(IntPtr handle);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adStop(IntPtr handle);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adSearch(IntPtr handle);
 
 	[LibraryImport("AntiDupl64.dll", StringMarshalling = StringMarshalling.Utf16)]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adLoadW(IntPtr handle, FileType fileType, string fileName, int check);
 
 	[LibraryImport("AntiDupl64.dll", StringMarshalling = StringMarshalling.Utf16)]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adSaveW(IntPtr handle, FileType fileType, string fileName);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adClear(IntPtr handle, FileType fileType);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adOptionsGet(IntPtr handle, OptionsType optionsType, IntPtr pOptions);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adOptionsSet(IntPtr handle, OptionsType optionsType, IntPtr pOptions);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adPathWithSubFolderSetW(IntPtr handle, PathType pathType, IntPtr pPaths, IntPtr pathSize);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adPathGetW(IntPtr handle, PathType pathType, IntPtr pPath, IntPtr pPathSize);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adPathSetW(IntPtr handle, PathType pathType, IntPtr pPath, IntPtr pathSize);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adStatisticGet(IntPtr handle, IntPtr pStatistic);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adStatusGetW(IntPtr handle, ThreadType threadType, IntPtr threadId, IntPtr pStatusW);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adResultSort(IntPtr handle, SortType sortType, int increasing);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adResultApply(IntPtr handle, GlobalActionType globalActionType);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adResultApplyTo(IntPtr handle, LocalActionType localActionType, TargetType targetType);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adCanApply(IntPtr handle, ActionEnableType actionEnableType, IntPtr pEnable);
 
 	[LibraryImport("AntiDupl64.dll", StringMarshalling = StringMarshalling.Utf16)]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adRenameCurrentW(IntPtr handle, RenameCurrentType renameCurrentType, string newFileName);
 
 	[LibraryImport("AntiDupl64.dll", StringMarshalling = StringMarshalling.Utf16)]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adMoveCurrentGroupW(IntPtr handle, string directory);
 
 	[LibraryImport("AntiDupl64.dll", StringMarshalling = StringMarshalling.Utf16)]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adRenameCurrentGroupAsW(IntPtr handle, string fileName);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adResultGetW(IntPtr handle, IntPtr pStartFrom, IntPtr pResult, IntPtr pResultSize);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adSelectionSet(IntPtr handle, IntPtr pStartFrom, UIntPtr size, int value);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adSelectionGet(IntPtr handle, IntPtr pStartFrom, IntPtr pSelection, IntPtr pSelectionSize);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adCurrentSet(IntPtr handle, IntPtr index);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adCurrentGet(IntPtr handle, IntPtr pIndex);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adGroupGet(IntPtr handle, IntPtr pStartFrom, IntPtr pGroup, IntPtr pGroupSize);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adImageInfoGetW(IntPtr handle, IntPtr groupId, IntPtr pStartFrom, IntPtr pImageInfo, IntPtr pImageInfoSize);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adImageInfoSelectionSet(IntPtr handle, IntPtr groupId, IntPtr index, SelectionType selectionType);
 
 	[LibraryImport("AntiDupl64.dll")]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adImageInfoSelectionGet(IntPtr handle, IntPtr groupId, IntPtr pStartFrom, IntPtr pSelection, IntPtr pSelectionSize);
 
 	[LibraryImport("AntiDupl64.dll", StringMarshalling = StringMarshalling.Utf16)]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adImageInfoRenameW(IntPtr handle, IntPtr groupId, IntPtr index, string newFileName);
 
 	[LibraryImport("AntiDupl64.dll", StringMarshalling = StringMarshalling.Utf16)]
-	[UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
+	[UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
 	internal static partial Error adLoadBitmapW(IntPtr handle, string fileName, IntPtr pBitmap);
 }

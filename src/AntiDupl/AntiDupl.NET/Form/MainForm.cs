@@ -38,17 +38,14 @@ public class MainForm : Form
 	private readonly CoreOptions m_coreOptions;
 
 	private MainSplitContainer m_mainSplitContainer;
-	private MainMenu m_mainMenu;
-	private MainToolStrip m_mainToolStrip;
-	private MainStatusStrip m_mainStatusStrip;
-
+	
 	public MainForm()
 	{
 		m_core = new CoreLib(Resources.UserPath);
 		m_options = Options.Load();
 		if (m_options.LoadProfileOnLoading)
 		{
-			m_coreOptions = CoreOptions.Load(m_options.CoreOptionsFileName, m_core, m_options.onePath);
+			m_coreOptions = CoreOptions.Load(m_options.CoreOptionsFileName, m_core, m_options.OnePath);
 		}
 		else
 		{
@@ -71,11 +68,11 @@ public class MainForm : Form
 			Location = new Point(0, 0)
 		};
 
-		m_mainMenu = new MainMenu(m_core, m_options, m_coreOptions, this, m_mainSplitContainer);
+		var m_mainMenu = new MainMenu(m_core, m_options, m_coreOptions, this, m_mainSplitContainer);
 
-		m_mainToolStrip = new MainToolStrip(m_core, m_options, m_coreOptions, m_mainMenu, this, m_mainSplitContainer);
+		var m_mainToolStrip = new MainToolStrip(m_core, m_options, m_coreOptions, m_mainMenu, this, m_mainSplitContainer);
 
-		m_mainStatusStrip = new MainStatusStrip(m_mainSplitContainer, m_options);
+		var m_mainStatusStrip = new MainStatusStrip(m_mainSplitContainer, m_options);
 
 		Size = new Size(MIN_WIDTH, MIN_HEIGHT);
 		MinimumSize = new Size(MIN_WIDTH, MIN_HEIGHT);
@@ -150,6 +147,6 @@ public class MainForm : Form
 
 	public void UpdateCaption()
 	{
-		Text = string.Format("{0} - {1}", Application.ProductName, Path.GetFileNameWithoutExtension(m_options.CoreOptionsFileName));
+		Text = $"{Application.ProductName} - {Path.GetFileNameWithoutExtension(m_options.CoreOptionsFileName)}";
 	}
 }

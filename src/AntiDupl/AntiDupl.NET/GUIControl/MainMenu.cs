@@ -52,8 +52,6 @@ public class MainMenu : MenuStrip
 	private ToolStripMenuItem m_viewMenuItem;
 	private ToolStripMenuItem m_view_toolMenuItem;
 	private ToolStripMenuItem m_view_statusMenuItem;
-	private ToolStripMenuItem m_view_languageMenuItem;
-	private ToolStripMenuItem m_view_modeMenuItem;
 	private ToolStripMenuItem m_view_selectColumnsMenuItem;
 	private ToolStripMenuItem m_view_hotKeysMenuItem;
 	private ToolStripMenuItem m_view_stretchSmallImageMenuItem;
@@ -75,8 +73,6 @@ public class MainMenu : MenuStrip
 	private ToolStripMenuItem m_help_helpMenuItem;
 	private ToolStripMenuItem m_help_aboutProgramMenuItem;
 	private ToolStripMenuItem m_help_checkingForUpdatesMenuItem;
-
-	private NewVersionMenuItem m_newVersionMenuItem;
 
 	public MainMenu(CoreLib core, Options options, CoreOptions coreOptions, MainForm mainForm, MainSplitContainer mainSplitContainer)
 	{
@@ -123,10 +119,10 @@ public class MainMenu : MenuStrip
 		m_editMenuItem.DropDownItems.Add(new ToolStripSeparator());
 		m_editMenuItem.DropDownItems.Add(m_edit_selectAllMenuItem);
 
-		m_view_toolMenuItem = InitFactory.MenuItem.Create(null, null, ViewItemCheckChangeAction, m_options.mainFormOptions.toolStripView);
-		m_view_statusMenuItem = InitFactory.MenuItem.Create(null, null, ViewItemCheckChangeAction, m_options.mainFormOptions.statusStripView);
-		m_view_languageMenuItem = new LanguageMenuItem(m_options);
-		m_view_modeMenuItem = new ViewModeMenuItem(m_options);
+		m_view_toolMenuItem = InitFactory.MenuItem.Create(null, null, ViewItemCheckChangeAction, m_options.mainFormOptions.ToolStripView);
+		m_view_statusMenuItem = InitFactory.MenuItem.Create(null, null, ViewItemCheckChangeAction, m_options.mainFormOptions.StatusStripView);
+		var m_view_languageMenuItem = new LanguageMenuItem(m_options);
+		var m_view_modeMenuItem = new ViewModeMenuItem(m_options);
 		m_view_selectColumnsMenuItem = InitFactory.MenuItem.Create(null, null, OnSelectColumnsClick);
 		m_view_hotKeysMenuItem = InitFactory.MenuItem.Create(null, null, OnHotKeysClick);
 		m_view_stretchSmallImageMenuItem = InitFactory.MenuItem.Create(null, null, ViewItemCheckChangeAction, m_options.resultsOptions.StretchSmallImages);
@@ -152,7 +148,7 @@ public class MainMenu : MenuStrip
 		m_search_refreshImagesMenuItem = InitFactory.MenuItem.Create(null, null, RefreshImagesAction);
 		m_search_pathsMenuItem = InitFactory.MenuItem.Create("PathsMenu", null, PathsAction);
 		m_search_optionsMenuItem = InitFactory.MenuItem.Create("OptionsMenu", null, OptionsAction);
-		m_search_onePathMenuItem = InitFactory.MenuItem.Create(null, null, UseOnePathAction, m_options.onePath);
+		m_search_onePathMenuItem = InitFactory.MenuItem.Create(null, null, UseOnePathAction, m_options.OnePath);
 		m_search_useImageDataBaseMenuItem = InitFactory.MenuItem.Create(null, null, UseImageDataBaseAction, m_options.UseImageDataBase);
 		m_search_checkResultsAtLoadingMenuItem = InitFactory.MenuItem.Create(null, null, CheckResultsAtLoadingAction, m_options.CheckResultsAtLoading);
 		m_search_checkMistakesAtLoadingMenuItem = InitFactory.MenuItem.Create(null, null, CheckMistakesAtLoadingAction, m_options.CheckMistakesAtLoading);
@@ -180,7 +176,7 @@ public class MainMenu : MenuStrip
 		m_helpMenuItem.DropDownItems.Add(new ToolStripSeparator());
 		m_helpMenuItem.DropDownItems.Add(m_help_checkingForUpdatesMenuItem);
 
-		m_newVersionMenuItem = new NewVersionMenuItem(m_options);
+		var m_newVersionMenuItem = new NewVersionMenuItem(m_options);
 
 		Items.Add(m_fileMenuItem);
 		Items.Add(m_editMenuItem);
@@ -244,11 +240,11 @@ public class MainMenu : MenuStrip
 		var item = (ToolStripMenuItem)sender;
 		if (item == m_view_toolMenuItem)
 		{
-			m_options.mainFormOptions.toolStripView = item.Checked;
+			m_options.mainFormOptions.ToolStripView = item.Checked;
 		}
 		else if (item == m_view_statusMenuItem)
 		{
-			m_options.mainFormOptions.statusStripView = item.Checked;
+			m_options.mainFormOptions.StatusStripView = item.Checked;
 		}
 		else if (item == m_view_stretchSmallImageMenuItem)
 		{
@@ -270,13 +266,13 @@ public class MainMenu : MenuStrip
 		if (m_options.resultsOptions.viewMode == ResultsOptions.ViewMode.VerticalPairTable)
 		{
 			var form =
-				new SelectVerticalColumnsForm(m_mainSplitContainer.resultsListView, m_options);
+				new SelectVerticalColumnsForm(m_mainSplitContainer.ResultsListView, m_options);
 			form.ShowDialog();
 		}
 		if (m_options.resultsOptions.viewMode == ResultsOptions.ViewMode.HorizontalPairTable)
 		{
 			var form =
-				new SelectHorizontalColumnsForm(m_mainSplitContainer.resultsListView, m_options);
+				new SelectHorizontalColumnsForm(m_mainSplitContainer.ResultsListView, m_options);
 			form.ShowDialog();
 		}
 	}
@@ -319,8 +315,8 @@ public class MainMenu : MenuStrip
 
 	public void SelectAllAction(object sender, EventArgs e)
 	{
-		m_mainSplitContainer.resultsListView.SetRowSelection(true);
-		m_mainSplitContainer.resultsListView.Invalidate();
+		m_mainSplitContainer.ResultsListView.SetRowSelection(true);
+		m_mainSplitContainer.ResultsListView.Invalidate();
 	}
 
 	public void ProfileSaveAsAction(object sender, EventArgs e)
@@ -342,13 +338,6 @@ public class MainMenu : MenuStrip
 		dialog.Filter = "Antidupl profile files (*.xml)|*.xml";
 		if (dialog.ShowDialog() == DialogResult.OK)
 		{
-			/*if (string.Compare(dialog.FileName, m_options.coreOptionsFileName) != 0)
-			{
-				m_coreOptions.Save(m_options.coreOptionsFileName);
-				ProgressForm saveProgressForm = new ProgressForm(ProgressForm.Type.SaveResults, m_core, m_options, m_coreOptions, m_mainSplitContainer);
-				saveProgressForm.Execute();
-				m_options.coreOptionsFileName = dialog.FileName;
-			}*/
 			m_options.CoreOptionsFileName = dialog.FileName;
 			m_coreOptions.Save(m_options.CoreOptionsFileName);
 			var progressForm = new ProgressForm(ProgressForm.Type.SaveResults, m_core, m_options, m_coreOptions, m_mainSplitContainer);
@@ -383,7 +372,7 @@ public class MainMenu : MenuStrip
 				m_options.CoreOptionsFileName = dialog.FileName;
 			}
 
-			var coreOptions = CoreOptions.Load(m_options.CoreOptionsFileName, m_core, m_options.onePath);
+			var coreOptions = CoreOptions.Load(m_options.CoreOptionsFileName, m_core, m_options.OnePath);
 			coreOptions.CopyTo(ref m_coreOptions);
 			var loadProgressForm = new ProgressForm(ProgressForm.Type.LoadResults, m_core, m_options, m_coreOptions, m_mainSplitContainer);
 			loadProgressForm.Execute();
@@ -400,7 +389,7 @@ public class MainMenu : MenuStrip
 
 	public void PathsAction(object sender, EventArgs e)
 	{
-		if (m_options.onePath)
+		if (m_options.OnePath)
 		{
 			var dialog = new FolderBrowserDialog
 			{
@@ -433,7 +422,7 @@ public class MainMenu : MenuStrip
 
 	private void UseOnePathAction(object sender, EventArgs e)
 	{
-		m_options.onePath = m_search_onePathMenuItem.Checked;
+		m_options.OnePath = m_search_onePathMenuItem.Checked;
 	}
 
 	private void UseImageDataBaseAction(object sender, EventArgs e)
@@ -468,17 +457,13 @@ public class MainMenu : MenuStrip
 
 	private void AboutProgramAction(object sender, EventArgs e)
 	{
-		var aboutProgramForm = new AboutProgramForm(m_core);
+		var aboutProgramForm = new AboutProgramForm();
 		aboutProgramForm.ShowDialog();
 	}
 
 	private void OnCheckingForUpdatesClick(object sender, EventArgs e)
 	{
 		m_options.CheckingForUpdates = m_help_checkingForUpdatesMenuItem.Checked;
-		if (m_options.CheckingForUpdates)
-		{
-			m_newVersionMenuItem = new NewVersionMenuItem(m_options);
-		}
 	}
 
 	private void UpdateResults()

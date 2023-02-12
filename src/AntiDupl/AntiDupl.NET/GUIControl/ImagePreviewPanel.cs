@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace AntiDupl.NET;
@@ -278,7 +279,7 @@ public class ImagePreviewPanel : TableLayoutPanel
 	/// <summary>
 	/// Проверяет, нужно ли обновление текущей информации об изображении.
 	/// </summary>
-	static private bool UpdateImageInfo(ref CoreImageInfo oldImageInfo, CoreImageInfo newImageInfo)
+	private static bool UpdateImageInfo(ref CoreImageInfo oldImageInfo, CoreImageInfo newImageInfo)
 	{
 		if (oldImageInfo == null ||
 			oldImageInfo.Path.CompareTo(newImageInfo.Path) != 0 ||
@@ -437,6 +438,7 @@ public class ImagePreviewPanel : TableLayoutPanel
 		dialog.FileOk += new CancelEventHandler(OnRenameImageDialogFileOk);
 		dialog.Title = Resources.Strings.Current.ImagePreviewContextMenu_RenameImageItem_Text;
 		dialog.InitialDirectory = fileInfo.Directory.ToString();
+
 		if (dialog.ShowDialog() == DialogResult.OK)
 		{
 			m_resultsListView.RenameCurrent(RenameCurrentType, dialog.FileName);
@@ -508,7 +510,7 @@ public class ImagePreviewPanel : TableLayoutPanel
 	private void SetExifTooltip(CoreImageInfo currentImageInfo)
 	{
 		var s = Resources.Strings.Current;
-		var exifSting = string.Empty;
+		var sb = new StringBuilder();
 
 		var exifList = GetExifList(currentImageInfo, s);
 
@@ -516,10 +518,11 @@ public class ImagePreviewPanel : TableLayoutPanel
 		{
 			for (var i = 0; i < exifList.Count - 1; i++)
 			{
-				exifSting += exifList[i];
-				exifSting += Environment.NewLine;
+				sb.Append(exifList[i]);
+				sb.Append(Environment.NewLine);
 			}
-			exifSting += exifList[^1];
+			sb.Append(exifList[^1]);
+			var exifSting = sb.ToString();
 
 			m_toolTip.SetToolTip(m_imageExifLabel, exifSting);
 		}
@@ -544,7 +547,6 @@ public class ImagePreviewPanel : TableLayoutPanel
 				{
 					SetExifTooltip(result.First);
 				}
-
 				break;
 			case Position.Right:
 			case Position.Bottom:
@@ -552,7 +554,6 @@ public class ImagePreviewPanel : TableLayoutPanel
 				{
 					SetExifTooltip(result.Second);
 				}
-
 				break;
 		}
 	}
@@ -637,5 +638,4 @@ public class ImagePreviewPanel : TableLayoutPanel
 		}
 		return null;
 	}
-
 }

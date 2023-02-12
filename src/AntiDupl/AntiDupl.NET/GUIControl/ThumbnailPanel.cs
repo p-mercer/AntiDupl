@@ -41,7 +41,6 @@ public class ThumbnailPanel : RaisedPanel
 	private readonly ThumbnailGroupPanel m_thumbnailGroupPanel;
 
 	private TableLayoutPanel m_mainLayout;
-	private TableLayoutPanel m_controlLayout;
 	private CheckBox m_checkBox;
 	private PictureBox m_pictureBox;
 	private TableLayoutPanel m_infoLayout;
@@ -61,10 +60,7 @@ public class ThumbnailPanel : RaisedPanel
 		{
 			if (InvokeRequired)
 			{
-				BeginInvoke(new MethodInvoker(() =>
-				{
-					m_pictureBox.Image = value;
-				}));
+				BeginInvoke(new MethodInvoker(() => { m_pictureBox.Image = value; }));
 			}
 			else
 			{
@@ -73,7 +69,10 @@ public class ThumbnailPanel : RaisedPanel
 		}
 	}
 
-	public CoreImageInfo ImageInfo { get { return m_group.Images[m_index]; } }
+	public CoreImageInfo ImageInfo
+	{
+		get { return m_group.Images[m_index]; }
+	}
 
 	public ThumbnailPanel(CoreLib core, Options options, CoreGroup group, int index, ThumbnailGroupPanel thumbnailGroupPanel)
 	{
@@ -96,7 +95,7 @@ public class ThumbnailPanel : RaisedPanel
 		m_mainLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 		m_mainLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
-		m_controlLayout = InitFactory.Layout.Create(1, 1, 0, 0);
+		var m_controlLayout = InitFactory.Layout.Create(1, 1, 0, 0);
 		m_controlLayout.Height = 16;
 		m_checkBox = new CheckBox
 		{
@@ -105,11 +104,10 @@ public class ThumbnailPanel : RaisedPanel
 			Padding = new Padding(0),
 			Height = 16
 		};
+
 		m_checkBox.Click += new EventHandler(OnCheckBoxClick);
 
-
 		m_controlLayout.Controls.Add(m_checkBox, 0, 0);
-
 
 		m_pictureBox = new PictureBox
 		{
@@ -121,16 +119,14 @@ public class ThumbnailPanel : RaisedPanel
 			Padding = new Padding(0),
 			Margin = new Padding(0)
 		};
+
 		m_pictureBox.Location = new Point(Padding.Left, Padding.Top);
 		m_pictureBox.BackColor = Color.Transparent;
 		m_pictureBox.Click += new EventHandler(OnClick);
 
 		m_fileSizeLabel = CreateLabel();
-
 		m_imageSizeLabel = CreateLabel();
-
 		m_imageTypeLabel = CreateLabel();
-
 		m_fileNameLabel = CreateLabel();
 
 		m_infoLayout = InitFactory.Layout.Create(3, 1, 0, 0);
@@ -161,6 +157,7 @@ public class ThumbnailPanel : RaisedPanel
 			AutoSize = false,
 			BorderStyle = BorderStyle.Fixed3D
 		};
+
 		label.Height = label.Font.Height + 2;
 		label.FlatStyle = FlatStyle.System;
 		label.Text = "0";
@@ -171,11 +168,8 @@ public class ThumbnailPanel : RaisedPanel
 	private void SetSize()
 	{
 		m_fileSizeLabel.Width = 40;
-
 		m_imageSizeLabel.Width = 60;
-
 		m_imageTypeLabel.Width = 28;
-
 		m_fileNameLabel.Width = 128;
 		m_fileNameLabel.Location = new Point(0, 0);
 
@@ -191,7 +185,7 @@ public class ThumbnailPanel : RaisedPanel
 		var info = m_group.Images[m_index];
 
 		m_fileSizeLabel.Text = info.GetFileSizeString();
-		m_imageSizeLabel.Text = string.Format("{0}×{1}", info.Width, info.Height);
+		m_imageSizeLabel.Text = $"{info.Width}×{info.Height}";
 		m_imageTypeLabel.Text = info.Type == CoreDll.ImageType.None ? "   " : info.GetImageTypeString();
 		m_fileNameLabel.Text = Path.GetFileNameWithoutExtension(info.Path);
 
