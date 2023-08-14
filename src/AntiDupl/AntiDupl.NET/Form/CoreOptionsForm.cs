@@ -23,7 +23,7 @@
 */
 using System;
 using System.Windows.Forms;
-
+ 
 namespace AntiDupl.NET;
 
 public class CoreOptionsForm : Form
@@ -605,8 +605,8 @@ public class CoreOptionsForm : Form
 		m_tgaCheckBox.Checked = m_newCoreOptions.SearchOptions.TGA;
 		m_webpCheckBox.Checked = m_newCoreOptions.SearchOptions.WEBP;
 		m_heifCheckBox.Checked = m_newCoreOptions.SearchOptions.HEIF;
-		m_searchSystemCheckBox.Checked = m_newCoreOptions.SearchOptions.system;
-		m_searchHiddenCheckBox.Checked = m_newCoreOptions.SearchOptions.hidden;
+		m_searchSystemCheckBox.Checked = m_newCoreOptions.SearchOptions.System;
+		m_searchHiddenCheckBox.Checked = m_newCoreOptions.SearchOptions.Hidden;
 
 		m_deleteToRecycleBinCheckBox.Checked = m_newCoreOptions.AdvancedOptions.DeleteToRecycleBin;
 		m_mistakeDataBaseCheckBox.Checked = m_newCoreOptions.AdvancedOptions.MistakeDataBase;
@@ -659,8 +659,8 @@ public class CoreOptionsForm : Form
 		m_newCoreOptions.SearchOptions.TGA = m_tgaCheckBox.Checked;
 		m_newCoreOptions.SearchOptions.WEBP = m_webpCheckBox.Checked;
 		m_newCoreOptions.SearchOptions.HEIF = m_heifCheckBox.Checked;
-		m_newCoreOptions.SearchOptions.system = m_searchSystemCheckBox.Checked;
-		m_newCoreOptions.SearchOptions.hidden = m_searchHiddenCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.System = m_searchSystemCheckBox.Checked;
+		m_newCoreOptions.SearchOptions.Hidden = m_searchHiddenCheckBox.Checked;
 
 		m_newCoreOptions.AdvancedOptions.DeleteToRecycleBin = m_deleteToRecycleBinCheckBox.Checked;
 		m_newCoreOptions.AdvancedOptions.MistakeDataBase = m_mistakeDataBaseCheckBox.Checked;

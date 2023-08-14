@@ -24,7 +24,7 @@
 
 namespace AntiDupl.NET;
 
-public class CoreAdvancedOptions
+public sealed class CoreAdvancedOptions 
 {
 	public bool DeleteToRecycleBin { get; set; }
 	public bool MistakeDataBase { get; set; }
@@ -36,8 +36,6 @@ public class CoreAdvancedOptions
 	public int ResultCountMax { get; set; }
 	public int IgnoreFrameWidth { get; set; }
 	public bool UseLibJpegTurbo { get; set; }
-
-
 
 	public CoreAdvancedOptions()
 	{

@@ -252,7 +252,7 @@ public class ResultsListView : DataGridView
 		for (var i = 0; i < Rows.Count; i++)
 		{
 			var row = (DataGridViewCustomRow)Rows[i];
-			if (row.selected && i >= 0 && i < m_results.Length)
+			if (row.IsSelected && i >= 0 && i < m_results.Length)
 			{
 				selectedResultsCount++;
 			}
@@ -424,10 +424,10 @@ public class ResultsListView : DataGridView
 			for (var i = 0; i < Rows.Count; i++)
 			{
 				var row = (DataGridViewCustomRow)Rows[i];
-				row.Updated = false;
+				row.IsUpdated = false;
 				if (selection != null)
 				{
-					row.selected = selection[i];
+					row.IsSelected = selection[i];
 				}
 			}
 			var current = m_core.GetCurrent();
@@ -447,12 +447,12 @@ public class ResultsListView : DataGridView
 	{
 		var index = e.RowIndex;
 		var row = (DataGridViewCustomRow)Rows[index];
-		if (!row.Updated && index >= 0 && index < m_results.Length)
+		if (!row.IsUpdated && index >= 0 && index < m_results.Length)
 		{
 			m_resultRowSetter.Set(m_results[index], row);
-			row.Updated = true;
+			row.IsUpdated = true;
 		}
-		row.Current = index == m_currentRowIndex;
+		row.IsCurrent = index == m_currentRowIndex;
 		base.OnRowPrePaint(e);
 	}
 
@@ -707,7 +707,7 @@ public class ResultsListView : DataGridView
 			else if (e.Button == MouseButtons.Right)
 			{
 				var row = (DataGridViewCustomRow)Rows[e.RowIndex];
-				if (!m_isControlDown && !row.selected)
+				if (!m_isControlDown && !row.IsSelected)
 				{
 					SetCurrentRow(e.RowIndex);
 					SetRowSelection(false);
@@ -809,12 +809,12 @@ public class ResultsListView : DataGridView
 		{
 			if (m_currentRowIndex >= 0 && m_currentRowIndex < Rows.Count)
 			{
-				((DataGridViewCustomRow)Rows[m_currentRowIndex]).Current = false;
+				((DataGridViewCustomRow)Rows[m_currentRowIndex]).IsCurrent = false;
 			}
 
 			if (m_results.Length > 0)
 			{
-				((DataGridViewCustomRow)Rows[index]).Current = true;
+				((DataGridViewCustomRow)Rows[index]).IsCurrent = true;
 				m_core.SetCurrent(index);
 			}
 			else
@@ -873,7 +873,7 @@ public class ResultsListView : DataGridView
 					{
 						SetRowSelection(0, Rows.Count, false);
 					}
-					var value = !((DataGridViewCustomRow)Rows[m_currentRowIndex]).selected;
+					var value = !((DataGridViewCustomRow)Rows[m_currentRowIndex]).IsSelected;
 					SetRowSelection(m_currentRowIndex, m_currentRowIndex + 1, value);
 				}
 			}
@@ -886,7 +886,7 @@ public class ResultsListView : DataGridView
 		for (var i = beginRowIndex; i < endRowIndex; i++)
 		{
 			var row = (DataGridViewCustomRow)Rows[i];
-			row.selected = value;
+			row.IsSelected = value;
 		}
 		m_core.SetSelection((uint)beginRowIndex, (uint)(endRowIndex - beginRowIndex), value);
 	}
@@ -962,7 +962,7 @@ public class ResultsListView : DataGridView
 			for (var i = 0; i < Rows.Count; i++)
 			{
 				var row = (DataGridViewCustomRow)Rows[i];
-				if (row.selected)
+				if (row.IsSelected)
 				{
 					builder.Add(m_results[i]);
 				}
@@ -985,7 +985,7 @@ public class ResultsListView : DataGridView
 			for (var i = 0; i < Rows.Count; i++)
 			{
 				var row = (DataGridViewCustomRow)Rows[i];
-				if (row.selected)
+				if (row.IsSelected)
 				{
 					if (string.IsNullOrEmpty(m_results[i].Second.Path))
 					{

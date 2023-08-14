@@ -1,9 +1,9 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27205.2004
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiDuplWPF", "AntiDuplWPF\AntiDuplWPF.csproj", "{D3DAF82B-7EF8-4FBE-9922-CDA58C58BA28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AntiDuplWPF", "AntiDuplWPF\AntiDuplWPF.csproj", "{D3DAF82B-7EF8-4FBE-9922-CDA58C58BA28}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rd", "3rd", "{41B5928C-AC44-420D-BD85-6F66F2EA05BC}"
 EndProject

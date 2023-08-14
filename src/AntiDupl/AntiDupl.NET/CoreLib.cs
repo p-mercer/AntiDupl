@@ -71,9 +71,8 @@ public class CoreLib
 				sizeH.Free();
 			}
 		}
-		catch (Exception)
-		{
-		}
+		catch (Exception) { }
+
 		return new CoreVersion { Major = 0, Minor = 0, Release = 0, Revision = 0 };
 	}
 
@@ -139,9 +138,7 @@ public class CoreLib
 				statisticH.Free();
 			}
 		}
-		catch (Exception)
-		{
-		}
+		catch (Exception) { }
 		return null;
 	}
 
@@ -166,9 +163,7 @@ public class CoreLib
 				statusH.Free();
 			}
 		}
-		catch (Exception)
-		{
-		}
+		catch (Exception) { }
 		return null;
 	}
 
@@ -206,9 +201,7 @@ public class CoreLib
 				enableH.Free();
 			}
 		}
-		catch (Exception)
-		{
-		}
+		catch (Exception) { }
 		return false;
 	}
 
@@ -256,7 +249,6 @@ public class CoreLib
 						var result = (CoreDll.adResultW)Marshal.PtrToStructure(pResult, resultObject.GetType());
 						results[page * PAGE_SIZE + i] = new CoreResult(ref result);
 					}
-
 				}
 			}
 			return results;
@@ -286,9 +278,7 @@ public class CoreLib
 				startFromH.Free();
 			}
 		}
-		catch (Exception)
-		{
-		}
+		catch (Exception) { }
 		return 0;
 	}
 
@@ -301,11 +291,7 @@ public class CoreLib
 	{
 		var index = new IntPtr[1];
 		index[0] = new IntPtr();
-		if (CoreDll.adCurrentGet(m_handle, Marshal.UnsafeAddrOfPinnedArrayElement(index, 0)) == CoreDll.Error.Ok)
-		{
-			return index[0].ToInt32();
-		}
-		return -1;
+		return CoreDll.adCurrentGet(m_handle, Marshal.UnsafeAddrOfPinnedArrayElement(index, 0)) == CoreDll.Error.Ok ? index[0].ToInt32() : -1;
 	}
 
 	public CoreGroup[] GetGroup(uint startFrom, uint size)
@@ -488,16 +474,9 @@ public class CoreLib
 		}
 		catch (Exception)
 		{
-			GC.Collect();
-			try
-			{
-				bitmap = new System.Drawing.Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-			}
-			catch (Exception)
-			{
-				return null;
-			}
+			return null;
 		}
+
 		var bitmapData = new System.Drawing.Imaging.BitmapData();
 		bitmapData = bitmap.LockBits(
 			new System.Drawing.Rectangle(0, 0, width, height),

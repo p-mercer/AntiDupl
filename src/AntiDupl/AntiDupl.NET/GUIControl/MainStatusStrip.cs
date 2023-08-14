@@ -109,15 +109,12 @@ internal class MainStatusStrip : StatusStrip
 
 	private void UpdateResults()
 	{
-		{
-			var builder = new StringBuilder();
-			builder.Append(m_totalText);
-			builder.Append(m_mainSplitContainer.ResultsListView.GetTotalResultCount());
-			m_totalLabel.Text = builder.ToString();
-		}
+		var builder = new StringBuilder();
+		builder.Append(m_totalText);
+		builder.Append(m_mainSplitContainer.ResultsListView.GetTotalResultCount());
+		m_totalLabel.Text = builder.ToString();
 
 		CurrentResultChanged();
-
 		SelectionChanged();
 	}
 

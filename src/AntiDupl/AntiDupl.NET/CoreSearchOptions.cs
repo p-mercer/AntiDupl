@@ -21,11 +21,11 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System.Collections;
+using System.Collections.Generic;
 
 namespace AntiDupl.NET;
 
-public class CoreSearchOptions
+public sealed class CoreSearchOptions 
 {
 	private static readonly string[] s_jpegExtensions = { "JPEG", "JFIF", "JPG", "JPE", "JIFF", "JIF", "J", "JNG", "JFF" };
 	private static readonly string[] s_tiffExtensions = { "TIF", "TIFF" };
@@ -41,24 +41,24 @@ public class CoreSearchOptions
 	private static readonly string[] s_tgaExtensions = { "TGA", "TPIC" };
 	private static readonly string[] s_heifExtensions = { "HEIF", "HEIC" };
 
-	public bool subFolders;
-	public bool system;
-	public bool hidden;
-	public bool JPEG;
-	public bool BMP;
-	public bool GIF;
-	public bool PNG;
-	public bool TIFF;
-	public bool EMF;
-	public bool WMF;
-	public bool EXIF;
-	public bool ICON;
-	public bool JP2;
-	public bool PSD;
-	public bool DDS;
-	public bool TGA;
-	public bool WEBP;
-	public bool HEIF;
+	public bool SubFolders { get; set; }
+	public bool System { get; set; }
+	public bool Hidden { get; set; }
+	public bool JPEG { get; set; }
+	public bool BMP { get; set; }
+	public bool GIF { get; set; }
+	public bool PNG { get; set; }
+	public bool TIFF { get; set; }
+	public bool EMF { get; set; }
+	public bool WMF { get; set; }
+	public bool EXIF { get; set; }
+	public bool ICON { get; set; }
+	public bool JP2 { get; set; }
+	public bool PSD { get; set; }
+	public bool DDS { get; set; }
+	public bool TGA { get; set; }
+	public bool WEBP { get; set; }
+	public bool HEIF { get; set; }
 
 	public CoreSearchOptions()
 	{
@@ -66,8 +66,8 @@ public class CoreSearchOptions
 
 	public CoreSearchOptions(CoreSearchOptions searchOptions)
 	{
-		system = searchOptions.system;
-		hidden = searchOptions.hidden;
+		System = searchOptions.System;
+		Hidden = searchOptions.Hidden;
 		JPEG = searchOptions.JPEG;
 		BMP = searchOptions.BMP;
 		GIF = searchOptions.GIF;
@@ -87,8 +87,8 @@ public class CoreSearchOptions
 
 	public CoreSearchOptions(CoreDll.adSearchOptions searchOptions)
 	{
-		system = searchOptions.system != CoreDll.FALSE;
-		hidden = searchOptions.hidden != CoreDll.FALSE;
+		System = searchOptions.system != CoreDll.FALSE;
+		Hidden = searchOptions.hidden != CoreDll.FALSE;
 		JPEG = searchOptions.JPEG != CoreDll.FALSE;
 		BMP = searchOptions.BMP != CoreDll.FALSE;
 		GIF = searchOptions.GIF != CoreDll.FALSE;
@@ -108,8 +108,8 @@ public class CoreSearchOptions
 
 	public void ConvertTo(ref CoreDll.adSearchOptions searchOptions)
 	{
-		searchOptions.system = system ? CoreDll.TRUE : CoreDll.FALSE;
-		searchOptions.hidden = hidden ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.system = System ? CoreDll.TRUE : CoreDll.FALSE;
+		searchOptions.hidden = Hidden ? CoreDll.TRUE : CoreDll.FALSE;
 		searchOptions.JPEG = JPEG ? CoreDll.TRUE : CoreDll.FALSE;
 		searchOptions.BMP = BMP ? CoreDll.TRUE : CoreDll.FALSE;
 		searchOptions.GIF = GIF ? CoreDll.TRUE : CoreDll.FALSE;
@@ -135,8 +135,8 @@ public class CoreSearchOptions
 	public bool Equals(CoreSearchOptions searchOptions)
 	{
 		return
-			system == searchOptions.system &&
-			hidden == searchOptions.hidden &&
+			System == searchOptions.System &&
+			Hidden == searchOptions.Hidden &&
 			JPEG == searchOptions.JPEG &&
 			BMP == searchOptions.BMP &&
 			GIF == searchOptions.GIF &&
@@ -156,7 +156,7 @@ public class CoreSearchOptions
 
 	public string[] GetActualExtensions()
 	{
-		var extensions = new ArrayList();
+		var extensions = new List<string>();
 		if (JPEG)
 		{
 			extensions.AddRange(s_jpegExtensions);
@@ -227,6 +227,6 @@ public class CoreSearchOptions
 			extensions.AddRange(s_heifExtensions);
 		}
 
-		return (string[])extensions.ToArray(typeof(string));
+		return extensions.ToArray();
 	}
 }

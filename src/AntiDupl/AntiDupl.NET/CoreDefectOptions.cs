@@ -24,7 +24,7 @@
 
 namespace AntiDupl.NET;
 
-public class CoreDefectOptions
+public sealed class CoreDefectOptions
 {
 	public bool CheckOnDefect { get; set; }
 	public bool CheckOnBlockiness { get; set; }

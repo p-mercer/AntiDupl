@@ -22,9 +22,11 @@
 * SOFTWARE.
 */
 
+using System;
+
 namespace AntiDupl.NET;
 
-public class CoreCompareOptions
+public sealed class CoreCompareOptions : IEquatable<CoreCompareOptions>
 {
 	public bool CheckOnEquality { get; set; }
 	public bool TransformedImage { get; set; }

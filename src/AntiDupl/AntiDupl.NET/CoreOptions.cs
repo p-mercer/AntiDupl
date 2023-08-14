@@ -27,7 +27,7 @@ using System.Xml.Serialization;
 
 namespace AntiDupl.NET;
 
-public class CoreOptions
+public sealed class CoreOptions
 {
 	public CoreSearchOptions SearchOptions { get; set; }
 	public CoreCompareOptions CompareOptions { get; set; }
@@ -52,14 +52,12 @@ public class CoreOptions
 		deletePath = System.Array.Empty<CorePathWithSubFolder>();
 	}
 
-	public CoreOptions(CoreLib core, bool onePath)
-		: this()
+	public CoreOptions(CoreLib core, bool onePath) : this()
 	{
 		SetDefault(core, onePath);
 	}
 
-	public CoreOptions(CoreLib core)
-		: this(core, false)
+	public CoreOptions(CoreLib core) : this(core, false)
 	{
 	}
 

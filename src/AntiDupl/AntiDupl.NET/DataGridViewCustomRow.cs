@@ -28,17 +28,17 @@ namespace AntiDupl.NET;
 
 public class DataGridViewCustomRow : DataGridViewRow
 {
-	public bool Current { get; set; }
-	public bool selected { get; set; }
-	public bool Updated { get; set; }
+	public bool IsCurrent { get; set; }
+	public bool IsSelected { get; set; }
+	public bool IsUpdated { get; set; }
 
 	protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle rowBounds, int rowIndex, DataGridViewElementStates rowState, bool isFirstDisplayedRow, bool isLastVisibleRow)
 	{
 		var state =
 		  (DataGridViewElementStates)((int)rowState & ~(int)DataGridViewElementStates.Selected) |
-		  (selected ? DataGridViewElementStates.Selected : 0);
+		  (IsSelected ? DataGridViewElementStates.Selected : 0);
 		base.Paint(graphics, clipBounds, rowBounds, rowIndex, state, isFirstDisplayedRow, isLastVisibleRow);
-		if (Current)
+		if (IsCurrent)
 		{
 			var cellsWidth = 0;
 			for (var i = 0; i < Cells.Count; i++)
