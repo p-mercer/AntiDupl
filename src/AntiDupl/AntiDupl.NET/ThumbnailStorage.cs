@@ -30,18 +30,12 @@ namespace AntiDupl.NET;
 /// <summary>
 /// Хранилище эскизов изображений.
 /// </summary>
-public class ThumbnailStorage
+public class ThumbnailStorage(CoreLib core, Options options)
 {
-	private readonly CoreLib m_core;
-	private readonly Options m_options;
+	private readonly CoreLib m_core = core;
+	private readonly Options m_options = options;
 	private readonly Dictionary<ulong, Bitmap> m_storage = new();
 	private readonly Mutex m_mutex = new();
-
-	public ThumbnailStorage(CoreLib core, Options options)
-	{
-		m_core = core;
-		m_options = options;
-	}
 
 	public void Clear()
 	{

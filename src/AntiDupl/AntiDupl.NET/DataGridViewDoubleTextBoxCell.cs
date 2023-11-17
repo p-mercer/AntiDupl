@@ -27,7 +27,7 @@ using System.Windows.Forms;
 
 namespace AntiDupl.NET;
 
-public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
+public class DataGridViewDoubleTextBoxCell(object first, object second) : DataGridViewTextBoxCell
 {
 	private const int PADDING = 3;
 	private const int SEPARATOR_WIDTH = 1;
@@ -49,14 +49,8 @@ public class DataGridViewDoubleTextBoxCell : DataGridViewTextBoxCell
 	public MarkType markType { get; set; } = MarkType.None;
 
 
-	private readonly object m_first;
-	private readonly object m_second;
-
-	public DataGridViewDoubleTextBoxCell(object first, object second)
-	{
-		m_first = first;
-		m_second = second;
-	}
+	private readonly object m_first = first;
+	private readonly object m_second = second;
 
 	protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle cellBounds,
 	  int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue,

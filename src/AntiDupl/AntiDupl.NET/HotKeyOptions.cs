@@ -205,20 +205,20 @@ public class HotKeyOptions
 	}
 
 	private static readonly Keys[] m_reservedKeyCombinations =
-	{
+	[
 			Keys.A | Keys.Control,
 			Keys.C | Keys.Control,
 			Keys.Z | Keys.Control,
 			Keys.Y | Keys.Control
-		};
+		];
 
 	private static readonly Keys[] m_reservedKeys =
-	{
+	[
 			Keys.Up,
 			Keys.Down,
 			Keys.PageUp,
 			Keys.PageDown,
 			Keys.Home,
 			Keys.End
-		};
+		];
 }

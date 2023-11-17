@@ -65,16 +65,10 @@ public class LabeledComboBox : TableLayoutPanel
 		Controls.Add(m_label, 1, 0);
 	}
 
-	public class Value
+	public class Value(int val, string desc)
 	{
-		public int value { get; set; }
-		public string Description { get; set; }
-
-		public Value(int val, string desc)
-		{
-			value = val;
-			Description = desc;
-		}
+		public int value { get; set; } = val;
+		public string Description { get; set; } = desc;
 
 		public override string ToString()
 		{

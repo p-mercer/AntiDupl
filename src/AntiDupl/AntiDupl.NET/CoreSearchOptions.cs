@@ -27,19 +27,19 @@ namespace AntiDupl.NET;
 
 public sealed class CoreSearchOptions 
 {
-	private static readonly string[] s_jpegExtensions = { "JPEG", "JFIF", "JPG", "JPE", "JIFF", "JIF", "J", "JNG", "JFF" };
-	private static readonly string[] s_tiffExtensions = { "TIF", "TIFF" };
-	private static readonly string[] s_bmpExtensions = { "BMP", "DIB", "RLE" };
-	private static readonly string[] s_gifExtensions = { "GIF" };
-	private static readonly string[] s_pngExtensions = { "PNG" };
-	private static readonly string[] s_emfExtensions = { "EMF", "EMZ" };
-	private static readonly string[] s_wmfExtensions = { "WMF" };
-	private static readonly string[] s_iconExtensions = { "ICON", "ICO", "ICN" };
-	private static readonly string[] s_jp2Extensions = { "JP2", "J2K", "J2C", "JPC", "JPF", "JPX" };
-	private static readonly string[] s_psdExtensions = { "PSD" };
-	private static readonly string[] s_ddsExtensions = { "DDS" };
-	private static readonly string[] s_tgaExtensions = { "TGA", "TPIC" };
-	private static readonly string[] s_heifExtensions = { "HEIF", "HEIC" };
+	private static readonly string[] s_jpegExtensions = ["JPEG", "JFIF", "JPG", "JPE", "JIFF", "JIF", "J", "JNG", "JFF"];
+	private static readonly string[] s_tiffExtensions = ["TIF", "TIFF"];
+	private static readonly string[] s_bmpExtensions = ["BMP", "DIB", "RLE"];
+	private static readonly string[] s_gifExtensions = ["GIF"];
+	private static readonly string[] s_pngExtensions = ["PNG"];
+	private static readonly string[] s_emfExtensions = ["EMF", "EMZ"];
+	private static readonly string[] s_wmfExtensions = ["WMF"];
+	private static readonly string[] s_iconExtensions = ["ICON", "ICO", "ICN"];
+	private static readonly string[] s_jp2Extensions = ["JP2", "J2K", "J2C", "JPC", "JPF", "JPX"];
+	private static readonly string[] s_psdExtensions = ["PSD"];
+	private static readonly string[] s_ddsExtensions = ["DDS"];
+	private static readonly string[] s_tgaExtensions = ["TGA", "TPIC"];
+	private static readonly string[] s_heifExtensions = ["HEIF", "HEIC"];
 
 	public bool SubFolders { get; set; }
 	public bool System { get; set; }

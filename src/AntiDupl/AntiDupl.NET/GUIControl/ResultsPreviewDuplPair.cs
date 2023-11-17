@@ -45,16 +45,10 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 	private ToolStripButton m_openBothFoldersButton;
 	private ToolStripButton m_openBothImagesButton;
 
-	private struct RectanglesWithSimilarity
+	private struct RectanglesWithSimilarity(Rectangle rectangle, float similarity)
 	{
-		public Rectangle Rectangle { get; set; }
-		public float Similarity { get; set; }
-
-		public RectanglesWithSimilarity(Rectangle rectangle, float similarity)
-		{
-			Rectangle = rectangle;
-			Similarity = similarity;
-		}
+		public Rectangle Rectangle { get; set; } = rectangle;
+		public float Similarity { get; set; } = similarity;
 	}
 
 	public ResultsPreviewDuplPair(CoreLib core, Options options, CoreOptions coreOptions, ResultsListView resultsListView)
@@ -324,7 +318,7 @@ public class ResultsPreviewDuplPair : ResultsPreviewBase
 	{
 		if (InvokeRequired) // Проверяем в этом ли потоке нахождится созданый обьект 
 		{
-			object[] eventArgs = { rectangles };
+			object[] eventArgs = [rectangles];
 			Invoke(new HighlightCompleteDelegate(HighlightCompleteEventHandler), eventArgs);
 			return;
 		}

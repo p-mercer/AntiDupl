@@ -27,17 +27,11 @@ using TypeVertical = AntiDupl.NET.ResultsListView.ColumnsTypeVertical;
 
 namespace AntiDupl.NET;
 
-public class ClipboardContentBuilder
+public class ClipboardContentBuilder(ResultsOptions options)
 {
-	private readonly StringBuilder m_builder;
-	private readonly ResultsOptions m_options;
+	private readonly StringBuilder m_builder = new();
+	private readonly ResultsOptions m_options = options;
 	private bool m_insertTab;
-
-	public ClipboardContentBuilder(ResultsOptions options)
-	{
-		m_options = options;
-		m_builder = new StringBuilder();
-	}
 
 	public void Add(CoreResult result)
 	{
