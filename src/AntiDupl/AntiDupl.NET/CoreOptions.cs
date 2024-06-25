@@ -47,9 +47,9 @@ public sealed class CoreOptions
 		AdvancedOptions = new CoreAdvancedOptions();
 
 		searchPath = new CorePathWithSubFolder[1];
-		ignorePath = System.Array.Empty<CorePathWithSubFolder>();
-		validPath = System.Array.Empty<CorePathWithSubFolder>();
-		deletePath = System.Array.Empty<CorePathWithSubFolder>();
+		ignorePath = [];
+		validPath = [];
+		deletePath = [];
 	}
 
 	public CoreOptions(CoreLib core, bool onePath) : this()

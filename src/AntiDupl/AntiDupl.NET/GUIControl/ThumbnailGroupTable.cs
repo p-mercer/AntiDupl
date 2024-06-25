@@ -81,7 +81,7 @@ public class ThumbnailGroupTable : Panel
 	{
 		UpdateThumbnailsStop();
 		m_thumbnailStorage.Clear();
-		m_groups = Array.Empty<CoreGroup>();
+		m_groups = [];
 		m_maxGroupIndex = -1;
 		Controls.Clear();
 	}
@@ -94,7 +94,7 @@ public class ThumbnailGroupTable : Panel
 		var groupSize = m_core.GetGroupSize();
 		if (groupSize == 0)
 		{
-			m_groups = Array.Empty<CoreGroup>();
+			m_groups = [];
 			m_maxGroupIndex = -1;
 			return;
 		}

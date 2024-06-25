@@ -134,7 +134,7 @@ public class ResultsListView : DataGridView
 		m_options = options;
 		CoreOptions = coreOptions;
 		m_mainSplitContainer = mainSplitContainer;
-		m_results = Array.Empty<CoreResult>();
+		m_results = [];
 		m_resultRowSetter = new ResultRowSetter(m_options, this);
 		InitializeComponents();
 		if (m_options.resultsOptions.viewMode == ResultsOptions.ViewMode.VerticalPairTable)
@@ -385,7 +385,7 @@ public class ResultsListView : DataGridView
 
 	public void ClearResults()
 	{
-		m_results = Array.Empty<CoreResult>();
+		m_results = [];
 		Rows.Clear();
 		RowCount = 1;
 		m_currentRowIndex = 0;
@@ -396,7 +396,7 @@ public class ResultsListView : DataGridView
 		var resultSize = m_core.GetResultSize();
 		if (resultSize == 0)
 		{
-			m_results = Array.Empty<CoreResult>();
+			m_results = [];
 			return;
 		}
 		m_results = m_core.GetResult(0, resultSize);

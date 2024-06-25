@@ -253,7 +253,7 @@ public class CoreLib
 			}
 			return results;
 		}
-		return Array.Empty<CoreResult>();
+		return [];
 	}
 
 	public uint GetResultSize()
@@ -321,7 +321,7 @@ public class CoreLib
 			}
 			return groups;
 		}
-		return Array.Empty<CoreGroup>();
+		return [];
 	}
 
 	/// <summary>
@@ -381,7 +381,7 @@ public class CoreLib
 			}
 			return imageInfos;
 		}
-		return Array.Empty<CoreImageInfo>();
+		return [];
 	}
 
 	/// <summary>
@@ -430,7 +430,7 @@ public class CoreLib
 
 			return selection;
 		}
-		return Array.Empty<bool>();
+		return [];
 	}
 
 	public bool[] GetSelection(int groupId, uint startFrom, uint size)
@@ -452,7 +452,7 @@ public class CoreLib
 
 			return selection;
 		}
-		return Array.Empty<bool>();
+		return [];
 	}
 
 	public bool Rename(int groupId, int index, string newFileName)
